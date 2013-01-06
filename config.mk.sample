@@ -1,0 +1,16 @@
+
+PLATFORM=linux
+#LUA_HOME=/Users/kgm212/third_party/lua-5.1.4
+LUA_INCLUDE=-I/usr/include/lua5.1
+LUA_LIB=-L/usr/lib/ -llua5.1
+#ECHO=echo -e
+# use only echo in mac
+ECHO=echo
+#QT_HOME=/opt/qtsdk-2010.05/qt
+QT_HOME=/home/ayaskanti/opt/qt/Desktop/Qt/474/gcc
+#PROJECTPATH=/Projects/experiments/libsync
+ASTERISK_HOME=/media/active/projects/asterisk-1.8.13.0
+AST_VERSION_6=no
+PROJECTPATH=/media/active/projects/libsync
+ROOTPATH=$(PROJECTPATH)/root
+VALA_HOME=/media/active/projects/aroop
