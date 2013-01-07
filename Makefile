@@ -2,7 +2,7 @@
 
 AROOPMK=$(MAKE) -f ../../build/aroop.mk
 
-all:makecore makeapps
+all:makecore makeapps makemain
 
 makeapps:
 	$(AROOPMK) -C apps/key_value
@@ -22,4 +22,10 @@ cleancore:
 	$(AROOPMK) -C core/console clean
 	$(AROOPMK) -C core/commands clean
 
-clean:cleancore cleanapps
+makemain:
+	$(AROOPMK) -C main/main
+
+cleanmain:
+	$(AROOPMK) -C main/main clean
+
+clean:cleancore cleanapps cleanmain
