@@ -1,9 +1,9 @@
 using aroop;
 using shotodol;
 
-public class shotodol.Module : None {
+public abstract class shotodol.Module : None {
 
-	public virtual int init();
-	public virtual int deinit();
+	public abstract int init();
+	public abstract int deinit();
 }
 

@@ -11,6 +11,6 @@ QT_HOME=/home/ayaskanti/opt/qt/Desktop/Qt/474/gcc
 #PROJECTPATH=/Projects/experiments/libsync
 ASTERISK_HOME=/media/active/projects/asterisk-1.8.13.0
 AST_VERSION_6=no
-PROJECTPATH=/media/active/projects/libsync
+PROJECTPATH=/media/active/projects/shotodol
 ROOTPATH=$(PROJECTPATH)/root
 VALA_HOME=/media/active/projects/aroop

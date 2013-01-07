@@ -6,7 +6,7 @@ public class shotodol.KeyValAddCmd : Command {
 	public override int act_on(ArrayList<txt> tokens, StandardIO io) {
 		// TODO add record
 		// TODO say something
-		io.say("Adding new entry\n");
+		io.say_static("Adding new entry\n");
 		return 0;
 	}
 }

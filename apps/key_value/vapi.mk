@@ -1,5 +1,6 @@
 
-VAPI+=--vapidir=../../core/base/vapi
-VAPI+=--vapidir=../../core/console/vapi
-VAPI+=--vapidir=../../core/io/vapi
-LIBRARY_NAME=key_value
+VAPI+=--vapidir=../../core/base/vapi --pkg=shotodol_base
+VAPI+=--vapidir=../../core/console/vapi --pkg=shotodol_console
+VAPI+=--vapidir=../../core/commands/vapi --pkg=shotodol_commands
+VAPI+=--vapidir=../../core/io/vapi --pkg=shotodol_io
+LIBRARY_NAME=shotodol_key_value
