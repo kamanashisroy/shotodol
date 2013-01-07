@@ -2,18 +2,21 @@ using aroop;
 using shotodol;
 
 public class shotodol.CommandServer: Module {
-
+	public static CommandServer server;
 	Set<shotodol.Command> cmds;
-	int register(Command cmd) {
+	CommandServer() {
+		cmds = Set<shotodol.Command>();
+	}
+	public int register(Command cmd) {
 		cmds.add(cmd);
 		return 0;
 	}
-	int unregister(Command cmd) {
+	public int unregister(Command cmd) {
 		// TODO fill me
 		return 0;
 	}
 	public override int init() {
-		cmds = Set<shotodol.Command>();
+		server = this;
 		return 0;
 	}
 	public override int deinit() {

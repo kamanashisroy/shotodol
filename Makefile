@@ -1,31 +1,34 @@
 
 
-AROOPMK=$(MAKE) -f ../../build/aroop.mk
+BUILD=$(MAKE) -f ../../build/build.mk
+CLEAN=$(MAKE) -f ../../build/clean.mk
 
 all:makecore makeapps makemain
 
 makeapps:
-	$(AROOPMK) -C apps/key_value
+	$(BUILD) -C apps/key_value
 
 cleanapps:
-	$(AROOPMK) -C apps/key_value clean
+	$(CLEAN) -C apps/key_value
 
 makecore:
-	$(AROOPMK) -C core/base
-	$(AROOPMK) -C core/io
-	$(AROOPMK) -C core/console
-	$(AROOPMK) -C core/commands
+	$(BUILD) -C core/base
+	$(BUILD) -C core/io
+	$(BUILD) -C core/console
+	$(BUILD) -C core/commands
+	$(BUILD) -C core/rules
 
 cleancore:
-	$(AROOPMK) -C core/base clean
-	$(AROOPMK) -C core/io clean
-	$(AROOPMK) -C core/console clean
-	$(AROOPMK) -C core/commands clean
+	$(CLEAN) -C core/base
+	$(CLEAN) -C core/io
+	$(CLEAN) -C core/console
+	$(CLEAN) -C core/commands
+	$(CLEAN) -C core/rules
 
 makemain:
-	$(AROOPMK) -C main/main
+	$(BUILD) -C main/main
 
 cleanmain:
-	$(AROOPMK) -C main/main clean
+	$(CLEAN) -C main/main
 
 clean:cleancore cleanapps cleanmain
