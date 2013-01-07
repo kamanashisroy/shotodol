@@ -1,0 +1,4 @@
+shotodol
+========
+
+This is an all in one server written in aroop.
