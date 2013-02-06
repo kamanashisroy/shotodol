@@ -7,7 +7,7 @@ public errordomain key_value.line_reader_error {
 	could_not_open_file,
 }
 
-public class key_value.line_reader : None {
+public class key_value.line_reader : Replicable {
 	FILE?fp;
 	etxt src;
 	public line_reader.from_file(etxt*filename) throws key_value.line_reader_error {
@@ -34,12 +34,16 @@ public class key_value.line_reader : None {
 		while(true) {
 			if(fp != null) {
 				line.destroy();
-				None mem = core.memory_alloc(128);
+				Replicable mem = core.memory_alloc(128);
 				unowned string input = (string)mem;
 				// sad that there is no bound checking ..
+#if false
 				if(fp.gets((char[])mem) == null) {
 					throw new key_value.error.end_of_data("File end");
 				}
+#else
+					throw new key_value.error.end_of_data("TODO read file with gets");
+#endif
 				(*line) = etxt(input, mem);
 			} else {
 				src.shift_token("\n", line);

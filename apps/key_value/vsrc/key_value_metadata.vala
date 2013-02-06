@@ -22,7 +22,7 @@ public struct key_value.object {
 	}
 }
 
-public class key_value.metadata : None {
+public class key_value.metadata : Replicable {
 	public etxt*the_key {get {return &our_key;}private set{}}
 	public etxt*the_val {get {return &our_val;}private set{}}
 	etxt our_key;
@@ -153,10 +153,10 @@ public void write_object(etxt*objname, etxt*owner) throws key_value.error {
 		etxt my_owner = etxt.EMPTY();
 		my_trim_r(owner, &my_owner);
 		my_owner.zero_terminate();
-		writer.buffer.printf("[%s of %s]\n", my_objname.to_string(), my_owner.to_string());
+		writer.buffer.printf_extra("[%T of %T]\n", &my_objname, &my_owner);
 		my_owner.destroy();
 	} else {
-		writer.buffer.printf("[%s]\n", my_objname.to_string());
+		writer.buffer.printf_extra("[%T]\n", &my_objname);
 	}
 	my_objname.destroy();
 	writer.write();
@@ -169,7 +169,7 @@ public void write_string(etxt*key, etxt*val) throws key_value.error {
 	my_trim_r(val, &my_val);
 	my_key.zero_terminate();
 	my_val.zero_terminate();
-	writer.buffer.printf("%s=%s\n", my_key.to_string(), my_val.to_string());
+	writer.buffer.printf_extra("%T=%T\n", &my_key, &my_val);
 	my_key.destroy();
 	my_val.destroy();
 	writer.write();
@@ -179,7 +179,7 @@ public void write_int(etxt*key, int val) throws key_value.error {
 	etxt my_key = etxt.EMPTY();
 	my_trim_r(key, &my_key);
 	my_key.zero_terminate();
-	writer.buffer.printf("%s=%d\n", my_key.to_string(), val);
+	writer.buffer.printf_extra("%T=%d\n", &my_key, val);
 	my_key.destroy();
 	writer.write();
 }

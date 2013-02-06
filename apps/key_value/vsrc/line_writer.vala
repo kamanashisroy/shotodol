@@ -3,10 +3,10 @@ using Posix;
 
 
 public errordomain key_value.line_writer_error {
-	could_not_open_file,
+	could_not_open_file_for_writing,
 }
 
-public class key_value.line_writer : None {
+public class key_value.line_writer : Replicable {
 	FILE?fp;
 	public etxt buffer;
 	
@@ -14,7 +14,7 @@ public class key_value.line_writer : None {
 		core.memclean_raw(this, sizeof(line_writer));
 		fp = FILE.open(filename.to_string(), "w+");
 		if(fp == null) {
-			throw new key_value.line_writer_error.could_not_open_file("Could not open file");
+			throw new key_value.line_writer_error.could_not_open_file_for_writing("Could not open file");
 		}
 		buffer = etxt.EMPTY();
 	}
