@@ -2,8 +2,9 @@
 
 BUILD=$(MAKE) -f ../../build/build.mk
 CLEAN=$(MAKE) -f ../../build/clean.mk
+SHOTODOL=$(MAKE) -f build/shotodol.mk
 
-all:makecore makeapps makemain
+all:makecore makeapps makemain shotodol
 
 makeapps:
 	$(BUILD) -C apps/key_value
@@ -30,5 +31,9 @@ makemain:
 
 cleanmain:
 	$(CLEAN) -C main/main
+	$(SHOTODOL) clean
+
+shotodol:
+	$(SHOTODOL)
 
 clean:cleancore cleanapps cleanmain
