@@ -19,20 +19,18 @@ public abstract class shotodol.Module : Replicable {
 		return 0;
 	}
 //#if SHOTODOL_LOAD_DYNAMIC_MODULE
-	shotodol_platform.plugin owner;
+	unowned shotodol_platform.plugin owner;
 	public static Module load_dynamic_module(string filepath) throws plugin_error {
 		// load dynamic modules ..
-		shotodol_platform.plugin? plg = shotodol_platform.plugin.load(filepath);
+		unowned shotodol_platform.plugin? plg = shotodol_platform.plugin.load(filepath);
 		if(plg == null) {
 			throw new plugin_error.COULD_NOT_OPEN("Please check the filepath and name");
 		}
-		print("Found\n");
 		Module?m = plg.get_instance();
 		if(m == null) {
 			plg.unload();
 			throw new plugin_error.COULD_NOT_CREATE_INSTANCE("Could not create module");
 		}
-		print("Got instance\n");
 		if(m.init() != 0) {
 			m.deinit();
 			plg.unload();

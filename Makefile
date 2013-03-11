@@ -14,6 +14,7 @@ cleanapps:
 
 makecore:
 	$(BUILD) -C core/base
+	$(BUILD) -C libs/propeller
 	$(BUILD) -C core/io
 	$(BUILD) -C core/console
 	$(BUILD) -C core/commands
@@ -21,6 +22,7 @@ makecore:
 
 cleancore:
 	$(CLEAN) -C core/base
+	$(CLEAN) -C libs/propeller
 	$(CLEAN) -C core/io
 	$(CLEAN) -C core/console
 	$(CLEAN) -C core/commands

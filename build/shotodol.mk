@@ -2,7 +2,7 @@
 include .config.mk
 OBJDIR=build/.objects
 #OBJECTS=$(wildcard $(OBJDIR)/*.o)
-OBJECTS=$(OBJDIR)/Main.o $(OBJDIR)/Module.o
+OBJECTS=$(OBJDIR)/Main.o $(OBJDIR)/Module.o $(OBJDIR)/propeller.o $(OBJDIR)/spindle.o
 LIBS+=-L$(VALA_HOME)/aroop/core/ -laroop_core
 TARGET=shotodol.bin
 include build/platform.mk
