@@ -13,16 +13,16 @@ cleanapps:
 	$(CLEAN) -C apps/key_value
 
 makecore:
-	$(BUILD) -C core/base
 	$(BUILD) -C libs/propeller
+	$(BUILD) -C core/base
 	$(BUILD) -C core/io
 	$(BUILD) -C core/console
 	$(BUILD) -C core/commands
 	$(BUILD) -C core/rules
 
 cleancore:
-	$(CLEAN) -C core/base
 	$(CLEAN) -C libs/propeller
+	$(CLEAN) -C core/base
 	$(CLEAN) -C core/io
 	$(CLEAN) -C core/console
 	$(CLEAN) -C core/commands

@@ -5,6 +5,7 @@ public class Console : Module {
 
 	class ConsoleSpindle : Spindle {
 		public override int start(Propeller?plr) {
+			print("Started stepping console ..\n");
 			return 0;
 		}
 		public override int step() {
@@ -20,7 +21,8 @@ public class Console : Module {
 	public override int init() {
 		//base.init();
 		print("Loading console\n");
-		
+		ConsoleSpindle sp = new ConsoleSpindle();
+		MainTurbine.gearup(sp);
 		return 0;
 	}
 

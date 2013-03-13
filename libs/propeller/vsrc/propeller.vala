@@ -2,18 +2,19 @@ using aroop;
 using shotodol;
 
 public abstract class shotodol.Propeller : Spindle {
-	Set<Spindle> sps; 
+	protected Set<Spindle> sps; 
 	protected Queue<Replicable> msgs; // message queue
 	protected bool cancelled;
 	
 	public Propeller() {
+		sps = Set<Spindle>();
 		msgs = Queue<Replicable>((uchar)get_id());
 	}
 	
 	protected override int start(Propeller?p) {
 		cancelled = false;
 		sps.visit_each((data) => {
-			Spindle sp = (Spindle)data;
+			unowned Spindle sp = ((container<Spindle>)data).get();
 			sp.start(this);
 			return 0;
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
@@ -27,7 +28,7 @@ public abstract class shotodol.Propeller : Spindle {
 	
 	protected override int step() {
 		sps.visit_each((data) => {
-			Spindle sp = (Spindle)data;
+			unowned Spindle sp = ((container<Spindle>)data).get();
 			sp.step();
 			return 0;
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
@@ -47,5 +48,6 @@ public abstract class shotodol.Propeller : Spindle {
 	
 	~Propeller() {
 		msgs.destroy();
+		sps.destroy();
 	}
 }
