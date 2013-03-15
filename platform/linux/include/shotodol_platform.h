@@ -2,7 +2,7 @@
 #define SHOTODOL_PLUGIN_INCLUDE_H
 
 #define plugin_open(x) ({ \
-	void*hdl = dlopen(x,RTLD_LAZY); \
+	void*hdl = dlopen(x,RTLD_LAZY | RTLD_GLOBAL); \
 	char*derror = NULL; \
 	if ((derror = dlerror()) != NULL)  { \
 	   fprintf(stderr, "%s\n", derror); \

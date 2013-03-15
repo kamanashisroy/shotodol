@@ -5,10 +5,12 @@ using shotodol_platform;
 public class Console : Module {
 
 	class ConsoleSpindle : Spindle {
-		
+		StandardIO io;
 		public ConsoleSpindle() {
+			io = new StandardIO();
 		}
 		~ConsoleSpindle() {
+			io = null;
 		}
 		public override int start(Propeller?plr) {
 			print("Started stepping console ..\n");
@@ -20,7 +22,8 @@ public class Console : Module {
 			etxt cmd = etxt.stack(128);
  			x.read(&cmd);
  			cmd.zero_terminate();
- 			print("Read:%s\n", cmd.to_string());
+ 			print("Executing:%s\n", cmd.to_string());
+ 			CommandServer.server.act_on(cmd, io);
  			print("\n");
  			// TODO see what the command is
 			return 0;
