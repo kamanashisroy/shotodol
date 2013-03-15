@@ -24,4 +24,15 @@
 	val;\
 })
 
+//#include <sys/filio.h> // defines FIONREAD 
+#define fileio_stdin() ({STDIN_FILENO;})
+
+#define fileio_available_bytes(x) ({ \
+	int __bt=0;/*ioctl(x, FIONREAD, &__bt);*/__bt; \
+})
+
+#define fileio_read(x,y) ({ \
+	int __rt = read(x, (y)->str+(y)->len, (y)->size - (y)->len - 1);if(__rt > 0) {(y)->len = __rt;}__rt; \
+})
+
 #endif //SHOTODOL_PLUGIN_INCLUDE_H
