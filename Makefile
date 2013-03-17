@@ -13,6 +13,8 @@ cleanapps:
 	$(CLEAN) -C apps/key_value
 
 makecore:
+	$(BUILD) -C libs/iostream
+	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/propeller
 	$(BUILD) -C core/base
 	$(BUILD) -C core/io
@@ -21,6 +23,8 @@ makecore:
 	$(BUILD) -C core/rules
 
 cleancore:
+	$(CLEAN) -C libs/iostream
+	$(CLEAN) -C libs/str_arms
 	$(CLEAN) -C libs/propeller
 	$(CLEAN) -C core/base
 	$(CLEAN) -C core/io
