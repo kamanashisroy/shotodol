@@ -4,8 +4,11 @@ using shotodol;
 public class shotodol.CommandServer: Module {
 	public static CommandServer server;
 	Set<shotodol.Command> cmds;
+	HelpCommand hlpcmd;
 	public CommandServer() {
 		cmds = Set<shotodol.Command>();
+		hlpcmd = new HelpCommand();
+		register(hlpcmd);
 	}
 	~CommandServer() {
 		cmds.destroy();
@@ -29,7 +32,7 @@ public class shotodol.CommandServer: Module {
 				return 0;
 			}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
 		if(mycmd == null) {
-			// TODO show help
+			hlpcmd.act_on(cmd_str, io);
 			return 0;
 		}
 		mycmd.act_on(cmd_str, io);

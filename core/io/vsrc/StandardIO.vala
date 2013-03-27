@@ -4,8 +4,9 @@ using shotodol;
 public class shotodol.StandardIO : Module {
 
 	public int say_static(string x) {
-		etxt saying = etxt(x);
-		saying.describe();
+		/*etxt saying = etxt(x);
+		saying.describe();*/
+		print(x);
 		return 0;
 	}
 
