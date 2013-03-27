@@ -18,13 +18,21 @@ public class shotodol.CommandServer: Module {
 		// TODO fill me
 		return 0;
 	}
-	public int act_on(etxt cmd_str, StandardIO io) {
+	public int act_on(etxt*cmd_str, StandardIO io) {
 		Command? mycmd = null;
 		cmds.visit_each((data) =>{
 				unowned Command cmd = ((container<Command>)data).get();
-				//if(cmd.cmdprefix.
+				etxt*prefix = cmd.get_prefix();
+				if(prefix == null) return 0;
+				if(!prefix.equals(cmd_str)) return 0;
+				mycmd = cmd;
 				return 0;
 			}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
+		if(mycmd == null) {
+			// TODO show help
+			return 0;
+		}
+		mycmd.act_on(cmd_str, io);
 		return 0;
 	}
 	public override int init() {

@@ -3,7 +3,12 @@ using shotodol;
 
 
 public class shotodol.KeyValAddCmd : Command {
-	public override int act_on(ArrayList<txt> tokens, StandardIO io) {
+	etxt prfx;
+	public override etxt*get_prefix() {
+		prfx = etxt.from_static("Idono");
+		return &prfx;
+	}
+	public virtual int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
 		// TODO add record
 		// TODO say something
 		io.say_static("Adding new entry\n");

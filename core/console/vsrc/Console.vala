@@ -23,7 +23,7 @@ public class Console : Module {
  			x.read(&cmd);
  			cmd.zero_terminate();
  			print("Executing:%s\n", cmd.to_string());
- 			CommandServer.server.act_on(cmd, io);
+ 			CommandServer.server.act_on(&cmd, io);
  			print("\n");
  			// TODO see what the command is
 			return 0;
