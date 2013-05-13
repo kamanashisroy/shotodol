@@ -3,18 +3,12 @@ using shotodol;
 
 public class shotodol.CommandServer: Module {
 	public static CommandServer server;
-	Set<shotodol.Command> cmds;
-	HelpCommand hlpcmd;
+	CommandSet cmds;
 	public CommandServer() {
-		cmds = Set<shotodol.Command>();
-		hlpcmd = new HelpCommand();
-		register(hlpcmd);
-	}
-	~CommandServer() {
-		cmds.destroy();
+		cmds = new CommandSet();
 	}
 	public int register(Command cmd) {
-		cmds.add(cmd);
+		cmds.register(cmd);
 		return 0;
 	}
 	public int unregister(Command cmd) {
@@ -22,17 +16,17 @@ public class shotodol.CommandServer: Module {
 		return 0;
 	}
 	public int act_on(etxt*cmd_str, StandardIO io) {
-		Command? mycmd = null;
-		cmds.visit_each((data) =>{
+		Command? mycmd = cmds.percept(cmd_str);
+		/*cmds.visit_each((data) =>{
 				unowned Command cmd = ((container<Command>)data).get();
 				etxt*prefix = cmd.get_prefix();
 				if(prefix == null) return 0;
 				if(!prefix.equals(cmd_str)) return 0;
 				mycmd = cmd;
 				return 0;
-			}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
+			}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);*/
 		if(mycmd == null) {
-			hlpcmd.act_on(cmd_str, io);
+			// show menu ..
 			return 0;
 		}
 		mycmd.act_on(cmd_str, io);

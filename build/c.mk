@@ -28,8 +28,11 @@ $(OBJDIR)/%.o:vsrc/%.c
 $(PLUGIN): objects
 	$(CC) --shared -o $(PLUGIN) $(LIBS) $(OBJECTS)
 
-clean:pluginclean
+clean:pluginclean objectclean
 
 pluginclean:
 	$(RM) $(PLUGIN)
 
+objectclean:
+	$(RM) $(OBJDIR)/*.o
+	

@@ -13,7 +13,7 @@ namespace shotodol_platform {
 	
 	[CCode (cname = "int", default_value = "0", cheader_filename = "shotodol_platform.h")]
 	[IntegerType (rank = 6)]
-	public class fileio {
+	public struct fileio {
 		[CCode (cname="fileio_stdin", cheader_filename = "shotodol_platform.h")]
 		public static fileio stdin();
 		[CCode (cname="fileio_available_bytes", cheader_filename = "shotodol_platform.h")]

@@ -1,23 +1,32 @@
 using aroop;
 using shotodol;
 
-public class shotodol.LineAlign : Replicable {
+public class shotodol.LineAlign<G> : Replicable {
 	WordSet? words;
 	SearchableSet<txt> aln;
-	
-	public LineAlign(WordSet wds) {
-		words = wds;
+	G?sense;
+	txt?firstline;
+	public LineAlign(WordSet wds,G?given_sense) {
+		build(wds, given_sense);
 	}
 	
 	~LineAlign() {
 		words = null;
+		sense = null;
+		aln.destroy();
 	}
 	
-	public void build(WordSet wds) {
+	public void build(WordSet wds, G?given_sense) {
 		words = wds;
+		sense = given_sense;
+		firstline = null;
 	}
 	
-	int next_token(etxt*src, etxt*next) {
+	public G? get() {
+		return sense;
+	}
+	
+	public static int next_token(etxt*src, etxt*next) {
 		uint i = 0;
 		int len = src.length();
 		(*next) = etxt.from_etxt(src);
@@ -31,6 +40,37 @@ public class shotodol.LineAlign : Replicable {
 		return 0;
 	}
 	
+	public int align_word(etxt*wd) {
+		if(wd.is_empty()) {
+			return 0;
+		}
+		// put in words
+		txt wdtxt = words.add(wd);
+		if(wdtxt != null) {
+			// align the word
+			aln.add(wdtxt);
+		}
+		return 0;
+	}
+	
+	public int align_etxt(etxt*wds) {
+		if(wds.is_empty()) {
+			return 0;
+		}
+		while(true) {
+			if(firstline == null) {
+				firstline = new txt(wds.to_string());
+			}
+			etxt next = etxt.EMPTY();
+			next_token(wds, &next);
+			if(next.is_empty()) {
+				break;
+			}
+			align_word(&next);
+		}
+		return 0;
+	}
+	
 	public int align(InputStream strm) {
 		etxt rd = etxt.stack(128);
 		while(true) {
@@ -38,19 +78,16 @@ public class shotodol.LineAlign : Replicable {
 			if(rd.is_empty()) {
 				break;
 			}
-			etxt next = etxt.EMPTY();
-			next_token(&rd, &next);
-			if(next.is_empty()) {
-				continue;
-			}
-			// put in words
-			txt wdtxt = words.add(&next);
-			if(wdtxt != null) {
-				// align the word
-				aln.add(wdtxt);
-			}
+			align_etxt(&rd);
 		}
 		// done
 		return 0;
+	}
+	
+	public G? percept_prefix_match(etxt*pfx) {
+		if(firstline != null && pfx.equals(firstline)) {
+			return sense;
+		}
+		return null;
 	}
 }
