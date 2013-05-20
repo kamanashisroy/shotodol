@@ -13,7 +13,7 @@ public class Console : Module {
 			io = null;
 		}
 		public override int start(Propeller?plr) {
-			print("Started stepping console ..\n");
+			print("Started console stepping ..\n");
 			
 			return 0;
 		}
@@ -35,7 +35,6 @@ public class Console : Module {
 
 	public override int init() {
 		//base.init();
-		print("Loading console\n");
 		ConsoleSpindle sp = new ConsoleSpindle();
 		MainTurbine.gearup(sp);
 		return 0;

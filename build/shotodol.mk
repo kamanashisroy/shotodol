@@ -5,7 +5,8 @@ OBJDIR=build/.objects
 OBJECTS=$(OBJDIR)/Main.o $(OBJDIR)/Module.o $(OBJDIR)/propeller.o $(OBJDIR)/spindle.o
 OBJECTS+=$(OBJDIR)/MainTurbine.o
 OBJECTS+=$(OBJDIR)/StandardIO.o
-LIBS+=-L$(VALA_HOME)/aroop/core/ -laroop_core
+OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core.o
+#LIBS+=-L$(VALA_HOME)/aroop/core/ -laroop_core
 TARGET=shotodol.bin
 include build/platform.mk
 

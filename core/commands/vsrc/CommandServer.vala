@@ -17,6 +17,7 @@ public class shotodol.CommandServer: Module {
 	}
 	public int act_on(etxt*cmd_str, StandardIO io) {
 		Command? mycmd = cmds.percept(cmd_str);
+		io.say_static("acting ..\n");
 		/*cmds.visit_each((data) =>{
 				unowned Command cmd = ((container<Command>)data).get();
 				etxt*prefix = cmd.get_prefix();

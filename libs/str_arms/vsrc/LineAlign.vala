@@ -37,6 +37,7 @@ public class shotodol.LineAlign<G> : Replicable {
 				break;
 			}
 		}
+		src.shift((int)i);
 		return 0;
 	}
 	

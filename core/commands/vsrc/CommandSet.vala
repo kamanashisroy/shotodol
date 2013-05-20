@@ -18,6 +18,7 @@ public class shotodol.CommandSet: Replicable {
 		cmds.destroy();
 	}
 	public int register(Command cmd) {
+		print("Registering %s command\n", cmd.get_prefix().to_string());
 		cmds.add(cmd);
 		be.memorize_etxt(cmd.get_prefix(), cmd);
 		return 0;
