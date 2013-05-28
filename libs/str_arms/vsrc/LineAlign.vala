@@ -17,6 +17,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	}
 	
 	public void build(WordSet wds, G?given_sense) {
+		aln = SearchableSet<txt>();
 		words = wds;
 		sense = given_sense;
 		firstline = null;
@@ -60,7 +61,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		}
 		while(true) {
 			if(firstline == null) {
-				firstline = new txt(wds.to_string());
+				firstline = new txt.memcopy(wds.to_string(),wds.length());
 			}
 			etxt next = etxt.EMPTY();
 			next_token(wds, &next);
@@ -85,8 +86,15 @@ public class shotodol.LineAlign<G> : Replicable {
 		return 0;
 	}
 	
-	public G? percept_prefix_match(etxt*pfx) {
-		if(firstline != null && pfx.equals(firstline)) {
+	private int prefix_match(etxt*pfx) requires(pfx != null && firstline != null) {
+		int i = 0;
+		for(;i<firstline.length() && i<pfx.length() && firstline.char_at(i) == pfx.char_at(i);i++);
+		return i;
+	}
+	
+	public G? percept_prefix_match(etxt*pfx, int*match_len) {
+		*match_len = prefix_match(pfx);
+		if(*match_len > 0) {
 			return sense;
 		}
 		return null;

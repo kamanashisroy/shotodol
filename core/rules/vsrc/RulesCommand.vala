@@ -7,7 +7,7 @@ internal class RulesCommand : Command {
 		prfx = etxt.from_static("make");
 		return &prfx;
 	}
-	public virtual int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
+	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
 		io.say_static("We are working ..");
 		return 0;
 	}

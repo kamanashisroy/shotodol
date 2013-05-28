@@ -9,6 +9,9 @@ internal class shotodol.HelpCommand : Command {
 	}
 	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
 		io.say_static("<Help command>");
+		Command cmd = CommandServer.server.cmds.percept(cmdstr);
+		cmd.desc(io, Command.CommandDescType.COMMAND_DESC_TITLE);
+		
 		return 0;
 	}
 }

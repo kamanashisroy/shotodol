@@ -7,12 +7,12 @@ public class shotodol.Rules : Module {
 	public override int init() {
 		// TODO load commands for executing makefile
 		cmd = new RulesCommand();
-		CommandServer.server.register(cmd);
+		CommandServer.server.cmds.register(cmd);
 		return 0;
 	}
 	public override int deinit() {
 		// TODO cleanup
-		CommandServer.server.unregister(cmd);
+		CommandServer.server.cmds.unregister(cmd);
 		return 0;
 	}
 }
