@@ -8,6 +8,9 @@ public class shotodol.CommandServer: Module {
 		cmds = new CommandSet();
 	}
 	public int act_on(etxt*cmd_str, StandardIO io) {
+		if(cmd_str.char_at(0) == '#') { // skip the comments
+			return 0;
+		}
 		Command? mycmd = cmds.percept(cmd_str);
 		//io.say_static("acting ..\n");
 		if(mycmd == null) {

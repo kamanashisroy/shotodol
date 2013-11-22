@@ -7,6 +7,9 @@ public class shotodol.CommandSet: Replicable {
 	public CommandSet() {
 		cmds = Set<shotodol.Command>();
 		be = new BrainEngine<Command>();
+		// quit command
+		QuitCommand qtcmd = new QuitCommand();
+		register(qtcmd);
 		// help commands
 		HelpCommand hlpcmd = new HelpCommand();
 		register(hlpcmd);

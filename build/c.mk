@@ -27,6 +27,9 @@ preobjects:
 $(OBJDIR)/%.o:vsrc/%.c
 	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
 
+$(OBJDIR)/%.o:csrc/%.c
+	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@
+
 $(PLUGIN): $(OBJECT_AR)
 	$(CC) --shared -o $(PLUGIN) $(LIBS) $(OBJECTS)
 

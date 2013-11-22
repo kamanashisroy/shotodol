@@ -17,15 +17,35 @@ public class Console : Module {
 			
 			return 0;
 		}
-		public override int step() {
-			fileio x = fileio.stdin();
-			etxt cmd = etxt.stack(128);
- 			x.read(&cmd);
+
+		void perform_action(etxt*cmd) {
  			cmd.zero_terminate();
  			print("Executing:%s\n", cmd.to_string());
- 			CommandServer.server.act_on(&cmd, io);
+ 			CommandServer.server.act_on(cmd, io);
  			print("\n");
- 			// TODO see what the command is
+		}
+
+		public override int step() {
+			fileio x = fileio.stdin();
+			etxt inp = etxt.stack(128);
+ 			if(x.read(&inp) == 0) {
+				return -1;
+			}
+			int i = 0;
+			int cmd_start = 0;
+			for(i=0;i<inp.length();i++) {
+				if(inp.char_at(i) == '\n') {
+					etxt cmd = etxt.dup_etxt(&inp);
+					if(cmd_start != 0) {
+						cmd.shift(cmd_start);
+					}
+					cmd.trim_to_length(i);
+					perform_action(&cmd);
+					cmd.destroy();
+					cmd_start = i+1;
+				}
+			}
+			inp.destroy();
 			return 0;
 		}
 		public override int cancel() {

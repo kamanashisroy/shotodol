@@ -12,6 +12,12 @@ TARGET_INCLUDE=include/$(LIBRARY_NAME).h
 TARGET_VAPI=vapi/$(LIBRARY_NAME).vapi
 TARGETS=$(TARGET_INCLUDE) $(TARGET_VAPI)
 
+ifeq ($(NOAROOP),yes)
+all:
+
+clean:
+
+else
 all:genvapi
 
 genvapi:$(VSOURCES)
@@ -20,4 +26,4 @@ genvapi:$(VSOURCES)
 
 clean:
 	$(RM) -f $(wildcard vsrc/*.c) $(TARGETS)
-
+endif
