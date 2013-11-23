@@ -7,3 +7,4 @@ INCLUDES+=-I../../libs/str_arms/include
 INCLUDES+=-I../../libs/iostream/include
 INCLUDES+=-I../../libs/propeller/include
 INCLUDES+=-I../../libs/proto_pktizer/include
+INCLUDES+=-I../../libs/db/include

@@ -25,6 +25,7 @@ makecore:
 	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/propeller
 	$(BUILD) -C libs/proto_pktizer
+	$(BUILD) -C libs/db
 	$(BUILD) -C core/base
 	$(BUILD) -C core/io
 	$(BUILD) -C core/commands
@@ -36,6 +37,7 @@ cleancore:
 	$(CLEAN) -C libs/str_arms
 	$(CLEAN) -C libs/propeller
 	$(CLEAN) -C libs/proto_pktizer
+	$(CLEAN) -C libs/db
 	$(CLEAN) -C core/base
 	$(CLEAN) -C core/io
 	$(CLEAN) -C core/commands

@@ -7,4 +7,5 @@ VAPI+=--vapidir=../../libs/iostream/vapi --pkg shotodol_iostream
 VAPI+=--vapidir=../../libs/str_arms/vapi --pkg shotodol_str_arms
 VAPI+=--vapidir=../../core/io/vapi --pkg shotodol_io
 VAPI+=--vapidir=../../libs/proto_pktizer/vapi --pkg shotodol_proto_pktizer
-LIBRARY_NAME=shotodol_db
+VAPI+=--vapidir=../../libs/db/vapi --pkg shotodol_db
+LIBRARY_NAME=shotodol_dbmodule
