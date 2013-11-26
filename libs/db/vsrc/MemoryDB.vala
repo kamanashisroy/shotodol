@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-public class shotodol.MemoryDB : DBOperations {
+public class shotodol.MemoryDB : DB {
 	SearchableSet<DBEntry>db;
 	public MemoryDB(DB.DBType tp, etxt*address) {		
 		db = SearchableSet<DBEntry>();

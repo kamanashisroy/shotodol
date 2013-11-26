@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-public abstract class shotodol.DBOperations : DB {
+public abstract class shotodol.DBOperations : Replicable {
 	public virtual int save(DBId id, DBEntry entry) {
 		core.die("unimplemented");
 		return 0;

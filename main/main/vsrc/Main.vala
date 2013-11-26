@@ -26,15 +26,14 @@ public class MainProgram {
 	static int load_module() {
 		load_core_module("commands");
 		load_core_module("console");
-		load_module_helper("db", "resources");
+		load_core_module("make");
 		return 0;
 	}
+		
 	public static int main() {
 		// TODO parse the argument for shotodol home
 		path_to_shotodol = etxt("/media/active/projects/shotodol/");
-		//path_to_shotodol = etxt("");
 		// TODO load lua
-		// and load all the modules
 		// TODO - if(opt & SHELL) then start console
 		MainTurbine mt = new MainTurbine();
 		

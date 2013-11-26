@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-internal class shotodol.QuitCommand : Command {
+internal class shotodol.QuitCommand : M100Command {
 	etxt prfx;
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("quit");

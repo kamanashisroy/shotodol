@@ -1,6 +1,8 @@
 
+include ../../.config.mk
+
 clean:
 
 
-include ../../build/aroop.mk
-include ../../build/c.mk
+include $(SHOTODOL_HOME)/build/aroop.mk
+include $(SHOTODOL_HOME)/build/c.mk

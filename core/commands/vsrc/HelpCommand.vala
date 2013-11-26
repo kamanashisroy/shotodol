@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-internal class shotodol.HelpCommand : Command {
+internal class shotodol.HelpCommand : M100Command {
 	etxt prfx;
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("help");
@@ -25,11 +25,11 @@ internal class shotodol.HelpCommand : Command {
 			}
 			etxt ntoken = etxt.stack_from_etxt(&token);
 			ntoken.zero_terminate();
-			Command? cmd = CommandServer.server.cmds.percept(&ntoken);
+			M100Command? cmd = CommandServer.server.cmds.percept(&ntoken);
 			if(cmd == null) {
 				continue;
 			}
-			cmd.desc(io, Command.CommandDescType.COMMAND_DESC_FULL);
+			cmd.desc(io, M100Command.CommandDescType.COMMAND_DESC_FULL);
 		}
 		return 0;
 	}

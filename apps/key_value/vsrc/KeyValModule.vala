@@ -2,7 +2,7 @@ using aroop;
 using shotodol;
 
 
-public class shotodol.KeyValAddCmd : Command {
+public class shotodol.KeyValAddCmd : M100Command {
 	etxt prfx;
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("Idono");

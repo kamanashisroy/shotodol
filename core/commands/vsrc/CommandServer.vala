@@ -11,7 +11,7 @@ public class shotodol.CommandServer: Module {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
 			return 0;
 		}
-		Command? mycmd = cmds.percept(cmd_str);
+		M100Command? mycmd = cmds.percept(cmd_str);
 		//io.say_static("acting ..\n");
 		if(mycmd == null) {
 			// show menu ..

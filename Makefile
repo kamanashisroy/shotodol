@@ -4,21 +4,13 @@ BUILD=$(MAKE) -f ../../build/build.mk
 CLEAN=$(MAKE) -f ../../build/clean.mk
 SHOTODOL=$(MAKE) -f build/shotodol.mk
 
-all:makecore makeapps makeresources makemain shotodol
+all:makecore makeapps makemain shotodol
 
 makeapps:
 	$(BUILD) -C apps/key_value
-	$(BUILD) -C apps/avrprogrammer
 
 cleanapps:
 	$(CLEAN) -C apps/key_value
-	$(CLEAN) -C apps/avrprogrammer
-
-makeresources:
-	$(BUILD) -C resources/db
-
-cleanresources:
-	$(CLEAN) -C resources/db
 
 makecore:
 	$(BUILD) -C libs/iostream
@@ -26,11 +18,12 @@ makecore:
 	$(BUILD) -C libs/propeller
 	$(BUILD) -C libs/proto_pktizer
 	$(BUILD) -C libs/db
+	$(BUILD) -C libs/make100
 	$(BUILD) -C core/base
 	$(BUILD) -C core/io
 	$(BUILD) -C core/commands
 	$(BUILD) -C core/console
-	$(BUILD) -C core/rules
+	$(BUILD) -C core/make
 
 cleancore:
 	$(CLEAN) -C libs/iostream
@@ -38,11 +31,12 @@ cleancore:
 	$(CLEAN) -C libs/propeller
 	$(CLEAN) -C libs/proto_pktizer
 	$(CLEAN) -C libs/db
+	$(CLEAN) -C libs/make100
 	$(CLEAN) -C core/base
 	$(CLEAN) -C core/io
 	$(CLEAN) -C core/commands
 	$(CLEAN) -C core/console
-	$(CLEAN) -C core/rules
+	$(CLEAN) -C core/make
 
 makemain:
 	$(BUILD) -C main/main
@@ -54,4 +48,4 @@ cleanmain:
 shotodol:
 	$(SHOTODOL)
 
-clean:cleancore cleanapps cleanresources cleanmain
+clean:cleancore cleanapps cleanmain
