@@ -4,6 +4,8 @@ VALAC=$(VALA_HOME)/aroop/compiler/aroopc
 VAPI=--vapidir $(VALA_HOME)/vapi
 VAPI+=--vapidir $(VALA_HOME)/aroop/vapi --pkg aroop_pthread-0.1
 #VAPI+=--vapidir $(VALA_HOME)/aroop/vapi --pkg aroop_component-1.0
+include $(SHOTODOL_HOME)/build/pkg.mk
+include $(SHOTODOL_HOME)/build/vapi.mk
 include vapi.mk
 include $(SHOTODOL_HOME)/build/platform.mk
 VSOURCES=$(wildcard vsrc/*.vala)

@@ -7,9 +7,8 @@ internal class shotodol.HelpCommand : M100Command {
 		prfx = etxt.from_static("help");
 		return &prfx;
 	}
-	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
-		io.say_static("<Help command> -------------------------------------------------------\n");
-		
+	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, OutputStream pad) {
+		greet(pad);
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		int i = 0;
 		for(i = 0; i < 32; i++) {
@@ -29,7 +28,7 @@ internal class shotodol.HelpCommand : M100Command {
 			if(cmd == null) {
 				continue;
 			}
-			cmd.desc(io, M100Command.CommandDescType.COMMAND_DESC_FULL);
+			cmd.desc(M100Command.CommandDescType.COMMAND_DESC_FULL, pad);
 		}
 		return 0;
 	}

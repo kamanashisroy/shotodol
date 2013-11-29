@@ -1,13 +1,13 @@
 using aroop;
 using shotodol;
 
-public class shotodol.CommandServer: Module {
+public class shotodol.CommandServer: ModulePlugin {
 	public static CommandServer server;
 	public CommandSet cmds;
 	public CommandServer() {
 		cmds = new CommandSet();
 	}
-	public int act_on(etxt*cmd_str, StandardIO io) {
+	public int act_on(etxt*cmd_str, OutputStream pad) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
 			return 0;
 		}
@@ -16,10 +16,10 @@ public class shotodol.CommandServer: Module {
 		if(mycmd == null) {
 			// show menu ..
 			print("Command not found. Please try one of the following..\n");
-			cmds.list(io);
+			cmds.list(pad);
 			return 0;
 		}
-		mycmd.act_on(cmd_str, io);
+		mycmd.act_on(cmd_str, pad);
 		return 0;
 	}
 	
@@ -28,6 +28,7 @@ public class shotodol.CommandServer: Module {
 		return 0;
 	}
 	public override int deinit() {
+		base.deinit();
 		return 0;
 	}
 	

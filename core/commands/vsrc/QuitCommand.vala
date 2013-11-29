@@ -7,8 +7,8 @@ internal class shotodol.QuitCommand : M100Command {
 		prfx = etxt.from_static("quit");
 		return &prfx;
 	}
-	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
-		io.say_static("<Quit> -------------------------------------------------------\n");
+	public override int act_on(etxt*cmdstr, OutputStream pad) {
+		greet(pad);
 		MainTurbine.quit();
 		return 0;
 	}

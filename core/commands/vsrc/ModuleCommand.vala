@@ -25,13 +25,13 @@ internal class shotodol.ModuleCommand : M100Command {
 
 	int load_module_helper(string module) {
 		print("Trying to load module %s\n", module);
-		Module.load_dynamic_module(module);
+		ModulePlugin.load_dynamic_module(module);
 		print("\t\t\t\t %s module is Loaded\n", module);
 		return 0;
 	}
 
-	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
-		io.say_static("<Module command>");
+	public override int act_on(etxt*cmdstr, OutputStream pad) {
+		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		parseOptions(cmdstr, &vals);
 		container<txt>? mod;
@@ -41,7 +41,8 @@ internal class shotodol.ModuleCommand : M100Command {
 		}
 		mod = vals.search(Options.UNLOAD, match_all);
 		if(mod != null) {
-			print("TODO:unload module\n");
+			etxt err = etxt.from_static("TODO:unload module\n");
+			pad.write(&err);
 		}
 		return 0;
 	}

@@ -12,13 +12,13 @@ public class MainProgram {
 		print("Trying to load module %s%s/%s\n", path_to_shotodol.to_string(), dir, module_name);
 		etxt path = etxt.stack(128);
 		path.printf("%s%s/%s/plugin.so", path_to_shotodol.to_string(), dir, module_name);
-		Module.load_dynamic_module(path.to_string());
+		ModulePlugin.load_dynamic_module(path.to_string());
 		print("\t\t\t\t %s module is Loaded\n", module_name);
 		return 0;
 	}
 	
 	static int preload_modules() {
-		load_module_helper("iostream", "libs");
+		//load_module_helper("iostream", "libs");
 		load_module_helper("str_arms", "libs");
 		return 0;
 	}

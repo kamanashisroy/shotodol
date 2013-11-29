@@ -1,6 +1,8 @@
 #ifndef SHOTODOL_PLUGIN_INCLUDE_H
 #define SHOTODOL_PLUGIN_INCLUDE_H
 
+// public class plugin
+
 #define plugin_open(x) ({ \
 	void*hdl = dlopen(x,RTLD_LAZY | RTLD_GLOBAL); \
 	char*derror = NULL; \
@@ -24,6 +26,8 @@
 	val;\
 })
 
+// public class fileio
+
 //#include <sys/filio.h> // defines FIONREAD 
 #define fileio_stdin() ({STDIN_FILENO;})
 
@@ -32,7 +36,17 @@
 })
 
 #define fileio_read(x,y) ({ \
-	int __rt = read(x, (y)->str+(y)->len, (y)->size - (y)->len - 1);if(__rt > 0) {(y)->len = __rt;}__rt; \
+	int __rt = read(x, (y)->str+(y)->len, (y)->size - (y)->len - 1);if(__rt > 0) {(y)->len += __rt;}__rt; \
 })
+
+#define fileio_read_line(x,y) ({ \
+	int __len = 0;char* __rt = fgets((y)->str+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
+})
+
+//public class LinuxFileStream
+#define linux_file_stream_fread(x,y) ({ \
+	int __rt = fread((y)->str+(y)->len, 1, (y)->size - (y)->len - 1, x);if(__rt > 0) {(y)->len += __rt;}__rt; \
+})
+
 
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

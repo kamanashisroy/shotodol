@@ -2,15 +2,16 @@ using aroop;
 using shotodol;
 using shotodol_platform;
 
-public class Console : Module {
+public class Console : ModulePlugin {
 
 	class ConsoleSpindle : Spindle {
-		StandardIO io;
+		StandardInputStream is;
+		StandardOutputStream pad;
 		public ConsoleSpindle() {
-			io = new StandardIO();
+			is = new StandardInputStream();
+			pad = new StandardOutputStream();
 		}
 		~ConsoleSpindle() {
-			io = null;
 		}
 		public override int start(Propeller?plr) {
 			print("Started console stepping ..\n");
@@ -21,15 +22,17 @@ public class Console : Module {
 		void perform_action(etxt*cmd) {
  			cmd.zero_terminate();
  			print("Executing:%s\n", cmd.to_string());
- 			CommandServer.server.act_on(cmd, io);
+ 			CommandServer.server.act_on(cmd, pad);
  			print("\n");
 		}
 
 		public override int step() {
-			fileio x = fileio.stdin();
 			etxt inp = etxt.stack(128);
- 			if(x.read(&inp) == 0) {
-				return -1;
+			try {
+				is.read(&inp);
+			} catch (IOStreamError.InputStreamError e) {
+				print("Error in standard input\n");
+				return 0;
 			}
 			int i = 0;
 			int cmd_start = 0;
@@ -57,6 +60,7 @@ public class Console : Module {
 		//base.init();
 		ConsoleSpindle sp = new ConsoleSpindle();
 		MainTurbine.gearup(sp);
+		new Watchdog(new StandardOutputStream());
 		return 0;
 	}
 

@@ -20,10 +20,10 @@ public class shotodol.CommandSet: Replicable {
 	~CommandSet() {
 		cmds.destroy();
 	}
-	public int list(StandardIO io) {		
+	public int list(OutputStream pad) {		
 		cmds.visit_each((data) =>{
 			unowned M100Command cmd = ((container<M100Command>)data).get();
-			cmd.desc(io, M100Command.CommandDescType.COMMAND_DESC_TITLE);
+			cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
 			//etxt*prefix = cmd.get_prefix();
 			//if(prefix == null) return 0;
 			//if(!prefix.equals(cmd_str)) return 0;

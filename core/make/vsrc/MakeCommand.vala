@@ -23,15 +23,42 @@ internal class MakeCommand : M100Command {
 		return &prfx;
 	}
 	M100Script? script;
-	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
-		io.say_static("<Make command>");
+	public override int act_on(etxt*cmdstr, OutputStream pad) {
+		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		parseOptions(cmdstr, &vals);
 		container<txt>? mod;
 		mod = vals.search(Options.FILE, match_all);
 		if(mod != null) {
-			// TODO parse the file
-			// script = new M100Script();
+			try {
+				FileInputStream f = new FileInputStream.from_file(mod.get());
+				script = new M100Script();
+				etxt buf = etxt.stack(128);
+				while(true) {
+					try {
+						f.read(&buf);
+					} catch(IOStreamError.InputStreamError e) {
+						break;
+					}
+					//print(buf.to_string());
+					int i = 0;
+					int ln_start = 0;
+					for(i=0;i<buf.length();i++) {
+						if(buf.char_at(i) == '\n') {
+							etxt ln = etxt.dup_etxt(&buf);
+							if(ln_start != 0) {
+								ln.shift(ln_start);
+							}
+							ln.trim_to_length(i);
+							script.parseLine(&ln);
+							ln.destroy();
+							ln_start = i+1;
+						}
+					}
+				}
+				f.close();
+			} catch (IOStreamError.FileInputStreamError e) {
+			}
 		}
 		mod = vals.search(Options.TARGET, match_all);
 		if(mod != null && script != null) {
@@ -42,7 +69,7 @@ internal class MakeCommand : M100Command {
 					break;
 				}
 				// execute command
-				CommandServer.server.act_on(cmd, io);
+				CommandServer.server.act_on(cmd, pad);
 			}
 		}
 		return 0;

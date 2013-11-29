@@ -33,26 +33,32 @@ public abstract class shotodol.M100Command : Replicable {
 		return 0;
 	}
 	
+	public void greet(OutputStream pad) {
+		etxt greetings = etxt.stack(128);
+		greetings.printf("<%s> -----------------------------------------------------------------\n" , get_prefix().to_string());
+		pad.write(&greetings);
+	} 
+	
 	public virtual etxt*get_prefix() {
 		return null;
 	}
-	public virtual int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, StandardIO io) {
+	public virtual int act_on(etxt*cmdstr, OutputStream pad) {
 		return 0;
 	}
-	public virtual int desc(StandardIO io, CommandDescType tp) {
+	public virtual int desc(CommandDescType tp, OutputStream pad) {
 		etxt x = etxt.stack(32);
 		x.printf("%s\n", get_prefix().to_string());
 		switch(tp) {
 			case CommandDescType.COMMAND_DESC_TITLE:
-			io.say_static(x.to_string());
+			pad.write(&x);
 			break;
 			default:
 			{
-				io.say_static(x.to_string());
+				pad.write(&x);
 				Iterator<M100CommandOption> it = Iterator<M100CommandOption>(&options, Replica_flags.ALL, 0, 0);
 				while(it.next()) {
 					M100CommandOption? opt = it.get();
-					opt.desc(io);
+					opt.desc(pad);
 				}
 			}
 			break;

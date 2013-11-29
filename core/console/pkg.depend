@@ -1,0 +1,5 @@
+
+core/base
+core/commands
+libs/iostream
+libs/watchdog

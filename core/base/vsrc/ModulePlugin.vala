@@ -7,14 +7,12 @@ public errordomain shotodol.plugin_error {
 	COULD_NOT_INITIATE,
 }
 
-public abstract class shotodol.Module : Replicable {
-	etxt name;
-	etxt version;
-	public virtual int init() {
+public abstract class shotodol.ModulePlugin : Module {
+	public override int init() {
 		owner = null;
 		return 0;
 	}
-	public virtual int deinit() {
+	public override int deinit() {
 		owner.unload();
 		return 0;
 	}
@@ -26,7 +24,7 @@ public abstract class shotodol.Module : Replicable {
 		if(plg == null) {
 			throw new plugin_error.COULD_NOT_OPEN("Please check the filepath and name");
 		}
-		Module?m = plg.get_instance();
+		ModulePlugin?m = plg.get_instance() as ModulePlugin;
 		if(m == null) {
 			plg.unload();
 			throw new plugin_error.COULD_NOT_CREATE_INSTANCE("Could not create module");

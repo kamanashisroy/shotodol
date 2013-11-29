@@ -1,0 +1,3 @@
+
+NOPLATFORM_EXTRA=1
+LIBRARY_NAME=shotodol_platform_extra
