@@ -44,6 +44,7 @@ internal class shotodol.ModuleCommand : M100Command {
 			etxt err = etxt.from_static("TODO:unload module\n");
 			pad.write(&err);
 		}
+		bye(pad, true);
 		return 0;
 	}
 }

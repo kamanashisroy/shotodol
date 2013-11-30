@@ -32,46 +32,45 @@ internal class MakeCommand : M100Command {
 		if(mod != null) {
 			try {
 				FileInputStream f = new FileInputStream.from_file(mod.get());
+				LineInputStream lis = new LineInputStream(f);
 				script = new M100Script();
-				etxt buf = etxt.stack(128);
+				script.startParsing();
 				while(true) {
 					try {
-						f.read(&buf);
+						etxt buf = etxt.stack(128);
+						if(lis.read(&buf) == 0) {
+							break;
+						}
+						script.parseLine(&buf);
 					} catch(IOStreamError.InputStreamError e) {
 						break;
 					}
-					//print(buf.to_string());
-					int i = 0;
-					int ln_start = 0;
-					for(i=0;i<buf.length();i++) {
-						if(buf.char_at(i) == '\n') {
-							etxt ln = etxt.dup_etxt(&buf);
-							if(ln_start != 0) {
-								ln.shift(ln_start);
-							}
-							ln.trim_to_length(i);
-							script.parseLine(&ln);
-							ln.destroy();
-							ln_start = i+1;
-						}
-					}
 				}
+				lis.close();
 				f.close();
+				script.endParsing();
 			} catch (IOStreamError.FileInputStreamError e) {
 			}
 		}
 		mod = vals.search(Options.TARGET, match_all);
 		if(mod != null && script != null) {
-			script.target(mod);
+			unowned txt tgt = mod.get();
+			etxt dlg = etxt.stack(128);
+			dlg.printf("target:%s\n", tgt.to_string());
+			Watchdog.watchit(5,0,0,0,&dlg);
+			script.target(tgt);
 			while(true) {
 				txt? cmd = script.step();
 				if(cmd == null) {
 					break;
 				}
+				dlg.printf("command:%s\n", cmd.to_string());
+				Watchdog.watchit(5,0,0,0,&dlg);
 				// execute command
 				CommandServer.server.act_on(cmd, pad);
 			}
 		}
+		bye(pad, true);
 		return 0;
 	}
 }

@@ -5,10 +5,11 @@ using shotodol_platform;
 public class Console : ModulePlugin {
 
 	class ConsoleSpindle : Spindle {
-		StandardInputStream is;
+		LineInputStream is;
 		StandardOutputStream pad;
 		public ConsoleSpindle() {
-			is = new StandardInputStream();
+			StandardInputStream x = new StandardInputStream();
+			is = new LineInputStream(x);
 			pad = new StandardOutputStream();
 		}
 		~ConsoleSpindle() {
@@ -27,28 +28,16 @@ public class Console : ModulePlugin {
 		}
 
 		public override int step() {
-			etxt inp = etxt.stack(128);
 			try {
-				is.read(&inp);
+				etxt inp = etxt.stack(128);
+				if(is.read(&inp) != 0) {
+					perform_action(&inp);
+				}
+				inp.destroy();
 			} catch (IOStreamError.InputStreamError e) {
 				print("Error in standard input\n");
 				return 0;
 			}
-			int i = 0;
-			int cmd_start = 0;
-			for(i=0;i<inp.length();i++) {
-				if(inp.char_at(i) == '\n') {
-					etxt cmd = etxt.dup_etxt(&inp);
-					if(cmd_start != 0) {
-						cmd.shift(cmd_start);
-					}
-					cmd.trim_to_length(i);
-					perform_action(&cmd);
-					cmd.destroy();
-					cmd_start = i+1;
-				}
-			}
-			inp.destroy();
 			return 0;
 		}
 		public override int cancel() {

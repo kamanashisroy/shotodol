@@ -7,11 +7,6 @@ public class shotodol.M100Script : M100Parser {
 		vars = SearchableSet<M100Variable>();
 	}
 	
-	internal int func_comp(container<M100Function> can) {
-		return 0;
-	}
-
-	
 	~M100Script() {
 		vars.destroy();
 	}
@@ -28,11 +23,17 @@ public class shotodol.M100Script : M100Parser {
 		if(can == null) {
 			return -1;
 		}
+		etxt dlg = etxt.stack(128);
+		dlg.printf("addressed function:%s\n", tg.to_string());
+		Watchdog.watchit(5,0,0,0,&dlg);
 		func = can.get();
 		return 0;
 	}
 	public txt? step() {
+		etxt dlg = etxt.stack(128);
 		if(func == null) {
+			dlg.printf("no function is selected\n");
+			Watchdog.watchit(5,0,0,0,&dlg);
 			return null;
 		}
 		if(expt == 0) {

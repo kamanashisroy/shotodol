@@ -30,6 +30,7 @@ internal class shotodol.HelpCommand : M100Command {
 			}
 			cmd.desc(M100Command.CommandDescType.COMMAND_DESC_FULL, pad);
 		}
+		bye(pad, true);
 		return 0;
 	}
 }

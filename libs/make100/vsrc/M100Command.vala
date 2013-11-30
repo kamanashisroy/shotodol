@@ -35,8 +35,13 @@ public abstract class shotodol.M100Command : Replicable {
 	
 	public void greet(OutputStream pad) {
 		etxt greetings = etxt.stack(128);
-		greetings.printf("<%s> -----------------------------------------------------------------\n" , get_prefix().to_string());
+		greetings.printf("<%16s> -----------------------------------------------------------------\n" , get_prefix().to_string());
 		pad.write(&greetings);
+	} 
+	public void bye(OutputStream pad, bool success) {
+		etxt byebye = etxt.stack(128);
+		byebye.printf("<%16s> -----------------------------------------------------------------\n" , success?"Successful":"Failed");
+		pad.write(&byebye);
 	} 
 	
 	public virtual etxt*get_prefix() {

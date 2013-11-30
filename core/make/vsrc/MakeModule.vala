@@ -6,7 +6,7 @@ public class shotodol.MakeModule : ModulePlugin {
 	public override int init() {
 		cmd = new MakeCommand();
 		CommandServer.server.cmds.register(cmd);
-		etxt cmd = etxt.from_static("make -f shotodol.mk -t all");
+		etxt cmd = etxt.from_static("make -f shotodol.mk -t all\n");
 		CommandServer.server.act_on(&cmd, new StandardOutputStream());
 		return 0;
 	}
