@@ -18,12 +18,14 @@ public class shotodol.LineInputStream : InputStream {
 		if(rbuf.is_empty()) {
 			rbuf.destroy();
 			rbuf = etxt.same_same(&rmem);
+			rmem.trim_to_length(0);
 			if(is.read(&rbuf) == 0) {
 				return 0;
 			}
 		}
 		int i = 0;
 		int ln_start = 0;
+		int retlen = 0;
 		for(i=0;i<rbuf.length();i++) {
 			if(rbuf.char_at(i) == '\n') {
 				if(i - ln_start == 0) {
@@ -33,6 +35,7 @@ public class shotodol.LineInputStream : InputStream {
 				}
 				ln.concat(&rbuf);
 				ln.trim_to_length(i);
+				retlen = i - ln_start;
 				if(ln_start != 0) {
 					ln.shift(ln_start);
 				}
@@ -41,10 +44,12 @@ public class shotodol.LineInputStream : InputStream {
 			}
 		}
 		rbuf.shift(ln_start);
-		if(ln.length() == 0) {
+		if(retlen == 0) {
+			rmem.concat(&rbuf); // memory move
+			rbuf.trim_to_length(0);
 			return read(ln);
 		}
-		return ln.length();
+		return retlen;
 	}
 	public override bool rewind() throws IOStreamError.InputStreamError {
 		return rewind();

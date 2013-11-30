@@ -23,9 +23,6 @@ public class shotodol.M100Script : M100Parser {
 		if(can == null) {
 			return -1;
 		}
-		etxt dlg = etxt.stack(128);
-		dlg.printf("addressed function:%s\n", tg.to_string());
-		Watchdog.watchit(5,0,0,0,&dlg);
 		func = can.get();
 		return 0;
 	}

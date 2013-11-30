@@ -85,25 +85,17 @@ public abstract class shotodol.M100Parser: Replicable {
 	
 	M100Function?current_function;	
 	public void startParsing() {
-		etxt dlg = etxt.from_static("Start parsing\n");
-		Watchdog.watchit(5,0,0,0,&dlg);
 		current_function = null;
 	}
 	public int parseLine(etxt*instr) {
-		etxt dlg = etxt.stack(128);
 		etxt inp = etxt.stack_from_etxt(instr);
 		do {
-			if(inp.char_at(0) == '\t') {
-				Watchdog.watchit(5,0,0,0,&inp);
-			}
 			if(inp.char_at(0) == '\t' && current_function != null) {
-				Watchdog.watchit(5,0,0,0,&inp);
 				current_function.addCommand(&inp);
 				break;
 			}
 			etxt token = etxt.EMPTY();
 			next_token(&inp, &token);
-			print("parsing tokens\n");
 			if(token.is_empty()) {
 				//current_function = null;
 				break;
@@ -126,14 +118,10 @@ public abstract class shotodol.M100Parser: Replicable {
 				break;
 			}
 		} while(false);
-		dlg.printf("current function is %s\n", current_function == null ? "null" : "not null");
-		print(dlg.to_string());
 		return 0;
 	}
 
 	public void endParsing() {
-		etxt dlg = etxt.from_static("End parsing\n");
-		Watchdog.watchit(5,0,0,0,&dlg);
 		current_function = null;
 	}
 }
