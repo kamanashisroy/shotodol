@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-public abstract class M100Parser: Replicable {
+public abstract class shotodol.M100Parser: Replicable {
 	internal SearchableSet<M100Function> funcs;
 	internal ArrayList<M100Statement> stmts;
 	internal M100Function? default_func;
@@ -98,7 +98,7 @@ public abstract class M100Parser: Replicable {
 					current_function.addCommand(instr);
 				}
 			}
-		} while(true);
+		} while(false);
 		return 0;
 	}
 }

@@ -10,7 +10,7 @@ function depend(pkg,p)
 		fpath = "."
 		x = ""
 	end
-	local f = io.open(fpath .. "/pkg.depend", "r")
+	local f = assert(io.open(fpath .. "/pkg.depend", "r"))
 	if f == nil then
 		return
 	end
