@@ -8,6 +8,7 @@ OBJECTS+=$(OBJDIR)/InputStream.o
 OBJECTS+=$(OBJDIR)/FileInputStream.o
 OBJECTS+=$(OBJDIR)/BrainEngine.o
 OBJECTS+=$(OBJDIR)/Watchdog.o
+OBJECTS+=$(OBJDIR)/UnitTest.o
 OBJECTS+=$(OBJDIR)/M100CommandOption.o
 OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core.o
 #LIBS+=-L$(VALA_HOME)/aroop/core/ -laroop_core

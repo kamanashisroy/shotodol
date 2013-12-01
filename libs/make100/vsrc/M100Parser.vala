@@ -2,11 +2,11 @@ using aroop;
 using shotodol;
 
 public abstract class shotodol.M100Parser: Replicable {
-	internal SearchableSet<M100Function> funcs;
+	internal SearchableFactory<M100Function> funcs;
 	internal ArrayList<M100Statement> stmts;
 	internal M100Function? default_func;
 	protected M100Parser() {
-		funcs = SearchableSet<M100Function>();
+		funcs = SearchableFactory<M100Function>.for_type();
 		stmts = ArrayList<M100Statement>();
 		default_func = null;
 	}
@@ -69,17 +69,10 @@ public abstract class shotodol.M100Parser: Replicable {
 		return 0;
 	}
 
-	internal int func_comp(container<M100Function> can) {
-		return 0;
-	}
-
 	M100Function? addFunction(etxt*name, etxt*proto) {
-		container<M100Function>? can = funcs.search(name.get_hash(), func_comp);
-		if(can != null) {
-			return null;
-		}
-		M100Function ret = new M100Function(name, proto);
-		funcs.add_container(ret, name.get_hash());
+		M100Function ret = funcs.alloc_full();
+		ret.build(name, proto);
+		ret.pin();
 		return ret;
 	}
 	

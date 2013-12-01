@@ -19,12 +19,8 @@ public class shotodol.M100Script : M100Parser {
 			return 0;
 		} 
 		
-		container<M100Function>? can = funcs.search(tg.get_hash(), func_comp/*comp.comp*/);
-		if(can == null) {
-			return -1;
-		}
-		func = can.get();
-		return 0;
+		func = funcs.search(tg.get_hash(), null);
+		return (func == null)?-1:0;
 	}
 	public txt? step() {
 		etxt dlg = etxt.stack(128);

@@ -2,7 +2,7 @@ using aroop;
 using shotodol;
 
 public class shotodol.CommandServer: ModulePlugin {
-	public static CommandServer server;
+	public static CommandServer? server;
 	public CommandSet cmds;
 	public CommandServer() {
 		cmds = new CommandSet();
@@ -28,6 +28,7 @@ public class shotodol.CommandServer: ModulePlugin {
 		return 0;
 	}
 	public override int deinit() {
+		server = null;
 		base.deinit();
 		return 0;
 	}

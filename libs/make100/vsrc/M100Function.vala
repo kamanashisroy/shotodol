@@ -1,12 +1,12 @@
 using aroop;
 using shotodol;
 
-internal class M100Function: Replicable {
+internal class M100Function: Searchable {
 	txt name;
 	txt upper;
 	ArrayList<txt> cmds;
 	int ccount;
-	public M100Function(etxt*nm, etxt*proto) {
+	internal void build(etxt*nm, etxt*proto) {
 		name = new txt.memcopy_etxt(nm);
 		upper = new txt.memcopy_etxt(proto);
 		cmds = ArrayList<txt>();
@@ -17,7 +17,7 @@ internal class M100Function: Replicable {
 	~M100Function() {
 		cmds.destroy();
 	}
-	public int addCommand(etxt*cmd) {
+	internal int addCommand(etxt*cmd) {
 		txt newcmd = new txt.memcopy_etxt(cmd);
 		M100Parser.trim(newcmd);
 		cmds[ccount++] = newcmd;
@@ -25,7 +25,7 @@ internal class M100Function: Replicable {
 		Watchdog.watchvar(5,0,0,0,&varname,newcmd);
 		return 0;
 	}
-	public txt? getCommand(int index) {
+	internal txt? getCommand(int index) {
 		return cmds[index];
 	}
 }

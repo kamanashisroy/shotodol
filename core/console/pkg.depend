@@ -1,5 +1,6 @@
 
 core/base
+core/test
 core/commands
 libs/iostream
 libs/watchdog

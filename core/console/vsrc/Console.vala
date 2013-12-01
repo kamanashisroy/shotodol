@@ -45,14 +45,25 @@ public class Console : ModulePlugin {
 		}
 	}
 
+	ConsoleTest? ct = null;
+	ConsoleSpindle? sp = null;
 	public override int init() {
-		//base.init();
-		ConsoleSpindle sp = new ConsoleSpindle();
+		sp = new ConsoleSpindle();
 		MainTurbine.gearup(sp);
 		new Watchdog(new StandardOutputStream());
+		ct = new ConsoleTest();
+		UnitTestModule.inst.register(ct);
 		return 0;
 	}
 
+	public override int deinit() {
+		MainTurbine.geardown(sp);
+		UnitTestModule.inst.unregister(ct);
+		sp = null;
+		ct = null;
+		base.deinit();
+		return 0;
+	}
 	[CCode (cname="get_module_instance")]
 	public static Module get_module_instance() {
 		return new Console();
