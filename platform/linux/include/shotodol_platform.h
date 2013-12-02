@@ -47,6 +47,9 @@
 #define linux_file_stream_fread(x,y) ({ \
 	int __rt = fread((y)->str+(y)->len, 1, (y)->size - (y)->len - 1, x);if(__rt > 0) {(y)->len += __rt;}__rt; \
 })
+#define linux_file_stream_fwrite(x,y) ({ \
+	fwrite((y)->str, 1, (y)->len, x);\
+})
 
 
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

@@ -66,7 +66,7 @@ public struct shotodol.ProtoPktizer {
 			return 4;
 		}
 	}
-	public int writeETxt(aroop_uword8 key, etxt val) throws proto_pktizer.pktizer_error {
+	public int writeETxt(aroop_uword8 key, etxt*val) throws proto_pktizer.pktizer_error {
 		// TODO check Pkt.size
 		int len = val.length();
 		if(len > 100) { // make sure that the string is sizable

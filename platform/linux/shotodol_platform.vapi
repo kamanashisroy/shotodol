@@ -76,6 +76,8 @@ namespace shotodol_platform {
 
 		[CCode (cname = "linux_file_stream_fread")]
 		public int read(etxt*buf);
+		[CCode (cname = "linux_file_stream_fwrite")]
+		public int write(etxt*buf);
 		[CCode (cname = "fclose")]
 		public void close ();
 	}

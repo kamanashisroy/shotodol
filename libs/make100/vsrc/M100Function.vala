@@ -10,6 +10,7 @@ internal class M100Function: Searchable {
 		name = new txt.memcopy_etxt(nm);
 		upper = new txt.memcopy_etxt(proto);
 		cmds = ArrayList<txt>();
+		set_hash(name.get_hash());
 		etxt varname = etxt.from_static("function");
 		Watchdog.watchvar(5,0,0,0,&varname,name);
 		ccount = 0;
