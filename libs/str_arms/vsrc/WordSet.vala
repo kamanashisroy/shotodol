@@ -24,7 +24,7 @@ public class shotodol.WordSet : Replicable {
 		}
 		entry = words.alloc_full((uint16)sizeof(txt)+(uint16)wrd.length()+1);
 		if(entry != null) {
-			entry.memcopy_from_etxt(wrd);
+			entry.build_by_memcopy_from_etxt_unsafe_no_length_check(wrd);
 		} else {
 			// TODO throw error
 			return null;
