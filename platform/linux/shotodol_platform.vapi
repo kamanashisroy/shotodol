@@ -26,7 +26,7 @@ namespace shotodol_platform {
 
 	[Compact]
 	[CCode (cname = "FILE", free_function = "fclose", cheader_filename = "stdio.h")]
-	public class LinuxFileStream {
+	public class PlatformFileStream {
 		[CCode (cname = "EOF", cheader_filename = "stdio.h")]
 		public const int EOF;
 		[CCode (cname = "SEEK_SET", cheader_filename = "stdio.h")]
@@ -37,11 +37,11 @@ namespace shotodol_platform {
 		public const int SEEK_END;
 
 		[CCode (cname = "fopen")]
-		public static LinuxFileStream? open (string path, string mode);
+		public static PlatformFileStream? open (string path, string mode);
 		[CCode (cname = "fdopen")]
-		public static LinuxFileStream? fdopen (int fildes, string mode);
+		public static PlatformFileStream? fdopen (int fildes, string mode);
 		[CCode (cname = "popen")]
-		public static LinuxFileStream? popen (string command, string mode);
+		public static PlatformFileStream? popen (string command, string mode);
 
 		[CCode (cname = "fprintf")]
 		[PrintfFormat ()]
@@ -80,5 +80,16 @@ namespace shotodol_platform {
 		public int write(etxt*buf);
 		[CCode (cname = "fclose")]
 		public void close ();
+	}
+	[CCode (cname = "linux_pthread_go_t", cheader_filename = "pthread.h", has_copy_function=false, has_destroy_function=false)]
+	public delegate int PlatformThreadRun();
+
+	[Compact]
+	[CCode (cname = "pthread_t", free_function = "aroop_donothing3", cheader_filename = "shotodol_platform.h")]
+	public struct PlatformThread {
+		[CCode (cname = "aroop_memclean_raw2")]
+		public PlatformThread();
+		[CCode (cname = "linux_pthread_create_background")]
+		public int start(PlatformThreadRun r);
 	}
 }

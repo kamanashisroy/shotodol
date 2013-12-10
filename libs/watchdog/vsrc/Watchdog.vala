@@ -4,6 +4,14 @@ using shotodol;
 public class shotodol.Watchdog : Replicable {
 	internal OutputStream pad;
 	internal static Watchdog? watch;
+	public enum WatchdogSeverity {
+		LOG = 0,
+		DEBUG,
+		NOTICE,
+		WARNING,
+		ERROR,
+		ALERT,
+	}
 	public Watchdog(OutputStream logger) {
 		pad = logger;
 		if(watch == null) {
@@ -22,15 +30,19 @@ public class shotodol.Watchdog : Replicable {
 		buf.concat(&NEW_LINE);
 		return 0;
 	}
-	public static int watchvar(int mod_id, int severity, int subtype, int id, etxt*varname, etxt*varval) {
+	public static int watchvar(int mod_id, WatchdogSeverity severity, int subtype, int id, etxt*varname, etxt*varval) {
 		etxt buf = etxt.stack(128);
 		watchvar_helper(&buf, varname, varval);
 		watchit(mod_id, severity, subtype, id, &buf);
 		return 0;
 	}
-	public static int watchit(int mod_id, int severity, int subtype, int id, etxt*msg) {
+	public static int watchit(int mod_id, WatchdogSeverity severity, int subtype, int id, etxt*msg) {
 		if(watch == null) return 0;
 		watch.pad.write(msg);
+		return 0;
+	}
+	public static int logMsgDoNotUse(etxt*msg) {
+		watchit(0, WatchdogSeverity.LOG, 0, 0, msg);
 		return 0;
 	}
 	public static int reset(Watchdog?w) {

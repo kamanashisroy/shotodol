@@ -23,6 +23,7 @@ makecore:
 	$(BUILD) -C core/commands
 	$(BUILD) -C core/console
 	$(BUILD) -C core/make
+	$(BUILD) -C libs/turbine
 
 cleancore:
 	$(CLEAN) -C libs/iostream
@@ -40,6 +41,7 @@ cleancore:
 	$(CLEAN) -C core/commands
 	$(CLEAN) -C core/console
 	$(CLEAN) -C core/make
+	$(CLEAN) -C libs/turbine
 
 makemain:
 	$(BUILD) -C main/main

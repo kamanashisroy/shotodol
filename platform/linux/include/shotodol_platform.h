@@ -43,7 +43,7 @@
 	int __len = 0;char* __rt = fgets((y)->str+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
 })
 
-//public class LinuxFileStream
+//public class PlatformFileStream
 #define linux_file_stream_fread(x,y) ({ \
 	int __rt = fread((y)->str+(y)->len, 1, (y)->size - (y)->len - 1, x);if(__rt > 0) {(y)->len += __rt;}__rt; \
 })
@@ -51,5 +51,17 @@
 	fwrite((y)->str, 1, (y)->len, x);\
 })
 
+typedef int (*linux_pthread_go_t)(void*data);
+// PlatformThread
+#define linux_pthread_create_background(x, cb, obj) ({ \
+	int __ecode; \
+	pthread_attr_t __ptattr; \
+	__ecode = pthread_attr_init(&__ptattr); \
+	if(!__ecode){ \
+		__ecode = pthread_attr_setdetachstate(&__ptattr, PTHREAD_CREATE_DETACHED); \
+		if(!__ecode)__ecode = pthread_create(x, &__ptattr, &cb, obj); \
+		pthread_attr_destroy(&__ptattr); \
+	}\
+__ecode;})
 
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

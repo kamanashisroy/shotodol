@@ -6,12 +6,12 @@ public errordomain IOStreamError.FileInputStreamError {
 }
 
 public class shotodol.FileInputStream : InputStream {
-	shotodol_platform.LinuxFileStream?fp;
+	shotodol_platform.PlatformFileStream?fp;
 	bool closed;
 	
 	public FileInputStream.from_file(etxt*filename) throws IOStreamError.FileInputStreamError {
 		closed = true;
-		fp = shotodol_platform.LinuxFileStream.open(filename.to_string(), "r");
+		fp = shotodol_platform.PlatformFileStream.open(filename.to_string(), "r");
 		if(fp == null) {
 			throw new IOStreamError.FileInputStreamError.COULD_NOT_OPEN_FILE("Could not open file");
 		}
