@@ -24,8 +24,8 @@ public class MainProgram {
 	}
 	
 	static int load_module() {
-		load_core_module("test");
 		load_core_module("commands");
+		load_core_module("test");
 		load_core_module("console");
 		load_core_module("fileconfig");
 		load_core_module("make");

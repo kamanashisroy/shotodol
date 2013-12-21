@@ -1,2 +1,4 @@
 core/base
+core/commands
+libs/make100
 libs/unittest

@@ -3,17 +3,26 @@ using shotodol;
 
 public class shotodol.UnitTestModule : ModulePlugin {
 	public static UnitTestModule? inst;
-	SearchableSet<UnitTest> tests;
+	internal SearchableSet<UnitTest> tests;
+	UnitTestCommand? cmd = null;
 	class UnitTestModule() {
 	}
+
+	~UnitTestModule() {
+	}
+
 	public override int init() {
 		tests = SearchableSet<UnitTest>();
 		inst = this;
+		cmd = new UnitTestCommand();
+		CommandServer.server.cmds.register(cmd);
 		return 0;
 	}
 	public override int deinit() {
 		tests.destroy();
 		inst = null;
+		CommandServer.server.cmds.unregister(cmd);
+		cmd = null;
 		base.deinit();
 		return 0;
 	}
