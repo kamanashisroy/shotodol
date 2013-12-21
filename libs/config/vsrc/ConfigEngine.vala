@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-public class shotodol.ConfigEngine : Replicable {
+public abstract class shotodol.ConfigEngine : Replicable {
 	HashTable<ConfigModuleEntry> modules;
 	internal Factory<ConfigModuleEntry> moduleSource;
 	internal Factory<ConfigEntry> entrySource;

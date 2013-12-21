@@ -20,6 +20,7 @@ public class FileConfig : ModulePlugin {
 		UnitTestModule.inst.unregister(ct);
 		ccmd = null;
 		ct = null;
+		DefaultConfigEngine.setDefault(null);
 		base.deinit();
 		return 0;
 	}

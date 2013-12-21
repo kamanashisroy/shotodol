@@ -32,7 +32,11 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 			unowned txt infile = mod.get();
 			FileInputStream fis = new FileInputStream.from_file(infile);
 			LineInputStream lis = new LineInputStream(fis);
-			ConfigEngine cfg = new ConfigEngine();
+			ConfigEngine?cfg = DefaultConfigEngine.getDefault();
+			if(cfg == null) {
+				cfg = new DefaultConfigEngine();
+				DefaultConfigEngine.setDefault(cfg);
+			}
 			do {
 				etxt configLine = etxt.stack(128);
 				try {
