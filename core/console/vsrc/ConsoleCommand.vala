@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-internal class ConsoleCommand : M100Command {
+internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	class ConsoleSpindle : Spindle {
 		LineInputStream is;
 		StandardOutputStream pad;

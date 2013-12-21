@@ -12,6 +12,7 @@ makecore:
 	$(BUILD) -C libs/unittest
 	$(BUILD) -C libs/watchdog
 	$(BUILD) -C libs/module
+	$(BUILD) -C libs/config
 	$(BUILD) -C platform/linux_extra
 	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/propeller
@@ -30,6 +31,7 @@ cleancore:
 	$(CLEAN) -C libs/unittest
 	$(CLEAN) -C libs/watchdog
 	$(CLEAN) -C libs/module
+	$(CLEAN) -C libs/config
 	$(CLEAN) -C platform/linux_extra
 	$(CLEAN) -C libs/str_arms
 	$(CLEAN) -C libs/propeller

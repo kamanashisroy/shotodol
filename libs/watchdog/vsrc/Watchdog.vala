@@ -45,6 +45,21 @@ public class shotodol.Watchdog : Replicable {
 		watchit(0, WatchdogSeverity.LOG, 0, 0, msg);
 		return 0;
 	}
+	public static int logString(string st) {
+		etxt buf = etxt.stack(128);
+		buf.printf("%s", st);
+		watchit(0, WatchdogSeverity.LOG, 0, 0, &buf);
+		return 0;
+	}
+#if false
+	public static int logit(string input, ...) {
+		var l = va_list();
+		etxt dlg = etxt.stack(128);
+		dlg.printf(input, l);
+		logMsgDoNotUse(&dlg);
+		return 0;
+	}
+#endif
 	public static int reset(Watchdog?w) {
 		watch = w;
 		return 0;
