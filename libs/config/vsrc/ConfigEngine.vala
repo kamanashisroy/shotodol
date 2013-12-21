@@ -1,15 +1,17 @@
 using aroop;
 using shotodol;
 
-public abstract class shotodol.ConfigEngine : Replicable {
+public class shotodol.ConfigEngine : Replicable {
 	HashTable<ConfigModuleEntry> modules;
 	internal Factory<ConfigModuleEntry> moduleSource;
 	internal Factory<ConfigEntry> entrySource;
 	public ConfigEngine() {
+		modules = HashTable<ConfigModuleEntry>();
 		entrySource = Factory<ConfigEntry>.for_type();
 		moduleSource = Factory<ConfigModuleEntry>.for_type();
 	}
 	~Config() {
+		modules.destroy();
 		entrySource.destroy();
 		moduleSource.destroy();
 	}
@@ -24,7 +26,7 @@ public abstract class shotodol.ConfigEngine : Replicable {
 	}
 #endif
 	
-	internal int parseEntry(etxt*data) {
+	public int parseEntry(etxt*data) {
 		etxt token = etxt.EMPTY();
 		etxt inp = etxt.stack_from_etxt(data);
 		int count = 0;
@@ -52,6 +54,7 @@ public abstract class shotodol.ConfigEngine : Replicable {
 							if(module == null) {
 								break;
 							}
+							module.build(myModuleName);
 							modules.set(myModuleName, module);
 						}
 						txt val = new txt.memcopy_etxt(&inp);

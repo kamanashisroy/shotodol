@@ -3,5 +3,7 @@
 
 all:
 	help module
+	help fileconf
+	fileconf -i ./shotodol.conf
 
 
