@@ -16,7 +16,7 @@ makecore:
 	$(BUILD) -C $(PLATFORM)/platform_extra
 	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/propeller
-	$(BUILD) -C libs/proto_pktizer
+	$(BUILD) -C libs/bundle
 	$(BUILD) -C libs/db
 	$(BUILD) -C libs/make100
 	$(BUILD) -C $(PLATFORM)/platform_net
@@ -38,7 +38,7 @@ cleancore:
 	$(CLEAN) -C $(PLATFORM)/platform_extra
 	$(CLEAN) -C libs/str_arms
 	$(CLEAN) -C libs/propeller
-	$(CLEAN) -C libs/proto_pktizer
+	$(CLEAN) -C libs/bundle
 	$(CLEAN) -C libs/db
 	$(CLEAN) -C libs/make100
 	$(CLEAN) -C $(PLATFORM)/platform_net
