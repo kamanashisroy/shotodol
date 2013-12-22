@@ -11,7 +11,7 @@ TARGETS=$(PLUGIN) $(OBJECT_AR)
 
 INCLUDES+=-I$(VALA_HOME)/aroop/core/inc
 LIBS+=-L$(VALA_HOME)/aroop/core/ -laroop_core
-#include $(SHOTODOL_HOME)/build/platform.mk
+include $(SHOTODOL_HOME)/build/platform.mk
 include $(SHOTODOL_HOME)/build/pkg.mk
 include $(SHOTODOL_HOME)/build/includes.mk
 include includes.mk

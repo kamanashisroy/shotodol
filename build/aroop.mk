@@ -7,7 +7,7 @@ VAPI+=--vapidir $(VALA_HOME)/aroop/vapi --pkg aroop_pthread-0.1
 include $(SHOTODOL_HOME)/build/pkg.mk
 include $(SHOTODOL_HOME)/build/vapi.mk
 include vapi.mk
-#include $(SHOTODOL_HOME)/build/platform.mk
+include $(SHOTODOL_HOME)/build/platform.mk
 VSOURCES=$(wildcard vsrc/*.vala)
 
 TARGET_INCLUDE=include/$(LIBRARY_NAME).h
