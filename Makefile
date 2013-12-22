@@ -13,12 +13,14 @@ makecore:
 	$(BUILD) -C libs/watchdog
 	$(BUILD) -C libs/module
 	$(BUILD) -C libs/config
-	$(BUILD) -C platform/linux_extra
+	$(BUILD) -C $(PLATFORM)/platform_extra
 	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/propeller
 	$(BUILD) -C libs/proto_pktizer
 	$(BUILD) -C libs/db
 	$(BUILD) -C libs/make100
+	$(BUILD) -C $(PLATFORM)/platform_net
+	$(BUILD) -C libs/netio
 	$(BUILD) -C core/base
 	$(BUILD) -C core/test
 	$(BUILD) -C core/commands
@@ -33,12 +35,14 @@ cleancore:
 	$(CLEAN) -C libs/watchdog
 	$(CLEAN) -C libs/module
 	$(CLEAN) -C libs/config
-	$(CLEAN) -C platform/linux_extra
+	$(CLEAN) -C $(PLATFORM)/platform_extra
 	$(CLEAN) -C libs/str_arms
 	$(CLEAN) -C libs/propeller
 	$(CLEAN) -C libs/proto_pktizer
 	$(CLEAN) -C libs/db
 	$(CLEAN) -C libs/make100
+	$(CLEAN) -C $(PLATFORM)/platform_net
+	$(CLEAN) -C libs/netio
 	$(CLEAN) -C core/base
 	$(CLEAN) -C core/test
 	$(CLEAN) -C core/commands

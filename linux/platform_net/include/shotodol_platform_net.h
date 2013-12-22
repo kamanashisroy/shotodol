@@ -30,10 +30,10 @@ struct net_stream_poll {
 
 // stream
 #define net_stream_empty(x) ({(x)->sock = -1;})
-int net_stream_new(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags);
+int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags);
 int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf);
 int net_stream_send(struct net_stream*strm, struct aroop_txt*buf);
-#define net_stream_close(x) ({if((x)->sock > 0){close((x)->sock);};})
+#define net_stream_close(x) ({if((x)->sock > 0){close((x)->sock);}0;})
 #define net_stream_accepting(x) ({((x)->flags & NET_STREAM_FLAG_BIND);})
 int net_stream_accept_new(struct net_stream*newone, struct net_stream*from);
 

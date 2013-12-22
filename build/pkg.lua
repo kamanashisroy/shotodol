@@ -3,6 +3,10 @@ function trim1(s)
   return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
+function compilePlatform(s)
+	return (s:gsub("OS_PLATFORM", "linux"))
+end
+
 function depend(pkg,p)
 	local x = pkg
 	local fpath = p .. "/" .. pkg;
@@ -19,7 +23,8 @@ function depend(pkg,p)
 	while true do
 		local line = f:read("*line")
 		if line == nil then break end
-		otherpkg = trim1(line)
+		local pkgline = trim1(line)
+		local otherpkg = compilePlatform(pkgline)
 		if otherpkg ~= "" then
 			x = x .. " " .. depend(otherpkg,p)
 		end

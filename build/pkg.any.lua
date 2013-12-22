@@ -5,6 +5,10 @@ end
 
 projects= {}
 
+function compilePlatform(s)
+	return (s:gsub("OS_PLATFORM", projects["PLATFORM"]))
+end
+
 function depend(pkg,p)
 	local x = pkg
 	local fpath = projects[p] .. "/" .. pkg;
@@ -28,7 +32,8 @@ function depend(pkg,p)
 			if c == "-" then
 				pkgdir = lntrm:sub(2)
 			else
-				x = x .. " " .. projects[pkgdir] .. "/" .. depend(lntrm,pkgdir)
+				local otherpkg = compilePlatform(lntrm)
+				x = x .. " " .. projects[pkgdir] .. "/" .. depend(otherpkg,pkgdir)
 			end 
 		end
 	end

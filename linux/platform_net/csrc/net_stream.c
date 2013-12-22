@@ -4,7 +4,7 @@
 #include "core/txt.h"
 #include "shotodol_platform_net.h"
 
-int net_stream_new(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags) {
+int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags) {
 	strm->sock = -1;
 	strm->flags = 0;
 	struct aroop_txt proto;
