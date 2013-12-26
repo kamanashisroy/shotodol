@@ -32,7 +32,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 				return 0;
 			}
 			try {
-				etxt inp = etxt.stack(128);
+				etxt inp = etxt.stack(512);
 				if(is.read(&inp) != 0) {
 					perform_action(&inp);
 				}
