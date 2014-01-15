@@ -12,9 +12,9 @@ makecore:
 	$(BUILD) -C libs/unittest
 	$(BUILD) -C libs/watchdog
 	$(BUILD) -C libs/module
+	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/config
 	$(BUILD) -C $(PLATFORM)/platform_extra
-	$(BUILD) -C libs/str_arms
 	$(BUILD) -C libs/propeller
 	$(BUILD) -C libs/bundle
 	$(BUILD) -C libs/db
@@ -22,8 +22,8 @@ makecore:
 	$(BUILD) -C $(PLATFORM)/platform_net
 	$(BUILD) -C libs/netio
 	$(BUILD) -C core/base
-	$(BUILD) -C core/test
 	$(BUILD) -C core/commands
+	$(BUILD) -C core/test
 	$(BUILD) -C core/fileconfig
 	$(BUILD) -C core/console
 	$(BUILD) -C core/make
