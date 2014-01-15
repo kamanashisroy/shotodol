@@ -26,7 +26,42 @@ public class shotodol.LineAlign<G> : Replicable {
 	public G? get() {
 		return sense;
 	}
-	
+		
+	public static int next_token_delimitered(etxt*src, etxt*next, etxt*delim) {
+		uint i = 0;
+		int token_start = -1;
+		int trim_at = -1;
+		int len = src.length();
+		for(i = 0; i < len; i++) {
+			char x = src.char_at(i);
+			if(x == ' ' || x == '\r' || x == '\n') {
+				if(token_start == -1) {
+					continue;
+				}
+				trim_at = (int)i;
+				break;
+			} else {
+				token_start = (token_start < 0) ? (int)i : token_start;
+				if(delim.contains_char(x)) {
+					i++;
+					trim_at = (int)i;
+					break;
+				}
+			}
+		}
+		if(token_start >= 0) {
+			(*next) = etxt.share_etxt(src);
+			if(trim_at >= 0) {
+				next.trim_to_length(trim_at);
+			}
+			next.shift(token_start);
+		} else {
+			(*next) = etxt.EMPTY();
+		}
+		src.shift((int)i);
+		return 0;
+	}
+
 	public static int next_token(etxt*src, etxt*next) {
 		uint i = 0;
 		int token_start = -1;
