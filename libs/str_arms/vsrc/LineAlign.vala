@@ -30,22 +30,28 @@ public class shotodol.LineAlign<G> : Replicable {
 	public static int next_token(etxt*src, etxt*next) {
 		uint i = 0;
 		int token_start = -1;
+		int trim_at = -1;
 		int len = src.length();
-		(*next) = etxt.share_etxt(src);
 		for(i = 0; i < len; i++) {
 			char x = src.char_at(i);
 			if(x == ' ' || x == '\r' || x == '\n') {
 				if(token_start == -1) {
 					continue;
 				}
-				next.trim_to_length(i);
+				trim_at = (int)i;
 				break;
 			} else {
 				token_start = (token_start < 0) ? (int)i : token_start;
 			}
 		}
 		if(token_start >= 0) {
+			(*next) = etxt.share_etxt(src);
+			if(trim_at >= 0) {
+				next.trim_to_length(trim_at);
+			}
 			next.shift(token_start);
+		} else {
+			(*next) = etxt.EMPTY();
 		}
 		src.shift((int)i);
 		return 0;
