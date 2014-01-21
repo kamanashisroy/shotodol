@@ -43,7 +43,9 @@ public class shotodol.LineAlign<G> : Replicable {
 			} else {
 				token_start = (token_start < 0) ? (int)i : token_start;
 				if(delim.contains_char(x)) {
-					i++;
+					if(token_start == i) {
+						i++;
+					}
 					trim_at = (int)i;
 					break;
 				}
