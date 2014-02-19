@@ -51,15 +51,19 @@
 	fwrite((y)->str, 1, (y)->len, x);\
 })
 
-typedef int (*linux_pthread_go_t)(void*data);
+typedef int (*linux_pthread_go_cb_t)(void*data);
+typedef struct {
+	void*aroop_closure_data;
+	linux_pthread_go_cb_t aroop_cb;
+} linux_pthread_go_t;
 // PlatformThread
-#define linux_pthread_create_background(x, cb, obj) ({ \
+#define linux_pthread_create_background(x, cb) ({ \
 	int __ecode; \
 	pthread_attr_t __ptattr; \
 	__ecode = pthread_attr_init(&__ptattr); \
 	if(!__ecode){ \
 		__ecode = pthread_attr_setdetachstate(&__ptattr, PTHREAD_CREATE_DETACHED); \
-		if(!__ecode)__ecode = pthread_create(x, &__ptattr, &cb, obj); \
+		if(!__ecode)__ecode = pthread_create(x, &__ptattr, cb.aroop_cb, cb.aroop_closure_data); \
 		pthread_attr_destroy(&__ptattr); \
 	}\
 __ecode;})
