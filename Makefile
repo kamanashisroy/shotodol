@@ -26,6 +26,7 @@ makecore:
 	$(BUILD) -C core/test
 	$(BUILD) -C core/fileconfig
 	$(BUILD) -C core/console
+	$(BUILD) -C core/idle
 	$(BUILD) -C core/make
 	$(BUILD) -C libs/turbine
 
@@ -48,6 +49,7 @@ cleancore:
 	$(CLEAN) -C core/commands
 	$(CLEAN) -C core/fileconfig
 	$(CLEAN) -C core/console
+	$(CLEAN) -C core/idle
 	$(CLEAN) -C core/make
 	$(CLEAN) -C libs/turbine
 

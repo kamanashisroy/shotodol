@@ -27,6 +27,7 @@ public class MainProgram {
 		load_core_module("commands");
 		load_core_module("test");
 		load_core_module("console");
+		load_core_module("idle");
 		load_core_module("fileconfig");
 		load_core_module("make");
 		return 0;

@@ -68,4 +68,6 @@ typedef struct {
 	}\
 __ecode;})
 
+#define linux_mesmerize() ({usleep(500);})
+
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

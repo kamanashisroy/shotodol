@@ -92,4 +92,10 @@ namespace shotodol_platform {
 		[CCode (cname = "linux_pthread_create_background")]
 		public int start(PlatformThreadRun r);
 	}
+
+	[CCode (cname = "void", cheader_filename = "shotodol_platform.h")]
+	public class ProcessControl {
+		[CCode (cname = "linux_mesmerize")]
+		public static void mesmerize();
+	}
 }
