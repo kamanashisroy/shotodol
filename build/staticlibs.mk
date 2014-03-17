@@ -4,6 +4,7 @@ OBJECTS+=$(OBJDIR)/Watchdog.o
 OBJECTS+=$(OBJDIR)/UnitTest.o
 include $(SHOTODOL_HOME)/libs/config/staticlibs.mk
 include $(SHOTODOL_HOME)/$(PLATFORM)/platform_extra/staticlibs.mk
+include $(SHOTODOL_HOME)/$(PLATFORM)/platform_net/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/iostream/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/str_arms/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/make100/staticlibs.mk
