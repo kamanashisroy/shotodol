@@ -11,7 +11,7 @@ namespace shotodol_platform {
 		public int unload();
 	}
 	
-	[CCode (cname = "int", default_value = "0", free_function = "aroop_donothing3", cheader_filename = "core.h")]
+	[CCode (cname = "int", default_value = "0", free_function = "aroop_donothing3", cheader_filename = "aroop_core.h")]
 	[IntegerType (rank = 6)]
 	public struct fileio {
 		[CCode (cname="fileio_stdin", cheader_filename = "shotodol_platform.h")]
