@@ -14,7 +14,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		}
 		~ConsoleSpindle() {
 		}
-		public override int start(Propeller?plr) {
+		public override int start(Spindle?plr) {
 			print("Started console stepping ..\n");
 			
 			return 0;
