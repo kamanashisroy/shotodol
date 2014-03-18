@@ -24,6 +24,7 @@ struct net_stream {
 		struct sockaddr_rc btrc;
 	} addr;
 	SYNC_UWORD8_T flags;
+	long long seq;
 };
 
 enum {
