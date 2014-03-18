@@ -1,10 +1,10 @@
 using aroop;
 using shotodol;
 
-public class shotodol.BlueTestModule : ModulePlugin {
-	BlueTestCommand? cmd;
+public class shotodol.NetEchoModule : ModulePlugin {
+	NetEchoCommand? cmd;
 	public override int init() {
-		cmd = new BlueTestCommand();
+		cmd = new NetEchoCommand();
 		CommandServer.server.cmds.register(cmd);
 		return 0;
 	}
@@ -16,7 +16,7 @@ public class shotodol.BlueTestModule : ModulePlugin {
 	}
 	[CCode (cname="get_module_instance")]
 	public static Module get_module_instance() {
-		return new BlueTestModule();
+		return new NetEchoModule();
 	}
 }
 
