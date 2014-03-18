@@ -10,14 +10,19 @@ internal class NetEchoClient : NetEchoService {
 		strm.close();
 	}
 
+	int closeClient() {
+		pl.remove(&strm);
+		strm.close();
+		poll = false;
+		return 0;
+	}
+
 	internal override int onEvent(shotodol_platform_net.NetStreamPlatformImpl*x) {
 		print("(C)Reading [%ld,%ld]\n", recv_bytes, sent_bytes);
 		// read server data
 		etxt buf = etxt.stack(1024);
 		if(strm.read(&buf) <= 0) {
-			pl.remove(&strm);
-			strm.close();
-			poll = false;
+			closeClient();
 			return -1;
 		}
 		recv_bytes += buf.length();
@@ -28,7 +33,12 @@ internal class NetEchoClient : NetEchoService {
 		// continue sending data..
 		print("(C)Sending [%ld,%ld]\n", recv_bytes, sent_bytes);
 		etxt buf = etxt.from_static("Great");
-		sent_bytes += strm.write(&buf);
+		int ret = strm.write(&buf);
+		if(ret <= 0) {
+			closeClient();
+			return -1;
+		}
+		sent_bytes += ret;
 		if(buf.length() != 0) {
 			print("link is stalled !\n");
 		}
