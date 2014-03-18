@@ -3,10 +3,23 @@ using shotodol;
 
 internal class NetEchoClient : NetEchoService {
 	shotodol_platform_net.NetStreamPlatformImpl strm;
-	public NetEchoClient() {
+	int chunkSize;
+	etxt content;
+	public NetEchoClient(int givenChunkSize) {
 		strm = shotodol_platform_net.NetStreamPlatformImpl();
+		chunkSize = givenChunkSize;
+		content = etxt.EMPTY();
+		content.buffer(chunkSize+1);
+		int i = 0;
+		for(i = 0; i < chunkSize;i++) {
+			content.concat_char(65); // ascii of A
+		}
+		content.zero_terminate();
+		assertBuffer(&content);
+		print("Content:%s\n", content.to_string());
 	}
 	~NetEchoClient() {
+		content.destroy();
 		strm.close();
 	}
 
@@ -18,21 +31,24 @@ internal class NetEchoClient : NetEchoService {
 	}
 
 	internal override int onEvent(shotodol_platform_net.NetStreamPlatformImpl*x) {
-		print("(C)Reading [%ld,%ld]\n", recv_bytes, sent_bytes);
+		print(" [ ~ ] Client .. \n");
 		// read server data
 		etxt buf = etxt.stack(1024);
 		if(strm.read(&buf) <= 0) {
 			closeClient();
 			return -1;
 		}
+		print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
 		recv_bytes += buf.length();
 		return 0;
 	}
 
 	internal override int step_more() {
 		// continue sending data..
-		print("(C)Sending [%ld,%ld]\n", recv_bytes, sent_bytes);
-		etxt buf = etxt.from_static("Great");
+		assertBuffer(&content);
+		etxt buf = etxt.same_same(&content);
+		print("[ - ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
+		assertBuffer(&buf);
 		int ret = strm.write(&buf);
 		if(ret <= 0) {
 			closeClient();

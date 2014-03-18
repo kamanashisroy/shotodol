@@ -3,13 +3,15 @@ using shotodol;
 
 internal class NetEchoServer : NetEchoService {
 	bool waiting;
+	bool checkContent;
 	shotodol_platform_net.NetStreamPlatformImpl server;
 	shotodol_platform_net.NetStreamPlatformImpl client;
-	public NetEchoServer() {
+	public NetEchoServer(bool shouldCheckContent) {
 		base();
 		server = shotodol_platform_net.NetStreamPlatformImpl();
 		client = shotodol_platform_net.NetStreamPlatformImpl();
 		waiting = true;
+		checkContent = shouldCheckContent;
 	}
 
 	~NetEchoServer() {
@@ -35,7 +37,7 @@ internal class NetEchoServer : NetEchoService {
 			waiting = false;
 			return -1;
 		}
-		print("(S)Reading [%ld,%ld]\n", recv_bytes, sent_bytes);
+		print("[ ~ ] Server\n");
 		// echo client data
 		etxt buf = etxt.stack(1024);
 		if(x.read(&buf) <= 0) {
@@ -45,12 +47,15 @@ internal class NetEchoServer : NetEchoService {
 			return -1;
 		}
 		recv_bytes += buf.length();
+		print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
+		if(checkContent)assertBuffer(&buf);
 		int ret = x.write(&buf);
 		if(ret <= 0) {
 			closeClient();
 			return -1;
 		}
 		sent_bytes += ret;
+		print("[ - ] [%d] [%ld,%ld]\n", ret, recv_bytes, sent_bytes);
 		if(buf.length() != 0) {
 			print("link is stalled !\n");
 		}

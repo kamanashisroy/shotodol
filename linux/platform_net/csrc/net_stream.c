@@ -50,7 +50,6 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 	}
 	printf("Opening socket at %d\n", strm->sock);
   if(strm->sock < 0) {
-    //SYNC_LOG(SYNC_ERROR, "Unable to open server socket for listening:%s\n", strerror(sync_errno));
     printf("Unable to open server socket for listening:%s\n", strerror(errno));
     return -1;
   }
@@ -210,12 +209,12 @@ int net_stream_poll_check_events(struct net_stream_poll*spoll) {
 }
 struct net_stream*net_stream_poll_next(struct net_stream_poll*spoll) {
 	int i = 0;
-	printf("checking for revents from %d, evt count %d\n", spoll->evtindex, spoll->evtcount);
+	//printf("checking for revents from %d, evt count %d\n", spoll->evtindex, spoll->evtcount);
 	for(i = spoll->evtindex;((spoll->evtcount) && (i < spoll->fdcount));i++) {
 		if(spoll->fd_set[i].revents != 0) {
 			spoll->evtindex = i;
 			spoll->evtcount--;
-			printf("New event at:fd %d\n", spoll->strms[i]->sock);
+			//printf("New event at:fd %d\n", spoll->strms[i]->sock);
 			spoll->fd_set[i].revents = 0;
 			return spoll->strms[i];
 		}

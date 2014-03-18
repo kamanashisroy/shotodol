@@ -11,6 +11,9 @@ internal abstract class NetEchoService : NetEchoSpindle {
 	}
 	~NetEchoService() {
 	}
+	protected void assertBuffer(etxt*buf) {
+		core.assert(buf.char_at(0) == 65);
+	}
 }
 
 
