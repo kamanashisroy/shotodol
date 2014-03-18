@@ -5,7 +5,7 @@ internal class NetEchoClient : NetEchoService {
 	shotodol_platform_net.NetStreamPlatformImpl strm;
 	int chunkSize;
 	etxt content;
-	bool connected;
+	bool recvd;
 	bool verbose;
 	public NetEchoClient(int givenChunkSize, bool verb) {
 		strm = shotodol_platform_net.NetStreamPlatformImpl();
@@ -19,7 +19,7 @@ internal class NetEchoClient : NetEchoService {
 		}
 		content.zero_terminate();
 		assertBuffer(&content);
-		connected = false;
+		recvd = false;
 		print("Content:%s\n", content.to_string());
 	}
 	~NetEchoClient() {
@@ -46,13 +46,13 @@ internal class NetEchoClient : NetEchoService {
 		if(verbose)print("[ + ] [%d] [%ld,%ld] %s\n", buf.length(), recv_bytes, sent_bytes, buf.to_string());
 		else print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
 		recv_bytes += buf.length();
+		recvd = true;
 		return 0;
 	}
 
 	internal override int step_more() {
-		if(!connected) {
-			// let it connect ..
-			connected = true;
+		if(!recvd) {
+			return 0;
 		}
 		// continue sending data..
 		assertBuffer(&content);
@@ -70,6 +70,7 @@ internal class NetEchoClient : NetEchoService {
 		if(buf.length() != 0) {
 			print("link is stalled !\n");
 		}
+		recvd = false;
 		return 0;
 	}
 
@@ -84,6 +85,7 @@ internal class NetEchoClient : NetEchoService {
 			print("Starting client ..\n");
 			pl.add(&strm);
 			poll = true;
+			recvd = true;
 		}
 		return ret;
 	}
