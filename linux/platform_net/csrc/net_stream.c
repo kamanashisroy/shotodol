@@ -74,7 +74,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		aroop_txt_zero_terminate(&portstr);
 		strm->addr.in.sin_port = htons(aroop_txt_to_int(&portstr));
 	}
-	if((flags & (NET_STREAM_FLAG_RFCOMM|NET_STREAM_FLAG_SCO))) {
+	if((flags & (NET_STREAM_FLAG_SCO))) {
 		strm->addr.bt.sco_family = AF_BLUETOOTH;
 	  //bacpy(&strm->sbt.sco_bdaddr, &adapter->addr);
 		struct aroop_txt srcaddr;
@@ -82,8 +82,20 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		aroop_txt_trim_to_length(&srcaddr,17);
 		aroop_txt_zero_terminate(&srcaddr);
 		str2ba(srcaddr.str, &strm->addr.bt.sco_bdaddr);
-		printf("sco connect from %s\n", srcaddr.str);
+		printf("sco listen at %s\n", srcaddr.str);
 	}
+	if((flags & (NET_STREAM_FLAG_RFCOMM))) {
+		strm->addr.btrc.rc_family = AF_BLUETOOTH;
+	  //bacpy(&strm->sbt.sco_bdaddr, &adapter->addr);
+		struct aroop_txt srcaddr;
+		aroop_txt_embeded_stackbuffer_from_txt(&srcaddr,&addrstr);
+		aroop_txt_trim_to_length(&srcaddr,17);
+		aroop_txt_zero_terminate(&srcaddr);
+		str2ba(srcaddr.str, &strm->addr.btrc.rc_bdaddr);
+		printf("rc listen at %s\n", srcaddr.str);
+		strm->addr.btrc.rc_channel = 1;
+	}
+
 	if((flags & NET_STREAM_FLAG_BIND)) {
 		printf("binding %s\n", addrstr.str);
 		int sock_flag = 0;
@@ -105,15 +117,24 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		}
 	}
 	if((flags & NET_STREAM_FLAG_CONNECT)) {
-		if((flags & (NET_STREAM_FLAG_RFCOMM|NET_STREAM_FLAG_SCO))) {
+		if((flags & (NET_STREAM_FLAG_SCO))) {
 			strm->addr.bt.sco_family = AF_BLUETOOTH;
-			//bacpy(&strm->sbt.sco_bdaddr, &adapter->addr);
 			struct aroop_txt dstaddr;
 			aroop_txt_embeded_stackbuffer_from_txt(&dstaddr,&addrstr);
 			aroop_txt_shift(&dstaddr,18);
 			aroop_txt_zero_terminate(&dstaddr);
 			str2ba(dstaddr.str, &strm->addr.bt.sco_bdaddr);
 			printf("sco connect to %s\n", dstaddr.str);
+		}
+		if((flags & (NET_STREAM_FLAG_RFCOMM))) {
+			strm->addr.btrc.rc_family = AF_BLUETOOTH;
+			struct aroop_txt dstaddr;
+			aroop_txt_embeded_stackbuffer_from_txt(&dstaddr,&addrstr);
+			aroop_txt_shift(&dstaddr,18);
+			aroop_txt_zero_terminate(&dstaddr);
+			str2ba(dstaddr.str, &strm->addr.btrc.rc_bdaddr);
+			printf("rc connect to %s\n", dstaddr.str);
+			strm->addr.btrc.rc_channel = 1;
 		}
 		printf("Connecting to server at socket %d\n", strm->sock);
 		if(connect(strm->sock, (struct sockaddr*)&strm->addr, sizeof(strm->addr)) < 0) {
@@ -127,6 +148,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 }
 
 int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf) {
+	printf("Reading %d\n", strm->sock);
 	int len = recv(strm->sock, buf->str+buf->len, buf->size - buf->len, MSG_DONTWAIT);
 	if(len > 0) {
 		buf->len += len;
@@ -138,6 +160,7 @@ int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf) {
 }
 
 int net_stream_send(struct net_stream*strm, struct aroop_txt*buf) {
+	printf("Writing %d\n", strm->sock);
 	int len = send(strm->sock, buf->str, buf->len, MSG_DONTWAIT);
 	if(len < 0) {
 			printf("Error while sending [%d]:%s\n", strm->sock, strerror(errno));

@@ -47,6 +47,8 @@ internal class NetEchoServer : NetEchoService {
 			return -1;
 		}
 		recv_bytes += buf.length();
+		//buf.zero_terminate();
+		//print("[ + ] [%d] [%ld,%ld] %s\n", buf.length(), recv_bytes, sent_bytes, buf.to_string());
 		print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
 		if(checkContent)assertBuffer(&buf);
 		int ret = x.write(&buf);

@@ -6,6 +6,7 @@
 #include <poll.h>
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/sco.h>
+#include <bluetooth/rfcomm.h>
 
 enum {
 	NET_STREAM_FLAG_UDP = 1,
@@ -20,6 +21,7 @@ struct net_stream {
 	union {
 		struct sockaddr_in in;
 		struct sockaddr_sco bt;
+		struct sockaddr_rc btrc;
 	} addr;
 	SYNC_UWORD8_T flags;
 };
