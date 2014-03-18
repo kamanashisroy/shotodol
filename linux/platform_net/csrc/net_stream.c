@@ -181,8 +181,10 @@ int net_stream_poll_delete_stream(struct net_stream_poll*spoll, struct net_strea
 	int i;
 	for(i = 0; i < spoll->fdcount; i++) {
 		if(spoll->fd_set[i].fd == strm->sock) {
+			//printf("i %d, fdcount %d\n", i, spoll->fdcount);
 			if(i != (spoll->fdcount-1)) {
 				memcpy(spoll->fd_set+i, spoll->fd_set+i+1, (spoll->fdcount-i-1)*sizeof(spoll->fd_set[0]));
+				memcpy(spoll->strms+i, spoll->strms+i+1, (spoll->fdcount-i-1)*sizeof(spoll->strms[0]));
 			}
 			spoll->fdcount--;
 			break;
@@ -208,12 +210,12 @@ int net_stream_poll_check_events(struct net_stream_poll*spoll) {
 }
 struct net_stream*net_stream_poll_next(struct net_stream_poll*spoll) {
 	int i = 0;
-	//printf("checking for revents from %d, evt count %d\n", spoll->evtindex, spoll->evtcount);
+	printf("checking for revents from %d, evt count %d\n", spoll->evtindex, spoll->evtcount);
 	for(i = spoll->evtindex;((spoll->evtcount) && (i < spoll->fdcount));i++) {
 		if(spoll->fd_set[i].revents != 0) {
 			spoll->evtindex = i;
 			spoll->evtcount--;
-			//printf("New event at:fd %d\n", spoll->strms[i]->sock);
+			printf("New event at:fd %d\n", spoll->strms[i]->sock);
 			spoll->fd_set[i].revents = 0;
 			return spoll->strms[i];
 		}

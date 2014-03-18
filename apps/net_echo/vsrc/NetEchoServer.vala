@@ -17,6 +17,14 @@ internal class NetEchoServer : NetEchoService {
 		client.close();
 	}
 
+	int closeClient() {
+		pl.remove(&client);
+		client.close();
+		waiting = true;
+		poll = false;
+		return 0;
+	}
+
 	internal override int onEvent(shotodol_platform_net.NetStreamPlatformImpl*x) {
 		if(waiting) {
 			// accept client
@@ -32,13 +40,17 @@ internal class NetEchoServer : NetEchoService {
 		etxt buf = etxt.stack(1024);
 		if(x.read(&buf) <= 0) {
 			//pl.add(&server);
-			pl.remove(x);
-			x.close();
+			closeClient();
 			print("Removed client [%ld,%ld]\n", recv_bytes, sent_bytes);
 			return -1;
 		}
 		recv_bytes += buf.length();
-		sent_bytes += x.write(&buf);
+		int ret = x.write(&buf);
+		if(ret <= 0) {
+			closeClient();
+			return -1;
+		}
+		sent_bytes += ret;
 		if(buf.length() != 0) {
 			print("link is stalled !\n");
 		}
