@@ -5,9 +5,12 @@ internal class NetEchoClient : NetEchoService {
 	shotodol_platform_net.NetStreamPlatformImpl strm;
 	int chunkSize;
 	etxt content;
-	public NetEchoClient(int givenChunkSize) {
+	bool connected;
+	bool verbose;
+	public NetEchoClient(int givenChunkSize, bool verb) {
 		strm = shotodol_platform_net.NetStreamPlatformImpl();
 		chunkSize = givenChunkSize;
+		verbose = verb;
 		content = etxt.EMPTY();
 		content.buffer(chunkSize+1);
 		int i = 0;
@@ -16,6 +19,7 @@ internal class NetEchoClient : NetEchoService {
 		}
 		content.zero_terminate();
 		assertBuffer(&content);
+		connected = false;
 		print("Content:%s\n", content.to_string());
 	}
 	~NetEchoClient() {
@@ -38,16 +42,24 @@ internal class NetEchoClient : NetEchoService {
 			closeClient();
 			return -1;
 		}
-		print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
+		buf.zero_terminate();
+		if(verbose)print("[ + ] [%d] [%ld,%ld] %s\n", buf.length(), recv_bytes, sent_bytes, buf.to_string());
+		else print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
 		recv_bytes += buf.length();
 		return 0;
 	}
 
 	internal override int step_more() {
+		if(!connected) {
+			// let it connect ..
+			connected = true;
+		}
 		// continue sending data..
 		assertBuffer(&content);
 		etxt buf = etxt.same_same(&content);
-		print("[ - ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
+		buf.zero_terminate();
+		if(verbose)print("[ - ] [%d] [%ld,%ld] %s\n", buf.length(), recv_bytes, sent_bytes, buf.to_string());
+		else print("[ - ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
 		assertBuffer(&buf);
 		int ret = strm.write(&buf);
 		if(ret <= 0) {

@@ -9,6 +9,7 @@ internal class NetEchoCommand : M100Command {
 		BLUE_TEST_ECHO,
 		BLUE_TEST_CHUNKSIZE,
 		BLUE_TEST_CHECKCONTENT,
+		BLUE_TEST_VERBOSE,
 	}
 	public NetEchoCommand() {
 		base();
@@ -21,10 +22,13 @@ internal class NetEchoCommand : M100Command {
 		etxt chunk_size_help = etxt.from_static("Set chunk size, it works while sending data.");
 		etxt check_content = etxt.from_static("-check_content");
 		etxt check_content_help = etxt.from_static("Check the content if valid before echoing.");
+		etxt verbose = etxt.from_static("-v");
+		etxt verbose_help = etxt.from_static("Verbose data.");
 		addOption(&send, M100Command.OptionType.TXT, Options.BLUE_TEST_SEND, &send_help);
 		addOption(&echo, M100Command.OptionType.TXT, Options.BLUE_TEST_ECHO, &echo_help); 
 		addOption(&chunk_size, M100Command.OptionType.TXT, Options.BLUE_TEST_CHUNKSIZE, &chunk_size_help); 
 		addOption(&check_content, M100Command.OptionType.TXT, Options.BLUE_TEST_CHECKCONTENT, &check_content_help); 
+		addOption(&verbose, M100Command.OptionType.TXT, Options.BLUE_TEST_VERBOSE, &verbose_help); 
 	}
 
 	~NetEchoCommand() {
@@ -44,12 +48,17 @@ internal class NetEchoCommand : M100Command {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		parseOptions(cmdstr, &vals);
 		int chunkSize = 32;
-		bool checkContent = true;
+		bool checkContent = false;
+		bool verbose = false;
 		container<txt>? mod;
 
 		mod = vals.search(Options.BLUE_TEST_CHECKCONTENT, match_all);
 		if(mod != null) {
 			checkContent = true;
+		}
+		mod = vals.search(Options.BLUE_TEST_VERBOSE, match_all);
+		if(mod != null) {
+			verbose = true;
 		}
 		mod = vals.search(Options.BLUE_TEST_CHUNKSIZE, match_all);
 		if(mod != null) {
@@ -73,7 +82,7 @@ internal class NetEchoCommand : M100Command {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("Echo client is sending data to %s\n", mod.get().to_string());
 			pad.write(&dlg);
-			sp = new NetEchoClient(chunkSize);
+			sp = new NetEchoClient(chunkSize, verbose);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
 				bye(pad, false);
