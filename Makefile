@@ -29,7 +29,7 @@ makecore:
 	$(BUILD) -C core/idle
 	$(BUILD) -C core/make
 	$(BUILD) -C libs/turbine
-	$(BUILD) -C apps/bluetest
+	$(BUILD) -C apps/net_echo
 
 cleancore:
 	$(CLEAN) -C libs/iostream
@@ -53,7 +53,7 @@ cleancore:
 	$(CLEAN) -C core/idle
 	$(CLEAN) -C core/make
 	$(CLEAN) -C libs/turbine
-	$(CLEAN) -C apps/bluetest
+	$(CLEAN) -C apps/net_echo
 
 makemain:
 	$(BUILD) -C main/main
