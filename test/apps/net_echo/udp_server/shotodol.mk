@@ -7,5 +7,5 @@ all:
 	help module
 	help fileconf
 	module -load ../../../../apps/net_echo/plugin.so
-	net_echo -echo TCP://127.0.0.1:2842
+	net_echo -recv UDP://127.0.0.1:3452
 
