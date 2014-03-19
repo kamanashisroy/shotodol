@@ -5,10 +5,12 @@ internal class NetEchoServer : NetEchoService {
 	bool waiting;
 	bool checkContent;
 	bool dryrun;
+	bool verbose;
 	shotodol_platform_net.NetStreamPlatformImpl server;
 	shotodol_platform_net.NetStreamPlatformImpl client;
-	public NetEchoServer(int givenInterval, bool shouldCheckContent, bool shouldDryrun) {
+	public NetEchoServer(int givenInterval, bool shouldCheckContent, bool verb, bool shouldDryrun) {
 		base();
+		verbose = verb;
 		dryrun = shouldDryrun;
 		interval = givenInterval;
 		server = shotodol_platform_net.NetStreamPlatformImpl();
@@ -23,6 +25,7 @@ internal class NetEchoServer : NetEchoService {
 	}
 
 	int closeClient() {
+		print("Closing client [%ld,%ld]\n", recv_bytes, sent_bytes);
 		pl.remove(&client);
 		client.close();
 		waiting = true;
@@ -31,17 +34,21 @@ internal class NetEchoServer : NetEchoService {
 	}
 
 	internal override int onEvent(shotodol_platform_net.NetStreamPlatformImpl*x) {
+		print("[ ~ ] Server\n");
 		if(waiting) {
 			// accept client
 			print("Accepting new client [%ld,%ld]\n", recv_bytes, sent_bytes);
 			client.accept(&server);
 			pl.add(&client);
 			pl.remove(&server);
-			server.close();
+			//server.close();
 			waiting = false;
 			return -1;
 		}
-		print("[ ~ ] Server\n");
+		if(x != &client) {
+			print("[ ~ ] Strange\n");
+			return 0;
+		}
 		// echo client data
 		etxt buf = etxt.stack(1024);
 		if(x.read(&buf) <= 0) {
@@ -51,9 +58,18 @@ internal class NetEchoServer : NetEchoService {
 			return -1;
 		}
 		recv_bytes += buf.length();
-		//buf.zero_terminate();
-		//print("[ + ] [%d] [%ld,%ld] %s\n", buf.length(), recv_bytes, sent_bytes, buf.to_string());
-		print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
+		buf.zero_terminate();
+		if(verbose)
+			print("[ + ] [%d] [%ld,%ld] - %d,%d\n", buf.length(), recv_bytes, sent_bytes, buf.char_at(0), buf.char_at(8));
+		else
+			print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
+#if false
+		int i = buf.length() - 1;
+		buf.trim_to_length(0);
+		for(;i >= 0;i--) {
+			buf.concat_char(97);
+		}
+#endif
 		if(checkContent)assertBuffer(&buf);
 		if(dryrun) {
 			return 0;

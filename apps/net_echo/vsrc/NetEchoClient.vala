@@ -8,8 +8,10 @@ internal class NetEchoClient : NetEchoService {
 	bool recvd;
 	bool verbose;
 	bool dryrun;
+	int blindSend;
 	public NetEchoClient(int givenChunkSize, int givenInterval, bool verb, bool shouldDryrun) {
 		base();
+		blindSend = 40;
 		chunkSize = givenChunkSize;
 		interval = givenInterval;
 		verbose = verb;
@@ -56,7 +58,10 @@ internal class NetEchoClient : NetEchoService {
 
 	internal override int step_more() {
 		if(!recvd) {
-			return 0;
+			if(blindSend < 0) {
+				return 0;
+			}
+			blindSend--;
 		}
 		if(dryrun) {
 			return 0;

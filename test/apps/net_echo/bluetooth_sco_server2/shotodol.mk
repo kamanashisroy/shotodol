@@ -5,6 +5,6 @@ all:
 	help module
 	help fileconf
 	module -load ../../../../apps/net_echo/plugin.so
-	net_echo -echo SCO://00:22:58:F6:AA:99 -dryrun yes -interval 100
+	net_echo -echo SCO://00:18:E7:37:27:61 -interval 200 -verbose yes -dryrun yes
 	noconsole
 

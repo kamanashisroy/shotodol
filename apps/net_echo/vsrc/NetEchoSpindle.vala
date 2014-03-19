@@ -22,9 +22,8 @@ internal abstract class NetEchoSpindle : Spindle {
 		if(!poll) {
 			return 0;
 		}
+		shotodol_platform.ProcessControl.millisleep(interval);
 		pl.check_events();
-		shotodol_platform.ProcessControl.usleep(interval);
-		//shotodol_platform.ProcessControl.mesmerize();
 		do {
 			shotodol_platform_net.NetStreamPlatformImpl*x = pl.next();
 			if(x == null) {

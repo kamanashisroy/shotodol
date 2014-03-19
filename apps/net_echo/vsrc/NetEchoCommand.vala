@@ -24,7 +24,7 @@ internal class NetEchoCommand : M100Command {
 		etxt chunk_size_help = etxt.from_static("Set chunk size, it works while sending data.");
 		etxt check_content = etxt.from_static("-check_content");
 		etxt check_content_help = etxt.from_static("Check the content if valid before echoing.");
-		etxt verbose = etxt.from_static("-v");
+		etxt verbose = etxt.from_static("-verbose");
 		etxt verbose_help = etxt.from_static("Verbose data.");
 		etxt interval = etxt.from_static("-interval");
 		etxt interval_help = etxt.from_static("Set interval in miliseconds.");
@@ -69,6 +69,9 @@ internal class NetEchoCommand : M100Command {
 		mod = vals.search(Options.BLUE_TEST_IO_INTERVAL, match_all);
 		if(mod != null) {
 			interval = mod.get().to_int();
+			etxt dlg = etxt.stack(128);
+			dlg.printf("Interval = %d\n", interval);
+			pad.write(&dlg);
 		}
 		mod = vals.search(Options.BLUE_TEST_CHECKCONTENT, match_all);
 		if(mod != null) {
@@ -87,7 +90,7 @@ internal class NetEchoCommand : M100Command {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("Echo server is receiving data on %s\n", mod.get().to_string());
 			pad.write(&dlg);
-			sp = new NetEchoServer(interval, checkContent, dryrun);
+			sp = new NetEchoServer(interval, checkContent, verbose, dryrun);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
 				bye(pad, false);

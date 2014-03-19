@@ -84,7 +84,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		aroop_txt_zero_terminate(&srcaddr);
 		str2ba(srcaddr.str, &strm->addr.bt.sco_bdaddr);
 		printf("sco listen at %s\n", srcaddr.str);
-#if 0
+#if 1
 		struct bt_voice opts;
 		memset(&opts, 0, sizeof(opts));
 		opts.setting = 0x0003;
@@ -118,6 +118,15 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			net_stream_close(strm);
 			return -1;
 		}
+#if 0
+		if((strm->flags & NET_STREAM_FLAG_SCO) && ! (flags & NET_STREAM_FLAG_CONNECT)) {
+			int defer = 1;
+			if (setsockopt(strm->sock, SOL_BLUETOOTH, BT_DEFER_SETUP, &defer, sizeof(defer)) < 0) {
+				printf("Can't set deffer: %s (%d)\n",
+								strerror(errno), errno);
+			}
+		}
+#endif
 #define DEFAULT_SYN_BACKLOG 1024 /* XXX we are setting this too high */
 		if(!(flags & NET_STREAM_FLAG_CONNECT))if(listen(strm->sock, DEFAULT_SYN_BACKLOG) < 0) {
 			//printf("Failed to listen to %s:%d:%s\n", addrstr.str, aroop_txt_to_int(&portstr), strerror(errno));
@@ -135,7 +144,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			aroop_txt_zero_terminate(&dstaddr);
 			str2ba(dstaddr.str, &strm->addr.bt.sco_bdaddr);
 			printf("sco connect to %s\n", dstaddr.str);
-#if 0
+#if 1
 			struct bt_voice opts;
 			memset(&opts, 0, sizeof(opts));
 			opts.setting = 0x0003;
@@ -279,6 +288,16 @@ int net_stream_accept_new(struct net_stream*newone, struct net_stream*from) {
 #else
 	newone->flags = from->flags;
 #endif
+	if(newone->flags & NET_STREAM_FLAG_SCO) {
+		struct sco_options opt;
+		socklen_t optlen = sizeof(opt);
+		memset(&opt, 0, sizeof(opt));
+    if (getsockopt(newone->sock, SOL_SCO, SCO_OPTIONS, &opt, &optlen) < 0) {
+      printf("Can't get SCO connection information: %s (%d)",
+              strerror(errno), errno);
+    }
+		printf("mtu : %d\n", opt.mtu);
+	}
 	if(newone->sock < 0) {
 		if(/*is_blocking || */errno != EAGAIN) {
 			printf("Accept returned -1: %s\n", strerror(errno));

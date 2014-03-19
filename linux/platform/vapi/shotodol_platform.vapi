@@ -97,7 +97,7 @@ namespace shotodol_platform {
 	public class ProcessControl {
 		[CCode (cname = "linux_mesmerize")]
 		public static void mesmerize();
-		[CCode (cname = "linux_usleep")]
-		public static void usleep(long msec);
+		[CCode (cname = "linux_millisleep")]
+		public static void millisleep(long msec);
 	}
 }
