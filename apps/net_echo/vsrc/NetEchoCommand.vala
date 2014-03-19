@@ -10,6 +10,8 @@ internal class NetEchoCommand : M100Command {
 		BLUE_TEST_CHUNKSIZE,
 		BLUE_TEST_CHECKCONTENT,
 		BLUE_TEST_VERBOSE,
+		BLUE_TEST_IO_INTERVAL,
+		BLUE_TEST_DRYRUN,
 	}
 	public NetEchoCommand() {
 		base();
@@ -24,11 +26,17 @@ internal class NetEchoCommand : M100Command {
 		etxt check_content_help = etxt.from_static("Check the content if valid before echoing.");
 		etxt verbose = etxt.from_static("-v");
 		etxt verbose_help = etxt.from_static("Verbose data.");
+		etxt interval = etxt.from_static("-interval");
+		etxt interval_help = etxt.from_static("Set interval in miliseconds.");
+		etxt dryrun = etxt.from_static("-dryrun");
+		etxt dryrun_help = etxt.from_static("Dry run (no echo/ no sending data..).");
 		addOption(&send, M100Command.OptionType.TXT, Options.BLUE_TEST_SEND, &send_help);
 		addOption(&echo, M100Command.OptionType.TXT, Options.BLUE_TEST_ECHO, &echo_help); 
 		addOption(&chunk_size, M100Command.OptionType.TXT, Options.BLUE_TEST_CHUNKSIZE, &chunk_size_help); 
 		addOption(&check_content, M100Command.OptionType.TXT, Options.BLUE_TEST_CHECKCONTENT, &check_content_help); 
 		addOption(&verbose, M100Command.OptionType.TXT, Options.BLUE_TEST_VERBOSE, &verbose_help); 
+		addOption(&interval, M100Command.OptionType.TXT, Options.BLUE_TEST_IO_INTERVAL, &interval_help); 
+		addOption(&dryrun, M100Command.OptionType.TXT, Options.BLUE_TEST_DRYRUN, &dryrun_help); 
 	}
 
 	~NetEchoCommand() {
@@ -50,8 +58,18 @@ internal class NetEchoCommand : M100Command {
 		int chunkSize = 32;
 		bool checkContent = false;
 		bool verbose = false;
+		bool dryrun = false;
 		container<txt>? mod;
+		int interval = 10;
 
+		mod = vals.search(Options.BLUE_TEST_DRYRUN, match_all);
+		if(mod != null) {
+			dryrun = true;
+		}
+		mod = vals.search(Options.BLUE_TEST_IO_INTERVAL, match_all);
+		if(mod != null) {
+			interval = mod.get().to_int();
+		}
 		mod = vals.search(Options.BLUE_TEST_CHECKCONTENT, match_all);
 		if(mod != null) {
 			checkContent = true;
@@ -69,7 +87,7 @@ internal class NetEchoCommand : M100Command {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("Echo server is receiving data on %s\n", mod.get().to_string());
 			pad.write(&dlg);
-			sp = new NetEchoServer(checkContent);
+			sp = new NetEchoServer(interval, checkContent, dryrun);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
 				bye(pad, false);
@@ -82,7 +100,7 @@ internal class NetEchoCommand : M100Command {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("Echo client is sending data to %s\n", mod.get().to_string());
 			pad.write(&dlg);
-			sp = new NetEchoClient(chunkSize, verbose);
+			sp = new NetEchoClient(chunkSize, interval, verbose, dryrun);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
 				bye(pad, false);

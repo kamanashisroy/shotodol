@@ -1,1 +1,1 @@
-INCLUDES+=include
+INCLUDES+=-Iinclude

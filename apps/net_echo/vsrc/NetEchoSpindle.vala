@@ -3,9 +3,11 @@ using shotodol;
 
 internal abstract class NetEchoSpindle : Spindle {
 	protected bool poll;
+	protected int interval;
 	protected shotodol_platform_net.NetStreamPollPlatformImpl pl;
 	public NetEchoSpindle() {
 		base();
+		interval = 10;
 		pl = shotodol_platform_net.NetStreamPollPlatformImpl();
 		poll = false;
 	}
@@ -21,6 +23,8 @@ internal abstract class NetEchoSpindle : Spindle {
 			return 0;
 		}
 		pl.check_events();
+		shotodol_platform.ProcessControl.usleep(interval);
+		//shotodol_platform.ProcessControl.mesmerize();
 		do {
 			shotodol_platform_net.NetStreamPlatformImpl*x = pl.next();
 			if(x == null) {

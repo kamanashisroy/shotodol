@@ -1,5 +1,5 @@
-#ifndef SHOTODOL_PLUGIN_INCLUDE_H
-#define SHOTODOL_PLUGIN_INCLUDE_H
+#ifndef SHOTODOL_PLATFORM_NET_INCLUDE_H
+#define SHOTODOL_PLATFORM_NET_INCLUDE_H
 
 #include <sys/socket.h>
 #include <netinet/in.h>
