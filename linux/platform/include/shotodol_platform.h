@@ -1,5 +1,5 @@
-#ifndef SHOTODOL_PLUGIN_INCLUDE_H
-#define SHOTODOL_PLUGIN_INCLUDE_H
+#ifndef SHOTODOL_PLATFORM_INCLUDE_H
+#define SHOTODOL_PLATFORM_INCLUDE_H
 
 // public class plugin
 
@@ -68,6 +68,7 @@ typedef struct {
 	}\
 __ecode;})
 
-#define linux_mesmerize() ({usleep(500);})
+#define linux_mesmerize() ({usleep(900);})
+#define linux_usleep(x) ({usleep(x);})
 
 #endif //SHOTODOL_PLUGIN_INCLUDE_H

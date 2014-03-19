@@ -4,10 +4,13 @@ using shotodol;
 internal class NetEchoServer : NetEchoService {
 	bool waiting;
 	bool checkContent;
+	bool dryrun;
 	shotodol_platform_net.NetStreamPlatformImpl server;
 	shotodol_platform_net.NetStreamPlatformImpl client;
-	public NetEchoServer(bool shouldCheckContent) {
+	public NetEchoServer(int givenInterval, bool shouldCheckContent, bool shouldDryrun) {
 		base();
+		dryrun = shouldDryrun;
+		interval = givenInterval;
 		server = shotodol_platform_net.NetStreamPlatformImpl();
 		client = shotodol_platform_net.NetStreamPlatformImpl();
 		waiting = true;
@@ -34,6 +37,7 @@ internal class NetEchoServer : NetEchoService {
 			client.accept(&server);
 			pl.add(&client);
 			pl.remove(&server);
+			server.close();
 			waiting = false;
 			return -1;
 		}
@@ -51,6 +55,9 @@ internal class NetEchoServer : NetEchoService {
 		//print("[ + ] [%d] [%ld,%ld] %s\n", buf.length(), recv_bytes, sent_bytes, buf.to_string());
 		print("[ + ] [%d] [%ld,%ld]\n", buf.length(), recv_bytes, sent_bytes);
 		if(checkContent)assertBuffer(&buf);
+		if(dryrun) {
+			return 0;
+		}
 		int ret = x.write(&buf);
 		if(ret <= 0) {
 			closeClient();

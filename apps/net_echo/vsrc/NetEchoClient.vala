@@ -7,10 +7,14 @@ internal class NetEchoClient : NetEchoService {
 	etxt content;
 	bool recvd;
 	bool verbose;
-	public NetEchoClient(int givenChunkSize, bool verb) {
-		strm = shotodol_platform_net.NetStreamPlatformImpl();
+	bool dryrun;
+	public NetEchoClient(int givenChunkSize, int givenInterval, bool verb, bool shouldDryrun) {
+		base();
 		chunkSize = givenChunkSize;
+		interval = givenInterval;
 		verbose = verb;
+		dryrun = shouldDryrun;
+		strm = shotodol_platform_net.NetStreamPlatformImpl();
 		content = etxt.EMPTY();
 		content.buffer(chunkSize+1);
 		int i = 0;
@@ -52,6 +56,9 @@ internal class NetEchoClient : NetEchoService {
 
 	internal override int step_more() {
 		if(!recvd) {
+			return 0;
+		}
+		if(dryrun) {
 			return 0;
 		}
 		// continue sending data..
