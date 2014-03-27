@@ -11,7 +11,7 @@ public abstract class shotodol.Propeller : Spindle {
 		msgs = Queue<Replicable>((uchar)get_id());
 	}
 	
-	protected override int start(Propeller?p) {
+	protected override int start(Spindle?p) {
 		cancelled = false;
 		sps.visit_each((data) => {
 			unowned Spindle sp = ((container<Spindle>)data).get();

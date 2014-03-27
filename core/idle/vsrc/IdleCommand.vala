@@ -9,7 +9,7 @@ internal class IdleCommand : M100Command {
 		}
 		~IdleSpindle() {
 		}
-		public override int start(Propeller?plr) {
+		public override int start(Spindle?plr) {
 			print("Started idle stepping ..\n");
 			return 0;
 		}
