@@ -4,27 +4,35 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <poll.h>
+#ifdef LINUX_BLUETOOTH
 #include <bluetooth/bluetooth.h>
 #include <bluetooth/sco.h>
 #include <bluetooth/rfcomm.h>
+#endif
 
 enum {
 	NET_STREAM_FLAG_UDP = 1,
 	NET_STREAM_FLAG_TCP = 1<<1,
 	NET_STREAM_FLAG_BIND = 1<<2,
 	NET_STREAM_FLAG_CONNECT = 1<<3,
+#ifdef LINUX_BLUETOOTH
 	NET_STREAM_FLAG_RFCOMM = 1<<4,
 	NET_STREAM_FLAG_SCO = 1<<5,
+#endif
 };
 struct net_stream {
 	int sock;
 	union {
 		struct sockaddr_in in;
+#ifdef LINUX_BLUETOOTH
 		struct sockaddr_sco bt;
 		struct sockaddr_rc btrc;
+#endif
 	} addr;
 	SYNC_UWORD8_T flags;
+#ifdef LINUX_BLUETOOTH
 	long long seq;
+#endif
 };
 
 enum {

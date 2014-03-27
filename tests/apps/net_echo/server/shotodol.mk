@@ -7,5 +7,6 @@ all:
 	help module
 	help fileconf
 	module -load ../../../../apps/net_echo/plugin.so
-	net_echo -send TCP://127.0.0.1:2842 -chunk_size 64
+	net_echo -echo TCP://127.0.0.1:2842
+	noconsole
 

@@ -17,5 +17,8 @@ conf:write("PROJECTPATH=/root/projects/shotodol\n")
 conf:write("PROJECT_HOME=/root/projects/shotodol\n")
 conf:write("VALA_HOME=/root/projects/aroop/aroop\n")
 conf:write("CFLAGS+=-ggdb3\n")
+conf:write("LINUX_BLUETOOTH=yes\n")
+conf:write("CFLAGS+=-DLINUX_BLUETOOTH\n")
+conf:write("CFLAGS+=-DPLUGIN_ROOT=\"$(SHOTODOL_HOME)\"\n")
 assert(conf:close())
 

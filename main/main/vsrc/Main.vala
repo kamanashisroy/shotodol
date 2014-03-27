@@ -36,7 +36,7 @@ public class MainProgram {
 		
 	public static int main() {
 		// TODO parse the argument for shotodol home
-		path_to_shotodol = etxt("/root/projects/shotodol/");
+		path_to_shotodol = etxt(shotodol_platform.plugin.rootDir);
 		// TODO load lua
 		// TODO - if(opt & SHELL) then start console
 		MainTurbine mt = new MainTurbine();

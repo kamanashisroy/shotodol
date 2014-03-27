@@ -5,5 +5,6 @@ all:
 	help module
 	help fileconf
 	help profiler
+	profiler
 
 
