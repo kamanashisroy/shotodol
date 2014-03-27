@@ -1,19 +1,30 @@
-#ifndef SHOTODOL_PLUGIN_INCLUDE_H
-#define SHOTODOL_PLUGIN_INCLUDE_H
+#ifndef SHOTODOL_PLATFORM_NET_INCLUDE_H
+#define SHOTODOL_PLATFORM_NET_INCLUDE_H
 
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <poll.h>
+#include <bluetooth/bluetooth.h>
+#include <bluetooth/sco.h>
+#include <bluetooth/rfcomm.h>
+
 enum {
 	NET_STREAM_FLAG_UDP = 1,
 	NET_STREAM_FLAG_TCP = 1<<1,
 	NET_STREAM_FLAG_BIND = 1<<2,
 	NET_STREAM_FLAG_CONNECT = 1<<3,
+	NET_STREAM_FLAG_RFCOMM = 1<<4,
+	NET_STREAM_FLAG_SCO = 1<<5,
 };
 struct net_stream {
 	int sock;
-	struct sockaddr_in sin;
+	union {
+		struct sockaddr_in in;
+		struct sockaddr_sco bt;
+		struct sockaddr_rc btrc;
+	} addr;
 	SYNC_UWORD8_T flags;
+	long long seq;
 };
 
 enum {
