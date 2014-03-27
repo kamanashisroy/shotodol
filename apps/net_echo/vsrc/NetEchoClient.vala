@@ -9,11 +9,15 @@ internal class NetEchoClient : NetEchoService {
 	bool verbose;
 	bool dryrun;
 	int blindSend;
-	public NetEchoClient(int givenChunkSize, int givenInterval, bool verb, bool shouldDryrun) {
+	bool reconnect;
+	etxt scoaddr;
+	public NetEchoClient(int givenChunkSize, int givenInterval, bool givenReconnect, bool verb, bool shouldDryrun) {
 		base();
+		scoaddr = etxt.EMPTY();
 		blindSend = 40;
 		chunkSize = givenChunkSize;
 		interval = givenInterval;
+		reconnect = givenReconnect;
 		verbose = verb;
 		dryrun = shouldDryrun;
 		strm = shotodol_platform_net.NetStreamPlatformImpl();
@@ -29,6 +33,7 @@ internal class NetEchoClient : NetEchoService {
 		print("Content:%s\n", content.to_string());
 	}
 	~NetEchoClient() {
+		scoaddr.destroy();
 		content.destroy();
 		strm.close();
 	}
@@ -37,6 +42,8 @@ internal class NetEchoClient : NetEchoService {
 		pl.remove(&strm);
 		strm.close();
 		poll = false;
+		recvd = false;
+		if(reconnect)connect();
 		return 0;
 	}
 
@@ -86,13 +93,8 @@ internal class NetEchoClient : NetEchoService {
 		return 0;
 	}
 
-	internal override int setup(etxt*addr) {
-		etxt scoaddr = etxt.stack(128);
-		scoaddr.concat(addr);
-		//scoaddr.trim_to_length(41);
-		scoaddr.zero_terminate();
+	internal int connect() {
 		int ret = strm.connect(&scoaddr, shotodol_platform_net.ConnectFlags.CONNECT);
-		scoaddr.destroy();
 		if(ret == 0) {
 			print("Starting client ..\n");
 			pl.add(&strm);
@@ -100,6 +102,14 @@ internal class NetEchoClient : NetEchoService {
 			recvd = true;
 		}
 		return ret;
+	}
+
+	internal override int setup(etxt*addr) {
+		scoaddr.buffer(addr.length());
+		scoaddr.concat(addr);
+		//scoaddr.trim_to_length(41);
+		scoaddr.zero_terminate();
+		return connect();
 	}
 }
 

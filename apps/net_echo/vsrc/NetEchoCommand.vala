@@ -12,6 +12,7 @@ internal class NetEchoCommand : M100Command {
 		BLUE_TEST_VERBOSE,
 		BLUE_TEST_IO_INTERVAL,
 		BLUE_TEST_DRYRUN,
+		BLUE_TEST_RECONNECT,
 	}
 	public NetEchoCommand() {
 		base();
@@ -30,6 +31,8 @@ internal class NetEchoCommand : M100Command {
 		etxt interval_help = etxt.from_static("Set interval in miliseconds.");
 		etxt dryrun = etxt.from_static("-dryrun");
 		etxt dryrun_help = etxt.from_static("Dry run (no echo/ no sending data..).");
+		etxt reconnect = etxt.from_static("-reconnect");
+		etxt reconnect_help = etxt.from_static("Reconnect to server (see -send).");
 		addOption(&send, M100Command.OptionType.TXT, Options.BLUE_TEST_SEND, &send_help);
 		addOption(&echo, M100Command.OptionType.TXT, Options.BLUE_TEST_ECHO, &echo_help); 
 		addOption(&chunk_size, M100Command.OptionType.TXT, Options.BLUE_TEST_CHUNKSIZE, &chunk_size_help); 
@@ -37,6 +40,7 @@ internal class NetEchoCommand : M100Command {
 		addOption(&verbose, M100Command.OptionType.TXT, Options.BLUE_TEST_VERBOSE, &verbose_help); 
 		addOption(&interval, M100Command.OptionType.TXT, Options.BLUE_TEST_IO_INTERVAL, &interval_help); 
 		addOption(&dryrun, M100Command.OptionType.TXT, Options.BLUE_TEST_DRYRUN, &dryrun_help); 
+		addOption(&reconnect, M100Command.OptionType.TXT, Options.BLUE_TEST_RECONNECT, &reconnect_help); 
 	}
 
 	~NetEchoCommand() {
@@ -59,6 +63,7 @@ internal class NetEchoCommand : M100Command {
 		bool checkContent = false;
 		bool verbose = false;
 		bool dryrun = false;
+		bool reconnect = false;
 		container<txt>? mod;
 		int interval = 10;
 
@@ -85,6 +90,10 @@ internal class NetEchoCommand : M100Command {
 		if(mod != null) {
 			chunkSize = mod.get().to_int();
 		}
+		mod = vals.search(Options.BLUE_TEST_RECONNECT, match_all);
+		if(mod != null) {
+			reconnect = true;
+		}
 		mod = vals.search(Options.BLUE_TEST_ECHO, match_all);
 		if(mod != null) {
 			etxt dlg = etxt.stack(128);
@@ -103,7 +112,7 @@ internal class NetEchoCommand : M100Command {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("Echo client is sending data to %s\n", mod.get().to_string());
 			pad.write(&dlg);
-			sp = new NetEchoClient(chunkSize, interval, verbose, dryrun);
+			sp = new NetEchoClient(chunkSize, interval, reconnect, verbose, dryrun);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
 				bye(pad, false);

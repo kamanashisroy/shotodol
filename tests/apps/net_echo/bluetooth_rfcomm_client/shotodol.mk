@@ -5,6 +5,6 @@ all:
 	help module
 	help fileconf
 	module -load ../../../../apps/net_echo/plugin.so
-	net_echo -send RFCOMM://00:18:E7:37:27:61:00:22:58:F6:AA:99 -chunk_size 128 -v yes -interval 10
+	net_echo -send RFCOMM://00:11:67:82:EB:14:10:40:F3:9E:D8:97 -chunk_size 128 -v yes -interval 10
 	noconsole
 

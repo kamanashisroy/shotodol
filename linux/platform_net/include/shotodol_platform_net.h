@@ -30,9 +30,6 @@ struct net_stream {
 #endif
 	} addr;
 	SYNC_UWORD8_T flags;
-#ifdef LINUX_BLUETOOTH
-	long long seq;
-#endif
 };
 
 enum {

@@ -28,21 +28,27 @@ internal class NetEchoServer : NetEchoService {
 		print("Closing client [%ld,%ld]\n", recv_bytes, sent_bytes);
 		pl.remove(&client);
 		client.close();
+		pl.add(&client);
 		waiting = true;
-		poll = false;
+		//poll = false;
+		return 0;
+	}
+
+	int acceptClient() {
+		// accept client
+		print("Accepting new client [%ld,%ld]\n", recv_bytes, sent_bytes);
+		client.accept(&server);
+		pl.add(&client);
+		pl.remove(&server);
+		//server.close();
+		waiting = false;
 		return 0;
 	}
 
 	internal override int onEvent(shotodol_platform_net.NetStreamPlatformImpl*x) {
 		print("[ ~ ] Server\n");
 		if(waiting) {
-			// accept client
-			print("Accepting new client [%ld,%ld]\n", recv_bytes, sent_bytes);
-			client.accept(&server);
-			pl.add(&client);
-			pl.remove(&server);
-			//server.close();
-			waiting = false;
+			acceptClient();
 			return -1;
 		}
 		if(x != &client) {
