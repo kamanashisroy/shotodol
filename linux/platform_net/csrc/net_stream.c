@@ -6,9 +6,6 @@
 
 int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags) {
 	strm->sock = -1;
-#ifdef LINUX_BLUETOOTH
-	strm->seq = 0;
-#endif
 	strm->flags = 0;
 	struct aroop_txt proto;
 	struct aroop_txt addrstr;
@@ -91,7 +88,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		aroop_txt_zero_terminate(&srcaddr);
 		str2ba(srcaddr.str, &strm->addr.bt.sco_bdaddr);
 		printf("sco listen at %s\n", srcaddr.str);
-#if 1
+#if 0
 		struct bt_voice opts;
 		memset(&opts, 0, sizeof(opts));
 		opts.setting = 0x0003;
@@ -110,7 +107,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		aroop_txt_zero_terminate(&srcaddr);
 		str2ba(srcaddr.str, &strm->addr.btrc.rc_bdaddr);
 		printf("rc listen at %s\n", srcaddr.str);
-		strm->addr.btrc.rc_channel = 1;
+		strm->addr.btrc.rc_channel = 4;
 	}
 #endif
 
@@ -153,7 +150,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			aroop_txt_zero_terminate(&dstaddr);
 			str2ba(dstaddr.str, &strm->addr.bt.sco_bdaddr);
 			printf("sco connect to %s\n", dstaddr.str);
-#if 1
+#if 0
 			struct bt_voice opts;
 			memset(&opts, 0, sizeof(opts));
 			opts.setting = 0x0003;
@@ -171,7 +168,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			aroop_txt_zero_terminate(&dstaddr);
 			str2ba(dstaddr.str, &strm->addr.btrc.rc_bdaddr);
 			printf("rc connect to %s\n", dstaddr.str);
-			strm->addr.btrc.rc_channel = 1;
+			strm->addr.btrc.rc_channel = 4;
 		}
 #endif
 		printf("Connecting to server at socket %d\n", strm->sock);
