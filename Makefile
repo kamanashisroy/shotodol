@@ -30,6 +30,7 @@ makecore:
 	$(BUILD) -C core/profiler
 	$(BUILD) -C core/make
 	$(BUILD) -C libs/turbine
+	$(BUILD) -C apps/net_echo
 
 cleancore:
 	$(CLEAN) -C libs/iostream
@@ -54,6 +55,7 @@ cleancore:
 	$(CLEAN) -C core/profiler
 	$(CLEAN) -C core/make
 	$(CLEAN) -C libs/turbine
+	$(CLEAN) -C apps/net_echo
 
 makemain:
 	$(BUILD) -C main/main
