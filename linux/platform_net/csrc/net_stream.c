@@ -6,7 +6,9 @@
 
 int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags) {
 	strm->sock = -1;
+#ifdef LINUX_BLUETOOTH
 	strm->seq = 0;
+#endif
 	strm->flags = 0;
 	struct aroop_txt proto;
 	struct aroop_txt addrstr;
@@ -32,11 +34,13 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			flags |= NET_STREAM_FLAG_TCP;
 		} else if(proto.len == 3 && proto.str[0] == 'U' && proto.str[1] == 'D' && proto.str[2] == 'P') {
 			flags |= NET_STREAM_FLAG_UDP;
+#ifdef LINUX_BLUETOOTH
 		} else if(proto.len == 6 && proto.str[0] == 'R' && proto.str[1] == 'F' && proto.str[2] == 'C') {
 			flags |= NET_STREAM_FLAG_RFCOMM;
 		} else if(proto.len == 3 && proto.str[0] == 'S' && proto.str[1] == 'C' && proto.str[2] == 'O') {
 			flags |= NET_STREAM_FLAG_SCO;
 			flags |= NET_STREAM_FLAG_BIND;
+#endif
 		}
 	}
 	strm->flags = flags;
@@ -44,10 +48,12 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		strm->sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 	} else if((flags & NET_STREAM_FLAG_TCP)){
 		strm->sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+#ifdef LINUX_BLUETOOTH
 	} else if((flags & NET_STREAM_FLAG_RFCOMM)){
 		strm->sock = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
 	} else if((flags & NET_STREAM_FLAG_SCO)){
 		strm->sock = socket(PF_BLUETOOTH, SOCK_SEQPACKET, BTPROTO_SCO);
+#endif
 	}
 	printf("Opening socket at %d\n", strm->sock);
   if(strm->sock < 0) {
@@ -75,6 +81,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		aroop_txt_zero_terminate(&portstr);
 		strm->addr.in.sin_port = htons(aroop_txt_to_int(&portstr));
 	}
+#ifdef LINUX_BLUETOOTH
 	if((flags & (NET_STREAM_FLAG_SCO))) {
 		strm->addr.bt.sco_family = AF_BLUETOOTH;
 	  //bacpy(&strm->sbt.sco_bdaddr, &adapter->addr);
@@ -105,6 +112,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		printf("rc listen at %s\n", srcaddr.str);
 		strm->addr.btrc.rc_channel = 1;
 	}
+#endif
 
 	if((flags & NET_STREAM_FLAG_BIND)) {
 		printf("binding %s\n", addrstr.str);
@@ -136,6 +144,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		}
 	}
 	if((flags & NET_STREAM_FLAG_CONNECT)) {
+#ifdef LINUX_BLUETOOTH
 		if((flags & (NET_STREAM_FLAG_SCO))) {
 			strm->addr.bt.sco_family = AF_BLUETOOTH;
 			struct aroop_txt dstaddr;
@@ -164,6 +173,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 			printf("rc connect to %s\n", dstaddr.str);
 			strm->addr.btrc.rc_channel = 1;
 		}
+#endif
 		printf("Connecting to server at socket %d\n", strm->sock);
 		if(connect(strm->sock, (struct sockaddr*)&strm->addr, sizeof(strm->addr)) < 0) {
 			//printf("Failed to connect to [%s][%s:%d]:%s\n", (flags & NET_STREAM_FLAG_TCP)?"TCP":"UDP", addrstr.str, aroop_txt_to_int(&portstr), strerror(errno));
@@ -288,6 +298,7 @@ int net_stream_accept_new(struct net_stream*newone, struct net_stream*from) {
 #else
 	newone->flags = from->flags;
 #endif
+#ifdef LINUX_BLUETOOTH
 	if(newone->flags & NET_STREAM_FLAG_SCO) {
 		struct sco_options opt;
 		socklen_t optlen = sizeof(opt);
@@ -298,6 +309,7 @@ int net_stream_accept_new(struct net_stream*newone, struct net_stream*from) {
     }
 		printf("mtu : %d\n", opt.mtu);
 	}
+#endif
 	if(newone->sock < 0) {
 		if(/*is_blocking || */errno != EAGAIN) {
 			printf("Accept returned -1: %s\n", strerror(errno));

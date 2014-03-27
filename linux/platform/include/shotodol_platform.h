@@ -3,6 +3,11 @@
 
 // public class plugin
 
+//#define PLUGIN_ROOT "/media/active/projects/shotodol/"
+#ifndef PLUGIN_ROOT
+#error "Please set PLUGIN_ROOT in cflags"
+#endif
+
 #define plugin_open(x) ({ \
 	void*hdl = dlopen(x,RTLD_LAZY | RTLD_GLOBAL); \
 	char*derror = NULL; \
