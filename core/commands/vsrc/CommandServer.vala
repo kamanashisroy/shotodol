@@ -5,6 +5,7 @@ public class shotodol.CommandServer: ModulePlugin {
 	public static CommandServer? server;
 	public CommandSet cmds;
 	public CommandServer() {
+		name = etxt.from_static("commands");
 		cmds = new CommandSet();
 	}
 	public int act_on(etxt*cmd_str, OutputStream pad) {

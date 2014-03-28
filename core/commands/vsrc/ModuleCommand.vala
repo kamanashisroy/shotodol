@@ -25,7 +25,7 @@ internal class shotodol.ModuleCommand : M100Command {
 
 	int load_module_helper(string module) {
 		print("Trying to load module %s\n", module);
-		ModulePlugin.load_dynamic_module(module);
+		ModuleLoader.singleton.load_dynamic_module(module);
 		print("\t\t\t\t %s module is Loaded\n", module);
 		return 0;
 	}
