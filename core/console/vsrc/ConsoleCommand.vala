@@ -5,12 +5,14 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	class ConsoleSpindle : Spindle {
 		LineInputStream is;
 		StandardOutputStream pad;
-		bool iamdeaf;
+		//bool iamdeaf;
+		int countDown;
 		public ConsoleSpindle() {
 			StandardInputStream x = new StandardInputStream();
 			is = new LineInputStream(x);
 			pad = new StandardOutputStream();
-			iamdeaf = false;
+			//iamdeaf = false;
+			countDown = 0;
 		}
 		~ConsoleSpindle() {
 		}
@@ -28,7 +30,9 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		}
 
 		public override int step() {
-			if(iamdeaf) {
+			//if(iamdeaf) {
+			if(countDown > 0) {
+				countDown--;
 				return 0;
 			}
 			try {
@@ -46,9 +50,13 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		public override int cancel() {
 			return 0;
 		}
-		internal void deafen() {
+
+		//internal void deafen() {
 			// XXX we shoud have used cancel here
-			iamdeaf = true;
+			//iamdeaf = true;
+		//}
+		internal void glide(int terms) {
+			countDown = terms;
 		}
 	}
 
@@ -66,12 +74,12 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	}
 
 	public override etxt*get_prefix() {
-		prfx = etxt.from_static("noconsole");
+		prfx = etxt.from_static("glide");
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
 		greet(pad);
-		sp.deafen();
+		sp.glide(100);
 		bye(pad, true);
 		return 0;
 	}

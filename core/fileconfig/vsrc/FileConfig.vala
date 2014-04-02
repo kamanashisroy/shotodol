@@ -7,7 +7,7 @@ public class FileConfig : ModulePlugin {
 	FileConfigTest? ct = null;
 	FileConfigCommand? ccmd = null;
 	public override int init() {
-		new Watchdog(new StandardOutputStream());
+		//new Watchdog(new StandardOutputStream());
 		ccmd = new FileConfigCommand();
 		CommandServer.server.cmds.register(ccmd);
 		ct = new FileConfigTest();

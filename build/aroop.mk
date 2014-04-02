@@ -24,7 +24,7 @@ all:genvapi
 
 genvapi:$(VSOURCES)
 	mkdir -p vapi include
-	$(VALAC) --profile=aroop -D POSIX -C  $(VAPI) --library $(LIBRARY_NAME) --vapi=$(TARGET_VAPI) --use-header --header=$(TARGET_INCLUDE) $(VSOURCES)
+	$(VALAC) $(VALAFLAGS) --profile=aroop -D POSIX -C  $(VAPI) --library $(LIBRARY_NAME) --vapi=$(TARGET_VAPI) --use-header --header=$(TARGET_INCLUDE) $(VSOURCES)
 
 clean:
 	$(RM) -f $(wildcard vsrc/*.c) $(TARGETS)
