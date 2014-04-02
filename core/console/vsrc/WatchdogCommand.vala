@@ -6,7 +6,7 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 	Watchdog ?wd;
 	public WatchdogCommand() {
 		base();
-		wd = new Watchdog(null, 10);
+		wd = new Watchdog(null, 100);
 	}
 
 	~WatchdogCommand() {
