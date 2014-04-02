@@ -6,10 +6,12 @@ public class Console : ModulePlugin {
 
 	ConsoleTest? ct = null;
 	ConsoleCommand? ccmd = null;
+	WatchdogCommand? wcmd = null;
 	public override int init() {
-		new Watchdog(new StandardOutputStream());
 		ccmd = new ConsoleCommand();
+		wcmd = new WatchdogCommand();
 		CommandServer.server.cmds.register(ccmd);
+		CommandServer.server.cmds.register(wcmd);
 		ct = new ConsoleTest();
 		UnitTestModule.inst.register(ct);
 		return 0;
@@ -17,8 +19,10 @@ public class Console : ModulePlugin {
 
 	public override int deinit() {
 		CommandServer.server.cmds.unregister(ccmd);
+		CommandServer.server.cmds.unregister(wcmd);
 		UnitTestModule.inst.unregister(ct);
 		ccmd = null;
+		wcmd = null;
 		ct = null;
 		base.deinit();
 		return 0;

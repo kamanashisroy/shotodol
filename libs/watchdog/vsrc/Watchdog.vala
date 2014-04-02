@@ -2,7 +2,7 @@ using aroop;
 using shotodol;
 
 public class shotodol.Watchdog : Replicable {
-	internal OutputStream pad;
+	internal OutputStream? pad;
 	internal static Watchdog? watch;
 	public enum WatchdogSeverity {
 		LOG = 0,
@@ -12,11 +12,31 @@ public class shotodol.Watchdog : Replicable {
 		ERROR,
 		ALERT,
 	}
-	public Watchdog(OutputStream logger) {
+	int numberOfOnMemoryLogs;
+	ArrayList<txt> logs;
+	int rotator;
+	public Watchdog(OutputStream?logger, int givenNumberOfOnMemoryLogs) {
 		pad = logger;
-		if(watch == null) {
-			watch = this;
+		numberOfOnMemoryLogs = givenNumberOfOnMemoryLogs;
+		logs = ArrayList<txt>();
+		rotator = 0;
+		watch = this;
+	}
+	public int stop() {
+		watch = null;
+		return 0;
+	}
+	public int dump(OutputStream outs) {
+		int i = 0;
+		for(;i < numberOfOnMemoryLogs;i++) {
+			int pos = i+rotator;
+			pos = pos%numberOfOnMemoryLogs;
+			txt ?log = logs.get(pos);
+			if(log != null) {
+				outs.write(log);
+			}
 		}
+		return 0;
 	}
 	public static int watchvar_helper(etxt*buf, etxt*varname, etxt*varval) {
 		etxt EQUALS = etxt.from_static("=");
@@ -38,7 +58,12 @@ public class shotodol.Watchdog : Replicable {
 	}
 	public static int watchit(int mod_id, WatchdogSeverity severity, int subtype, int id, etxt*msg) {
 		if(watch == null) return 0;
-		watch.pad.write(msg);
+		if(watch.pad != null)
+			watch.pad.write(msg);
+		if(watch.numberOfOnMemoryLogs == 0) return 0;
+		txt log = new txt.memcopy_etxt(msg);
+		watch.logs.set(watch.rotator, log);
+		watch.rotator = (watch.rotator+1)%watch.numberOfOnMemoryLogs;
 		return 0;
 	}
 	public static int logMsgDoNotUse(etxt*msg) {
