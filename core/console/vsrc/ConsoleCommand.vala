@@ -62,9 +62,15 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 
 
 	etxt prfx;
+	enum Options {
+		DURATION = 1,
+	}
 	ConsoleSpindle sp;
 	public ConsoleCommand() {
 		base();
+		etxt dur = etxt.from_static("-dur");
+		etxt dur_help = etxt.from_static("Duration to glide(become inactive)");
+		addOption(&dur, M100Command.OptionType.TXT, Options.DURATION, &dur_help);
 		sp = new ConsoleSpindle();
 		MainTurbine.gearup(sp);
 	}
@@ -78,8 +84,16 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
+		int duration = 100;
 		greet(pad);
-		sp.glide(100);
+		SearchableSet<txt> vals = SearchableSet<txt>();
+		parseOptions(cmdstr, &vals);
+		container<txt>? mod;
+		mod = vals.search(Options.DURATION, match_all);
+		if(mod != null) {
+			duration = mod.get().to_int();
+		}
+		sp.glide(duration);
 		bye(pad, true);
 		return 0;
 	}
