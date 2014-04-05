@@ -15,12 +15,12 @@ public class shotodol.BrainEngine<G> : Replicable {
 	}
 	
 	public int memorize_etxt(etxt*wds, G? sense) {
-        // find the msg in memory
-        LineAlign<G> ln = memory.alloc_full(0,1);
-        //LineAlign<G> gn = new (ln) LignAlign<G>(words, sense);
-        generihack<LineAlign<G>,G>.build_generics(ln);
-        ln.build(words, sense);
-        return ln.align_etxt(wds);
+		// find the msg in memory
+		LineAlign<G> ln = memory.alloc_full(0,1);
+		//LineAlign<G> gn = new (ln) LignAlign<G>(words, sense);
+		generihack<LineAlign<G>,G>.build_generics(ln);
+		ln.build(words, sense);
+		return ln.align_etxt(wds);
 	}
 	
 	public int memorize(InputStream strm, G? sense) {
