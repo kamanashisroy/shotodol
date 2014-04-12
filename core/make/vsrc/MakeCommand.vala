@@ -57,7 +57,7 @@ internal class MakeCommand : M100Command {
 			unowned txt tgt = mod.get();
 			etxt dlg = etxt.stack(128);
 			dlg.printf("target:%s\n", tgt.to_string());
-			Watchdog.watchit(5,0,0,0,&dlg);
+			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),0,0,0,&dlg);
 			script.target(tgt);
 			while(true) {
 				txt? cmd = script.step();
@@ -65,7 +65,7 @@ internal class MakeCommand : M100Command {
 					break;
 				}
 				dlg.printf("command:%s\n", cmd.to_string());
-				Watchdog.watchit(5,0,0,0,&dlg);
+				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),0,0,0,&dlg);
 				// execute command
 				CommandServer.server.act_on(cmd, pad);
 			}
