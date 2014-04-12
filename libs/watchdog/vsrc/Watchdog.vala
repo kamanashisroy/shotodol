@@ -50,30 +50,32 @@ public class shotodol.Watchdog : Replicable {
 		buf.concat(&NEW_LINE);
 		return 0;
 	}
-	public static int watchvar(int mod_id, WatchdogSeverity severity, int subtype, int id, etxt*varname, etxt*varval) {
+	public static int watchvar(string sourcefile, int lineno, WatchdogSeverity severity, int subtype, int id, etxt*varname, etxt*varval) {
 		etxt buf = etxt.stack(128);
 		watchvar_helper(&buf, varname, varval);
-		watchit(mod_id, severity, subtype, id, &buf);
+		watchit(sourcefile, lineno, severity, subtype, id, &buf);
 		return 0;
 	}
-	public static int watchit(int mod_id, WatchdogSeverity severity, int subtype, int id, etxt*msg) {
+	public static int watchit(string sourcefile, int lineno, WatchdogSeverity severity, int subtype, int id, etxt*msg) {
 		if(watch == null) return 0;
+		txt fullmsg = new txt(null, msg.length()+128);
+		msg.zero_terminate();
+		fullmsg.printf("[%20.10s %-5d][%s] %s", sourcefile, lineno, "!!", msg.to_string());
 		if(watch.pad != null)
-			watch.pad.write(msg);
+			watch.pad.write(fullmsg);
 		if(watch.numberOfOnMemoryLogs == 0) return 0;
-		txt log = new txt.memcopy_etxt(msg);
-		watch.logs.set(watch.rotator, log);
+		watch.logs.set(watch.rotator, fullmsg);
 		watch.rotator = (watch.rotator+1)%watch.numberOfOnMemoryLogs;
 		return 0;
 	}
-	public static int logMsgDoNotUse(etxt*msg) {
-		watchit(0, WatchdogSeverity.LOG, 0, 0, msg);
+	public static int logMsgDoNotUse(string sourcefile, int lineno, etxt*msg) {
+		watchit(sourcefile, lineno, WatchdogSeverity.LOG, 0, 0, msg);
 		return 0;
 	}
-	public static int logString(string st) {
+	public static int logString(string sourcefile, int lineno, string st) {
 		etxt buf = etxt.stack(128);
 		buf.printf("%s", st);
-		watchit(0, WatchdogSeverity.LOG, 0, 0, &buf);
+		watchit(sourcefile, lineno, WatchdogSeverity.LOG, 0, 0, &buf);
 		return 0;
 	}
 #if false
