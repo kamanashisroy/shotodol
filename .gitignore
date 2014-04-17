@@ -1,2 +1,3 @@
-
-.*
+shotodol.bin
+.gitignore
+.config.mk
