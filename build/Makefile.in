@@ -1,8 +1,8 @@
 include build/.config.mk
-BUILD=$(MAKE) -f ../../build/build.mk
-CLEAN=$(MAKE) -f ../../build/clean.mk
-DOC=$(MAKE) -f ../../build/doc.mk
-SHOTODOL=$(MAKE) -f build/shotodol.mk
+BUILD=$(MAKE) -f $(SHOTODOL_HOME)/build/build.mk
+CLEAN=$(MAKE) -f $(SHOTODOL_HOME)/build/clean.mk
+DOC=$(MAKE) -f $(SHOTODOL_HOME)/build/doc.mk
+SHOTODOL=$(MAKE) -f $(SHOTODOL_HOME)/build/shotodol.mk
 
 all:makeplugins shotodol
 

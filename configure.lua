@@ -65,4 +65,5 @@ for x in pairs(configLines) do
 end
 assert(conf:close())
 
-dofile("./Makefile.lua")
+local shotodol = dofile(configLines["SHOTODOL_HOME"] .. "/build/shotodol.lua")
+shotodol.genmake(configLines["PROJECT_HOME"])
