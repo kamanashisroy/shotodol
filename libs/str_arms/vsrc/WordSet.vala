@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup str_arms
+ *  @{
+ */
 public class shotodol.WordSet : Replicable {
 	SearchableFactory<txt> words;
 	public WordSet() {
@@ -32,3 +35,4 @@ public class shotodol.WordSet : Replicable {
 		return entry;
 	}
 }
+/** @}*/

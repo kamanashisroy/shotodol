@@ -1,5 +1,5 @@
 
-include ../../.config.mk
+include ../../build/.config.mk
 
 clean:
 

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup idle
+ *  @{
+ */
 public class shotodol.IdleModule : ModulePlugin {
 	IdleCommand? cmd;
 	public override int init() {
@@ -19,4 +22,5 @@ public class shotodol.IdleModule : ModulePlugin {
 		return new IdleModule();
 	}
 }
+/* @} */
 

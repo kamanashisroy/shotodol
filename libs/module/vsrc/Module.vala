@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup module
+ *  @{
+ */
 public abstract class shotodol.Module : Replicable {
 	protected etxt name;
 	protected etxt version;
@@ -15,4 +18,4 @@ public abstract class shotodol.Module : Replicable {
 	public abstract int init();
 	public abstract int deinit();
 }
-
+/** @}*/

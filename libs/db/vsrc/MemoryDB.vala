@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup db
+ *  @{
+ */
 public class shotodol.MemoryDB : DB {
 	SearchableSet<DBEntry>db;
 	public MemoryDB(DB.DBType tp, etxt*address) {		
@@ -25,3 +28,4 @@ public class shotodol.MemoryDB : DB {
 		return (DBEntry)db.search(id.hash, null);
 	}
 }
+/** @}*/

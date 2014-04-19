@@ -1,4 +1,4 @@
--include .config.mk
+-include build/.config.mk
 
 BUILD=$(MAKE) -f $(SHOTODOL_HOME)/build/build.mk
 CLEAN=$(MAKE) -f $(SHOTODOL_HOME)/build/clean.mk

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup profiler
+ *  @{
+ */
 public class shotodol.ProfilerModule : ModulePlugin {
 	ProfilerCommand? cmd;
 	public override int init() {
@@ -19,4 +22,5 @@ public class shotodol.ProfilerModule : ModulePlugin {
 		return new ProfilerModule();
 	}
 }
+/* @} */
 

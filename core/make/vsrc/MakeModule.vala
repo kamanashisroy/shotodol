@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make
+ *  @{
+ */
 public class shotodol.MakeModule : ModulePlugin {
 	MakeCommand? cmd;
 	MakeTest? mt;
@@ -26,4 +29,5 @@ public class shotodol.MakeModule : ModulePlugin {
 		return new MakeModule();
 	}
 }
+/* @} */
 

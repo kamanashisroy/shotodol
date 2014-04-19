@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup linux_extra
+ *  @{
+ */
 public errordomain IOStreamError.FileOutputStreamError {
 	COULD_NOT_OPEN_FILE_FOR_WRITING,
 }
@@ -33,3 +36,4 @@ public class shotodol.FileOutputStream : OutputStream {
 		}
 	}
 }
+/* @} */

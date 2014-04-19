@@ -1,6 +1,10 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup linux_extra
+ *  @{
+ */
+
 public errordomain IOStreamError.FileInputStreamError {
 	COULD_NOT_OPEN_FILE,
 }
@@ -37,3 +41,4 @@ public class shotodol.FileInputStream : InputStream {
 		}
 	}
 }
+/* @} */

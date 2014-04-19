@@ -1,5 +1,8 @@
 using aroop;
 
+/** \addtogroup linux
+ *  @{
+ */
 namespace shotodol_platform {
 	[CCode (cname="void", cheader_filename = "dlfcn.h")]
 	public class plugin {
@@ -103,3 +106,4 @@ namespace shotodol_platform {
 		public static void millisleep(long msec);
 	}
 }
+/* @} */

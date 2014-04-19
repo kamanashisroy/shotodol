@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup turbine
+ *  @{
+ */
 public errordomain TurbineError {
 	PLATFORM_THREAD_FAILED,
 }
@@ -28,3 +31,4 @@ public class shotodol.Turbine : Propeller {
 		return -1;
 	}
 }
+/** @}*/

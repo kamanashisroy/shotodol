@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make100
+ *  @{
+ */
 public abstract class shotodol.M100Parser: Replicable {
 	internal SearchableFactory<M100Function> funcs;
 	internal ArrayList<M100Statement> stmts;
@@ -118,3 +121,4 @@ public abstract class shotodol.M100Parser: Replicable {
 		current_function = null;
 	}
 }
+/** @}*/

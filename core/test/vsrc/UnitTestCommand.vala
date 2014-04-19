@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup test
+ *  @{
+ */
 internal class shotodol.UnitTestCommand : shotodol.M100Command {
 	etxt prfx;
 	public UnitTestCommand() {
@@ -28,3 +31,4 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 		return 0;
 	}
 }
+/** @}*/

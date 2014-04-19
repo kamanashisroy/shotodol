@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup fileconfig
+ *  @{
+ */
 internal class shotodol.FileConfigCommand : shotodol.M100Command {
 	etxt prfx;
 	enum Options {
@@ -62,3 +65,4 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 		return 0;
 	}
 }
+/* @} */

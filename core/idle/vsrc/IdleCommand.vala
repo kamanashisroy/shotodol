@@ -1,6 +1,10 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup idle
+ *  @{
+ */
+
 internal class IdleCommand : M100Command {
 	class IdleSpindle : Spindle {
 		bool on;
@@ -76,3 +80,4 @@ internal class IdleCommand : M100Command {
 		return 0;
 	}
 }
+/* @} */

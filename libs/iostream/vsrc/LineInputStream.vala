@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup iostream
+ *  @{
+ */
 public class shotodol.LineInputStream : InputStream {
 	InputStream is;
 	etxt rbuf;
@@ -58,3 +61,4 @@ public class shotodol.LineInputStream : InputStream {
 		is.close();
 	}
 }
+/** @}*/

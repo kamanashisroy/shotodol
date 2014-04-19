@@ -1,0 +1,22 @@
+include build/.config.mk
+BUILD=$(MAKE) -f ../../build/build.mk
+CLEAN=$(MAKE) -f ../../build/clean.mk
+DOC=$(MAKE) -f ../../build/doc.mk
+SHOTODOL=$(MAKE) -f build/shotodol.mk
+
+all:makeplugins shotodol
+
+shotodol:
+	$(SHOTODOL)
+
+clean:cleanplugins 
+	$(SHOTODOL) clean
+
+document:
+	$(DOC) -C docs/doxygen
+
+dist-clean:
+	$(RM) Makefile docs/doxygen/Doxyfile
+
+.PHONY:clean dist-clean
+include build/Makevars.mk

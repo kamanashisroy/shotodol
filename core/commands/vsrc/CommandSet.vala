@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup command
+ *  @{
+ */
 public class shotodol.CommandSet: Replicable {
 	Set<M100Command> cmds;
 	BrainEngine<M100Command> be;
@@ -46,3 +49,4 @@ public class shotodol.CommandSet: Replicable {
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
 }
+/* @} */

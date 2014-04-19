@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup command
+ *  @{
+ */
 public class shotodol.CommandServer: ModulePlugin {
 	public static CommandServer? server;
 	public CommandSet cmds;
@@ -39,3 +42,4 @@ public class shotodol.CommandServer: ModulePlugin {
 		return new CommandServer();
 	}
 }
+/* @} */

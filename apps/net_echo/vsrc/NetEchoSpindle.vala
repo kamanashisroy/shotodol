@@ -1,7 +1,10 @@
 using aroop;
 using shotodol;
 
-internal abstract class NetEchoSpindle : Spindle {
+/** \addtogroup net_echo
+ *  @{
+ */
+internal abstract class shotodol.NetEchoSpindle : Spindle {
 	protected bool poll;
 	protected int interval;
 	protected shotodol_platform_net.NetStreamPollPlatformImpl pl;
@@ -49,3 +52,4 @@ internal abstract class NetEchoSpindle : Spindle {
 }
 
 
+/* @} */

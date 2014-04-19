@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup netstream
+ *  @{
+ */
 public errordomain IOStreamError.NetStreamError {
 	NET_NOT_SUPPORTED,
 }
@@ -16,3 +19,4 @@ public abstract class shotodol.NetStream : Replicable {
 	public abstract OutputStream getOutputStream() throws IOStreamError.NetStreamError;
 	public abstract int close();
 }
+/** @}*/

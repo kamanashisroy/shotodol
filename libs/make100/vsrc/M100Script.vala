@@ -1,5 +1,8 @@
 using aroop;
 
+/** \addtogroup make100
+ *  @{
+ */
 public class shotodol.M100Script : M100Parser {
 	SearchableSet<M100Variable> vars;
 	public M100Script() {
@@ -35,3 +38,4 @@ public class shotodol.M100Script : M100Parser {
 		return func.getCommand(expt++);
 	}
 }
+/** @}*/

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup propeller
+ *  @{
+ */
 public abstract class shotodol.Propeller : Spindle {
 	protected Set<Spindle> sps; 
 	protected Queue<Replicable> msgs; // message queue
@@ -53,3 +56,4 @@ public abstract class shotodol.Propeller : Spindle {
 		sps.destroy();
 	}
 }
+/** @}*/

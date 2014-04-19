@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup console
+ *  @{
+ */
 internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	class ConsoleSpindle : Spindle {
 		LineInputStream is;
@@ -98,3 +101,4 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		return 0;
 	}
 }
+/* @} */

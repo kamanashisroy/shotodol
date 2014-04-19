@@ -12,6 +12,9 @@ using shotodol;
  *
  * */
 
+/** \addtogroup bundle
+ *  @{
+ */
 
 public errordomain BundlerError {
 	too_big_value,
@@ -128,3 +131,4 @@ public struct shotodol.Bundler {
 		return cur_len;
 	}
 }
+/** @}*/

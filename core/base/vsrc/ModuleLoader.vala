@@ -1,7 +1,9 @@
 using aroop;
 using shotodol;
 
-
+/** \addtogroup base
+ *  @{
+ */
 public errordomain shotodol.plugin_error {
 	COULD_NOT_OPEN,
 	COULD_NOT_CREATE_INSTANCE,
@@ -72,4 +74,5 @@ public class shotodol.ModuleLoader : Replicable {
 		return 0;
 	}
 }
+/* @} */
 

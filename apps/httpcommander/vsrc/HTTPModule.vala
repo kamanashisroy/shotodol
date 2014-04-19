@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup httpcommander
+ *  @{
+ */
 public class shotodol.HTTPModule : shotodol.Module {
 	public HTTPModule() {
 	}
@@ -14,3 +17,4 @@ public class shotodol.HTTPModule : shotodol.Module {
 		return 0;
 	}
 }
+/* @} */

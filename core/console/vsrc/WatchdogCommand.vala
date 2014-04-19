@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup console
+ *  @{
+ */
 internal class shotodol.WatchdogCommand : shotodol.M100Command {
 	etxt prfx;
 	Watchdog ?wd;
@@ -25,3 +28,4 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		return 0;
 	}
 }
+/* @} */

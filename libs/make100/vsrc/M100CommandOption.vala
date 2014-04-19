@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make100
+ *  @{
+ */
 internal class M100CommandOption : Replicable {
 	txt prefix;
 	txt elab;
@@ -50,3 +53,4 @@ internal class M100CommandOption : Replicable {
 		return 0;
 	}
 }
+/** @}*/

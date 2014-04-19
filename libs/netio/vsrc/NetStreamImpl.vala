@@ -2,6 +2,9 @@ using aroop;
 using shotodol;
 using shotodol_platform_net;
 
+/** \addtogroup netstream
+ *  @{
+ */
 public class shotodol.NetStreamImpl : NetStream {
 	class NetInputStream :	InputStream {
 		NetStreamPlatformImpl impl;
@@ -50,3 +53,4 @@ public class shotodol.NetStreamImpl : NetStream {
 		return plat.close();
 	}
 }
+/** @}*/

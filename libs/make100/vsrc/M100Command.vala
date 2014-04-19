@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make100
+ *  @{
+ */
 public abstract class shotodol.M100Command : Replicable {
 	public enum CommandDescType {
 		COMMAND_DESC_TITLE,
@@ -71,3 +74,4 @@ public abstract class shotodol.M100Command : Replicable {
 		return 0;
 	}
 }
+/** @}*/

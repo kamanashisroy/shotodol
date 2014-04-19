@@ -1,6 +1,10 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup db 
+ *  @{
+ */
+
 class shotodol.DBEntryCell : Replicable {
 	public aroop_hash hash;
 	public Carton content;
@@ -68,3 +72,4 @@ public class shotodol.DBEntry : Searchable {
 		return 0;
 	}
 }
+/** @}*/

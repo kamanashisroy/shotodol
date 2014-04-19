@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup command
+ *  @{
+ */
 internal class shotodol.ModuleCommand : M100Command {
 	etxt prfx;
 	enum Options {
@@ -48,3 +51,4 @@ internal class shotodol.ModuleCommand : M100Command {
 		return 0;
 	}
 }
+/* @} */

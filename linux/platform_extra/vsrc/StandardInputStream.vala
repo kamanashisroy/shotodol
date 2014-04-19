@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup linux_extra
+ *  @{
+ */
 public class shotodol.StandardInputStream : InputStream {
 	shotodol_platform.fileio?fd;
 	
@@ -25,3 +28,4 @@ public class shotodol.StandardInputStream : InputStream {
 		return 0;
 	}
 }
+/* @} */

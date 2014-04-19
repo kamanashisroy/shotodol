@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup profiler
+ *  @{
+ */
 internal class ProfilerCommand : M100Command {
 	etxt prfx;
 	public ProfilerCommand() {
@@ -26,3 +29,4 @@ internal class ProfilerCommand : M100Command {
 		return 0;
 	}
 }
+/* @} */

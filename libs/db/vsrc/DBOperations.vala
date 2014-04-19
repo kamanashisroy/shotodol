@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup db
+ *  @{
+ */
 public abstract class shotodol.DBOperations : Replicable {
 	public virtual int save(DBId id, DBEntry entry) {
 		core.die("unimplemented");
@@ -22,3 +25,4 @@ public abstract class shotodol.DBOperations : Replicable {
 		return null;
 	}
 }
+/** @}*/

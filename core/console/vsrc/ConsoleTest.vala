@@ -1,6 +1,10 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup console
+ *  @{
+ */
+
 internal class ConsoleTest : UnitTest {
 	etxt tname;
 	public ConsoleTest() {
@@ -18,3 +22,4 @@ internal class ConsoleTest : UnitTest {
 	}
 }
 
+/* @} */

@@ -2,6 +2,9 @@ using aroop;
 using shotodol;
 using shotodol_platform;
 
+/** \addtogroup fileconfig
+ *  @{
+ */
 public class FileConfig : ModulePlugin {
 
 	FileConfigTest? ct = null;
@@ -29,4 +32,4 @@ public class FileConfig : ModulePlugin {
 		return new FileConfig();
 	}
 }
-
+/* @} */
