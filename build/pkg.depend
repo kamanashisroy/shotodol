@@ -4,12 +4,12 @@ libs/watchdog
 libs/module
 libs/str_arms 
 libs/config
-$(PLATFORM)/platform_extra
+OS_PLATFORM/platform_extra
 libs/propeller
 libs/bundle
 libs/db
 libs/make100
-$(PLATFORM)/platform_net
+OS_PLATFORM/platform_net
 libs/netio
 core/base
 core/commands
