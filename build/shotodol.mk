@@ -1,5 +1,5 @@
 
-include .config.mk
+include build/.config.mk
 OBJDIR=$(SHOTODOL_HOME)/build/.objects
 include $(SHOTODOL_HOME)/build/staticlibs.mk
 #OBJECTS=$(wildcard $(OBJDIR)/*.o)

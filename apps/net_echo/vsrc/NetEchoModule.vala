@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup net_echo
+ *  @{
+ */
 public class shotodol.NetEchoModule : ModulePlugin {
 	NetEchoCommand? cmd;
 	public override int init() {
@@ -19,4 +22,5 @@ public class shotodol.NetEchoModule : ModulePlugin {
 		return new NetEchoModule();
 	}
 }
+/* @} */
 

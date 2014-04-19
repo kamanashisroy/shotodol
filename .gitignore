@@ -1,3 +1,4 @@
 shotodol.bin
-.gitignore
-.config.mk
+build/.config.mk
+build/Makevars.mk
+docs/Doxyfile

@@ -1,7 +1,11 @@
 using aroop;
 using shotodol;
 
-public class DBFactory : Replicable {
+/** \addtogroup db
+ *  @{
+ */
+
+public class shotodol.DBFactory : Replicable {
 	public static int init() {
 		DBEntryFactory.init();
 		return 0;
@@ -19,3 +23,4 @@ public class DBFactory : Replicable {
 	}
 	
 }
+/** @}*/

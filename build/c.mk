@@ -1,5 +1,5 @@
 
-include ../../.config.mk
+include ../../build/.config.mk
 OBJDIR=$(PROJECT_HOME)/build/.objects
 VSOURCES=$(wildcard vsrc/*.vala)
 VSOURCE_BASE=$(basename $(notdir $(VSOURCES)))

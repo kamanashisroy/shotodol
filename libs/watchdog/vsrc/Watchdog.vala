@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup watchdog
+ *  @{
+ */
 public class shotodol.Watchdog : Replicable {
 	internal OutputStream? pad;
 	internal static Watchdog? watch;
@@ -92,3 +95,4 @@ public class shotodol.Watchdog : Replicable {
 		return 0;
 	}
 }
+/** @}*/

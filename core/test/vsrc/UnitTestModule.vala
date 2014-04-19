@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup test
+ *  @{
+ */
 public class shotodol.UnitTestModule : ModulePlugin {
 	public static UnitTestModule? inst;
 	internal SearchableSet<UnitTest> tests;
@@ -49,3 +52,4 @@ public class shotodol.UnitTestModule : ModulePlugin {
 		return new UnitTestModule();
 	}
 }
+/** @}*/

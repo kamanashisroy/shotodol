@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup config
+ *  @{
+ */
 public abstract class shotodol.ConfigEngine : Replicable {
 	HashTable<ConfigModuleEntry> modules;
 	internal Factory<ConfigModuleEntry> moduleSource;
@@ -68,3 +71,4 @@ public abstract class shotodol.ConfigEngine : Replicable {
 		return 0;
 	}
 }
+/** @}*/

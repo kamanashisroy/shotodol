@@ -1,4 +1,4 @@
-include ../../.config.mk
+include ../../build/.config.mk
 
 all:
 	$(MAKE) -f $(SHOTODOL_HOME)/build/aroop.mk

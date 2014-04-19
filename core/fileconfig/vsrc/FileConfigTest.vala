@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup fileconfig
+ *  @{
+ */
 internal class FileConfigTest : UnitTest {
 	etxt tname;
 	public FileConfigTest() {
@@ -18,3 +21,4 @@ internal class FileConfigTest : UnitTest {
 	}
 }
 
+/* @} */

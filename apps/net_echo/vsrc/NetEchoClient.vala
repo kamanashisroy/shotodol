@@ -1,7 +1,10 @@
 using aroop;
 using shotodol;
 
-internal class NetEchoClient : NetEchoService {
+/** \addtogroup net_echo
+ *  @{
+ */
+internal class shotodol.NetEchoClient : NetEchoService {
 	shotodol_platform_net.NetStreamPlatformImpl strm;
 	int chunkSize;
 	etxt content;
@@ -113,4 +116,5 @@ internal class NetEchoClient : NetEchoService {
 	}
 }
 
+/* @} */
 

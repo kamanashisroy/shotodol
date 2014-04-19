@@ -42,7 +42,7 @@ function depend(pkg,p)
 end
 
 function parseConfig(projectdir)
-	local f = assert(io.open(projectdir .. "/.config.mk", "r"))
+	local f = assert(io.open(projectdir .. "/build/.config.mk", "r"))
 	if f == nil then
 		return
 	end

@@ -1,6 +1,10 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make
+ *  @{
+ */
+
 internal class MakeTest : UnitTest {
 	etxt tname;
 	public MakeTest() {
@@ -18,3 +22,4 @@ internal class MakeTest : UnitTest {
 	}
 }
 
+/* @} */

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup propeller
+ *  @{
+ */
 public abstract class shotodol.Spindle : Replicable {
 	public Spindle() {
 	}
@@ -8,3 +11,4 @@ public abstract class shotodol.Spindle : Replicable {
 	public abstract int step();
 	public abstract int cancel();
 }
+/** @}*/

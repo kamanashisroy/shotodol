@@ -1,7 +1,10 @@
 using aroop;
 using shotodol;
 
-internal class NetEchoCommand : M100Command {
+/** \addtogroup net_echo
+ *  @{
+ */
+internal class shotodol.NetEchoCommand : M100Command {
 	etxt prfx;
 	NetEchoService?sp;
 	enum Options {
@@ -124,3 +127,4 @@ internal class NetEchoCommand : M100Command {
 		return 0;
 	}
 }
+/* @} */

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make
+ *  @{
+ */
 internal class MakeCommand : M100Command {
 	etxt prfx;
 	enum Options {
@@ -74,3 +77,4 @@ internal class MakeCommand : M100Command {
 		return 0;
 	}
 }
+/* @} */

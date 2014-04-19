@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup config
+ *  @{
+ */
 public class shotodol.DefaultConfigEngine : ConfigEngine {
 	static ConfigEngine?single;
 	public DefaultConfigEngine() {
@@ -13,3 +16,4 @@ public class shotodol.DefaultConfigEngine : ConfigEngine {
 		single = eng;
 	}
 }
+/** @}*/

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup make100
+ *  @{
+ */
 internal class M100Function: Searchable {
 	txt name;
 	txt upper;
@@ -30,3 +33,4 @@ internal class M100Function: Searchable {
 		return cmds[index];
 	}
 }
+/** @}*/

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup config
+ *  @{
+ */
 internal class ConfigModuleEntry : Replicable {
 	internal etxt moduleName;
 	HashTable<ConfigEntry> entries;
@@ -27,3 +30,4 @@ internal class ConfigModuleEntry : Replicable {
 		return 0;
 	}
 }
+/** @}*/

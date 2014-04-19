@@ -1,5 +1,9 @@
 using aroop;
 using shotodol;
+
+/** \addtogroup base
+ *  @{
+ */
 public abstract class shotodol.ModulePlugin : Module {
 	public override int init() {
 		owner = null;
@@ -15,4 +19,4 @@ public abstract class shotodol.ModulePlugin : Module {
 		return 0;
 	}
 }
-
+/* @} */

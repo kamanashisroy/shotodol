@@ -55,7 +55,7 @@ if yes_no_to_bool(configLines["LINUX_BLUETOOTH"]) then
 end
 configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DPLUGIN_ROOT=\\\"$(PROJECT_HOME)/\\\""
 
-local conf = assert(io.open("./.config.mk", "w"))
+local conf = assert(io.open("build/.config.mk", "w"))
 for x in pairs(configLines) do
 	local op = configOps[x]
 	if op == nil then
@@ -65,3 +65,4 @@ for x in pairs(configLines) do
 end
 assert(conf:close())
 
+dofile("./Makefile.lua")

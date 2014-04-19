@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup command
+ *  @{
+ */
 internal class shotodol.QuitCommand : M100Command {
 	etxt prfx;
 	public override etxt*get_prefix() {
@@ -13,3 +16,4 @@ internal class shotodol.QuitCommand : M100Command {
 		return 0;
 	}
 }
+/* @} */

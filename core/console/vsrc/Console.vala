@@ -2,6 +2,9 @@ using aroop;
 using shotodol;
 using shotodol_platform;
 
+/** \addtogroup console
+ *  @{
+ */
 public class Console : ModulePlugin {
 
 	ConsoleTest? ct = null;
@@ -33,3 +36,4 @@ public class Console : ModulePlugin {
 	}
 }
 
+/* @} */

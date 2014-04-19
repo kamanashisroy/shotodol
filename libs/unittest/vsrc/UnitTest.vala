@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup unittest
+ *  @{
+ */
 public errordomain shotodol.UnitTestError {
 	FAILED,
 }
@@ -13,3 +16,4 @@ public abstract class shotodol.UnitTest : Hashable {
 		throw new UnitTestError.FAILED("Assertion failed\n");
 	}
 }
+/** @}*/

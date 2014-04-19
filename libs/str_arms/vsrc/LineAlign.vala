@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup str_arms
+ *  @{
+ */
 public class shotodol.LineAlign<G> : Replicable {
 	WordSet? words;
 	SearchableSet<txt> aln;
@@ -152,3 +155,4 @@ public class shotodol.LineAlign<G> : Replicable {
 		return null;
 	}
 }
+/** @}*/

@@ -1,7 +1,10 @@
 using aroop;
 using shotodol;
 
-internal abstract class NetEchoService : NetEchoSpindle {
+/** \addtogroup net_echo
+ *  @{
+ */
+internal abstract class shotodol.NetEchoService : NetEchoSpindle {
 	protected long recv_bytes;
 	protected long sent_bytes;
 	public NetEchoService() {
@@ -16,4 +19,5 @@ internal abstract class NetEchoService : NetEchoSpindle {
 	}
 }
 
+/* @} */
 

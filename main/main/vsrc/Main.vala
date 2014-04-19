@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup main
+ *  @{
+ */
 public class shotodol.MainProgram {
 	static int loadDefaultModules(ModuleLoader loader) {
 		loader.loadCore("commands");
@@ -26,3 +29,4 @@ public class shotodol.MainProgram {
 	}
 }
 
+/** @}*/

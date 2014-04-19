@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup str_arms
+ *  @{
+ */
 public class shotodol.StrArmsModule: Module {
 	public StrArmsModule() {
 	}
@@ -16,4 +19,4 @@ public class shotodol.StrArmsModule: Module {
 		return new StrArmsModule();
 	}
 }
-
+/** @}*/

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup base
+ *  @{
+ */
 public class shotodol.MainTurbine : shotodol.Propeller {
 	private static MainTurbine? mt = null;
 	public MainTurbine() {
@@ -25,3 +28,4 @@ public class shotodol.MainTurbine : shotodol.Propeller {
 	}
 }
 
+/* @} */

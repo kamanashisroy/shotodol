@@ -1,5 +1,8 @@
 using aroop;
 
+/** \addtogroup linux_net
+ *  @{
+ */
 namespace shotodol_platform_net {
 	[CCode (lower_case_cprefix = "NET_STREAM_FLAG_")]
 	enum ConnectFlags {
@@ -39,3 +42,4 @@ namespace shotodol_platform_net {
 		public NetStreamPlatformImpl*next();
 	}
 }
+/* @} */

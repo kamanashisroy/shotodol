@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup config
+ *  @{
+ */
 internal class ConfigEntry : Replicable {
 	internal etxt name;
 	HashTable<txt> tbl;
@@ -18,3 +21,4 @@ internal class ConfigEntry : Replicable {
 		return tbl.set(myKey, myValue);
 	}
 }
+/** @}*/

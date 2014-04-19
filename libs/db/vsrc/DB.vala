@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup db
+ *  @{
+ */
 public abstract class shotodol.DB : DBOperations {
 	public enum DBType {
 		DB_IS_REMOTE = 1,
@@ -8,3 +11,4 @@ public abstract class shotodol.DB : DBOperations {
 		DB_IS_SHARED = 1<<2,
 	}
 }
+/** @}*/

@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup str_arms
+ *  @{
+ */
 public class shotodol.BrainEngine<G> : Replicable {
 	//Factory<LineAlign> response;
 	Factory<LineAlign<G>> sandbox;
@@ -56,3 +59,4 @@ public class shotodol.BrainEngine<G> : Replicable {
 		return similarity;
 	}
 }
+/** @}*/

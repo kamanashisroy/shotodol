@@ -1,7 +1,11 @@
 using aroop;
 using shotodol;
 
-internal class NetEchoServer : NetEchoService {
+/** \addtogroup net_echo
+ *  @{
+ */
+
+internal class shotodol.NetEchoServer : NetEchoService {
 	bool waiting;
 	bool checkContent;
 	bool dryrun;
@@ -109,4 +113,5 @@ internal class NetEchoServer : NetEchoService {
 	}
 }
 
+/* @} */
 

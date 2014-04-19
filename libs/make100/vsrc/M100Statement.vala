@@ -1,5 +1,8 @@
 using aroop;
 
+/** \addtogroup make100
+ *  @{
+ */
 internal class M100Statement: Replicable {
 	enum m100_op {
 		ASSIGN,
@@ -20,4 +23,4 @@ internal class M100Statement: Replicable {
 		exp = new txt.memcopy(given_exp.to_string(), given_exp.length());
 	}
 }
-
+/** @}*/

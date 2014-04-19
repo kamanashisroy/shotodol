@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup iostream
+ *  @{
+ */
 public errordomain IOStreamError.InputStreamError {
 	NOT_SUPPORTED,
 	END_OF_DATA,
@@ -19,3 +22,4 @@ public abstract class shotodol.InputStream : Replicable {
 		return;
 	}
 }
+/** @}*/

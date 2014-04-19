@@ -1,6 +1,9 @@
 using aroop;
 using shotodol;
 
+/** \addtogroup linux_extra
+ *  @{
+ */
 public class shotodol.StandardOutputStream : OutputStream {
 	public override int write(etxt*buf) throws IOStreamError.OutputStreamError {
 		if(buf.is_zero_terminated()) {
@@ -13,3 +16,4 @@ public class shotodol.StandardOutputStream : OutputStream {
 		return buf.length();
 	}
 }
+/* @} */
