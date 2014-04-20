@@ -1,6 +1,15 @@
 using aroop;
 using shotodol;
 
+/**
+ * \defgroup library Shotodol Library modules
+ */
+
+/**
+ * \ingroup library
+ * \defgroup propeller A thread support system(propeller)
+ */
+
 /** \addtogroup propeller
  *  @{
  */

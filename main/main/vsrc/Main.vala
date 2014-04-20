@@ -1,6 +1,10 @@
 using aroop;
 using shotodol;
 
+/**
+ * \defgroup main Main Application
+ */
+
 /** \addtogroup main
  *  @{
  */

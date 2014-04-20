@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup core
+ * \defgroup make A make script parser(make)
+ */
+
 /** \addtogroup make
  *  @{
  */

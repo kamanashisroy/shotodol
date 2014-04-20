@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup core
+ * \defgroup idle Let cpu take rest(idle)
+ */
+
 /** \addtogroup idle
  *  @{
  */

@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup core
+ * \defgroup profiler Profiler
+ */
+
 /** \addtogroup profiler
  *  @{
  */

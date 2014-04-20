@@ -1,6 +1,14 @@
 using aroop;
 using shotodol;
 
+/**
+ * \defgroup apps Application Plugins(apps)
+ */
+/**
+ * \ingroup apps
+ * \defgroup net_echo Echo Application(net_echo)
+ */
+
 /** \addtogroup net_echo
  *  @{
  */

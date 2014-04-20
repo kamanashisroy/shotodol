@@ -2,6 +2,10 @@ using aroop;
 using shotodol;
 using shotodol_platform;
 
+/**
+ * \ingroup core
+ * \defgroup console Console command support(console)
+ */
 /** \addtogroup console
  *  @{
  */

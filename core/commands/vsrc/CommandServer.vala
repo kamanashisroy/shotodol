@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup core
+ * \defgroup command Command register system(command).
+ */
+
 /** \addtogroup command
  *  @{
  */

@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup netstream Perform Input Output via net (netstream)
+ */
+
 /** \addtogroup netstream
  *  @{
  */

@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup str_arms String manipulation support(str_arms)
+ */
+
 /** \addtogroup str_arms
  *  @{
  */

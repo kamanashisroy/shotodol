@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup make100 Makefile parser code(make100)
+ */
+
 /** \addtogroup make100
  *  @{
  */
