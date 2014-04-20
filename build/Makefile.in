@@ -16,7 +16,8 @@ document:
 	$(DOC) -C docs/doxygen
 
 dist-clean:
-	$(RM) Makefile docs/doxygen/Doxyfile
+	$(RM) Makefile docs/doxygen/Doxyfile 
+	$(RM) -rf docs/doxygen/html
 
 .PHONY:clean dist-clean
 include build/Makevars.mk
