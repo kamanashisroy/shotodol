@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup benchmark Benchmark
+ */
+
 /** \addtogroup benchmark
  *  @{
  */

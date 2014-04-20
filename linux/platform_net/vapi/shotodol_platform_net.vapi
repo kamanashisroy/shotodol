@@ -1,5 +1,10 @@
 using aroop;
 
+/**
+ * \ingroup platform
+ * \defgroup linux_net Linux net
+ */
+
 /** \addtogroup linux_net
  *  @{
  */

@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup unittest Unit Testing Support(unittest)
+ */
+
 /** \addtogroup unittest
  *  @{
  */

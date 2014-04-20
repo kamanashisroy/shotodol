@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup platform
+ * \defgroup linux_extra Linux extra
+ */
+
 /** \addtogroup linux_extra
  *  @{
  */

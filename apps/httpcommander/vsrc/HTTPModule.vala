@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup apps
+ * \defgroup httpcommander 
+ */
+
 /** \addtogroup httpcommander
  *  @{
  */

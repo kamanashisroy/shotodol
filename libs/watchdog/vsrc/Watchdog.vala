@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup watchdog Watchdog to support debugging and reporting error(watchdog)
+ */
+
 /** \addtogroup watchdog
  *  @{
  */

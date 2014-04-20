@@ -12,6 +12,11 @@ using shotodol;
  *
  * */
 
+/**
+ * \ingroup library
+ * \defgroup bundle Data serialization support(bundle)
+ */
+
 /** \addtogroup bundle
  *  @{
  */

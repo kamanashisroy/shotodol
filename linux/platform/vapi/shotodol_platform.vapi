@@ -1,5 +1,13 @@
 using aroop;
 
+/**
+ * \defgroup platform Platform based implementation(platform)
+ */
+/**
+ * \ingroup platform
+ * \defgroup linux 
+ */
+
 /** \addtogroup linux
  *  @{
  */

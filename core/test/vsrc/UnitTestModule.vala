@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup core
+ * \defgroup test Module Testing code(test)
+ */
+
 /** \addtogroup test
  *  @{
  */

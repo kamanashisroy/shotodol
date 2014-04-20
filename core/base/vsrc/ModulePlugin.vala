@@ -1,6 +1,13 @@
 using aroop;
 using shotodol;
 
+/**
+ * \defgroup core Core Modules
+ */
+/**
+ * \ingroup core
+ * \defgroup base Module Loader(base)
+ */
 /** \addtogroup base
  *  @{
  */

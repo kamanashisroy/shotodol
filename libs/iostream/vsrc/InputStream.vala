@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup library
+ * \defgroup iostream Input Output Basic(iostream)
+ */
+
 /** \addtogroup iostream
  *  @{
  */
