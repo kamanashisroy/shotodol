@@ -15,7 +15,7 @@ internal class M100Function: Searchable {
 		cmds = ArrayList<txt>();
 		set_hash(name.get_hash());
 		etxt varname = etxt.from_static("function");
-		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),0,0,0,&varname,name);
+		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&varname,name);
 		ccount = 0;
 	}
 	~M100Function() {
@@ -26,7 +26,7 @@ internal class M100Function: Searchable {
 		M100Parser.trim(newcmd);
 		cmds[ccount++] = newcmd;
 		etxt varname = etxt.from_static("function_command");
-		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),0,0,0,&varname,newcmd);
+		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&varname,newcmd);
 		return 0;
 	}
 	internal txt? getCommand(int index) {
