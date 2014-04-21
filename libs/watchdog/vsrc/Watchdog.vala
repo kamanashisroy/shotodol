@@ -30,8 +30,12 @@ internal class shotodol.WatchdogEntry : Replicable {
 		id = gid;
 		msg = new txt.memcopy(gmsg.to_string(), gmsg.length()+2);
 		// trim new line
-		if(msg.char_at(msg.length()-1) == '\n') {
+		if(msg.length() >= 1 && msg.char_at(msg.length()-1) == '\n') {
 			((etxt*)msg).trim_to_length(msg.length()-1);
+		} else if(msg.length() >= 2 && msg.char_at(msg.length()-2) == '\n' && msg.char_at(msg.length()-1) == '\0') {
+			((etxt*)msg).trim_to_length(msg.length()-2);
+		} else if(msg.length() >= 3 && msg.char_at(msg.length()-3) == '\n' && msg.char_at(msg.length()-2) == '\0') {
+			((etxt*)msg).trim_to_length(msg.length()-3);
 		}
 		((etxt*)msg).zero_terminate();
 	}
@@ -113,14 +117,12 @@ public class shotodol.Watchdog : Replicable {
 	}
 	public static int watchvar_helper(etxt*buf, etxt*varname, etxt*varval) {
 		etxt EQUALS = etxt.from_static("=");
-		etxt NEW_LINE = etxt.from_static("\n");
 		etxt header = etxt.stack(8);
 		buf.concat(varname);
 		buf.concat(&EQUALS);
 		header.printf("%d:", varval.length());
 		buf.concat(&header);
 		buf.concat(varval);
-		buf.concat(&NEW_LINE);
 		return 0;
 	}
 	public static int watchvar(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, etxt*varname, etxt*varval) {
