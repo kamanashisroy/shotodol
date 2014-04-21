@@ -29,7 +29,7 @@ public class shotodol.M100Script : M100Parser {
 		etxt dlg = etxt.stack(128);
 		if(func == null) {
 			dlg.printf("no function is selected\n");
-			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),0,0,0,&dlg);
+			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10,0,0,0,&dlg);
 			return null;
 		}
 		if(expt == 0) {
