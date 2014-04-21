@@ -35,6 +35,12 @@ namespace shotodol_platform {
 		public int read(etxt*buf);
 		[CCode (cname="fileio_read_line", cheader_filename = "shotodol_platform.h")]
 		public int readLine(etxt*buf);
+		[CCode (cname="fileio_getc", cheader_filename = "shotodol_platform.h")]
+		public uchar getChar();
+		[CCode (cname="fileio_ungetc", cheader_filename = "shotodol_platform.h")]
+		public void unGetChar(uchar c);
+		[CCode (cname = "EOF", cheader_filename = "stdio.h")]
+		public static const int EOF;
 	}
 
 	[Compact]

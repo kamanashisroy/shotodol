@@ -5,76 +5,25 @@ using shotodol;
  *  @{
  */
 internal class shotodol.ConsoleCommand : shotodol.M100Command {
-	class ConsoleSpindle : Spindle {
-		LineInputStream is;
-		StandardOutputStream pad;
-		//bool iamdeaf;
-		int countDown;
-		public ConsoleSpindle() {
-			StandardInputStream x = new StandardInputStream();
-			is = new LineInputStream(x);
-			pad = new StandardOutputStream();
-			//iamdeaf = false;
-			countDown = 0;
-		}
-		~ConsoleSpindle() {
-		}
-		public override int start(Spindle?plr) {
-			print("Started console stepping ..\n");
-			
-			return 0;
-		}
-
-		void perform_action(etxt*cmd) {
- 			cmd.zero_terminate();
- 			print("Executing:%s\n", cmd.to_string());
- 			CommandServer.server.act_on(cmd, pad);
- 			print("\n");
-		}
-
-		public override int step() {
-			//if(iamdeaf) {
-			if(countDown > 0) {
-				countDown--;
-				return 0;
-			}
-			try {
-				etxt inp = etxt.stack(512);
-				if(is.read(&inp) != 0) {
-					perform_action(&inp);
-				}
-				inp.destroy();
-			} catch (IOStreamError.InputStreamError e) {
-				print("Error in standard input\n");
-				return 0;
-			}
-			return 0;
-		}
-		public override int cancel() {
-			return 0;
-		}
-
-		//internal void deafen() {
-			// XXX we shoud have used cancel here
-			//iamdeaf = true;
-		//}
-		internal void glide(int terms) {
-			countDown = terms;
-		}
-	}
-
-
 	etxt prfx;
 	enum Options {
-		DURATION = 1,
+		LIST = 1,
+		AGAIN,
+		GLIDE,
 	}
-	ConsoleSpindle sp;
+	ConsoleHistory sp;
 	public ConsoleCommand() {
 		base();
-		etxt dur = etxt.from_static("-dur");
-		etxt dur_help = etxt.from_static("Duration to glide(become inactive)");
-		addOption(&dur, M100Command.OptionType.TXT, Options.DURATION, &dur_help);
-		sp = new ConsoleSpindle();
+		etxt again = etxt.from_static("-a");
+		etxt again_help = etxt.from_static("Try the command again");
+		addOption(&again, M100Command.OptionType.TXT, Options.AGAIN, &again_help);
+		etxt glide = etxt.from_static("-gl");
+		etxt glide_help = etxt.from_static("Duration to glide(become inactive), 0 by default");
+		addOption(&glide, M100Command.OptionType.TXT, Options.GLIDE, &glide_help);
+		etxt list = etxt.from_static("-l");
+		etxt list_help = etxt.from_static("List commands from history");
+		addOption(&list, M100Command.OptionType.NONE, Options.LIST, &list_help);
+		sp = new ConsoleHistory();
 		MainTurbine.gearup(sp);
 	}
 
@@ -83,7 +32,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	}
 
 	public override etxt*get_prefix() {
-		prfx = etxt.from_static("glide");
+		prfx = etxt.from_static("shell");
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
@@ -92,8 +41,23 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		parseOptions(cmdstr, &vals);
 		container<txt>? mod;
-		mod = vals.search(Options.DURATION, match_all);
-		if(mod != null) {
+		if((mod = vals.search(Options.AGAIN, match_all)) != null) {
+			int index = mod.get().to_int();
+			txt?again = sp.getHistory(index);
+			if(again == null) {
+				bye(pad, false);
+				return 0;
+			}
+			CommandServer.server.act_on(again, pad);
+			bye(pad, true);
+			return 0;
+		}
+		if((mod = vals.search(Options.LIST, match_all)) != null) {
+			sp.showHistoryFull();
+			bye(pad, true);
+			return 0;
+		}
+		if((mod = vals.search(Options.GLIDE, match_all)) != null) {
 			duration = mod.get().to_int();
 		}
 		sp.glide(duration);

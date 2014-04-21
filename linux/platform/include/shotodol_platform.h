@@ -33,11 +33,11 @@
 
 // public class fileio
 
-//#include <sys/filio.h> // defines FIONREAD 
 #define fileio_stdin() ({STDIN_FILENO;})
 
+#include <sys/ioctl.h> // defines FIONREAD 
 #define fileio_available_bytes(x) ({ \
-	int __bt=0;/*ioctl(x, FIONREAD, &__bt);*/__bt; \
+	int __bt=0;ioctl(x, FIONREAD, &__bt);__bt; \
 })
 
 #define fileio_read(x,y) ({ \
@@ -47,6 +47,9 @@
 #define fileio_read_line(x,y) ({ \
 	int __len = 0;char* __rt = fgets((y)->str+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
 })
+
+#define fileio_getc(x) ({getc(stdin);})
+#define fileio_ungetc(x,y) ({ungetc(y,stdin);})
 
 //public class PlatformFileStream
 #define linux_file_stream_fread(x,y) ({ \
