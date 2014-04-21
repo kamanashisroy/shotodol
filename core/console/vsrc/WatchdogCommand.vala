@@ -17,13 +17,13 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 	public WatchdogCommand() {
 		base();
 		wd = new Watchdog(null, 100);
-		etxt level = etxt.from_static("-level");
+		etxt level = etxt.from_static("-l");
 		etxt level_help = etxt.from_static("Set log level");
-		etxt filename = etxt.from_static("-filename");
+		etxt filename = etxt.from_static("-fn");
 		etxt filename_help = etxt.from_static("Match filename");
-		etxt lineno = etxt.from_static("-lineno");
+		etxt lineno = etxt.from_static("-ln");
 		etxt lineno_help = etxt.from_static("Match line number");
-		etxt severity = etxt.from_static("-severity");
+		etxt severity = etxt.from_static("-s");
 		etxt severity_help = etxt.from_static("Message severity");
 		addOption(&level, M100Command.OptionType.TXT, Options.LEVEL, &level_help);
 		addOption(&filename, M100Command.OptionType.TXT, Options.FILENAME, &filename_help); 
@@ -45,7 +45,7 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		greet(pad);
 		etxt*sourcefile = null;
 		int lineno = -1;
-		int level = 3;
+		int logLevel = 3;
 		int severity = -1;
 		
 		SearchableSet<txt> vals = SearchableSet<txt>();
@@ -53,9 +53,9 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		container<txt>? mod;
 		if((mod = vals.search(Options.FILENAME, match_all)) != null) {sourcefile = mod.get();} 
 		if((mod = vals.search(Options.LINENO, match_all)) != null) {lineno = mod.get().to_int();} 
-		if((mod = vals.search(Options.LEVEL, match_all)) != null) {level = mod.get().to_int();} 
+		if((mod = vals.search(Options.LEVEL, match_all)) != null) {logLevel = mod.get().to_int();} 
 		if((mod = vals.search(Options.SEVERITY, match_all)) != null) {severity = mod.get().to_int();} 
-		wd.dump(pad, sourcefile, lineno, level, severity);
+		wd.dump(pad, sourcefile, lineno, logLevel, severity);
 		bye(pad, true);
 		return 0;
 	}
