@@ -21,7 +21,7 @@ internal abstract class ConsoleSpindle : Spindle {
 	public abstract void showHistory();
 	public abstract void addHistory(etxt*cmd);
 	public override int start(Spindle?plr) {
-		print("Started console stepping ..\n");
+		//print("Started console stepping ..\n");
 		
 		return 0;
 	}
@@ -45,10 +45,15 @@ internal abstract class ConsoleSpindle : Spindle {
 		}
 		try {
 			etxt inp = etxt.stack(512);
+			
 			int available = is.available_bytes();
-			if(available < 0) {
-				return 0;
+			if(available > 0) {
+				is.read(&inp);
+				if(!inp.is_empty()) {
+					perform_action(&inp);
+				}
 			}
+#if false
 			if(available == 1) {
 				is.readChar(&inp, true);
 				if(inp.length() == 1 && inp.char_at(inp.length()-1) == 72) { // left:75 right:77 down:80 up:72
@@ -56,9 +61,7 @@ internal abstract class ConsoleSpindle : Spindle {
 					return 0;
 				}
 			}
-			if(is.read(&inp) != 0) {
-				perform_action(&inp);
-			}
+#endif
 			inp.destroy();
 		} catch (IOStreamError.InputStreamError e) {
 			print("Error in standard input\n");
@@ -66,6 +69,7 @@ internal abstract class ConsoleSpindle : Spindle {
 		}
 		return 0;
 	}
+
 	public override int cancel() {
 		return 0;
 	}
