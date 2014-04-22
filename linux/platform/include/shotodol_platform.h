@@ -33,16 +33,35 @@
 
 // public class fileio
 
-#define fileio_stdin() ({STDIN_FILENO;})
+#include <unistd.h>
+#include <fcntl.h>
+#define fileio_stdin() ({int _stdfd = dup(STDIN_FILENO);long flags = fcntl(_stdfd, F_GETFL);fcntl(_stdfd, F_SETFL, flags|O_NONBLOCK);_stdfd;})
 
+#if 1
 #include <sys/ioctl.h> // defines FIONREAD 
 #define fileio_available_bytes(x) ({ \
 	int __bt=0;ioctl(x, FIONREAD, &__bt);__bt; \
 })
+#else
+#include <poll.h>
+#define fileio_available_bytes(x) ({ \
+	struct pollfd fds; \
+  int ret; \
+  fds.fd = fileno(stdin); \
+  fds.events = POLLIN; \
+  poll(&fds, 1, 0); \
+})
+#endif
 
+#if 1
 #define fileio_read(x,y) ({ \
 	int __rt = read(x, (y)->str+(y)->len, (y)->size - (y)->len - 1);if(__rt > 0) {(y)->len += __rt;}__rt; \
 })
+#else
+#define fileio_read(x,y) ({ \
+	char*__rt = fgets((y)->str+(y)->len, (y)->size - (y)->len, stdin);if(__rt != NULL) {(y)->len += strlen(__rt);}strlen(__rt); \
+})
+#endif
 
 #define fileio_read_line(x,y) ({ \
 	int __len = 0;char* __rt = fgets((y)->str+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \

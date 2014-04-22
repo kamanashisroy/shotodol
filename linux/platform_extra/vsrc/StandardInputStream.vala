@@ -30,10 +30,13 @@ public class shotodol.StandardInputStream : InputStream {
 	}
 
 	public override int read(etxt*buf) throws IOStreamError.InputStreamError {
-		if(fd.read(buf) == 0) {
+		int bytes = 0;
+		if((bytes = fd.read(buf)) == 0) {
 			throw new IOStreamError.InputStreamError.END_OF_DATA("File end");
+		} else if(bytes < 0) {
+			throw new IOStreamError.InputStreamError.END_OF_DATA("Fillme .. Some error");
 		}
-		return 0;
+		return bytes;
 	}
 	
 	public int readLine(etxt*buf) throws IOStreamError.InputStreamError {

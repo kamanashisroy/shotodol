@@ -36,7 +36,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		int duration = 100;
+		int duration = 1000;
 		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		parseOptions(cmdstr, &vals);
