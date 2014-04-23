@@ -30,7 +30,7 @@ namespace shotodol_platform {
 		[CCode (cname="fileio_stdin", cheader_filename = "shotodol_platform.h")]
 		public static fileio stdin();
 		[CCode (cname="fileio_available_bytes", cheader_filename = "shotodol_platform.h")]
-		public int available_bytes();
+		public int availableBytes();
 		[CCode (cname="fileio_read", cheader_filename = "shotodol_platform.h")]
 		public int read(etxt*buf);
 		[CCode (cname="fileio_read_line", cheader_filename = "shotodol_platform.h")]

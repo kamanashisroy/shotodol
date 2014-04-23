@@ -46,7 +46,7 @@ internal abstract class ConsoleSpindle : Spindle {
 		try {
 			etxt inp = etxt.stack(512);
 			
-			int available = is.available_bytes();
+			int available = is.availableBytes();
 			if(available > 0) {
 				is.read(&inp);
 				if(!inp.is_empty()) {
