@@ -14,8 +14,8 @@ public class shotodol.LineInputStream : InputStream {
 		rbuf = etxt.EMPTY();
 		rmem.buffer(128);
 	}
-	public override int available_bytes() throws IOStreamError.InputStreamError {
-		return is.available_bytes();
+	public override int availableBytes() throws IOStreamError.InputStreamError {
+		return is.availableBytes();
 	}
 	public override int readChar(etxt*buf, bool dry) throws IOStreamError.InputStreamError {
 		return is.readChar(buf, dry);

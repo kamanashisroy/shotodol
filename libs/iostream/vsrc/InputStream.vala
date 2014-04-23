@@ -16,7 +16,7 @@ public errordomain IOStreamError.InputStreamError {
 }
 
 public abstract class shotodol.InputStream : Replicable {
-	public virtual int available_bytes() throws IOStreamError.InputStreamError {
+	public virtual int availableBytes() throws IOStreamError.InputStreamError {
 		throw new IOStreamError.InputStreamError.NOT_SUPPORTED("available_bytes() is not supported");
 	}
 	public virtual int readChar(etxt*buf, bool dry) throws IOStreamError.InputStreamError {

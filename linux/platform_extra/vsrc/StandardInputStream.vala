@@ -14,8 +14,8 @@ public class shotodol.StandardInputStream : InputStream {
 	~StandardInputStream() {
 	}
 
-	public override int available_bytes() throws IOStreamError.InputStreamError {
-		return fd.available_bytes();
+	public override int availableBytes() throws IOStreamError.InputStreamError {
+		return fd.availableBytes();
 	}
 
 	public override int readChar(etxt*buf, bool dry) throws IOStreamError.InputStreamError {
