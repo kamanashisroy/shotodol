@@ -44,7 +44,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			src.shift((-skippable));
 	}
 	
-	int next_token(etxt*src, etxt*next) {
+	protected int next_token(etxt*src, etxt*next) {
 		uint i = 0;
 		int token_start = -1;
 		int len = src.length();
@@ -59,7 +59,7 @@ public abstract class shotodol.M100Parser: Replicable {
 				break;
 			} else {
 				token_start = (token_start == -1) ? (int)i : token_start;
-				if(x == ':' || x == '(' || x == ')' || x == '$') { // punkchuation
+				if(x == ':' || x == '(' || x == ')' || x == '$') { // punctuation
 					if(token_start == i) {
 						next.trim_to_length(i+1);
 					} else {

@@ -1,26 +1,17 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup command
+/** \addtogroup make100
  *  @{
  */
-public class shotodol.CommandSet: Replicable {
+public class shotodol.M100CommandSet: Replicable {
 	Set<M100Command> cmds;
 	BrainEngine<M100Command> be;
-	public CommandSet() {
+	public M100CommandSet() {
 		cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
-		// quit command
-		QuitCommand qtcmd = new QuitCommand();
-		register(qtcmd);
-		// help commands
-		HelpCommand hlpcmd = new HelpCommand();
-		register(hlpcmd);
-		// module commands
-		ModuleCommand mdcmd = new ModuleCommand();
-		register(mdcmd);
 	}
-	~CommandSet() {
+	~M100CommandSet() {
 		cmds.destroy();
 	}
 	public int list(OutputStream pad) {		

@@ -11,10 +11,10 @@ using shotodol;
  */
 public class shotodol.CommandServer: ModulePlugin {
 	public static CommandServer? server;
-	public CommandSet cmds;
+	public M100CommandSet cmds;
 	public CommandServer() {
 		name = etxt.from_static("commands");
-		cmds = new CommandSet();
+		cmds = new M100CommandSet();
 	}
 	public int act_on(etxt*cmd_str, OutputStream pad) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
@@ -34,6 +34,15 @@ public class shotodol.CommandServer: ModulePlugin {
 	
 	public override int init() {
 		server = this;
+		// quit command
+		QuitCommand qtcmd = new QuitCommand();
+		cmds.register(qtcmd);
+		// help commands
+		HelpCommand hlpcmd = new HelpCommand();
+		cmds.register(hlpcmd);
+		// module commands
+		ModuleCommand mdcmd = new ModuleCommand();
+		cmds.register(mdcmd);
 		return 0;
 	}
 	public override int deinit() {
