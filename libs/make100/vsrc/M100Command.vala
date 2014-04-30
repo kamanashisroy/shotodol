@@ -11,7 +11,19 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 	public enum OptionType {
 		TXT,
-		NONE,
+		NONE;
+		public void asText(etxt*buf) {
+			switch(this) {
+				case TXT:
+					buf.concat_string("<text>");
+					break;
+				case NONE:
+					buf.concat_string("<none>");
+					break;
+				default:
+					break;
+			}
+		}
 	}
 	//public etxt?cmdprefix;
 	Factory<M100CommandOption> options;

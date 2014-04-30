@@ -19,6 +19,9 @@ internal class shotodol.HelpCommand : M100Command {
 			LineAlign.next_token(&inp, &token); // second token
 			//token.zero_terminate();
 			if(token.is_empty()) {
+				if(i == 1) {
+					CommandServer.server.cmds.list(pad);
+				}
 				break;
 			}
 			if(i == 0) {

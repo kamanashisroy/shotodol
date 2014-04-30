@@ -17,8 +17,10 @@ internal class M100CommandOption : Replicable {
 		hash = id;
 	}
 	internal int desc(OutputStream pad) {
+		etxt tpText = etxt.stack(16);
+		tp.asText(&tpText);
 		etxt x = etxt.stack(128);
-		x.printf("\t%s\t\t%s\n", prefix.to_string(),  elab.to_string());
+		x.printf("\t%10.10s\t\t%10.10s\t%s\n", prefix.to_string(), tpText.to_string(),  elab.to_string());
 		pad.write(&x);
 		return 0;
 	}
