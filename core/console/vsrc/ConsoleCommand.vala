@@ -16,10 +16,10 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		base();
 		etxt again = etxt.from_static("-a");
 		etxt again_help = etxt.from_static("Try the command again");
-		addOption(&again, M100Command.OptionType.TXT, Options.AGAIN, &again_help);
+		addOption(&again, M100Command.OptionType.INT, Options.AGAIN, &again_help);
 		etxt glide = etxt.from_static("-gl");
 		etxt glide_help = etxt.from_static("Duration to glide(become inactive), 0 by default");
-		addOption(&glide, M100Command.OptionType.TXT, Options.GLIDE, &glide_help);
+		addOption(&glide, M100Command.OptionType.INT, Options.GLIDE, &glide_help);
 		etxt list = etxt.from_static("-l");
 		etxt list_help = etxt.from_static("List commands from history");
 		addOption(&list, M100Command.OptionType.NONE, Options.LIST, &list_help);
@@ -39,7 +39,11 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		int duration = 1000;
 		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
-		parseOptions(cmdstr, &vals);
+		if(parseOptions(cmdstr, &vals) != 0) {
+			desc(CommandDescType.COMMAND_DESC_FULL,pad);
+			bye(pad, false);
+			return 0;
+		}
 		container<txt>? mod;
 		if((mod = vals.search(Options.AGAIN, match_all)) != null) {
 			int index = mod.get().to_int();

@@ -11,15 +11,19 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 	public enum OptionType {
 		TXT,
+		INT,
 		NONE;
 		public void asText(etxt*buf) {
 			switch(this) {
 				case TXT:
 					buf.concat_string("<text>");
-					break;
+					return;
+				case INT:
+					buf.concat_string("<integer>");
+					return;
 				case NONE:
 					buf.concat_string("<none>");
-					break;
+					return;
 				default:
 					break;
 			}
@@ -44,7 +48,12 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 	
 	public int parseOptions(etxt*cmdstr, SearchableSet<txt>*val) {
-		M100CommandOption.parseOptions(cmdstr, val, &options);
+		try {
+			M100CommandOption.parseOptions(cmdstr, val, &options);
+		} catch(M100CommandOptionError.ParseError e) {
+			// TODO say error while parsing ..
+			return -1;
+		}
 		return 0;
 	}
 	

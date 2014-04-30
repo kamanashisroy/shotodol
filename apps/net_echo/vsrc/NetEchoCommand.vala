@@ -38,12 +38,12 @@ internal class shotodol.NetEchoCommand : M100Command {
 		etxt reconnect_help = etxt.from_static("Reconnect to server (see -send).");
 		addOption(&send, M100Command.OptionType.TXT, Options.BLUE_TEST_SEND, &send_help);
 		addOption(&echo, M100Command.OptionType.TXT, Options.BLUE_TEST_ECHO, &echo_help); 
-		addOption(&chunk_size, M100Command.OptionType.TXT, Options.BLUE_TEST_CHUNKSIZE, &chunk_size_help); 
-		addOption(&check_content, M100Command.OptionType.TXT, Options.BLUE_TEST_CHECKCONTENT, &check_content_help); 
-		addOption(&verbose, M100Command.OptionType.TXT, Options.BLUE_TEST_VERBOSE, &verbose_help); 
-		addOption(&interval, M100Command.OptionType.TXT, Options.BLUE_TEST_IO_INTERVAL, &interval_help); 
-		addOption(&dryrun, M100Command.OptionType.TXT, Options.BLUE_TEST_DRYRUN, &dryrun_help); 
-		addOption(&reconnect, M100Command.OptionType.TXT, Options.BLUE_TEST_RECONNECT, &reconnect_help); 
+		addOption(&chunk_size, M100Command.OptionType.INT, Options.BLUE_TEST_CHUNKSIZE, &chunk_size_help); 
+		addOption(&check_content, M100Command.OptionType.NONE, Options.BLUE_TEST_CHECKCONTENT, &check_content_help); 
+		addOption(&verbose, M100Command.OptionType.NONE, Options.BLUE_TEST_VERBOSE, &verbose_help); 
+		addOption(&interval, M100Command.OptionType.INT, Options.BLUE_TEST_IO_INTERVAL, &interval_help); 
+		addOption(&dryrun, M100Command.OptionType.NONE, Options.BLUE_TEST_DRYRUN, &dryrun_help); 
+		addOption(&reconnect, M100Command.OptionType.NONE, Options.BLUE_TEST_RECONNECT, &reconnect_help); 
 	}
 
 	~NetEchoCommand() {
@@ -61,7 +61,11 @@ internal class shotodol.NetEchoCommand : M100Command {
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
 		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
-		parseOptions(cmdstr, &vals);
+		if(parseOptions(cmdstr, &vals) != 0) {
+			desc(CommandDescType.COMMAND_DESC_FULL,pad);
+			bye(pad, false);
+			return 0;
+		}
 		int chunkSize = 32;
 		bool checkContent = false;
 		bool verbose = false;

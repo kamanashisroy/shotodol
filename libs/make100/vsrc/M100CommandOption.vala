@@ -4,7 +4,10 @@ using shotodol;
 /** \addtogroup make100
  *  @{
  */
-internal class M100CommandOption : Replicable {
+internal errordomain shotodol.M100CommandOptionError.ParseError {
+	MISSING_ARGUMENT,
+}
+internal class shotodol.M100CommandOption : Replicable {
 	txt prefix;
 	txt elab;
 	M100Command.OptionType tp;
@@ -19,12 +22,13 @@ internal class M100CommandOption : Replicable {
 	internal int desc(OutputStream pad) {
 		etxt tpText = etxt.stack(16);
 		tp.asText(&tpText);
+		tpText.zero_terminate();
 		etxt x = etxt.stack(128);
 		x.printf("\t%10.10s\t\t%10.10s\t%s\n", prefix.to_string(), tpText.to_string(),  elab.to_string());
 		pad.write(&x);
 		return 0;
 	}
-	internal static int parseOptions(etxt*cmdstr, SearchableSet<txt>*val, Factory<M100CommandOption>*opts) {
+	internal static int parseOptions(etxt*cmdstr, SearchableSet<txt>*val, Factory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
 		etxt token = etxt.EMPTY();
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		while(true) {
@@ -40,9 +44,20 @@ internal class M100CommandOption : Replicable {
 				M100CommandOption? opt = it.get();
 				//print("matching %s %s\n", token.to_string(), opt.prefix.to_string());
 				if(token.equals((aroop.etxt*)opt.prefix)) {
-					//print("matched %d \n", (int)opt.hash);
 					if(opt.tp == M100Command.OptionType.TXT) {
 						LineAlign.next_token(&inp, &token);
+						if(token.is_empty_magical() || token.char_at(0) == '-') {
+							it.destroy();
+							throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected text value here");
+						}
+						txt x = new txt.memcopy_etxt(&token);
+						val.add_container(x, opt.hash);
+					} else if(opt.tp == M100Command.OptionType.INT) {
+						LineAlign.next_token(&inp, &token);
+						if(token.is_empty_magical() || (token.char_at(0) - '0') > 9) {
+							it.destroy();
+							throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected decimal value here");
+						}
 						txt x = new txt.memcopy_etxt(&token);
 						val.add_container(x, opt.hash);
 					} else if(opt.tp == M100Command.OptionType.NONE) {

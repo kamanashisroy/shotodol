@@ -53,8 +53,8 @@ internal class IdleCommand : M100Command {
 		etxt on_help = etxt.from_static("Start idle process");
 		etxt off = etxt.from_static("off");
 		etxt off_help = etxt.from_static("Ends idle process");
-		addOption(&on, M100Command.OptionType.TXT, Options.IDLE_ON, &on_help);
-		addOption(&off, M100Command.OptionType.TXT, Options.IDLE_OFF, &off_help); 
+		addOption(&on, M100Command.OptionType.NONE, Options.IDLE_ON, &on_help);
+		addOption(&off, M100Command.OptionType.NONE, Options.IDLE_OFF, &off_help); 
 	}
 
 	~IdleCommand() {
@@ -70,7 +70,11 @@ internal class IdleCommand : M100Command {
 		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		bool on = false;
-		parseOptions(cmdstr, &vals);
+		if(parseOptions(cmdstr, &vals) != 0) {
+			desc(CommandDescType.COMMAND_DESC_FULL, pad);
+			bye(pad, false);
+			return 0;
+		}
 		container<txt>? mod;
 		mod = vals.search(Options.IDLE_ON, match_all);
 		if(mod != null) {

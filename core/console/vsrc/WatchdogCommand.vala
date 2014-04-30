@@ -25,10 +25,10 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		etxt lineno_help = etxt.from_static("Match line number");
 		etxt severity = etxt.from_static("-s");
 		etxt severity_help = etxt.from_static("Message severity");
-		addOption(&level, M100Command.OptionType.TXT, Options.LEVEL, &level_help);
+		addOption(&level, M100Command.OptionType.INT, Options.LEVEL, &level_help);
 		addOption(&filename, M100Command.OptionType.TXT, Options.FILENAME, &filename_help); 
-		addOption(&lineno, M100Command.OptionType.TXT, Options.LINENO, &lineno_help); 
-		addOption(&severity, M100Command.OptionType.TXT, Options.SEVERITY, &severity_help); 
+		addOption(&lineno, M100Command.OptionType.INT, Options.LINENO, &lineno_help); 
+		addOption(&severity, M100Command.OptionType.INT, Options.SEVERITY, &severity_help); 
 
 	}
 
@@ -49,7 +49,11 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		int severity = -1;
 		
 		SearchableSet<txt> vals = SearchableSet<txt>();
-		parseOptions(cmdstr, &vals);
+		if(parseOptions(cmdstr, &vals) != 0) {
+			desc(CommandDescType.COMMAND_DESC_FULL, pad);
+			bye(pad, false);
+			return 0;
+		}
 		container<txt>? mod;
 		if((mod = vals.search(Options.FILENAME, match_all)) != null) {sourcefile = mod.get();} 
 		if((mod = vals.search(Options.LINENO, match_all)) != null) {lineno = mod.get().to_int();} 

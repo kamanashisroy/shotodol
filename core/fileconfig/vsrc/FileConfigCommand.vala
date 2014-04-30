@@ -26,7 +26,11 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
 		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
-		parseOptions(cmdstr, &vals);
+		if(parseOptions(cmdstr, &vals) != 0) {
+			desc(CommandDescType.COMMAND_DESC_FULL, pad);
+			bye(pad, false);
+			return 0;
+		}
 		do {
 			container<txt>? mod;
 			if((mod = vals.search(Options.INFILE, match_all)) == null) {
