@@ -15,8 +15,10 @@ internal class MakeCommand : M100Command {
 		TARGET = 1,
 		FILE,
 	}
-	public MakeCommand() {
+	unowned M100CommandSet cmdSet;
+	public MakeCommand(M100CommandSet gCmdSet) {
 		base();
+		cmdSet = gCmdSet;
 		etxt target = etxt.from_static("-t");
 		etxt target_help = etxt.from_static("target name");
 		etxt file = etxt.from_static("-f");
@@ -79,7 +81,7 @@ internal class MakeCommand : M100Command {
 				dlg.printf("command:%s\n", cmd.to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 				// execute command
-				CommandServer.server.act_on(cmd, pad);
+				cmdSet.act_on(cmd, pad);
 			}
 		}
 		bye(pad, true);

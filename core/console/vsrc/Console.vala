@@ -15,7 +15,7 @@ public class Console : ModulePlugin {
 	ConsoleCommand? ccmd = null;
 	WatchdogCommand? wcmd = null;
 	public override int init() {
-		ccmd = new ConsoleCommand();
+		ccmd = new ConsoleCommand(CommandServer.server.cmds);
 		wcmd = new WatchdogCommand();
 		CommandServer.server.cmds.register(ccmd);
 		CommandServer.server.cmds.register(wcmd);

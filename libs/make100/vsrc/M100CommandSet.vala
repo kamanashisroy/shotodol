@@ -5,14 +5,17 @@ using shotodol;
  *  @{
  */
 public class shotodol.M100CommandSet: Replicable {
+	public HashTable<M100Variable?> vars;
 	Set<M100Command> cmds;
 	BrainEngine<M100Command> be;
 	public M100CommandSet() {
 		cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
+		vars = HashTable<M100Variable?>();
 	}
 	~M100CommandSet() {
 		cmds.destroy();
+		vars.destroy();
 	}
 	public int list(OutputStream pad) {		
 		cmds.visit_each((data) =>{
@@ -38,6 +41,24 @@ public class shotodol.M100CommandSet: Replicable {
 	}
 	public M100Command? percept(etxt*cmd_str) {
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
+	}
+	public int act_on(etxt*cmd_str, OutputStream pad) {
+		if(cmd_str.char_at(0) == '#') { // skip the comments
+			return 0;
+		}
+		etxt target = etxt.EMPTY();
+		txt rcmd = M100Command.rewrite(cmd_str, &vars);
+		M100Command? mycmd = percept(rcmd);
+		//io.say_static("acting ..\n");
+		if(mycmd == null) {
+			// show menu ..
+			etxt dlg = etxt.from_static("Command not found. Please try one of the following..\n");
+			pad.write(&dlg);
+			list(pad);
+			return 0;
+		}
+		mycmd.act_on(rcmd, pad);
+		return 0;
 	}
 }
 /* @} */

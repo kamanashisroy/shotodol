@@ -12,8 +12,10 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		GLIDE,
 	}
 	ConsoleHistory sp;
-	public ConsoleCommand() {
+	unowned M100CommandSet cmdSet;
+	public ConsoleCommand(M100CommandSet gCmdSet) {
 		base();
+		cmdSet = gCmdSet;
 		etxt again = etxt.from_static("-a");
 		etxt again_help = etxt.from_static("Try the command again");
 		addOption(&again, M100Command.OptionType.INT, Options.AGAIN, &again_help);
@@ -52,7 +54,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 				bye(pad, false);
 				return 0;
 			}
-			CommandServer.server.act_on(again, pad);
+			cmdSet.act_on(again, pad);
 			bye(pad, true);
 			return 0;
 		}

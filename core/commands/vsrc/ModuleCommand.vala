@@ -9,7 +9,7 @@ internal class shotodol.ModuleCommand : M100Command {
 	enum Options {
 		LOAD = 1,
 		UNLOAD,
-		LIST, // TODO show the list of modules
+		LIST,
 	}
 	public ModuleCommand() {
 		base();
@@ -17,8 +17,11 @@ internal class shotodol.ModuleCommand : M100Command {
 		etxt load_help = etxt.from_static("loads a module");
 		etxt unload = etxt.from_static("-unload");
 		etxt unload_help = etxt.from_static("unloads a module");
+		etxt list = etxt.from_static("-l");
+		etxt list_help = etxt.from_static("List all modules");
 		addOption(&load, M100Command.OptionType.TXT, Options.LOAD, &load_help);
 		addOption(&unload, M100Command.OptionType.TXT, Options.UNLOAD, &unload_help); 
+		addOption(&list, M100Command.OptionType.NONE, Options.LIST, &list_help); 
 	}
 	
 	public override etxt*get_prefix() {
@@ -50,6 +53,10 @@ internal class shotodol.ModuleCommand : M100Command {
 		if(mod != null) {
 			etxt err = etxt.from_static("TODO:unload module\n");
 			pad.write(&err);
+		}
+		mod = vals.search(Options.LIST, match_all);
+		if(mod != null) {
+			CommandServer.server.cmds.list(pad);
 		}
 		bye(pad, true);
 		return 0;

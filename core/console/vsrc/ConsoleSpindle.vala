@@ -31,7 +31,7 @@ internal abstract class ConsoleSpindle : Spindle {
 		etxt dlg = etxt.stack(64);
 		dlg.printf("Executing:%s\n", cmd.to_string());
 		pad.write(&dlg);
-		CommandServer.server.act_on(cmd, pad);
+		CommandServer.server.cmds.act_on(cmd, pad);
 		dlg.printf("\n");
 		pad.write(&dlg);
 		addHistory(cmd);

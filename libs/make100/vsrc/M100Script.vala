@@ -4,20 +4,17 @@ using aroop;
  *  @{
  */
 public class shotodol.M100Script : M100Parser {
-	SearchableSet<M100Variable> vars;
 	public M100Script() {
 		base();
-		vars = SearchableSet<M100Variable>();
-		args = ArrayList<txt?>();
+		args = HashTable<M100Variable?>();
 	}
 	
 	~M100Script() {
-		vars.destroy();
 	}
 	int expt;
 	M100Function? func;
 	txt?current_target;
-	ArrayList<txt?>args;
+	HashTable<M100Variable?>args;
 	public int target(etxt*tg) {
 		expt = 0;
 		if(tg.is_empty_magical()) {
@@ -34,7 +31,11 @@ public class shotodol.M100Script : M100Parser {
 				//current_function = null;
 				break;
 			}
-			args[argc] = new txt.memcopy_etxt(&token);
+			M100Variable varVal = new M100Variable();
+			varVal.set(&token);
+			txt varName = new txt.memcopy("0", 4);
+			varName.printf("%d", argc);
+			args.set(varName, varVal);
 			argc++;
 		} while(true);
 		
@@ -55,33 +56,7 @@ public class shotodol.M100Script : M100Parser {
 		if(current_target == null || cmd == null) {
 			return cmd;
 		}
-		// rewrite the command with args
-		int rewritelen = cmd.length();
-		rewritelen+= current_target.length();
-		txt?arg1 = args.get(0);
-		core.assert(arg1 != null);
-		etxt rewritecmd = etxt.stack(rewritelen);
-		char p = '\0';
-		int i;
-		int len = cmd.length();
-		for(i = 0; i < len; i++) {
-			char x = cmd.char_at(i);
-			if(p == '$' && (x - '0') >= 0 && (x - '0') <= 9 ) { // variable
-				x = x - '0';
-				txt?arg = args.get(x);
-				if(arg != null) {
-					rewritecmd.concat(arg);
-				} else {
-					// do nothing
-				}
-			} else if(x == '$') {
-				// do nothing ..
-			} else {
-				rewritecmd.concat_char(x);
-			}
-			p = x;
-		}
-		return new txt.memcopy_etxt(&rewritecmd);
+		return M100Command.rewrite(cmd, &args);
 	}
 }
 /** @}*/

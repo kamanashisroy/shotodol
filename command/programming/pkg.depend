@@ -1,0 +1,5 @@
+core/base
+core/commands
+core/test
+libs/make100
+OS_PLATFORM/platform_extra

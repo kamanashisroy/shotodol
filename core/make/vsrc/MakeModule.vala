@@ -8,12 +8,12 @@ public class shotodol.MakeModule : ModulePlugin {
 	MakeCommand? cmd;
 	MakeTest? mt;
 	public override int init() {
-		cmd = new MakeCommand();
+		cmd = new MakeCommand(CommandServer.server.cmds);
 		mt = new MakeTest();
 		UnitTestModule.inst.register(mt);
 		CommandServer.server.cmds.register(cmd);
 		etxt cmd = etxt.from_static("make -f shotodol.mk -t all\n");
-		CommandServer.server.act_on(&cmd, new StandardOutputStream());
+		CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream());
 		return 0;
 	}
 	public override int deinit() {

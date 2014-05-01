@@ -19,6 +19,7 @@ core/console
 core/idle
 core/profiler
 core/make
+command/programming
 libs/turbine
 apps/net_echo
 main/main

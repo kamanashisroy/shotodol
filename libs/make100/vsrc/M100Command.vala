@@ -94,5 +94,55 @@ public abstract class shotodol.M100Command : Replicable {
 		}
 		return 0;
 	}
+	public static txt? rewrite(etxt*cmd, HashTable<M100Variable?>*gVars) {
+		// rewrite the command with args
+		int rewritelen = cmd.length();
+		rewritelen+= 512;
+		etxt rewritecmd = etxt.stack(rewritelen);
+		char p = '\0';
+		int i;
+		int len = cmd.length();
+		int varStart = -1;
+		etxt varName = etxt.EMPTY();
+		for(i = 0; i < len; i++) {
+			char x = cmd.char_at(i);
+			if(varStart >= 0) {
+				if(x == ')') {
+					varName = etxt.dup_etxt(cmd);
+					varName.trim_to_length(i);
+					varName.shift(varStart);
+					varStart = -1;
+					M100Variable?varVal = gVars.get(&varName);
+					if(varVal != null)varVal.concat(&rewritecmd);
+					//print("var name %s[%d]\n", varName.to_string(), varName.length());
+					varName.destroy();
+				}
+				continue;
+			}
+			if(p == '$' && (x - '0') >= 0 && (x - '0') <= 9 ) { // variable
+				varName = etxt.stack(2);
+				varName.concat_char(x);
+				varStart = -1;
+				M100Variable?varVal = gVars.get(&varName);
+				if(varVal != null)varVal.concat(&rewritecmd);
+				print("var name %s\n", varName.to_string());
+				varName.destroy();
+				x = 0; // eat x
+			} else if(p == '$' && x == '$') {
+				rewritecmd.concat_char(x);
+				x = 0; // eat x
+			} else if(p == '$' && x == '(') {
+				varStart = i+1;
+				x = 0; // eat x
+			} else if(x == '$') {
+				// do nothing ..
+			} else {
+				rewritecmd.concat_char(x);
+			}
+			p = x;
+		}
+		return new txt.memcopy_etxt(&rewritecmd);
+	}
+
 }
 /** @}*/
