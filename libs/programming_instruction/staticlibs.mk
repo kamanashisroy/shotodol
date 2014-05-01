@@ -1,0 +1,3 @@
+PROGRAMMING_INSTRUCTION_CSOURCES=$(wildcard $(SHOTODOL_HOME)/libs/programming_instruction/vsrc/*.c)
+PROGRAMMING_INSTRUCTION_VSOURCE_BASE=$(basename $(notdir $(PROGRAMMING_INSTRUCTION_CSOURCES)))
+OBJECTS+=$(addprefix $(SHOTODOL_HOME)/build/.objects/, $(addsuffix .o,$(PROGRAMMING_INSTRUCTION_VSOURCE_BASE)))

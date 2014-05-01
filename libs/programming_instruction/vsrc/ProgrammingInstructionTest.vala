@@ -3,16 +3,16 @@ using shotodol;
 
 /**
  * \ingroup command
- * \defgroup command_programming Programming support for command scripts.
+ * \defgroup programming_instruction Programming support for command scripts.
  */
 
-/** \addtogroup command_programming
+/** \addtogroup programming_instruction
  *  @{
  */
-public class CommandProgrammingTest : UnitTest {
+public class ProgrammingInstructionTest : UnitTest {
 	etxt tname;
-	public CommandProgrammingTest() {
-		tname = etxt.from_static("CommandProgramming Test");
+	public ProgrammingInstructionTest() {
+		tname = etxt.from_static("ProgrammingInstruction Test");
 	}
 	public override aroop_hash getHash() {
 		return tname.get_hash();
@@ -22,10 +22,11 @@ public class CommandProgrammingTest : UnitTest {
 	}
 	public override int test() throws UnitTestError {
 		M100CommandSet cmds = new M100CommandSet();
-		CommandProgramming cp = new CommandProgramming(cmds);
+		ProgrammingInstruction cp = new ProgrammingInstruction();
+		cp.register(cmds);
 		StandardOutputStream so = new StandardOutputStream();
 		etxt dlg = etxt.stack(128);
-		dlg.concat_string("CommandProgrammingTest:");
+		dlg.concat_string("ProgrammingInstructionTest:");
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.WatchdogSeverity.LOG,0,0,&dlg);
 		etxt cmd = etxt.stack(128);
 		cmd.concat_string("set -var x -val 1");
@@ -36,9 +37,11 @@ public class CommandProgrammingTest : UnitTest {
 		cmd.trim_to_length(0);
 		cmd.concat_char('x');
 		
-		M100Variable val = cmds.vars.get(&cmd);
+		M100Variable?val = cmds.vars.get(&cmd);
 		bool success = false;
-		if(val.intval == 3) {
+		dlg.trim_to_length(0);
+		dlg.concat_string("ProgrammingInstructionTest:");
+		if(val != null && val.intval == 3) {
 			success = true;
 			dlg.concat_string("Success");
 		} else {
@@ -46,6 +49,7 @@ public class CommandProgrammingTest : UnitTest {
 			dlg.concat_string("Fail");
 		}
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,success?Watchdog.WatchdogSeverity.LOG:Watchdog.WatchdogSeverity.ERROR,0,0,&dlg);
+		cp.unregister();
 		return 0;
 	}
 }

@@ -5,6 +5,5 @@ all:
 	help module
 	help fileconf
 	fileconf -i ./shotodol.conf
-	module -load command/programming/plugin.so
 
 

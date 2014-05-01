@@ -1,5 +1,3 @@
-core/base
-core/commands
-core/test
 libs/make100
+libs/unittest
 OS_PLATFORM/platform_extra

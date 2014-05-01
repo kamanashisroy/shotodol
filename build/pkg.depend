@@ -11,15 +11,16 @@ libs/db
 libs/make100
 OS_PLATFORM/platform_net
 libs/netio
+libs/programming_instruction
 core/base
 core/commands
 core/test
+core/programming
 core/fileconfig
 core/console
 core/idle
 core/profiler
 core/make
-command/programming
 libs/turbine
 apps/net_echo
 main/main
