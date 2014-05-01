@@ -16,6 +16,8 @@ internal class shotodol.EchoCommand : shotodol.M100Command {
 		etxt token = etxt.EMPTY();
 		LineAlign.next_token(&inp, &token); // second token
 		pad.write(&inp);
+		etxt newLine = etxt.from_static("\n");
+		pad.write(&newLine);
 		inp.destroy();
 		bye(pad, true);
 		return 0;

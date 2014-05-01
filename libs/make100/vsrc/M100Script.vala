@@ -56,7 +56,11 @@ public class shotodol.M100Script : M100Parser {
 		if(current_target == null || cmd == null) {
 			return cmd;
 		}
+#if false
 		return M100Command.rewrite(cmd, &args);
+#else
+		return cmd;
+#endif
 	}
 }
 /** @}*/
