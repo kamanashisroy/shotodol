@@ -29,7 +29,6 @@ public class shotodol.BufferedOutputStream : OutputStream {
 		}
 		int len = buf.length();
 		cache.concat(buf);
-		buf.shift(len-1);
 		return len;
 	}
 	public override void close() throws IOStreamError.OutputStreamError {
