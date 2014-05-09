@@ -4,7 +4,9 @@ libs/watchdog
 libs/module
 libs/str_arms 
 libs/config
+libs/iterator
 OS_PLATFORM/platform_extra
+OS_PLATFORM/platform_fileutils
 libs/propeller
 libs/bundle
 libs/db

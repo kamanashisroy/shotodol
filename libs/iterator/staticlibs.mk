@@ -1,0 +1,5 @@
+
+DEFAULT_ITERATOR_CSOURCES=$(wildcard $(SHOTODOL_HOME)/libs/iterator/vsrc/*.c)
+DEFAULT_ITERATOR_VSOURCE_BASE=$(basename $(notdir $(DEFAULT_ITERATOR_CSOURCES)))
+OBJECTS+=$(addprefix $(OBJDIR)/, $(addsuffix .o,$(DEFAULT_ITERATOR_VSOURCE_BASE)))
+
