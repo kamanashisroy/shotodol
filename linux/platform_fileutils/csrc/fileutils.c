@@ -10,7 +10,10 @@ static aroop_none* shotodol_dir_get (aroop_cl_shotodol_shotodol_default_iterator
 	shotodol_dir_t*x = (self_data+1);
 	x--;
 	//readdir_r(x->dir, x->entry, result);
-	*result = readdir(x->dir);
+	struct dirent*node = readdir(x->dir);
+	x->filenode.filename.str = node->d_name;
+	x->filenode.filename.len = strlen(node->d_name);
+	*result = &x->filenode;
 	return *result;
 }
 
@@ -21,6 +24,7 @@ static int shotodol_dir_setup(shotodol_dir_t*x) {
 	if(dir_vtable.get != shotodol_dir_get)
 		dir_vtable.get = shotodol_dir_get;
 	x->it.vtable = &dir_vtable;
+	aroop_memclean_raw(&x->filenode.filename, sizeof(x->filenode.filename));
 }
 
 int shotodol_dir_open(shotodol_dir_t*x, struct aroop_txt*gPath) {
@@ -32,7 +36,7 @@ int shotodol_dir_open(shotodol_dir_t*x, struct aroop_txt*gPath) {
 		}
 	}
 	struct aroop_txt path;
-	aroop_txt_is_empty(&path);
+	aroop_memclean_raw(&path, sizeof(path));
 	int len = gPath->len+1;
 	aroop_txt_buffer(&path, len);
 	memcpy(path.str, gPath->str, len-1);

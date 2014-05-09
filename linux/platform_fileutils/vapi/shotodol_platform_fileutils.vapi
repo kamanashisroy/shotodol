@@ -12,6 +12,7 @@ namespace shotodol_platform_fileutils {
 	[Compact]
 	[CCode (cname="shotodol_platform_filenode_t", cheader_filename = "shotodol_platform_fileutils.h")]
 	public class FileNode {
+		[CCode (cname="filename", cheader_filename = "shotodol_platform_fileutils.h")]
 		public etxt fileName;
 	}
 	[CCode (cname="shotodol_dir_t", cheader_filename = "shotodol_platform_fileutils.h")]

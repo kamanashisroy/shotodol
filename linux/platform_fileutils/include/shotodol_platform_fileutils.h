@@ -6,8 +6,13 @@
 #include "shotodol_iterator.h"
 
 typedef struct {
+	aroop_txt_t filename;
+} shotodol_platform_filenode_t;
+
+typedef struct {
 	DIR*dir;
 	//struct direct entry;
+	shotodol_platform_filenode_t filenode;
 	aroop_cl_shotodol_shotodol_default_iterator it;
 } shotodol_dir_t;
 int shotodol_dir_open(shotodol_dir_t*output, struct aroop_txt*path);
