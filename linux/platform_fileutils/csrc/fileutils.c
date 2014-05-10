@@ -11,6 +11,10 @@ static aroop_none* shotodol_dir_get (aroop_cl_shotodol_shotodol_default_iterator
 	x--;
 	//readdir_r(x->dir, x->entry, result);
 	struct dirent*node = readdir(x->dir);
+	if(node == NULL) {
+		*result = NULL;
+		return *result;
+	}
 	x->filenode.filename.str = node->d_name;
 	x->filenode.filename.len = strlen(node->d_name);
 	*result = &x->filenode;
