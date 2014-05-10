@@ -1,5 +1,5 @@
 
-PLATFORM_FILE_UTILS_CSOURCES=$(wildcard $(SHOTODOL_HOME)/$(PLATFORM)/fileutils/csrc/*.c)
+PLATFORM_FILE_UTILS_CSOURCES=$(wildcard $(SHOTODOL_HOME)/$(PLATFORM)/platform_fileutils/csrc/*.c)
 PLATFORM_FILE_UTILS_VSOURCE_BASE=$(basename $(notdir $(PLATFORM_FILE_UTILS_CSOURCES)))
 OBJECTS+=$(addprefix $(OBJDIR)/, $(addsuffix .o,$(PLATFORM_FILE_UTILS_VSOURCE_BASE)))
 

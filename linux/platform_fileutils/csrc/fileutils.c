@@ -38,7 +38,7 @@ int shotodol_dir_open(shotodol_dir_t*x, struct aroop_txt*gPath) {
 	struct aroop_txt path;
 	aroop_memclean_raw(&path, sizeof(path));
 	int len = gPath->len+1;
-	aroop_txt_buffer(&path, len);
+	aroop_txt_embeded_buffer(&path, len);
 	memcpy(path.str, gPath->str, len-1);
 	path.str[len-1] = '\0';
 	x->dir = opendir(gPath->str);
