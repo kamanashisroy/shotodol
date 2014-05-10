@@ -19,8 +19,8 @@ namespace shotodol_platform_fileutils {
 	public struct Directory {
 		[CCode (cname="shotodol_opendir", cheader_filename = "shotodol_platform_fileutils.h")]
 		public Directory(etxt*dir); // etxt SHOULD be zero terminated
-		[CCode (cname="&it", cheader_filename = "shotodol_platform_fileutils.h")]
-		public unowned DefaultIterator<FileNode> it;
+		[CCode (cname="shotodol_default_iterator", cheader_filename = "shotodol_platform_fileutils.h")]
+		public unowned shotodol.DefaultIterator<FileNode> iterator();
 		[CCode (cname="shotodol_closedir", cheader_filename = "shotodol_platform_fileutils.h")]
 		public int close();
 	}
