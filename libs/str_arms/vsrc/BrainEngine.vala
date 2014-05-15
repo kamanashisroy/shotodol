@@ -35,7 +35,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 	}
 	
 	public G? percept_prefix_match(etxt*wds) {
-		if(wds.is_empty()) {
+		if(wds.is_empty_magical()) {
 			return null;
 		}		
 		G?ret = null;
