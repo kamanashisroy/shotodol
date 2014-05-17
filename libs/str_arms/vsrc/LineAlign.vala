@@ -76,10 +76,18 @@ public class shotodol.LineAlign<G> : Replicable {
 		bool stringLiteral = false;
 		for(i = 0; i < len; i++) {
 			char x = src.char_at(i);
-			if((stringLiteral && x == '\"') || ( !stringLiteral && ( x == ' ' || x == '\r' || x == '\n' || x == '\"') ) ) {
+			bool isQuote = (x == '\"');
+			if((stringLiteral && isQuote) || ( !stringLiteral && ( x == ' ' || x == '\r' || x == '\n' || isQuote) ) ) {
 				if(token_start == -1) {
-					stringLiteral = true;
+					if(isQuote) {
+						stringLiteral = true;
+						token_start = (int)i+1; // skip the quotation mark ..
+					}
 					continue;
+				} else if(stringLiteral && isQuote) {
+					trim_at = (int)i;
+					i++; // skip the quotation mark ..
+					break;
 				}
 				trim_at = (int)i;
 				break;
@@ -87,7 +95,7 @@ public class shotodol.LineAlign<G> : Replicable {
 				token_start = (token_start < 0) ? (int)i : token_start;
 				if(!stringLiteral && delim.contains_char(x)) {
 					if(token_start == i) {
-						i++;
+						i++; // this is one character token, it should contain only the delimiter
 					}
 					trim_at = (int)i;
 					break;
