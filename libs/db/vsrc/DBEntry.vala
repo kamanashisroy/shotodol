@@ -49,6 +49,14 @@ public class shotodol.DBEntry : Searchable {
 		cell.hash = id.hash;
 		closed = false;
 	}
+
+	public int build(DBId id) {
+		DBEntryCell cell = DBEntryFactory.cells.alloc_full(); // XXX how to free the memory ??
+		bndlr.setCarton(&cell.content, 32);
+		cell.hash = id.hash;
+		closed = false;
+		return 0;
+	}
 	
 	public int addInt(int index, int val) throws BundlerError {
 		if(closed) {
@@ -62,8 +70,21 @@ public class shotodol.DBEntry : Searchable {
 		if(closed) {
 			throw new db_entry.entry_error.entry_closed("entry closed\n");
 		}
-		// TODO fill me
-		//cell.writeETxt();
+		bndlr.writeETxt((aroop_uword8)index, val);
+		return 0;
+	}
+
+	public int addETxt(int index, etxt*val) throws BundlerError {
+		if(closed) {
+			throw new db_entry.entry_error.entry_closed("entry closed\n");
+		}
+		bndlr.writeETxt((aroop_uword8)index, val);
+		return 0;
+	}
+
+	public int copyAs(etxt*output) {
+		output.destroy();
+		(*output) = etxt.given_length((string)bndlr.ctn.data, bndlr.bytes,this);
 		return 0;
 	}
 	
