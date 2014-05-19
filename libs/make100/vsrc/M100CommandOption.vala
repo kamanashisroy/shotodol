@@ -14,6 +14,7 @@ internal class shotodol.M100CommandOption : Replicable {
 	aroop_hash hash;
 	
 	internal void build(etxt*pre, M100Command.OptionType opt_type, aroop_hash id, etxt*help) {
+		memclean_raw();
 		prefix = new txt.memcopy_etxt(pre);
 		elab = new txt.memcopy_etxt(help);
 		tp = opt_type;
