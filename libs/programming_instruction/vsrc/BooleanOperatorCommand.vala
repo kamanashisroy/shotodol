@@ -60,16 +60,26 @@ public class shotodol.BooleanOperatorCommand : shotodol.M100Command {
 			bye(pad, false);
 			return 0;
 		}
+#if false
 		int outlen = x.length() + y.length() + 128;
 		etxt out = etxt.stack(outlen);
-		int val = execOperation(&out,x,y,(x.char_at(0)-'0' <= 9));
+#endif
+		uchar xdigit = x.char_at(0) - '0';
+		etxt dlg = etxt.stack(128);
+		dlg.printf("%s comparison\n", ((xdigit <= 9) && (xdigit >= 0)) ? "Integer" : "String" );
+		pad.write(&dlg);
+#if false
+		int val = execOperation(&out,x,y,(xdigit <= 9) && (xdigit >= 0));
+#else
+		int val = execOperation(x,y,(xdigit <= 9) && (xdigit >= 0));
+#endif
 		M100Variable mval = new M100Variable();
 		mval.setBool(val == 1?true:false);
 		cmds.vars.set(z, mval);
 		bye(pad, true);
 		return 0;
 	}
-	protected virtual int execOperation(etxt*out, txt x, txt y, bool isInt) {
+	protected virtual int execOperation(txt x, txt y, bool isInt) {
 		return 0;
 	}
 }
@@ -82,16 +92,14 @@ internal class shotodol.LessThanCommand : shotodol.BooleanOperatorCommand {
 		prfx = etxt.from_static("lt");
 		return &prfx;
 	}
-	protected override int execOperation(etxt*out, txt x, txt y, bool isInt) {
+	protected override int execOperation(txt x, txt y, bool isInt) {
 		if(isInt) {
 			int xval = ((etxt*)x).to_int();
 			int yval = ((etxt*)y).to_int();
 			if(xval < yval) {
-				out.concat_char('1');
-				return 0;
+				return 1;
 			}
 		}
-	 	out.concat_char('0');
 		return 0;
 	}
 }
@@ -104,16 +112,14 @@ internal class shotodol.GreaterThanCommand : shotodol.BooleanOperatorCommand {
 		prfx = etxt.from_static("gt");
 		return &prfx;
 	}
-	protected override int execOperation(etxt*out, txt x, txt y, bool isInt) {
+	protected override int execOperation(txt x, txt y, bool isInt) {
 		if(isInt) {
 			int xval = ((etxt*)x).to_int();
 			int yval = ((etxt*)y).to_int();
 			if(xval > yval) {
-				out.concat_char('1');
-				return 0;
+				return 1;
 			}
 		}
-	 	out.concat_char('0');
 		return 0;
 	}
 }
@@ -126,19 +132,16 @@ internal class shotodol.EqualsCommand : shotodol.BooleanOperatorCommand {
 		prfx = etxt.from_static("eq");
 		return &prfx;
 	}
-	protected override int execOperation(etxt*out, txt x, txt y, bool isInt) {
+	protected override int execOperation(txt x, txt y, bool isInt) {
 		if(isInt) {
 			int xval = ((etxt*)x).to_int();
 			int yval = ((etxt*)y).to_int();
 			if(xval == yval) {
-				out.concat_char('1');
-				return 0;
+				return 1;
 			}
 		} else if(x.equals(y)) {
-			out.concat_char('1');
-			return 0;
+			return 1;
 		}
-	 	out.concat_char('0');
 		return 0;
 	}
 }
