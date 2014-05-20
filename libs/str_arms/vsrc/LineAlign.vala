@@ -20,6 +20,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	}
 	
 	public void build(WordSet wds, G?given_sense) {
+		memclean_raw();
 		aln = SearchableSet<txt>();
 		words = wds;
 		sense = given_sense;
