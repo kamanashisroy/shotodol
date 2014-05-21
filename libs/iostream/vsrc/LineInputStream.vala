@@ -8,11 +8,11 @@ public class shotodol.LineInputStream : InputStream {
 	InputStream is;
 	etxt rbuf;
 	etxt rmem;
-	public LineInputStream(InputStream down_stream) {
+	public LineInputStream(InputStream down_stream, int bufferSize = 1024) {
 		is = down_stream;
 		rmem = etxt.EMPTY();
 		rbuf = etxt.EMPTY();
-		rmem.buffer(128);
+		rmem.buffer(bufferSize);
 	}
 	public override int availableBytes() throws IOStreamError.InputStreamError {
 		return is.availableBytes();
