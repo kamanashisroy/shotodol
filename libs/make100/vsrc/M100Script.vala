@@ -43,10 +43,8 @@ public class shotodol.M100Script : M100Parser {
 		return (func == null)?-1:0;
 	}
 	public txt? step() {
-		etxt dlg = etxt.stack(128);
 		if(func == null) {
-			dlg.printf("no function is selected\n");
-			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(), 10,0,0,0,&dlg);
+			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 10,0,0,0, "no function is selected\n");
 			return null;
 		}
 		if(expt == 0) {

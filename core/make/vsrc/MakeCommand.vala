@@ -51,7 +51,7 @@ internal class MakeCommand : M100Command {
 				script.startParsing();
 				while(true) {
 					try {
-						etxt buf = etxt.stack(128);
+						etxt buf = etxt.stack(1024);
 						if(lis.read(&buf) == 0) {
 							break;
 						}

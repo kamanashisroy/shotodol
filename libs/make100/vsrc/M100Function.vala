@@ -10,6 +10,7 @@ internal class M100Function: Searchable {
 	ArrayList<txt> cmds;
 	int ccount;
 	internal void build(etxt*nm, etxt*proto) {
+		memclean_raw();
 		name = new txt.memcopy_etxt(nm);
 		upper = new txt.memcopy_etxt(proto);
 		cmds = ArrayList<txt>();

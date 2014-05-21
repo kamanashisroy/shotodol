@@ -66,6 +66,10 @@ public class shotodol.M100Variable: Searchable {
 		intval = val?1:0;
 		tp = ValueType.INT;
 	}
+	public void setInt(int val) {
+		intval = val;
+		tp = ValueType.INT;
+	}
 }
 
 /** @}*/
