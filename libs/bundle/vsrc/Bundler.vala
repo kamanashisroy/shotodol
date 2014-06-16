@@ -119,6 +119,7 @@ public struct shotodol.Bundler {
 	int cur_type;
 	int cur_len;
 	public int next() throws BundlerError {
+		bytes+=cur_len;
 		if((bytes+2) >= size) {
 			return -1;
 		}
