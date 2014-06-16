@@ -151,6 +151,12 @@ public class shotodol.Watchdog : Replicable {
 		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &buf);
 		return 0;
 	}
+	public static int logInt(string sourcefile, int lineno, int level, string st, int val) {
+		etxt buf = etxt.stack(128);
+		buf.printf("%s:%d\n", st, val);
+		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &buf);
+		return 0;
+	}
 #if false
 	public static int logit(string input, ...) {
 		var l = va_list();

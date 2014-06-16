@@ -98,7 +98,7 @@ public struct shotodol.Bundler {
 			throw new BundlerError.too_big_value("Too big binary data to write\n");
 		}
 		ctn.data[bytes++] = (aroop_uword8)key;
-		ctn.data[bytes++] = (2<<6) | len; // 2 means numeric
+		ctn.data[bytes++] = (2<<6) | len; // 2 means binary
 		if(len > 0) {
 			((mem)ctn.data).shift(bytes).copy_from(val, len);
 			bytes+= len;
