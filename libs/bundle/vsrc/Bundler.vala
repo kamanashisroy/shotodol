@@ -42,12 +42,19 @@ public struct shotodol.Bundler {
 	int entries;
 	int bytes;
 	int size;
-	public void setCarton(Carton*ctn, int size) {
+	public void buildFromCarton(Carton*ctn, int size) {
 		core.assert(ctn != null);
 		this.ctn = ctn;
 		entries = 0;
 		bytes = 0;
 		this.size = size;
+	}
+	public void buildFromEtxt(etxt*content) {
+		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
+		setter.set(ctn,content.to_string());
+		entries = 0;
+		bytes = 0;
+		this.size = content.length();
 	}
 	public void close() {
 		this.size = bytes;
@@ -131,6 +138,25 @@ public struct shotodol.Bundler {
 	}
 	public unowned mem getContent() throws BundlerError {
 		return ((mem)ctn.data).shift(bytes);
+	}
+	public int getIntContent() throws BundlerError {
+		int output = 0;
+		if(cur_len >= 1) {
+			output = ctn.data[bytes];
+		}
+		if(cur_len >= 2) {
+			output = output << 8;
+			output |= ctn.data[bytes+1];
+		}
+		if(cur_len >= 3) {
+			output = output << 8;
+			output |= ctn.data[bytes+2];
+		}
+		if(cur_len == 4) {
+			output = output << 8;
+			output |= ctn.data[bytes+3];
+		}
+		return output;
 	}
 	public int getContentLength() throws BundlerError {
 		return cur_len;

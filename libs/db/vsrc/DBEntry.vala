@@ -45,14 +45,14 @@ public class shotodol.DBEntry : Searchable {
 	bool closed;
 	public DBEntry(DBId id) {
 		DBEntryCell cell = DBEntryFactory.cells.alloc_full(); // XXX how to free the memory ??
-		bndlr.setCarton(&cell.content, 32);
+		bndlr.buildFromCarton(&cell.content, 32);
 		cell.hash = id.hash;
 		closed = false;
 	}
 
 	public int build(DBId id) {
 		DBEntryCell cell = DBEntryFactory.cells.alloc_full(); // XXX how to free the memory ??
-		bndlr.setCarton(&cell.content, 32);
+		bndlr.buildFromCarton(&cell.content, 32);
 		cell.hash = id.hash;
 		closed = false;
 		return 0;
