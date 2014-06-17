@@ -61,28 +61,26 @@ public struct shotodol.Bundler {
 		entries = 0;
 		bytes = 0;
 	}
-	public int writeInt(aroop_uword8 key, int val) throws BundlerError {
-		// TODO check Carton.size
+	public int writeInt(aroop_uword8 key, aroop_uword32 val) throws BundlerError {
 		if(bytes+6 > size) {
 			throw new BundlerError.ctn_full("No space to write int\n");
 		}
 		
 		ctn.data[bytes++] = (aroop_uword8)key;
+		int flen = 0;
 		if(val >= 0xFFFF) {
 			ctn.data[bytes++] = /*(0<<6) |*/ 4; // 0 means numeral , 4 is the numeral size
 			ctn.data[bytes++] = (aroop_uword8)((val & 0xFF000000)>>24);
 			ctn.data[bytes++] = (aroop_uword8)((val & 0x00FF0000)>>16);
-			ctn.data[bytes++] = (aroop_uword8)((val & 0x0000FF00)>>8);
-			ctn.data[bytes++] = (aroop_uword8)(val & 0x000000FF);
-			entries++;
-			return 6;
+			flen = 6;
 		} else {
 			ctn.data[bytes++] = /*(0<<6) |*/ 2; // 0 means numeral , 2 is the numeral size
-			ctn.data[bytes++] = (aroop_uword8)((val & 0xFF00)>>8);
-			ctn.data[bytes++] = (aroop_uword8)(val & 0x00FF);
-			entries++;
-			return 4;
+			flen = 4;
 		}
+		ctn.data[bytes++] = (aroop_uword8)((val & 0x0000FF00)>>8);
+		ctn.data[bytes++] = (aroop_uword8)(val & 0x000000FF);
+		entries++;
+		return flen;
 	}
 	public int writeETxt(aroop_uword8 key, etxt*val) throws BundlerError {
 		// TODO check Carton.size
@@ -140,8 +138,8 @@ public struct shotodol.Bundler {
 	public unowned mem getContent() throws BundlerError {
 		return ((mem)ctn.data).shift(bytes);
 	}
-	public int getIntContent() throws BundlerError {
-		int output = 0;
+	public aroop_uword32 getIntContent() throws BundlerError {
+		aroop_uword32 output = 0;
 		if(cur_len >= 1) {
 			output = ctn.data[bytes];
 		}
