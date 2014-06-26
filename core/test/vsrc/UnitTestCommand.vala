@@ -19,7 +19,6 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
 		Iterator<container<UnitTest>> pvt = Iterator<container<UnitTest>>.EMPTY();
 		UnitTestModule.inst.tests.iterator_hacked(&pvt,  Replica_flags.ALL, 0, 0);
 		while(pvt.next()) {
@@ -27,7 +26,6 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 			unowned UnitTest test = can.get();
 			test.test();
 		}
-		bye(pad, true);
 		return 0;
 	}
 }

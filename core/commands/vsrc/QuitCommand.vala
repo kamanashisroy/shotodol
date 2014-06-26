@@ -11,7 +11,6 @@ internal class shotodol.QuitCommand : M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
 		MainTurbine.quit();
 		return 0;
 	}

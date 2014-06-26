@@ -58,13 +58,10 @@ internal class shotodol.NetEchoCommand : M100Command {
 		return &prfx;
 	}
 
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
+	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
-			desc(CommandDescType.COMMAND_DESC_FULL,pad);
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		int chunkSize = 32;
 		bool checkContent = false;
@@ -109,8 +106,7 @@ internal class shotodol.NetEchoCommand : M100Command {
 			sp = new NetEchoServer(interval, checkContent, verbose, dryrun);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
-				bye(pad, false);
-				return 0;
+				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
 			MainTurbine.gearup(sp);
 		}
@@ -122,12 +118,10 @@ internal class shotodol.NetEchoCommand : M100Command {
 			sp = new NetEchoClient(chunkSize, interval, reconnect, verbose, dryrun);
 			if(sp.setup(mod.get()) != 0) {
 				sp = null;
-				bye(pad, false);
-				return 0;
+				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
 			MainTurbine.gearup(sp);
 		}
-		bye(pad, true);
 		return 0;
 	}
 }

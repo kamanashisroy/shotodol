@@ -19,13 +19,11 @@ internal class ProfilerCommand : M100Command {
 	}
 
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
 		core.memory_profiler_dump((contentLine) => {
 			contentLine.concat_char('\n');
 			pad.write(contentLine);
 			return 0;
 		});
-		bye(pad, true);
 		return 0;
 	}
 }

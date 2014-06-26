@@ -11,7 +11,6 @@ internal class shotodol.EchoCommand : shotodol.M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		etxt token = etxt.EMPTY();
 		LineAlign.next_token(&inp, &token); // second token
@@ -19,7 +18,6 @@ internal class shotodol.EchoCommand : shotodol.M100Command {
 		etxt newLine = etxt.from_static("\n");
 		pad.write(&newLine);
 		inp.destroy();
-		bye(pad, true);
 		return 0;
 	}
 }

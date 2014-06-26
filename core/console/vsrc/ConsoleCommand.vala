@@ -37,37 +37,30 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		prfx = etxt.from_static("shell");
 		return &prfx;
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
+	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		int duration = 1000;
-		greet(pad);
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
-			desc(CommandDescType.COMMAND_DESC_FULL,pad);
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		container<txt>? mod;
 		if((mod = vals.search(Options.AGAIN, match_all)) != null) {
 			int index = mod.get().to_int();
 			txt?again = sp.getHistory(index);
 			if(again == null) {
-				bye(pad, false);
-				return 0;
+				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
 			cmdSet.act_on(again, pad);
-			bye(pad, true);
 			return 0;
 		}
 		if((mod = vals.search(Options.LIST, match_all)) != null) {
 			sp.showHistoryFull();
-			bye(pad, true);
 			return 0;
 		}
 		if((mod = vals.search(Options.GLIDE, match_all)) != null) {
 			duration = mod.get().to_int();
 		}
 		sp.glide(duration);
-		bye(pad, true);
 		return 0;
 	}
 }

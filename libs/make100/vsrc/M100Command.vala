@@ -4,6 +4,13 @@ using shotodol;
 /** \addtogroup make100
  *  @{
  */
+
+public errordomain M100CommandError.ActionFailed {
+	INSUFFICIENT_ARGUMENT,
+	INVALID_ARGUMENT,
+	OTHER,
+}
+
 public abstract class shotodol.M100Command : Replicable {
 	public enum CommandDescType {
 		COMMAND_DESC_TITLE,
@@ -57,21 +64,23 @@ public abstract class shotodol.M100Command : Replicable {
 		return 0;
 	}
 	
-	public void greet(OutputStream pad) {
+	public virtual void greet(OutputStream pad) {
 		etxt greetings = etxt.stack(128);
 		greetings.printf("<%16s> -----------------------------------------------------------------\n" , get_prefix().to_string());
 		pad.write(&greetings);
 	} 
-	public void bye(OutputStream pad, bool success) {
+	public virtual void bye(OutputStream pad, bool success) {
 		etxt byebye = etxt.stack(128);
 		byebye.printf("<%16s> -----------------------------------------------------------------\n" , success?"Successful":"Failed");
 		pad.write(&byebye);
+		if(!success)
+		desc(CommandDescType.COMMAND_DESC_FULL, pad);
 	} 
 	
 	public virtual etxt*get_prefix() {
 		return null;
 	}
-	public virtual int act_on(etxt*cmdstr, OutputStream pad) {
+	public virtual int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		return 0;
 	}
 	public virtual int desc(CommandDescType tp, OutputStream pad) {

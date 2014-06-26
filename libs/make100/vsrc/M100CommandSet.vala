@@ -55,9 +55,16 @@ public class shotodol.M100CommandSet: Replicable {
 			etxt dlg = etxt.from_static("Command not found. Please try one of the following..\n");
 			pad.write(&dlg);
 			list(pad);
-			return 0;
+			return -1;
 		}
-		mycmd.act_on(rcmd, pad);
+		try {
+			mycmd.greet(pad);
+			mycmd.act_on(rcmd, pad);
+			mycmd.bye(pad, true);
+		} catch(M100CommandError.ActionFailed e) {
+			mycmd.bye(pad, false);
+			return -1;
+		}
 		return 0;
 	}
 }

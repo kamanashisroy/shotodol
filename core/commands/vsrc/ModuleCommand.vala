@@ -36,13 +36,10 @@ internal class shotodol.ModuleCommand : M100Command {
 		return 0;
 	}
 
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
+	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
-			desc(CommandDescType.COMMAND_DESC_FULL, pad);
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		container<txt>? mod;
 		mod = vals.search(Options.LOAD, match_all);
@@ -58,7 +55,6 @@ internal class shotodol.ModuleCommand : M100Command {
 		if(mod != null) {
 			CommandServer.server.cmds.list(pad);
 		}
-		bye(pad, true);
 		return 0;
 	}
 }

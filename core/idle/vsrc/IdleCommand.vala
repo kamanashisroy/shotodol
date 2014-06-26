@@ -66,14 +66,11 @@ internal class IdleCommand : M100Command {
 		return &prfx;
 	}
 
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
+	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		bool on = false;
 		if(parseOptions(cmdstr, &vals) != 0) {
-			desc(CommandDescType.COMMAND_DESC_FULL, pad);
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		container<txt>? mod;
 		mod = vals.search(Options.IDLE_ON, match_all);
@@ -85,7 +82,6 @@ internal class IdleCommand : M100Command {
 			on = false;
 		}
 		sp.reset(on);
-		bye(pad, true);
 		return 0;
 	}
 }

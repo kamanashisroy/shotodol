@@ -25,40 +25,32 @@ public class shotodol.BooleanOperatorCommand : shotodol.M100Command {
 		addOption(&y, M100Command.OptionType.TXT, Options.Y, &y_help);
 		addOption(&z, M100Command.OptionType.TXT, Options.Z, &z_help);
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
+	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
-			desc(CommandDescType.COMMAND_DESC_FULL, pad);
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		container<txt>? mod;
 		mod = vals.search(Options.X, match_all);
 		if(mod == null) {
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
 		txt x = mod.get();
 		mod = vals.search(Options.Y, match_all);
 		if(mod == null) {
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
 		txt y = mod.get();
 		if(x.is_empty_magical() || y.is_empty_magical()) {
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
 		mod = vals.search(Options.Z, match_all);
 		if(mod == null) {
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
 		txt z = mod.get();
 		if(z.is_empty_magical() || (z.char_at(0) - '0') <= 9) {
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
 #if false
 		int outlen = x.length() + y.length() + 128;
@@ -76,7 +68,6 @@ public class shotodol.BooleanOperatorCommand : shotodol.M100Command {
 		M100Variable mval = new M100Variable();
 		mval.setBool(val == 1?true:false);
 		cmds.vars.set(z, mval);
-		bye(pad, true);
 		return 0;
 	}
 	protected virtual int execOperation(txt x, txt y, bool isInt) {

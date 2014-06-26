@@ -33,13 +33,10 @@ internal class MakeCommand : M100Command {
 		return &prfx;
 	}
 	M100Script? script;
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
-		greet(pad);
+	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		SearchableSet<txt> vals = SearchableSet<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
-			desc(CommandDescType.COMMAND_DESC_FULL, pad);
-			bye(pad, false);
-			return 0;
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		container<txt>? mod;
 		mod = vals.search(Options.FILE, match_all);
@@ -84,7 +81,6 @@ internal class MakeCommand : M100Command {
 				cmdSet.act_on(cmd, pad);
 			}
 		}
-		bye(pad, true);
 		return 0;
 	}
 }
