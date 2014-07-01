@@ -16,6 +16,11 @@ public abstract class shotodol.M100Command : Replicable {
 		COMMAND_DESC_TITLE,
 		COMMAND_DESC_FULL,
 	}
+	public enum FlowControl {
+		KEEP_GOING = 0,
+		SKIP_BLOCK,
+		GOTO_LINENO = 500,
+	}
 	public enum OptionType {
 		TXT,
 		INT,

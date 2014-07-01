@@ -30,10 +30,10 @@ public class ProgrammingInstructionTest : UnitTest {
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.WatchdogSeverity.LOG,0,0,&dlg);
 		etxt cmd = etxt.stack(128);
 		cmd.concat_string("set -var x -val 1");
-		cmds.act_on(&cmd, so);
+		cmds.act_on(&cmd, so, null);
 		cmd.trim_to_length(0);
 		cmd.concat_string("if $(x) set -var x -val 3");
-		cmds.act_on(&cmd, so);
+		cmds.act_on(&cmd, so, null);
 		cmd.trim_to_length(0);
 		cmd.concat_char('x');
 		

@@ -4,19 +4,28 @@ using aroop;
  *  @{
  */
 public class shotodol.M100Script : M100Parser {
+	ArrayList<M100VirtualMachineFrame>stack;
+	Factory<M100VirtualMachineFrame> memory;
+	M100VirtualMachineFrame? scope;
+	M100Block? func;
+	int depth;
 	public M100Script() {
 		base();
 		args = HashTable<M100Variable?>();
+		scope = null;
+		depth = 0;
+		memory = Factory<M100VirtualMachineFrame>.for_type(4, 0, factory_flags.MEMORY_CLEAN);
+		stack.destroy();
 	}
 	
 	~M100Script() {
+		memory.destroy();
+		stack.destroy();
 	}
-	int expt;
-	M100Function? func;
 	txt?current_target;
 	HashTable<M100Variable?>args;
 	public int target(etxt*tg) {
-		expt = 0;
+		depth = -1;
 		if(tg.is_empty_magical()) {
 			func = default_func;
 			return 0;
@@ -42,16 +51,38 @@ public class shotodol.M100Script : M100Parser {
 		func = funcs.search(tg.get_hash(), null);
 		return (func == null)?-1:0;
 	}
+
+	public int gotoLine(int lineno) {
+		depth++;
+		M100VirtualMachineFrame?prev = scope;
+		M100Block?cur = prev.getBlockAt(lineno);
+		if(cur == null) return -1;
+		scope = memory.alloc_full();
+		scope.build(cur);
+		stack.set(depth, scope);
+		return 0;
+	}
+
 	public txt? step() {
 		if(func == null) {
 			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 10,0,0,0, "no function is selected\n");
 			return null;
 		}
-		if(expt == 0) {
+		if(depth == -1) {
 			// TODO execute the statements
+			stack = ArrayList<M100VirtualMachineFrame>();
+			scope = memory.alloc_full();
+			scope.build(func);
+			depth = 0;
+			stack[depth] = scope;
 		}
-		txt?cmd = func.getCommand(expt++);
+		txt?cmd = scope.nextCommand();
 		if(current_target == null || cmd == null) {
+			if(depth > 0) {
+				depth--;
+				scope = stack[depth];
+				return step();
+			}
 			return cmd;
 		}
 #if false

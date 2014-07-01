@@ -50,7 +50,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 			if(again == null) {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
-			cmdSet.act_on(again, pad);
+			cmdSet.act_on(again, pad, null);
 			return 0;
 		}
 		if((mod = vals.search(Options.LIST, match_all)) != null) {

@@ -78,7 +78,7 @@ internal class MakeCommand : M100Command {
 				dlg.printf("command:%s\n", cmd.to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 				// execute command
-				cmdSet.act_on(cmd, pad);
+				cmdSet.act_on(cmd, pad, script);
 			}
 		}
 		return 0;

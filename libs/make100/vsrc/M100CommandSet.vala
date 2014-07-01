@@ -12,6 +12,7 @@ public class shotodol.M100CommandSet: Replicable {
 		cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
 		vars = HashTable<M100Variable?>();
+		register(new M100GotoCommand());
 	}
 	~M100CommandSet() {
 		cmds.destroy();
@@ -42,7 +43,7 @@ public class shotodol.M100CommandSet: Replicable {
 	public M100Command? percept(etxt*cmd_str) {
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
-	public int act_on(etxt*cmd_str, OutputStream pad) {
+	public int act_on(etxt*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
 			return 0;
 		}
@@ -57,13 +58,20 @@ public class shotodol.M100CommandSet: Replicable {
 			list(pad);
 			return -1;
 		}
+		int ret = 0;
 		try {
 			mycmd.greet(pad);
-			mycmd.act_on(rcmd, pad);
+			ret = mycmd.act_on(rcmd, pad);
 			mycmd.bye(pad, true);
 		} catch(M100CommandError.ActionFailed e) {
 			mycmd.bye(pad, false);
 			return -1;
+		}
+		if(sc == null) return 0;
+		if(ret >= M100Command.FlowControl.GOTO_LINENO) {
+			sc.gotoLine(ret - M100Command.FlowControl.GOTO_LINENO);
+		} else if(ret == M100Command.FlowControl.SKIP_BLOCK) {
+			sc.step(); // skip the step
 		}
 		return 0;
 	}

@@ -10,16 +10,18 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.M100Parser: Replicable {
-	internal SearchableFactory<M100Function> funcs;
+	internal SearchableFactory<M100Block> funcs;
 	internal ArrayList<M100Statement> stmts;
-	internal M100Function? default_func;
+	internal M100Block? default_func;
 	protected M100Parser() {
-		funcs = SearchableFactory<M100Function>.for_type();
+		funcs = SearchableFactory<M100Block>.for_type(32,factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
 		stmts = ArrayList<M100Statement>();
 		default_func = null;
+		scopeTree = ArrayList<M100Block>();
 	}
 	
 	~M100Parser() {
+		scopeTree.destroy();
 		funcs.destroy();
 		stmts.destroy();
 	}
@@ -77,22 +79,65 @@ public abstract class shotodol.M100Parser: Replicable {
 		return 0;
 	}
 
-	M100Function? addFunction(etxt*name, etxt*proto) {
-		M100Function ret = funcs.alloc_full();
-		ret.build(name, proto);
+	M100Block? addBlock(etxt*name, etxt*proto, int lineno) {
+		M100Block ret = funcs.alloc_full();
+		ret.build(name, proto, lineno);
 		ret.pin();
 		return ret;
 	}
 	
-	M100Function?current_function;	
+	M100Block?current_function;	
+	M100Block?current_scope;
+	int scopeDepth;
+	int lineno;
+	ArrayList<M100Block>scopeTree;
 	public void startParsing() {
 		current_function = null;
+		current_scope = null;
+		scopeDepth = 0;
+		lineno = 0;
+		scopeTree.destroy();
+		scopeTree = ArrayList<M100Block>();
 	}
+
+	int addJumpTo(M100Block?scope, int depth, int lineno) {
+		etxt jumpcmd = etxt.stack(12);
+		jumpcmd.printf("\tgoto %d", lineno);
+		scope.addCommand(&jumpcmd, lineno);
+		return 0;
+	}
+
+	int addCommandHelper(etxt*cmdstr, etxt*instr, int lineno) {
+		int depth = 0;
+		while(cmdstr.char_at(1) == '\t') {
+			cmdstr.shift(1);
+			depth++;
+		}
+		if(current_scope == null) {
+			current_scope = current_function;
+			scopeTree[scopeDepth] = current_scope;
+		}
+		if(depth < scopeDepth) {
+			current_scope = scopeTree[depth];
+		} else if(depth > scopeDepth){
+			etxt nm = etxt.stack(32);
+			nm.printf("____scope____%d", lineno);
+			M100Block?prev = current_scope;
+			current_scope = addBlock(&nm, instr, lineno);
+			scopeTree[depth] = current_scope;
+			prev.addBlock(current_scope, lineno);
+			addJumpTo(prev, depth, lineno);
+		}
+		scopeDepth = depth;
+		current_scope.addCommand(cmdstr, lineno);
+		return 0;
+	}
+
 	public int parseLine(etxt*instr) {
 		etxt inp = etxt.stack_from_etxt(instr);
 		do {
 			if(inp.char_at(0) == '\t' && current_function != null) {
-				current_function.addCommand(&inp);
+				addCommandHelper(&inp, instr, lineno);
 				break;
 			}
 			etxt token = etxt.EMPTY();
@@ -108,7 +153,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			next_token(&inp, &token);
 			if(token.equals_static_string(":")) {
 				// so this is a function
-				current_function = addFunction(&name, instr);
+				current_function = addBlock(&name, instr, lineno);
 				if(default_func == null) {
 					default_func = current_function;
 				}
@@ -119,11 +164,16 @@ public abstract class shotodol.M100Parser: Replicable {
 				break;
 			}
 		} while(false);
+		lineno++;
 		return 0;
 	}
 
 	public void endParsing() {
 		current_function = null;
+		current_scope = null;
+		scopeDepth = 0;
+		lineno = 0;
+		scopeTree.destroy();
 	}
 }
 /** @}*/
