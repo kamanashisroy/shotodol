@@ -12,7 +12,7 @@ public class shotodol.MakeModule : ModulePlugin {
 		mt = new MakeTest();
 		UnitTestModule.inst.register(mt);
 		CommandServer.server.cmds.register(cmd);
-		etxt cmd = etxt.from_static("make -f shotodol.mk -t all\n");
+		etxt cmd = etxt.from_static("shake -f shotodol.mk -t all\n");
 		CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 		return 0;
 	}

@@ -36,7 +36,7 @@ internal class shotodol.M100CommandOption : Searchable {
 		pad.write(&x);
 		return 0;
 	}
-	internal static int parseOptions(etxt*cmdstr, SearchableSet<txt>*val, Factory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
+	internal static int parseOptions(etxt*cmdstr, ArrayList<txt>*val, SearchableFactory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
 		etxt token = etxt.EMPTY();
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		while(true) {
@@ -59,7 +59,8 @@ internal class shotodol.M100CommandOption : Searchable {
 							throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected text value here");
 						}
 						txt x = new txt.memcopy_etxt(&token);
-						val.add_container(x, opt.hash);
+						//val.add_container(x, opt.hash);
+						val.set(opt.hash,x);
 					} else if(opt.tp == M100Command.OptionType.INT) {
 						LineAlign.next_token(&inp, &token);
 						if(token.is_empty_magical() || (token.char_at(0) - '0') > 9) {
@@ -67,9 +68,11 @@ internal class shotodol.M100CommandOption : Searchable {
 							throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected decimal value here");
 						}
 						txt x = new txt.memcopy_etxt(&token);
-						val.add_container(x, opt.hash);
+						val.set(opt.hash,x);
+						//val.add_container(x, opt.hash);
 					} else if(opt.tp == M100Command.OptionType.NONE) {
-						val.add_container(txt.BLANK_STRING, opt.hash);
+						//val.add_container(txt.BLANK_STRING, opt.hash);
+						val.set(opt.hash, txt.BLANK_STRING);
 					}
 				}
 			}

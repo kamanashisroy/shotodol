@@ -14,12 +14,8 @@ internal class shotodol.SetVariableCommand : M100Command {
 	public SetVariableCommand(M100CommandSet gCmds) {
 		base();
 		cmds = gCmds;
-		etxt var = etxt.from_static("-var");
-		etxt var_help = etxt.from_static("Destination variable name");
-		etxt val = etxt.from_static("-val");
-		etxt val_help = etxt.from_static("variable or value to set");
-		addOption(&var, M100Command.OptionType.TXT, Options.VAR, &var_help);
-		addOption(&val, M100Command.OptionType.TXT, Options.VAL, &val_help);
+		addOptionString("-var", M100Command.OptionType.TXT, Options.VAR, "Destination variable name");
+		addOptionString("-val", M100Command.OptionType.TXT, Options.VAR, "Variable or value to set");
 	}
 
 	public override etxt*get_prefix() {
@@ -27,21 +23,18 @@ internal class shotodol.SetVariableCommand : M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
-		mod = vals.search(Options.VAR, match_all);
-		if(mod == null) {
+		txt? var = null;
+		if((var = vals[Options.VAR]) == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-		txt var = mod.get();
-		mod = vals.search(Options.VAL, match_all);
-		if(mod == null) {
+		txt?val = null;
+		if((val = vals[Options.VAL]) == null) {
 			cmds.vars.set(var, null);
 		} else {
-			txt val = mod.get();
 			M100Variable mval = new M100Variable();
 			mval.set(val);
 			cmds.vars.set(var, mval);

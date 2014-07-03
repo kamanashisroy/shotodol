@@ -67,7 +67,7 @@ public abstract class shotodol.M100Command : Replicable {
 		opt.build2(prefix, tp, id, help);
 	}
 	
-	public int parseOptions(etxt*cmdstr, SearchableSet<txt>*val) {
+	public int parseOptions(etxt*cmdstr, ArrayList<txt>*val) {
 		try {
 			M100CommandOption.parseOptions(cmdstr, val, &options);
 		} catch(M100CommandOptionError.ParseError e) {

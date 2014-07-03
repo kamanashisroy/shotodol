@@ -15,40 +15,30 @@ public class shotodol.BooleanOperatorCommand : shotodol.M100Command {
 	public BooleanOperatorCommand(M100CommandSet gCmds) {
 		base();
 		cmds = gCmds;
-		etxt x = etxt.from_static("-x");
-		etxt x_help = etxt.from_static("First variable or value");
-		etxt y = etxt.from_static("-y");
-		etxt y_help = etxt.from_static("Second variable or value");
-		etxt z = etxt.from_static("-z");
-		etxt z_help = etxt.from_static("Output variable");
-		addOption(&x, M100Command.OptionType.TXT, Options.X, &x_help);
-		addOption(&y, M100Command.OptionType.TXT, Options.Y, &y_help);
-		addOption(&z, M100Command.OptionType.TXT, Options.Z, &z_help);
+		addOptionString("-x", M100Command.OptionType.TXT, Options.X, "First variable or value");
+		addOptionString("-y", M100Command.OptionType.TXT, Options.Y, "Second variable or value");
+		addOptionString("-z", M100Command.OptionType.TXT, Options.Z, "Output variable");
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
-		mod = vals.search(Options.X, match_all);
-		if(mod == null) {
+		txt?x = vals[Options.X];
+		if(x == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-		txt x = mod.get();
-		mod = vals.search(Options.Y, match_all);
-		if(mod == null) {
+		txt?y = vals[Options.Y];
+		if(y == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-		txt y = mod.get();
 		if(x.is_empty_magical() || y.is_empty_magical()) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-		mod = vals.search(Options.Z, match_all);
-		if(mod == null) {
+		txt?z = vals[Options.Z];
+		if(x == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-		txt z = mod.get();
 		if(z.is_empty_magical() || (z.char_at(0) - '0') <= 9) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}

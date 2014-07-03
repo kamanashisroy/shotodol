@@ -11,9 +11,7 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 	}
 	public FileConfigCommand() {
 		base();
-		etxt input = etxt.from_static("-i");
-		etxt input_help = etxt.from_static("Config file");
-		addOption(&input, M100Command.OptionType.TXT, Options.INFILE, &input_help);
+		addOptionString("-i", M100Command.OptionType.TXT, Options.INFILE, "Config file");
 	}
 
 	~FileConfigCommand() {
@@ -24,15 +22,14 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
-		if((mod = vals.search(Options.INFILE, match_all)) == null) {
+		txt?infile = vals[Options.INFILE];
+		if(infile == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-		unowned txt infile = mod.get();
 		FileInputStream fis = new FileInputStream.from_file(infile);
 		LineInputStream lis = new LineInputStream(fis);
 		ConfigEngine?cfg = DefaultConfigEngine.getDefault();

@@ -43,18 +43,18 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		int logLevel = 3;
 		int severity = -1;
 		
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
+		txt? arg = null;
 		bool newNamedCmd = false;
-		if((mod = vals.search(Options.FILENAME, match_all)) != null) {sourcefile = mod.get();newNamedCmd = true;} 
-		if((mod = vals.search(Options.LINENO, match_all)) != null) {lineno = mod.get().to_int();newNamedCmd = true;} 
-		if((mod = vals.search(Options.LEVEL, match_all)) != null) {logLevel = mod.get().to_int();newNamedCmd = true;} 
-		if((mod = vals.search(Options.SEVERITY, match_all)) != null) {severity = mod.get().to_int();newNamedCmd = true;} 
-		if((mod = vals.search(Options.NAME, match_all)) != null) {
-			txt nm = mod.get(); 
+		if((sourcefile = vals[Options.FILENAME]) != null) {newNamedCmd = true;} 
+		if((arg = vals[Options.LINENO]) != null) {lineno = arg.to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.NAME]) != null) {
+			txt nm = arg; 
 			if(newNamedCmd) {
 				txt remember = new txt.memcopy_etxt(cmdstr);
 				namedCmds.set(nm, remember);

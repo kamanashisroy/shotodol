@@ -19,30 +19,25 @@ internal class MakeCommand : M100Command {
 	public MakeCommand(M100CommandSet gCmdSet) {
 		base();
 		cmdSet = gCmdSet;
-		etxt target = etxt.from_static("-t");
-		etxt target_help = etxt.from_static("target name");
-		etxt file = etxt.from_static("-f");
-		etxt file_help = etxt.from_static("make file name/path");
-		addOption(&target, M100Command.OptionType.TXT, Options.TARGET, &target_help);
-		addOption(&file, M100Command.OptionType.TXT, Options.FILE, &file_help); 
+		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
+		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "shake file name/path"); 
 		script = null;
 	}
 
 	public override etxt*get_prefix() {
-		prfx = etxt.from_static("make");
+		prfx = etxt.from_static("shake");
 		return &prfx;
 	}
 	M100Script? script;
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
-		mod = vals.search(Options.FILE, match_all);
-		if(mod != null) {
+		txt?fn = vals[Options.FILE];
+		if(fn != null) {
 			try {
-				FileInputStream f = new FileInputStream.from_file(mod.get());
+				FileInputStream f = new FileInputStream.from_file(fn);
 				LineInputStream lis = new LineInputStream(f);
 				script = new M100Script();
 				script.startParsing();
@@ -63,9 +58,8 @@ internal class MakeCommand : M100Command {
 			} catch (IOStreamError.FileInputStreamError e) {
 			}
 		}
-		mod = vals.search(Options.TARGET, match_all);
-		if(mod != null && script != null) {
-			unowned txt tgt = mod.get();
+		txt?tgt = vals[Options.TARGET];
+		if(tgt != null && script != null) {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("target:%s\n", tgt.to_string());
 			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);

@@ -13,15 +13,9 @@ internal class shotodol.ModuleCommand : M100Command {
 	}
 	public ModuleCommand() {
 		base();
-		etxt load = etxt.from_static("-load");
-		etxt load_help = etxt.from_static("loads a module");
-		etxt unload = etxt.from_static("-unload");
-		etxt unload_help = etxt.from_static("unloads a module");
-		etxt list = etxt.from_static("-l");
-		etxt list_help = etxt.from_static("List all modules");
-		addOption(&load, M100Command.OptionType.TXT, Options.LOAD, &load_help);
-		addOption(&unload, M100Command.OptionType.TXT, Options.UNLOAD, &unload_help); 
-		addOption(&list, M100Command.OptionType.NONE, Options.LIST, &list_help); 
+		addOptionString("-load", M100Command.OptionType.TXT, Options.LOAD, "Load given module");
+		addOptionString("-unload", M100Command.OptionType.TXT, Options.UNLOAD, "Unload given module"); 
+		addOptionString("-l", M100Command.OptionType.NONE, Options.LIST, "List all modules"); 
 	}
 	
 	public override etxt*get_prefix() {
@@ -37,22 +31,20 @@ internal class shotodol.ModuleCommand : M100Command {
 	}
 
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
-		mod = vals.search(Options.LOAD, match_all);
-		if(mod != null) {
-			load_module_helper(mod.get().to_string());
+		txt?fn = vals[Options.LOAD];
+		if(fn != null) {
+			load_module_helper(fn.to_string());
 		}
-		mod = vals.search(Options.UNLOAD, match_all);
-		if(mod != null) {
+		fn = vals[Options.UNLOAD];
+		if(fn != null) {
 			etxt err = etxt.from_static("TODO:unload module\n");
 			pad.write(&err);
 		}
-		mod = vals.search(Options.LIST, match_all);
-		if(mod != null) {
+		if(vals[Options.LIST] != null) {
 			CommandServer.server.cmds.list(pad);
 		}
 		return 0;

@@ -49,12 +49,8 @@ internal class IdleCommand : M100Command {
 		base();
 		sp = new IdleSpindle();
 		MainTurbine.gearup(sp);
-		etxt on = etxt.from_static("on");
-		etxt on_help = etxt.from_static("Start idle process");
-		etxt off = etxt.from_static("off");
-		etxt off_help = etxt.from_static("Ends idle process");
-		addOption(&on, M100Command.OptionType.NONE, Options.IDLE_ON, &on_help);
-		addOption(&off, M100Command.OptionType.NONE, Options.IDLE_OFF, &off_help); 
+		addOptionString("-on", M100Command.OptionType.NONE, Options.IDLE_ON, "Start idle process");
+		addOptionString("-off", M100Command.OptionType.NONE, Options.IDLE_OFF, "Ends idle process"); 
 	}
 
 	~IdleCommand() {
@@ -67,18 +63,15 @@ internal class IdleCommand : M100Command {
 	}
 
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		bool on = false;
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		container<txt>? mod;
-		mod = vals.search(Options.IDLE_ON, match_all);
-		if(mod != null) {
+		if(vals[Options.IDLE_ON] != null) {
 			on = true;
 		}
-		mod = vals.search(Options.IDLE_OFF, match_all);
-		if(mod != null) {
+		if(vals[Options.IDLE_OFF] != null) {
 			on = false;
 		}
 		sp.reset(on);

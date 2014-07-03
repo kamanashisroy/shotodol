@@ -20,30 +20,14 @@ internal class shotodol.NetEchoCommand : M100Command {
 	public NetEchoCommand() {
 		base();
 		sp = null;
-		etxt send = etxt.from_static("-send");
-		etxt send_help = etxt.from_static("Start sending.");
-		etxt echo = etxt.from_static("-echo");
-		etxt echo_help = etxt.from_static("Start echo.");
-		etxt chunk_size = etxt.from_static("-chunk_size");
-		etxt chunk_size_help = etxt.from_static("Set chunk size, it works while sending data.");
-		etxt check_content = etxt.from_static("-check_content");
-		etxt check_content_help = etxt.from_static("Check the content if valid before echoing.");
-		etxt verbose = etxt.from_static("-verbose");
-		etxt verbose_help = etxt.from_static("Verbose data.");
-		etxt interval = etxt.from_static("-interval");
-		etxt interval_help = etxt.from_static("Set interval in miliseconds.");
-		etxt dryrun = etxt.from_static("-dryrun");
-		etxt dryrun_help = etxt.from_static("Dry run (no echo/ no sending data..).");
-		etxt reconnect = etxt.from_static("-reconnect");
-		etxt reconnect_help = etxt.from_static("Reconnect to server (see -send).");
-		addOption(&send, M100Command.OptionType.TXT, Options.BLUE_TEST_SEND, &send_help);
-		addOption(&echo, M100Command.OptionType.TXT, Options.BLUE_TEST_ECHO, &echo_help); 
-		addOption(&chunk_size, M100Command.OptionType.INT, Options.BLUE_TEST_CHUNKSIZE, &chunk_size_help); 
-		addOption(&check_content, M100Command.OptionType.NONE, Options.BLUE_TEST_CHECKCONTENT, &check_content_help); 
-		addOption(&verbose, M100Command.OptionType.NONE, Options.BLUE_TEST_VERBOSE, &verbose_help); 
-		addOption(&interval, M100Command.OptionType.INT, Options.BLUE_TEST_IO_INTERVAL, &interval_help); 
-		addOption(&dryrun, M100Command.OptionType.NONE, Options.BLUE_TEST_DRYRUN, &dryrun_help); 
-		addOption(&reconnect, M100Command.OptionType.NONE, Options.BLUE_TEST_RECONNECT, &reconnect_help); 
+		addOptionString("-send", M100Command.OptionType.TXT, Options.BLUE_TEST_SEND, "Start sending");
+		addOptionString("-echo", M100Command.OptionType.TXT, Options.BLUE_TEST_ECHO, "Start echo"); 
+		addOptionString("-chunk_size", M100Command.OptionType.INT, Options.BLUE_TEST_CHUNKSIZE, "Set chunk size, it works while sending data."); 
+		addOptionString("-check_content", M100Command.OptionType.NONE, Options.BLUE_TEST_CHECKCONTENT, "Check the content if valid before echoing."); 
+		addOptionString("-verbose", M100Command.OptionType.NONE, Options.BLUE_TEST_VERBOSE, "Verbose data."); 
+		addOptionString("-interval", M100Command.OptionType.INT, Options.BLUE_TEST_IO_INTERVAL, "Set interval in miliseconds."); 
+		addOptionString("-dryrun", M100Command.OptionType.NONE, Options.BLUE_TEST_DRYRUN, "Dry run (no echo/ no sending data..)."); 
+		addOptionString("-reconnect", M100Command.OptionType.NONE, Options.BLUE_TEST_RECONNECT, "Reconnect to server (see -send)."); 
 	}
 
 	~NetEchoCommand() {
@@ -59,7 +43,7 @@ internal class shotodol.NetEchoCommand : M100Command {
 	}
 
 	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
-		SearchableSet<txt> vals = SearchableSet<txt>();
+		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
@@ -68,55 +52,51 @@ internal class shotodol.NetEchoCommand : M100Command {
 		bool verbose = false;
 		bool dryrun = false;
 		bool reconnect = false;
-		container<txt>? mod;
 		int interval = 10;
+		txt?arg = null;
 
-		mod = vals.search(Options.BLUE_TEST_DRYRUN, match_all);
-		if(mod != null) {
+		if(vals[Options.BLUE_TEST_DRYRUN] != null) {
 			dryrun = true;
 		}
-		mod = vals.search(Options.BLUE_TEST_IO_INTERVAL, match_all);
-		if(mod != null) {
-			interval = mod.get().to_int();
+		arg = vals[Options.BLUE_TEST_IO_INTERVAL];
+		if(arg != null) {
+			interval = arg.to_int();
 			etxt dlg = etxt.stack(128);
 			dlg.printf("Interval = %d\n", interval);
 			pad.write(&dlg);
 		}
-		mod = vals.search(Options.BLUE_TEST_CHECKCONTENT, match_all);
-		if(mod != null) {
+		if(vals[Options.BLUE_TEST_CHECKCONTENT] != null) {
 			checkContent = true;
 		}
-		mod = vals.search(Options.BLUE_TEST_VERBOSE, match_all);
-		if(mod != null) {
+		if(vals[Options.BLUE_TEST_VERBOSE] != null) {
 			verbose = true;
 		}
-		mod = vals.search(Options.BLUE_TEST_CHUNKSIZE, match_all);
-		if(mod != null) {
-			chunkSize = mod.get().to_int();
+		arg = vals[Options.BLUE_TEST_CHUNKSIZE];
+		if(arg != null) {
+			chunkSize = arg.to_int();
 		}
-		mod = vals.search(Options.BLUE_TEST_RECONNECT, match_all);
-		if(mod != null) {
+		if(vals[Options.BLUE_TEST_RECONNECT] != null) {
 			reconnect = true;
 		}
-		mod = vals.search(Options.BLUE_TEST_ECHO, match_all);
-		if(mod != null) {
+		arg = vals[Options.BLUE_TEST_ECHO];
+		if(arg != null) {
 			etxt dlg = etxt.stack(128);
-			dlg.printf("Echo server is receiving data on %s\n", mod.get().to_string());
+			dlg.printf("Echo server is receiving data on %s\n", arg.to_string());
 			pad.write(&dlg);
 			sp = new NetEchoServer(interval, checkContent, verbose, dryrun);
-			if(sp.setup(mod.get()) != 0) {
+			if(sp.setup(arg) != 0) {
 				sp = null;
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
 			MainTurbine.gearup(sp);
 		}
-		mod = vals.search(Options.BLUE_TEST_SEND, match_all);
-		if(mod != null) {
+		arg = vals[Options.BLUE_TEST_SEND];
+		if(arg != null) {
 			etxt dlg = etxt.stack(128);
-			dlg.printf("Echo client is sending data to %s\n", mod.get().to_string());
+			dlg.printf("Echo client is sending data to %s\n", arg.to_string());
 			pad.write(&dlg);
 			sp = new NetEchoClient(chunkSize, interval, reconnect, verbose, dryrun);
-			if(sp.setup(mod.get()) != 0) {
+			if(sp.setup(arg) != 0) {
 				sp = null;
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
