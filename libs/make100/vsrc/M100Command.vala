@@ -42,9 +42,9 @@ public abstract class shotodol.M100Command : Replicable {
 		}
 	}
 	//public etxt?cmdprefix;
-	Factory<M100CommandOption> options;
+	SearchableFactory<M100CommandOption> options;
 	public M100Command() {
-		options = Factory<M100CommandOption>.for_type();
+		options = SearchableFactory<M100CommandOption>.for_type(4, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
 	}
 	
 	~M100Command() {
@@ -58,6 +58,14 @@ public abstract class shotodol.M100Command : Replicable {
 		opt.pin();
 		opt.build(prefix, tp, id, help);
 	}
+
+	public void addOptionString(string pre, OptionType tp, aroop_hash id, string he) {
+		txt prefix = new txt(pre,0,null);
+		txt help = new txt(he,0, null);
+		M100CommandOption opt = options.alloc_full();
+		opt.pin();
+		opt.build2(prefix, tp, id, help);
+	}
 	
 	public int parseOptions(etxt*cmdstr, SearchableSet<txt>*val) {
 		try {
@@ -68,7 +76,7 @@ public abstract class shotodol.M100Command : Replicable {
 		}
 		return 0;
 	}
-	
+
 	public virtual void greet(OutputStream pad) {
 		etxt greetings = etxt.stack(128);
 		greetings.printf("<%16s> -----------------------------------------------------------------\n" , get_prefix().to_string());

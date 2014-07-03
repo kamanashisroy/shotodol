@@ -7,18 +7,25 @@ using shotodol;
 internal errordomain shotodol.M100CommandOptionError.ParseError {
 	MISSING_ARGUMENT,
 }
-internal class shotodol.M100CommandOption : Replicable {
+internal class shotodol.M100CommandOption : Searchable {
 	txt prefix;
 	txt elab;
 	M100Command.OptionType tp;
 	aroop_hash hash;
 	
 	internal void build(etxt*pre, M100Command.OptionType opt_type, aroop_hash id, etxt*help) {
-		memclean_raw();
-		prefix = new txt.memcopy_etxt(pre);
-		elab = new txt.memcopy_etxt(help);
+		core.assert(prefix == null && elab == null);
+		txt p = new txt.memcopy_etxt(pre);
+		txt h = new txt.memcopy_etxt(help);
+		build2(p, opt_type, id, h);
+	}
+	internal void build2(txt pre, M100Command.OptionType opt_type, aroop_hash id, txt help) {
+		core.assert(prefix == null && elab == null);
+		prefix = pre;
+		elab = help;
 		tp = opt_type;
 		hash = id;
+		set_hash(prefix.get_hash());
 	}
 	internal int desc(OutputStream pad) {
 		etxt tpText = etxt.stack(16);
@@ -40,7 +47,7 @@ internal class shotodol.M100CommandOption : Replicable {
 			if(token.char_at(0) != '-') {
 				continue;
 			}
-			Iterator<M100CommandOption> it = Iterator<M100CommandOption>(opts, Replica_flags.ALL, 0, 0);
+			Iterator<M100CommandOption> it = Iterator<M100CommandOption>(opts, Replica_flags.ALL, 0, token.get_hash());
 			while(it.next()) {
 				M100CommandOption? opt = it.get();
 				//print("matching %s %s\n", token.to_string(), opt.prefix.to_string());

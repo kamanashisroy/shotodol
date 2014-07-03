@@ -20,21 +20,11 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		base();
 		namedCmds = HashTable<txt?>();
 		wd = new Watchdog(null, 100);
-		etxt level = etxt.from_static("-l");
-		etxt level_help = etxt.from_static("Set log level");
-		etxt filename = etxt.from_static("-fn");
-		etxt filename_help = etxt.from_static("Match filename");
-		etxt lineno = etxt.from_static("-ln");
-		etxt lineno_help = etxt.from_static("Match line number");
-		etxt severity = etxt.from_static("-s");
-		etxt severity_help = etxt.from_static("Message severity");
-		etxt name = etxt.from_static("-n");
-		etxt name_help = etxt.from_static("Name a watch settings, like \n watchdog -fn main.c -n main \n watchdog -n main");
-		addOption(&level, M100Command.OptionType.INT, Options.LEVEL, &level_help);
-		addOption(&filename, M100Command.OptionType.TXT, Options.FILENAME, &filename_help); 
-		addOption(&lineno, M100Command.OptionType.INT, Options.LINENO, &lineno_help); 
-		addOption(&severity, M100Command.OptionType.INT, Options.SEVERITY, &severity_help); 
-		addOption(&name, M100Command.OptionType.TXT, Options.NAME, &name_help); 
+		addOptionString("-l", M100Command.OptionType.INT, Options.LEVEL, "Set log level");
+		addOptionString("-fn", M100Command.OptionType.TXT, Options.FILENAME, "Match filename");
+		addOptionString("-ln", M100Command.OptionType.INT, Options.LINENO, "Match Line number");
+		addOptionString("-s", M100Command.OptionType.INT, Options.SEVERITY, "Match severity");
+		addOptionString("-n", M100Command.OptionType.TXT, Options.NAME, "Name a watch settings, like \n watchdog -fn main.c -n main \n watchdog -n main");
 	}
 
 	~WatchdogCommand() {

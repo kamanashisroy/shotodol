@@ -14,7 +14,7 @@ public abstract class shotodol.M100Parser: Replicable {
 	internal ArrayList<M100Statement> stmts;
 	internal M100Block? default_func;
 	protected M100Parser() {
-		funcs = SearchableFactory<M100Block>.for_type(32,factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
+		funcs = SearchableFactory<M100Block>.for_type(32, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
 		stmts = ArrayList<M100Statement>();
 		default_func = null;
 		scopeTree = ArrayList<M100Block>();
