@@ -154,6 +154,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			if(token.equals_static_string(":")) {
 				// so this is a function
 				current_function = addBlock(&name, instr, lineno);
+				current_scope = null;
 				if(default_func == null) {
 					default_func = current_function;
 				}

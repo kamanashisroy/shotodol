@@ -5,5 +5,8 @@ all:
 	help module
 	help fileconf
 	fileconf -i ./shotodol.conf
+	shake -t greet
 
+greet:
+	echo Welcome to shotodol server. This toy comes with no guaranty. Use it at your own risk.
 
