@@ -48,7 +48,7 @@ public class shotodol.M100Script : M100Parser {
 			argc++;
 		} while(true);
 		
-		func = funcs.search(tg.get_hash(), null);
+		func = funcs.search(tg.getStringHash(), null);
 		return (func == null)?-1:0;
 	}
 

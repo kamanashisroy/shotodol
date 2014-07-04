@@ -3,20 +3,20 @@ using shotodol;
 
 /**
  * \ingroup core
- * \defgroup make A make script parser(make)
+ * \defgroup shake A shake script parser(shake)
  */
 
-/** \addtogroup make
+/** \addtogroup shake
  *  @{
  */
-internal class MakeCommand : M100Command {
+internal class ShakeCommand : M100Command {
 	etxt prfx;
 	enum Options {
 		TARGET = 1,
 		FILE,
 	}
 	unowned M100CommandSet cmdSet;
-	public MakeCommand(M100CommandSet gCmdSet) {
+	public ShakeCommand(M100CommandSet gCmdSet) {
 		base();
 		cmdSet = gCmdSet;
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
@@ -35,6 +35,11 @@ internal class MakeCommand : M100Command {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		txt?fn = vals[Options.FILE];
+		txt?tgt = vals[Options.TARGET];
+		if(fn == null && tgt == null) {
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
+		}
+			
 		if(fn != null) {
 			try {
 				FileInputStream f = new FileInputStream.from_file(fn);
@@ -58,7 +63,6 @@ internal class MakeCommand : M100Command {
 			} catch (IOStreamError.FileInputStreamError e) {
 			}
 		}
-		txt?tgt = vals[Options.TARGET];
 		if(tgt != null && script != null) {
 			etxt dlg = etxt.stack(128);
 			dlg.printf("target:%s\n", tgt.to_string());

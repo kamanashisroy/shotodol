@@ -4,15 +4,15 @@ using shotodol;
 /** \addtogroup make
  *  @{
  */
-public class shotodol.MakeModule : ModulePlugin {
-	MakeCommand? cmd;
-	MakeTest? mt;
+public class shotodol.ShakeModule : ModulePlugin {
+	ShakeCommand? cmd;
+	ShakeTest? mt;
 	public override int init() {
-		cmd = new MakeCommand(CommandServer.server.cmds);
-		mt = new MakeTest();
+		cmd = new ShakeCommand(CommandServer.server.cmds);
+		mt = new ShakeTest();
 		UnitTestModule.inst.register(mt);
 		CommandServer.server.cmds.register(cmd);
-		etxt cmd = etxt.from_static("shake -f shotodol.mk -t all\n");
+		etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t all\n");
 		CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 		return 0;
 	}
@@ -26,7 +26,7 @@ public class shotodol.MakeModule : ModulePlugin {
 	}
 	[CCode (cname="get_module_instance")]
 	public static Module get_module_instance() {
-		return new MakeModule();
+		return new ShakeModule();
 	}
 }
 /* @} */

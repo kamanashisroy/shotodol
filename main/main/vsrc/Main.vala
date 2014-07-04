@@ -17,7 +17,7 @@ public class shotodol.MainProgram {
 		loader.loadCore("idle");
 		loader.loadCore("profiler");
 		loader.loadCore("fileconfig");
-		loader.loadCore("make");
+		loader.loadCore("shake");
 		return 0;
 	}
 	public static int main() {

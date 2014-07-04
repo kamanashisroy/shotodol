@@ -60,8 +60,8 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 
 	public void addOptionString(string pre, OptionType tp, aroop_hash id, string he) {
-		txt prefix = new txt(pre,0,null);
-		txt help = new txt(he,0, null);
+		txt prefix = new txt.memcopy_zero_terminated_string(pre);
+		txt help = new txt.memcopy_zero_terminated_string(he);
 		M100CommandOption opt = options.alloc_full();
 		opt.pin();
 		opt.build2(prefix, tp, id, help);

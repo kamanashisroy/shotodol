@@ -22,7 +22,7 @@ core/fileconfig
 core/console
 core/idle
 core/profiler
-core/make
+core/shake
 libs/turbine
 apps/net_echo
 main/main

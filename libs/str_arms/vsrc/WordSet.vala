@@ -15,7 +15,7 @@ public class shotodol.WordSet : Replicable {
 
 	public txt?add(etxt*wrd) {
 		txt?entry = null;
-		entry = words.search(wrd.get_hash(), (data) => {
+		entry = words.search(wrd.getStringHash(), (data) => {
 			unowned txt w = ((txt)data);
 			if(wrd.equals((etxt*)w)) {
 				return 0;
