@@ -15,7 +15,7 @@ internal class shotodol.SetVariableCommand : M100Command {
 		base();
 		cmds = gCmds;
 		addOptionString("-var", M100Command.OptionType.TXT, Options.VAR, "Destination variable name");
-		addOptionString("-val", M100Command.OptionType.TXT, Options.VAR, "Variable or value to set");
+		addOptionString("-val", M100Command.OptionType.TXT, Options.VAL, "Variable or value to set");
 	}
 
 	public override etxt*get_prefix() {
