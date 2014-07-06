@@ -28,6 +28,8 @@ public class shotodol.CommandServer: ModulePlugin {
 		// module commands
 		ModuleCommand mdcmd = new ModuleCommand();
 		cmds.register(mdcmd);
+		PluginCommand pcmd = new PluginCommand();
+		cmds.register(pcmd);
 		return 0;
 	}
 	public override int deinit() {

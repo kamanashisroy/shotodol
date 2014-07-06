@@ -1,4 +1,5 @@
 OS_PLATFORM/platform
 libs/propeller
 libs/module
+libs/plugin
 libs/iostream

@@ -2,6 +2,7 @@ libs/iostream
 libs/unittest 
 libs/watchdog 
 libs/module
+libs/plugin
 libs/str_arms 
 libs/config
 libs/iterator

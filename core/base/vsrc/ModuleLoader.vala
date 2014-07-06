@@ -22,6 +22,7 @@ public class shotodol.ModuleLoader : Replicable {
 		count = 0;
 		//load_module_helper("iostream", "libs");
 		load("str_arms", "libs");
+		loadStatic(new Plugin());
 		singleton = this;
 	}
 
@@ -56,6 +57,18 @@ public class shotodol.ModuleLoader : Replicable {
 		etxt path = etxt.stack(128);
 		path.printf("%s%s/%s/plugin.so", path_to_shotodol.to_string(), dir, module_name);
 		load_dynamic_module(path.to_string());
+		return 0;
+	}
+
+	public int loadStatic(Module m) throws plugin_error {
+		if(m.init() != 0) {
+			m.deinit();
+			throw new plugin_error.COULD_NOT_INITIATE("Could not initiate module");
+		}
+		modules.set(count++, m);
+		etxt nm = etxt.EMPTY();
+		m.getNameAs(&nm);
+		print("\t\t\t\t %s module(static) is Loaded\n", nm.to_string());
 		return 0;
 	}
 
