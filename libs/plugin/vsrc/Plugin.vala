@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup plugin Plugin
+ * refer to external coupling
  */
 
 /** \addtogroup Plugin

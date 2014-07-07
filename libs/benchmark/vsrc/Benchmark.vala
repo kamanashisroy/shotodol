@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup benchmark Benchmark
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup benchmark

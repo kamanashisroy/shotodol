@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup core
  * \defgroup command Command register system(command).
+ * [Cohesion : Logical]
  */
 
 /** \addtogroup command

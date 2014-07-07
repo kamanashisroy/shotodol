@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup turbine Individual thread(turbine)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup turbine

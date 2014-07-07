@@ -7,5 +7,7 @@ You can build the extension instance using getInstance() method.
 Readings
 ========
 
-[nixysa](https://code.google.com/p/nixysa/wiki/HelloWorldWalkThru)
+- External coupling
+- Message passing
+- [nixysa](https://code.google.com/p/nixysa/wiki/HelloWorldWalkThru)
 

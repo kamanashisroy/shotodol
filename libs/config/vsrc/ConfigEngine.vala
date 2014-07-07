@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup config Config Engine(config)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup config

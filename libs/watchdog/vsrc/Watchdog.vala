@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup watchdog Watchdog to support debugging and reporting error(watchdog)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup watchdog

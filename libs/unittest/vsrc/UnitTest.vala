@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup unittest Unit Testing Support(unittest)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup unittest

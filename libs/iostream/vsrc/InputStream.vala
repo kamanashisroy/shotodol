@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup iostream Input Output Basic(iostream)
+ * [Cohesion : Logical]
  */
 
 /** \addtogroup iostream

@@ -1,7 +1,6 @@
 
-# This makefile is parsed by shotodol make module 
+# This shakefile is parsed by shotodol make module 
 
 onLoad:
 	fileconf -i ./shotodol.conf
-
 

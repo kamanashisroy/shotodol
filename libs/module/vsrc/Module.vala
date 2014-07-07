@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup module Module
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup module

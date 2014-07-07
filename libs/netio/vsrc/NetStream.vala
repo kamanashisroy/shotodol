@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup netstream Perform Input Output via net (netstream)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup netstream

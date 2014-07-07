@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup command
  * \defgroup command_programming Programming support for command scripts.
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup command_programming

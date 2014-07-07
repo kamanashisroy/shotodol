@@ -8,6 +8,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup propeller A thread support system(propeller)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup propeller

@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup str_arms String manipulation support(str_arms)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup str_arms

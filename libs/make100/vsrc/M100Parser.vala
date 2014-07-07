@@ -4,6 +4,7 @@ using shotodol;
 /**
  * \ingroup library
  * \defgroup make100 Makefile parser code(make100)
+ * [Cohesion : Functional]
  */
 
 /** \addtogroup make100
@@ -107,6 +108,18 @@ public abstract class shotodol.M100Parser: Replicable {
 		return 0;
 	}
 
+	void gotoPreviousScope(int depth) {
+		// sanity check
+		if(depth <= 0) return;
+		// get previous
+		current_scope = scopeTree[depth];
+		int i = 0;
+		for(i = depth; i < scopeDepth; i++) scopeTree[i] = null;
+		scopeDepth = depth;
+		if(current_scope == null)
+			gotoPreviousScope(depth - 1);
+	}
+
 	int addCommandHelper(etxt*cmdstr, etxt*instr, int lineno) {
 		int depth = 0;
 		while(cmdstr.char_at(1) == '\t') {
@@ -115,10 +128,12 @@ public abstract class shotodol.M100Parser: Replicable {
 		}
 		if(current_scope == null) {
 			current_scope = current_function;
-			scopeTree[scopeDepth] = current_scope;
+			scopeTree[1] = current_scope;
 		}
 		if(depth < scopeDepth) {
-			current_scope = scopeTree[depth];
+			gotoPreviousScope(depth);
+			if(current_scope == null)
+				return -1;
 		} else if(depth > scopeDepth){
 			etxt nm = etxt.stack(32);
 			nm.printf("____scope____%d", lineno);
@@ -131,6 +146,15 @@ public abstract class shotodol.M100Parser: Replicable {
 		scopeDepth = depth;
 		current_scope.addCommand(cmdstr, lineno);
 		return 0;
+	}
+
+	void resetFunctionParser() {
+		current_scope = null;
+		int i = 1;
+		for(;i<=scopeDepth;i++) {
+			scopeTree[i] = null;
+		}
+		scopeDepth = 0;
 	}
 
 	public int parseLine(etxt*instr) {
@@ -154,7 +178,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			if(token.equals_static_string(":")) {
 				// so this is a function
 				current_function = addBlock(&name, instr, lineno);
-				current_scope = null;
+				resetFunctionParser();
 				if(default_func == null) {
 					default_func = current_function;
 				}

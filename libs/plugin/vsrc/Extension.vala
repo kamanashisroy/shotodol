@@ -6,10 +6,12 @@ using shotodol;
  */
 public abstract class shotodol.Extension : Replicable {
 	public abstract Replicable getInstance(etxt*service);
-#if false
-	public virtual int desc(CommandDescType tp, OutputStream pad) {
+	public virtual int desc(M100Command.CommandDescType tp, OutputStream pad) {
 		return 0;
 	}
-#endif
+	/* Message passing */
+	public virtual int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+		return 0;
+	}
 }
 /** @}*/
