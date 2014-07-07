@@ -7,7 +7,7 @@ public class shotodol.M100Variable: Searchable {
 	public int intval;
 	public txt?txtval;
 	public enum ValueType {
-		TEXT = 1,INT,ARRAY,OBJECT
+		TEXT = 1,INT,ARRAY,POINTER
 	}
 	public ValueType tp;
 	public M100Variable() {

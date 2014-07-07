@@ -4,4 +4,8 @@ Plugin lets you write ready to use named extensions. You put your extension in n
 
 You can build the extension instance using getInstance() method.
 
+Readings
+========
+
+[nixysa](https://code.google.com/p/nixysa/wiki/HelloWorldWalkThru)
 
