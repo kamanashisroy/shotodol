@@ -4,8 +4,8 @@ Shotodol
 This is an all in one **server environment** written in [aroop](https://github.com/kamanashisroy/aroop)(aka [Vala programming language](https://wiki.gnome.org/Projects/Vala) with aroop profile). The target of the project is to provide,
 
 - A [_module_](http://en.wikipedia.org/wiki/Module_%28programming%29) writing system to extend existing functionality.
- - An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate.
- - An interface where the modules communicate.
+- An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate.
+- An interface where the modules communicate.
 
 The idea here is to provide you an environment to write your own service via modules. The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together.  
 

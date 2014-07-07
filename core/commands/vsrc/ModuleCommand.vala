@@ -24,9 +24,12 @@ internal class shotodol.ModuleCommand : M100Command {
 	}
 
 	int load_module_helper(string module) {
-		print("Trying to load module %s\n", module);
+		etxt dlg = etxt.stack(128);
+		dlg.printf("Trying to load module %s\n", module);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		ModuleLoader.singleton.load_dynamic_module(module);
-		print("\t\t\t\t %s module is Loaded\n", module);
+		dlg.printf("\t\t\t\t %s module is Loaded\n", module);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		return 0;
 	}
 

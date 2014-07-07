@@ -2,4 +2,5 @@ OS_PLATFORM/platform
 libs/propeller
 libs/module
 libs/plugin
+libs/watchdog
 libs/iostream

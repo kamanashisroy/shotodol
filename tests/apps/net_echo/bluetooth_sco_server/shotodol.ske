@@ -1,7 +1,7 @@
 
 # This makefile is parsed by shotodol make module 
 
-all:
+onLoad:
 	help module
 	help fileconf
 	module -load ../../../../apps/net_echo/plugin.so

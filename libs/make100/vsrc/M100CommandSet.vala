@@ -31,7 +31,9 @@ public class shotodol.M100CommandSet: Replicable {
 		return 0;
 	}
 	public int register(M100Command cmd) {
-		print("Registering %s command\n", cmd.get_prefix().to_string());
+		etxt dlg = etxt.stack(128);
+		dlg.printf("Registering %s command\n", cmd.get_prefix().to_string());
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		cmds.add(cmd);
 		be.memorize_etxt(cmd.get_prefix(), cmd);
 		return 0;

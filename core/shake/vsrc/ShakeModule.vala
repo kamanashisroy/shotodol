@@ -12,7 +12,7 @@ public class shotodol.ShakeModule : ModulePlugin {
 		mt = new ShakeTest();
 		UnitTestModule.inst.register(mt);
 		CommandServer.server.cmds.register(cmd);
-		etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t all\n");
+		etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t onLoad\n");
 		CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 		return 0;
 	}

@@ -49,11 +49,16 @@ public class shotodol.ModuleLoader : Replicable {
 		}
 		m.initDynamic(plg);
 		modules.set(count++, m);
-		print("\t\t\t\t %s module is Loaded\n", filepath);
+		//print("\t\t\t\t %s module is Loaded\n", filepath);
+		etxt dlg = etxt.stack(128);
+		dlg.printf("\t\t\t\t %s module is Loaded\n", filepath);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 	}
 
 	public int load(string module_name, string dir) {
-		print("Trying to load module %s%s/%s\n", path_to_shotodol.to_string(), dir, module_name);
+		etxt dlg = etxt.stack(128);
+		dlg.printf("Trying to load module %s%s/%s\n", path_to_shotodol.to_string(), dir, module_name);
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		etxt path = etxt.stack(128);
 		path.printf("%s%s/%s/plugin.so", path_to_shotodol.to_string(), dir, module_name);
 		load_dynamic_module(path.to_string());
@@ -68,7 +73,9 @@ public class shotodol.ModuleLoader : Replicable {
 		modules.set(count++, m);
 		etxt nm = etxt.EMPTY();
 		m.getNameAs(&nm);
-		print("\t\t\t\t %s module(static) is Loaded\n", nm.to_string());
+		etxt dlg = etxt.stack(128);
+		dlg.printf("\t\t\t\t %s module(static) is Loaded\n", nm.to_string());
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		return 0;
 	}
 

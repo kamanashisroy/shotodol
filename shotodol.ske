@@ -1,12 +1,8 @@
 
 # This makefile is parsed by shotodol make module 
 
-all:
-	help module
-	help fileconf
+onLoad:
 	fileconf -i ./shotodol.conf
-	shake -t greet
+	echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.
 
-greet:
-	echo Welcome to shotodol server. This toy comes with no guaranty. Use it at your own risk.
 
