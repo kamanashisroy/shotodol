@@ -3,6 +3,5 @@
 
 onLoad:
 	fileconf -i ./shotodol.conf
-	echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.
 
 
