@@ -5,15 +5,13 @@ using shotodol;
  *  @{
  */
 public class shotodol.IdleModule : ModulePlugin {
-	IdleCommand? cmd;
 	public override int init() {
-		cmd = new IdleCommand();
-		CommandServer.server.cmds.register(cmd);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new IdleCommand(), this));
 		return 0;
 	}
 	public override int deinit() {
-		CommandServer.server.cmds.unregister(cmd);
-		cmd = null;
+		Plugin.unregisterModule(this);
 		base.deinit();
 		return 0;
 	}
