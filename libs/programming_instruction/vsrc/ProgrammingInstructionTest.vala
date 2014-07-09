@@ -21,6 +21,7 @@ public class ProgrammingInstructionTest : UnitTest {
 		name.dup_etxt(&tname);
 	}
 	public override int test() throws UnitTestError {
+#if false
 		M100CommandSet cmds = new M100CommandSet();
 		ProgrammingInstruction cp = new ProgrammingInstruction();
 		cp.register(cmds);
@@ -50,6 +51,7 @@ public class ProgrammingInstructionTest : UnitTest {
 		}
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,success?Watchdog.WatchdogSeverity.LOG:Watchdog.WatchdogSeverity.ERROR,0,0,&dlg);
 		cp.unregister();
+#endif
 		return 0;
 	}
 }

@@ -18,17 +18,40 @@ public class shotodol.Plugin : Module {
 		registry = HashTable<Extension>();
 	}
 	public static int register(txt target, Extension e) {
-		x.registry.set(target, e);
+		Extension?root = x.registry.get(target);
+		if(root == null) {
+			x.registry.set(target, e);
+			return 0;
+		}
+		while(root.next != null) {
+			Extension next = root.next;
+			root = next;
+		}
+		root.next = e;
 		return 0;
 	}
 	public static Extension?get(txt target) {
 		return x.registry.get(target);
 	}
 	public static int unregister(txt target, Extension e) {
-		Extension ex = x.registry.get(target);
-		if(ex == e) {
-			x.registry.set(target, null);
+		Extension?root = x.registry.get(target);
+		if(root == null) return 0;
+		if(root == e) {
+			x.registry.set(target, root.next);
+			return 0;
 		}
+		while(root.next != null) {
+			Extension next = root.next;
+			root = next;
+			if(root.next == e) {
+				root.next = e.next;
+				return 0;
+			}
+		}
+		return 0;
+	}
+	public static int unregisterModule(Module mod) {
+		// TODO fill me
 		return 0;
 	}
 #if false

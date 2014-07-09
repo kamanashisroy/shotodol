@@ -6,16 +6,14 @@ using shotodol;
  */
 internal class shotodol.IfCommand : M100Command {
 	etxt prfx;
-	M100CommandSet set;
-	public IfCommand(M100CommandSet gSet) {
+	public IfCommand() {
 		base();
-		set = gSet;
 	}
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("if");
 		return &prfx;
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		bool inverse = false;
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		etxt token = etxt.EMPTY();
@@ -43,7 +41,7 @@ internal class shotodol.IfCommand : M100Command {
 		}
 		bool cond = (inverse && val == '0') || (!inverse && val == '1');
 		if(cond) {
-			if(inlineif)set.act_on(&inp, pad, null);
+			if(inlineif)cmds.act_on(&inp, pad, null);
 		}
 		return (!inlineif && !cond)?FlowControl.SKIP_BLOCK:FlowControl.KEEP_GOING;
 	}

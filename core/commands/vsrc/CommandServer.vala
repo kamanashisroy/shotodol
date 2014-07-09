@@ -16,6 +16,7 @@ public class shotodol.CommandServer: ModulePlugin {
 	public CommandServer() {
 		name = etxt.from_static("commands");
 		cmds = new M100CommandSet();
+		ModuleLoader.singleton.loadStatic(new ProgrammingInstruction());
 	}
 	
 	public override int init() {

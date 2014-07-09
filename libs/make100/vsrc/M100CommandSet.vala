@@ -63,7 +63,7 @@ public class shotodol.M100CommandSet: Replicable {
 		int ret = 0;
 		try {
 			mycmd.greet(pad);
-			ret = mycmd.act_on(rcmd, pad);
+			ret = mycmd.act_on(rcmd, pad, this);
 			mycmd.bye(pad, true);
 		} catch(M100CommandError.ActionFailed e) {
 			mycmd.bye(pad, false);

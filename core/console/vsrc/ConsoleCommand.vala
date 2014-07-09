@@ -31,7 +31,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		prfx = etxt.from_static("shell");
 		return &prfx;
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		int duration = 1000;
 		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {

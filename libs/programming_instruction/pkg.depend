@@ -1,3 +1,4 @@
 libs/make100
 libs/unittest
+libs/plugin
 OS_PLATFORM/platform_extra

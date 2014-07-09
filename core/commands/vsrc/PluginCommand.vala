@@ -19,7 +19,7 @@ internal class shotodol.PluginCommand : M100Command {
 		return &prfx;
 	}
 
-	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		print("Todo dump each extension information.\n");
 		//Plugin.x.list(pad);
 		return 0;

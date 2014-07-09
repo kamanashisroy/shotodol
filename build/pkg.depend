@@ -18,7 +18,6 @@ libs/programming_instruction
 core/base
 core/commands
 core/test
-core/programming
 core/fileconfig
 core/console
 core/idle

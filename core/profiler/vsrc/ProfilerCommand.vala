@@ -18,7 +18,7 @@ internal class ProfilerCommand : M100Command {
 		return &prfx;
 	}
 
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
 		core.memory_profiler_dump((contentLine) => {
 			contentLine.concat_char('\n');
 			pad.write(contentLine);

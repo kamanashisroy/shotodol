@@ -1,2 +1,0 @@
-
-LIBRARY_NAME=shotodol_programming

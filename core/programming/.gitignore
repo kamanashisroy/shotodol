@@ -1,5 +1,0 @@
-vapi/*.vapi
-include/*.h
-*.c
-*.so
-*.a

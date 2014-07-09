@@ -10,46 +10,25 @@ using shotodol;
 /** \addtogroup command_programming
  *  @{
  */
-public class ProgrammingInstruction : Replicable {
-	LessThanCommand?lecmd;
-	GreaterThanCommand?gtcmd;
-	EqualsCommand?ecmd;
-	IfCommand?ifcmd;
-	EchoCommand?ecocmd;
-	SetVariableCommand?setcmd;
-	unowned M100CommandSet?cmdSet;
+public class ProgrammingInstruction : Module {
 	public ProgrammingInstruction() {
-		cmdSet = null;
+		name = etxt.from_static("programming");
 	}
 
-	public void register(M100CommandSet gCmdSet) {
-		if(cmdSet != null) {
-			unregister();
-		}
-		cmdSet = gCmdSet;
-		lecmd = new LessThanCommand(gCmdSet);
-		gtcmd = new GreaterThanCommand(gCmdSet);
-		ecmd = new EqualsCommand(gCmdSet);
-		ifcmd = new IfCommand(gCmdSet);
-		ecocmd = new EchoCommand();
-		setcmd = new SetVariableCommand(gCmdSet);
-		cmdSet.register(lecmd);
-		cmdSet.register(gtcmd);
-		cmdSet.register(ecmd);
-		cmdSet.register(ifcmd);
-		cmdSet.register(ecocmd);
-		cmdSet.register(setcmd);
+	public override int init() {
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new LessThanCommand(), this));
+		Plugin.register(command, new Extension.for_service(new GreaterThanCommand(), this));
+		Plugin.register(command, new Extension.for_service(new EqualsCommand(), this));
+		Plugin.register(command, new Extension.for_service(new IfCommand(), this));
+		Plugin.register(command, new Extension.for_service(new EchoCommand(), this));
+		Plugin.register(command, new Extension.for_service(new SetVariableCommand(), this));
+		return 0;
 	}
 
-	public void unregister() {
-		if(cmdSet == null) {
-			return;
-		}
-		cmdSet.unregister(lecmd);
-		cmdSet.unregister(gtcmd);
-		cmdSet.unregister(ecmd);
-		cmdSet.unregister(ifcmd);
-		cmdSet.unregister(ecocmd);
-		cmdSet.unregister(setcmd);
+	public override int deinit() {
+		Plugin.unregisterModule(this);
+		base.deinit();
+		return 0;
 	}
 }

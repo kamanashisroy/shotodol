@@ -9,7 +9,7 @@ using shotodol;
 /** \addtogroup programming
  *  @{
  */
-public class shotodol.Programming: ModulePlugin {
+public class shotodol.Programming: Module {
 	ProgrammingInstructionTest?cpt;
 	ProgrammingInstruction?pgm;
 	public Programming() {
@@ -28,11 +28,6 @@ public class shotodol.Programming: ModulePlugin {
 		if(pgm != null)pgm.unregister();
 		base.deinit();
 		return 0;
-	}
-	
-	[CCode (cname="get_module_instance")]
-	public static Module get_module_instance() {
-		return new Programming();
 	}
 }
 /* @} */

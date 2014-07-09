@@ -6,20 +6,19 @@ using shotodol;
  */
 public class shotodol.BooleanOperatorCommand : shotodol.M100Command {
 	etxt prfx;
-	unowned M100CommandSet cmds;
 	enum Options {
 		X = 1,
 		Y,
 		Z,
 	}
-	public BooleanOperatorCommand(M100CommandSet gCmds) {
+	public BooleanOperatorCommand() {
 		base();
-		cmds = gCmds;
 		addOptionString("-x", M100Command.OptionType.TXT, Options.X, "First variable or value");
 		addOptionString("-y", M100Command.OptionType.TXT, Options.Y, "Second variable or value");
 		addOptionString("-z", M100Command.OptionType.TXT, Options.Z, "Output variable");
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
@@ -66,8 +65,8 @@ public class shotodol.BooleanOperatorCommand : shotodol.M100Command {
 }
 internal class shotodol.LessThanCommand : shotodol.BooleanOperatorCommand {
 	etxt prfx;
-	public LessThanCommand(M100CommandSet cmds) {
-		base(cmds);
+	public LessThanCommand() {
+		base();
 	}
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("lt");
@@ -86,8 +85,8 @@ internal class shotodol.LessThanCommand : shotodol.BooleanOperatorCommand {
 }
 internal class shotodol.GreaterThanCommand : shotodol.BooleanOperatorCommand {
 	etxt prfx;
-	public GreaterThanCommand(M100CommandSet cmds) {
-		base(cmds);
+	public GreaterThanCommand() {
+		base();
 	}
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("gt");
@@ -106,8 +105,8 @@ internal class shotodol.GreaterThanCommand : shotodol.BooleanOperatorCommand {
 }
 internal class shotodol.EqualsCommand : shotodol.BooleanOperatorCommand {
 	etxt prfx;
-	public EqualsCommand(M100CommandSet cmds) {
-		base(cmds);
+	public EqualsCommand() {
+		base();
 	}
 	public override etxt*get_prefix() {
 		prfx = etxt.from_static("eq");

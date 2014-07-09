@@ -10,7 +10,7 @@ internal class shotodol.HelpCommand : M100Command {
 		prfx = etxt.from_static("help");
 		return &prfx;
 	}
-	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, OutputStream pad) {
+	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		int i = 0;
 		for(i = 0; i < 32; i++) {

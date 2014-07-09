@@ -10,7 +10,7 @@ internal class shotodol.EchoCommand : shotodol.M100Command {
 		prfx = etxt.from_static("echo");
 		return &prfx;
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
 		etxt inp = etxt.stack_from_etxt(cmdstr);
 		etxt token = etxt.EMPTY();
 		LineAlign.next_token(&inp, &token); // second token

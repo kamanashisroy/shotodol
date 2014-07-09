@@ -12,7 +12,6 @@ public class shotodol.MainProgram {
 	static int loadDefaultModules(ModuleLoader loader) {
 		loader.loadCore("commands");
 		loader.loadCore("test");
-		loader.loadCore("programming");
 		loader.loadCore("console");
 		loader.loadCore("idle");
 		loader.loadCore("profiler");

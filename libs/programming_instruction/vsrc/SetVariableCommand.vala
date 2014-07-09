@@ -6,14 +6,12 @@ using shotodol;
  */
 internal class shotodol.SetVariableCommand : M100Command {
 	etxt prfx;
-	unowned M100CommandSet cmds;
 	enum Options {
 		VAR = 1,
 		VAL,
 	}
-	public SetVariableCommand(M100CommandSet gCmds) {
+	public SetVariableCommand() {
 		base();
-		cmds = gCmds;
 		addOptionString("-var", M100Command.OptionType.TXT, Options.VAR, "Destination variable name");
 		addOptionString("-val", M100Command.OptionType.TXT, Options.VAL, "Variable or value to set");
 	}
@@ -22,7 +20,7 @@ internal class shotodol.SetVariableCommand : M100Command {
 		prfx = etxt.from_static("set");
 		return &prfx;
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		ArrayList<txt> vals = ArrayList<txt>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");

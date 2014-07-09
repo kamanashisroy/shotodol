@@ -9,7 +9,7 @@ include $(SHOTODOL_HOME)/build/platform.mk
 
 all:$(TARGET)
 
-$(TARGET):
+$(TARGET):$(OBJECTS)
 	$(CC) $(RDYNAMIC) $(OBJECTS) $(LIBS) -o $@
 
 clean:

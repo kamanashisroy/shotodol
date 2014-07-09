@@ -37,7 +37,7 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		prfx = etxt.from_static("watchdog");
 		return &prfx;
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		etxt*sourcefile = null;
 		int lineno = -1;
 		int logLevel = 3;
@@ -61,7 +61,7 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 			} else {
 				txt?oldCmd = namedCmds.get(nm);
 				if(oldCmd != null) {
-					return act_on(oldCmd, pad);
+					return act_on(oldCmd, pad, cmds);
 				}
 			}
 		} 

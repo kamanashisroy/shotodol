@@ -50,9 +50,12 @@ public abstract class shotodol.M100Command : Replicable {
 	~M100Command() {
 		options.destroy();
 	}
+
+#if false
 	public int match_all(container<txt> can) {
 		return 0;
 	}
+#endif
 	public void addOption(etxt*prefix, OptionType tp, aroop_hash id, etxt*help) {
 		M100CommandOption opt = options.alloc_full();
 		opt.pin();
@@ -93,7 +96,7 @@ public abstract class shotodol.M100Command : Replicable {
 	public virtual etxt*get_prefix() {
 		return null;
 	}
-	public virtual int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public virtual int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		return 0;
 	}
 	public virtual int desc(CommandDescType tp, OutputStream pad) {
