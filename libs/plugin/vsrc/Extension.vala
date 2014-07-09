@@ -24,6 +24,7 @@ public class shotodol.Extension : Replicable {
 	public virtual Replicable getInstance(etxt*service) {
 		return x;
 	}
+#if false
 	public virtual int desc(M100Command.CommandDescType tp, OutputStream pad) {
 		return 0;
 	}
@@ -31,5 +32,6 @@ public class shotodol.Extension : Replicable {
 	public virtual int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
 		return 0;
 	}
+#endif
 }
 /** @}*/

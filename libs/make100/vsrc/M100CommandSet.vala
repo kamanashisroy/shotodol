@@ -8,7 +8,9 @@ public class shotodol.M100CommandSet: Replicable {
 	public HashTable<M100Variable?> vars;
 	Set<M100Command> cmds;
 	BrainEngine<M100Command> be;
+	txt command;
 	public M100CommandSet() {
+		command = new txt.from_static("command");
 		cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
 		vars = HashTable<M100Variable?>();
@@ -43,7 +45,19 @@ public class shotodol.M100CommandSet: Replicable {
 		return 0;
 	}
 	public M100Command? percept(etxt*cmd_str) {
-		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
+		etxt inp = etxt.same_same(cmd_str);
+		etxt cmdName = etxt.EMPTY();
+		LineAlign.next_token(&inp, &cmdName); // second token
+		Extension?root = Plugin.get(command);
+		while(root != null) {
+			M100Command x = (M100Command)root.getInstance(null);
+			etxt*nm = x.get_prefix();
+			if(cmdName.equals(nm)) return x;
+			Extension?next = root.getNext();
+			root = next;
+		}
+		return null;
+		//return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
 	public int act_on(etxt*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
