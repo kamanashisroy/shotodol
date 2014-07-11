@@ -12,10 +12,8 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		GLIDE,
 	}
 	ConsoleHistory sp;
-	unowned M100CommandSet cmdSet;
-	public ConsoleCommand(M100CommandSet gCmdSet) {
+	public ConsoleCommand() {
 		base();
-		cmdSet = gCmdSet;
 		addOptionString("-a", M100Command.OptionType.INT, Options.AGAIN, "Try the command again");
 		addOptionString("-gl", M100Command.OptionType.INT, Options.GLIDE, "Duration to glide(become inactive), 0 by default");
 		addOptionString("-l", M100Command.OptionType.NONE, Options.LIST, "List commands from history");
@@ -44,7 +42,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 			if(again == null) {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
-			cmdSet.act_on(again, pad, null);
+			cmds.act_on(again, pad, null);
 			return 0;
 		}
 		if(vals[Options.LIST] != null) {

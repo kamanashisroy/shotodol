@@ -13,10 +13,8 @@ using shotodol;
 public abstract class shotodol.Module : Replicable {
 	protected etxt name;
 	protected etxt version;
-	public virtual int getNameAs(etxt*outtxt) {
-		outtxt.destroy();
-		(*outtxt) = etxt.same_same(&name);
-		return 0;
+	public virtual etxt*getName() {
+		return &name;
 	}
 #if false
 	public virtual etxt*getVersion() {

@@ -71,10 +71,8 @@ public class shotodol.ModuleLoader : Replicable {
 			throw new plugin_error.COULD_NOT_INITIATE("Could not initiate module");
 		}
 		modules.set(count++, m);
-		etxt nm = etxt.EMPTY();
-		m.getNameAs(&nm);
 		etxt dlg = etxt.stack(128);
-		dlg.printf("\t\t\t\t %s module(static) is Loaded\n", nm.to_string());
+		dlg.printf("\t\t\t\t %s module(static) is Loaded\n", m.getName().to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		return 0;
 	}

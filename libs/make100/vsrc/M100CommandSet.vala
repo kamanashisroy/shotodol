@@ -6,73 +6,45 @@ using shotodol;
  */
 public class shotodol.M100CommandSet: Replicable {
 	public HashTable<M100Variable?> vars;
-	Set<M100Command> cmds;
-	BrainEngine<M100Command> be;
+	BrainEngine<M100Command>?be;
 	txt command;
+	M100GotoCommand gcmd;
 	public M100CommandSet() {
 		command = new txt.from_static("command");
-		cmds = Set<M100Command>();
+		//cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
 		vars = HashTable<M100Variable?>();
-		register(new M100GotoCommand());
+		gcmd = new M100GotoCommand();
+		be.memorize_etxt(gcmd.get_prefix(), gcmd);
 	}
 	~M100CommandSet() {
-		cmds.destroy();
 		vars.destroy();
 	}
 	public int list(OutputStream pad) {		
-		cmds.visit_each((data) =>{
-			unowned M100Command cmd = ((container<M100Command>)data).get();
-			cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
-			//etxt*prefix = cmd.get_prefix();
-			//if(prefix == null) return 0;
-			//if(!prefix.equals(cmd_str)) return 0;
-			//mycmd = cmd;
-			return 0;
-		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
-		return 0;
-	}
-	public int register(M100Command cmd) {
-		etxt dlg = etxt.stack(128);
-		dlg.printf("Registering %s command\n", cmd.get_prefix().to_string());
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
-		cmds.add(cmd);
-		be.memorize_etxt(cmd.get_prefix(), cmd);
-		return 0;
-	}
-	public int unregister(M100Command cmd) {
-		// TODO fill me
-		return 0;
-	}
-	public int rehash() {
 		Extension?root = Plugin.get(command);
 		while(root != null) {
 			M100Command?cmd = (M100Command)root.getInstance(null);
-			if(cmd == null)
-				break;
-			be.memorize_etxt(cmd.get_prefix(), cmd);
+			if(cmd != null)
+				cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
+			Extension?next = root.getNext();
+			root = next;
+		}
+		return 0;
+	}
+	public int rehash() {
+		be = new BrainEngine<M100Command>();
+		be.memorize_etxt(gcmd.get_prefix(), gcmd);
+		Extension?root = Plugin.get(command);
+		while(root != null) {
+			M100Command?cmd = (M100Command)root.getInstance(null);
+			if(cmd != null)
+				be.memorize_etxt(cmd.get_prefix(), cmd);
 			Extension?next = root.getNext();
 			root = next;
 		}
 		return 0;
 	}
 	public M100Command? percept(etxt*cmd_str) {
-#if false
-		etxt inp = etxt.same_same(cmd_str);
-		etxt cmdName = etxt.EMPTY();
-		LineAlign.next_token(&inp, &cmdName); // second token
-		Extension?root = Plugin.get(command);
-		while(root != null) {
-			M100Command?x = (M100Command)root.getInstance(null);
-			if(x == null)
-				return;
-			etxt*nm = x.get_prefix();
-			if(cmdName.equals(nm)) return x;
-			Extension?next = root.getNext();
-			root = next;
-		}
-		return null;
-#endif
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
 	public int act_on(etxt*cmd_str, OutputStream pad, M100Script?sc) {

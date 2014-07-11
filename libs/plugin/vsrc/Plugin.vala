@@ -54,15 +54,18 @@ public class shotodol.Plugin : Module {
 		// TODO fill me
 		return 0;
 	}
-#if false
 	public static void list(OutputStream pad) {
-		registry.visit_each((data) =>{
-			unowned Extension x = ((container<M100Command>)data).get();
-			cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
+		etxt dlg = etxt.stack(128);
+		dlg.printf("There are %d extensions registered\n", x.registry.count_unsafe());
+		pad.write(&dlg);
+#if false
+		x.registry.visit_each((data) =>{
+			unowned Extension x = ((container<Extension>)data).get();
+			x.desc(pad);
 			return 0;
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
-	}
 #endif
+	}
 	~Plugin() {
 		registry.destroy();
 	}

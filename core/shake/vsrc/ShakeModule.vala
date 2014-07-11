@@ -5,24 +5,32 @@ using shotodol;
  *  @{
  */
 public class shotodol.ShakeModule : ModulePlugin {
-	ShakeCommand? cmd;
-	ShakeTest? mt;
+	class ShakeOnLoad : Extension {
+		public ShakeOnLoad(Module mod) {
+			base(mod);
+		}
+		public override int act(etxt*msg, etxt*output) {
+			CommandServer.server.cmds.rehash();
+			etxt greet = etxt.from_static("echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.\n");
+			CommandServer.server.cmds.act_on(&greet, new StandardOutputStream(), null);
+			etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t onLoad\n");
+			CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
+			return 0;
+		}
+	}
+	public ShakeModule() {
+		name = etxt.from_static("shake");
+	}
 	public override int init() {
-		cmd = new ShakeCommand(CommandServer.server.cmds);
-		mt = new ShakeTest();
-		UnitTestModule.inst.register(mt);
-		CommandServer.server.cmds.register(cmd);
-		etxt greet = etxt.from_static("echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.\n");
-		CommandServer.server.cmds.act_on(&greet, new StandardOutputStream(), null);
-		etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t onLoad\n");
-		CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new ShakeCommand(), this));
+		txt test = new txt.from_static("unittest");
+		Plugin.register(test, new Extension.for_service(new ShakeTest(), this));
+		txt onLoad = new txt.from_static("onLoad");
+		Plugin.register(onLoad, new ShakeOnLoad(this));
 		return 0;
 	}
 	public override int deinit() {
-		CommandServer.server.cmds.unregister(cmd);
-		UnitTestModule.inst.unregister(mt);
-		cmd = null;
-		mt = null;
 		base.deinit();
 		return 0;
 	}

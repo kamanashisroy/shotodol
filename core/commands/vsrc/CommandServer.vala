@@ -11,6 +11,15 @@ using shotodol;
  *  @{
  */
 public class shotodol.CommandServer: ModulePlugin {
+	class CommandOnLoad : Extension {
+		public CommandOnLoad(Module mod) {
+			base(mod);
+		}
+		public override int act(etxt*msg, etxt*output) {
+			server.cmds.rehash();
+			return 0;
+		}
+	}
 	public static CommandServer? server;
 	public M100CommandSet cmds;
 	public CommandServer() {
@@ -27,6 +36,8 @@ public class shotodol.CommandServer: ModulePlugin {
 		Plugin.register(command, new Extension.for_service(new ModuleCommand(), this));
 		Plugin.register(command, new Extension.for_service(new PluginCommand(), this));
 		Plugin.register(command, new Extension.for_service(new RehashCommand(cmds), this));
+		txt onLoad = new txt.from_static("onLoad");
+		Plugin.register(onLoad, new CommandOnLoad(this));
 		cmds.rehash();
 		return 0;
 	}

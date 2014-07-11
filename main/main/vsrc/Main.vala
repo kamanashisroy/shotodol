@@ -19,13 +19,23 @@ public class shotodol.MainProgram {
 		loader.loadCore("shake");
 		return 0;
 	}
+	static int onLoad() {
+		txt loadcmd = new txt.from_static("onLoad");
+		Extension?root = Plugin.get(loadcmd);
+		while(root != null) {
+			root.act(null,null);
+			Extension?next = root.getNext();
+			root = next;
+		}
+		return 0;
+	}
 	public static int main() {
-		// TODO load lua
 		// TODO - if(opt & SHELL) then start console
 		MainTurbine mt = new MainTurbine();
 		
 		ModuleLoader loader = new ModuleLoader();
 		loadDefaultModules(loader);
+		onLoad();
 		mt.startup();
 		loader.unloadAll();
 		ModuleLoader.singleton = null;

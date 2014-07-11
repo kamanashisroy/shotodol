@@ -11,23 +11,19 @@ using shotodol_platform;
  *  @{
  */
 public class FileConfig : ModulePlugin {
+	public FileConfig() {
+		name = etxt.from_static("net_echo");
+	}
 
-	FileConfigTest? ct = null;
-	FileConfigCommand? ccmd = null;
 	public override int init() {
-		//new Watchdog(new StandardOutputStream());
-		ccmd = new FileConfigCommand();
-		CommandServer.server.cmds.register(ccmd);
-		ct = new FileConfigTest();
-		UnitTestModule.inst.register(ct);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new FileConfigCommand(), this));
+		txt unittest = new txt.from_static("unittest");
+		Plugin.register(unittest, new Extension.for_service(new FileConfigTest(), this));
 		return 0;
 	}
 
 	public override int deinit() {
-		CommandServer.server.cmds.unregister(ccmd);
-		UnitTestModule.inst.unregister(ct);
-		ccmd = null;
-		ct = null;
 		DefaultConfigEngine.setDefault(null);
 		base.deinit();
 		return 0;

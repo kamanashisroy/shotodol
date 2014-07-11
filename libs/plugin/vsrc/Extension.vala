@@ -24,14 +24,15 @@ public class shotodol.Extension : Replicable {
 	public virtual Replicable getInstance(etxt*service) {
 		return x;
 	}
-#if false
-	public virtual int desc(M100Command.CommandDescType tp, OutputStream pad) {
+	public virtual int desc(OutputStream pad) {
+		etxt dlg = etxt.stack(128);
+		dlg.printf("Extension from module [%s]\n", src.getName().to_string());
+		pad.write(&dlg);
 		return 0;
 	}
 	/* Message passing */
-	public virtual int act_on(etxt*cmdstr, OutputStream pad) throws M100CommandError.ActionFailed {
+	public virtual int act(etxt*msg, etxt*output) /*throws M100CommandError.ActionFailed*/ {
 		return 0;
 	}
-#endif
 }
 /** @}*/

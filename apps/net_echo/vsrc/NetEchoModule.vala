@@ -13,15 +13,15 @@ using shotodol;
  *  @{
  */
 public class shotodol.NetEchoModule : ModulePlugin {
-	NetEchoCommand? cmd;
+	public NetEchoModule() {
+		name = etxt.from_static("net_echo");
+	}
 	public override int init() {
-		cmd = new NetEchoCommand();
-		CommandServer.server.cmds.register(cmd);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new NetEchoCommand(), this));
 		return 0;
 	}
 	public override int deinit() {
-		CommandServer.server.cmds.unregister(cmd);
-		cmd = null;
 		base.deinit();
 		return 0;
 	}

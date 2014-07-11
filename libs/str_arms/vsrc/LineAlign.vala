@@ -192,6 +192,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	}
 	
 	private int prefix_match(etxt*pfx) requires(pfx != null && firstline != null) {
+		core.assert(pfx != null && firstline != null);
 		int i = 0;
 		for(;i<firstline.length() && i<pfx.length() && firstline.char_at(i) == pfx.char_at(i);i++);
 		return i;

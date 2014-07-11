@@ -15,10 +15,8 @@ internal class ShakeCommand : M100Command {
 		TARGET = 1,
 		FILE,
 	}
-	unowned M100CommandSet cmdSet;
-	public ShakeCommand(M100CommandSet gCmdSet) {
+	public ShakeCommand() {
 		base();
-		cmdSet = gCmdSet;
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
 		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "shake file name/path"); 
 		script = null;
@@ -39,7 +37,7 @@ internal class ShakeCommand : M100Command {
 		if(fn == null && tgt == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
-			
+		
 		if(fn != null) {
 			try {
 				FileInputStream f = new FileInputStream.from_file(fn);
@@ -76,7 +74,7 @@ internal class ShakeCommand : M100Command {
 				dlg.printf("command:%s\n", cmd.to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 				// execute command
-				cmdSet.act_on(cmd, pad, script);
+				cmds.act_on(cmd, pad, script);
 			}
 		}
 		return 0;

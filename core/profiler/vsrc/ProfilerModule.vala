@@ -10,15 +10,16 @@ using shotodol;
  *  @{
  */
 public class shotodol.ProfilerModule : ModulePlugin {
-	ProfilerCommand? cmd;
+	public ProfilerModule() {
+		name = etxt.from_static("net_echo");
+	}
+
 	public override int init() {
-		cmd = new ProfilerCommand();
-		CommandServer.server.cmds.register(cmd);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new ProfilerCommand(), this));
 		return 0;
 	}
 	public override int deinit() {
-		CommandServer.server.cmds.unregister(cmd);
-		cmd = null;
 		base.deinit();
 		return 0;
 	}

@@ -11,9 +11,9 @@ public class shotodol.BrainEngine<G> : Replicable {
 	WordSet words;
 	
 	public BrainEngine() {
-		memory = Factory<LineAlign<G>>.for_type();
+		memory = Factory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
 		//response = Factory<LineAlign>.for_type();
-		sandbox = Factory<LineAlign<G>>.for_type();
+		sandbox = Factory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
 		words = new WordSet();
 	}
 	

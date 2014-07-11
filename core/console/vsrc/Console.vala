@@ -11,26 +11,20 @@ using shotodol_platform;
  */
 public class Console : ModulePlugin {
 
-	ConsoleTest? ct = null;
-	ConsoleCommand? ccmd = null;
-	WatchdogCommand? wcmd = null;
+	public Console() {
+		name = etxt.from_static("net_echo");
+	}
+
 	public override int init() {
-		ccmd = new ConsoleCommand(CommandServer.server.cmds);
-		wcmd = new WatchdogCommand();
-		CommandServer.server.cmds.register(ccmd);
-		CommandServer.server.cmds.register(wcmd);
-		ct = new ConsoleTest();
-		UnitTestModule.inst.register(ct);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new ConsoleCommand(), this));
+		Plugin.register(command, new Extension.for_service(new WatchdogCommand(), this));
+		txt unittest = new txt.from_static("unittest");
+		Plugin.register(unittest, new Extension.for_service(new ConsoleTest(), this));
 		return 0;
 	}
 
 	public override int deinit() {
-		CommandServer.server.cmds.unregister(ccmd);
-		CommandServer.server.cmds.unregister(wcmd);
-		UnitTestModule.inst.unregister(ct);
-		ccmd = null;
-		wcmd = null;
-		ct = null;
 		base.deinit();
 		return 0;
 	}
