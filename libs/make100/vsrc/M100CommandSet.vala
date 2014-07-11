@@ -44,20 +44,36 @@ public class shotodol.M100CommandSet: Replicable {
 		// TODO fill me
 		return 0;
 	}
+	public int rehash() {
+		Extension?root = Plugin.get(command);
+		while(root != null) {
+			M100Command?cmd = (M100Command)root.getInstance(null);
+			if(cmd == null)
+				break;
+			be.memorize_etxt(cmd.get_prefix(), cmd);
+			Extension?next = root.getNext();
+			root = next;
+		}
+		return 0;
+	}
 	public M100Command? percept(etxt*cmd_str) {
+#if false
 		etxt inp = etxt.same_same(cmd_str);
 		etxt cmdName = etxt.EMPTY();
 		LineAlign.next_token(&inp, &cmdName); // second token
 		Extension?root = Plugin.get(command);
 		while(root != null) {
-			M100Command x = (M100Command)root.getInstance(null);
+			M100Command?x = (M100Command)root.getInstance(null);
+			if(x == null)
+				return;
 			etxt*nm = x.get_prefix();
 			if(cmdName.equals(nm)) return x;
 			Extension?next = root.getNext();
 			root = next;
 		}
 		return null;
-		//return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
+#endif
+		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
 	public int act_on(etxt*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments

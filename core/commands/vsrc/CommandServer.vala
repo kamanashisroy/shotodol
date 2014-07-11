@@ -21,17 +21,13 @@ public class shotodol.CommandServer: ModulePlugin {
 	
 	public override int init() {
 		server = this;
-		// quit command
-		QuitCommand qtcmd = new QuitCommand();
-		cmds.register(qtcmd);
-		// help commands
-		HelpCommand hlpcmd = new HelpCommand();
-		cmds.register(hlpcmd);
-		// module commands
-		ModuleCommand mdcmd = new ModuleCommand();
-		cmds.register(mdcmd);
-		PluginCommand pcmd = new PluginCommand();
-		cmds.register(pcmd);
+		txt command = new txt.from_static("command");
+		Plugin.register(command, new Extension.for_service(new QuitCommand(), this));
+		Plugin.register(command, new Extension.for_service(new HelpCommand(), this));
+		Plugin.register(command, new Extension.for_service(new ModuleCommand(), this));
+		Plugin.register(command, new Extension.for_service(new PluginCommand(), this));
+		Plugin.register(command, new Extension.for_service(new RehashCommand(cmds), this));
+		cmds.rehash();
 		return 0;
 	}
 	public override int deinit() {
