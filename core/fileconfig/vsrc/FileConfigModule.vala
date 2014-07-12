@@ -19,7 +19,7 @@ public class FileConfigModule : DynamicModule {
 		txt command = new txt.from_static("command");
 		Plugin.register(command, new M100Extension(new FileConfigCommand(), this));
 		txt unittest = new txt.from_static("unittest");
-		Plugin.register(unittest, new AnyExtension(new FileConfigTest(), this));
+		Plugin.register(unittest, new AnyInterfaceExtension(new FileConfigTest(), this));
 		return 0;
 	}
 

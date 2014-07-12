@@ -5,19 +5,6 @@ using shotodol;
  *  @{
  */
 public class shotodol.ShakeModule : DynamicModule {
-	class ShakeOnLoad : Extension {
-		public ShakeOnLoad(Module mod) {
-			base(mod);
-		}
-		public override int act(etxt*msg, etxt*output) {
-			//CommandModule.server.cmds.rehash();
-			etxt greet = etxt.from_static("echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.\n");
-			CommandModule.server.cmds.act_on(&greet, new StandardOutputStream(), null);
-			etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t onLoad\n");
-			CommandModule.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
-			return 0;
-		}
-	}
 	public ShakeModule() {
 		name = etxt.from_static("shake");
 	}
@@ -25,9 +12,16 @@ public class shotodol.ShakeModule : DynamicModule {
 		txt command = new txt.from_static("command");
 		Plugin.register(command, new M100Extension(new ShakeCommand(), this));
 		txt test = new txt.from_static("unittest");
-		Plugin.register(test, new AnyExtension(new ShakeTest(), this));
+		Plugin.register(test, new AnyInterfaceExtension(new ShakeTest(), this));
 		txt onLoad = new txt.from_static("onLoad");
-		Plugin.register(onLoad, new ShakeOnLoad(this));
+		Plugin.register(onLoad, new HookExtension(greetHook, this));
+		return 0;
+	}
+	int greetHook(etxt*msg, etxt*output) {
+		etxt greet = etxt.from_static("echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.\n");
+		CommandModule.server.cmds.act_on(&greet, new StandardOutputStream(), null);
+		etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t onLoad\n");
+		CommandModule.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 		return 0;
 	}
 	public override int deinit() {

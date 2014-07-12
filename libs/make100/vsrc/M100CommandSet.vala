@@ -23,7 +23,7 @@ public class shotodol.M100CommandSet: Replicable {
 	public int list(OutputStream pad) {		
 		Extension?root = Plugin.get(command);
 		while(root != null) {
-			M100Command?cmd = (M100Command)root.getInstance(null);
+			M100Command?cmd = (M100Command)root.getInterface(null);
 			if(cmd != null)
 				cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
 			Extension?next = root.getNext();
@@ -36,7 +36,7 @@ public class shotodol.M100CommandSet: Replicable {
 		be.memorize_etxt(gcmd.get_prefix(), gcmd);
 		Extension?root = Plugin.get(command);
 		while(root != null) {
-			M100Command?cmd = (M100Command)root.getInstance(null);
+			M100Command?cmd = (M100Command)root.getInterface(null);
 			if(cmd != null)
 				be.memorize_etxt(cmd.get_prefix(), cmd);
 			Extension?next = root.getNext();

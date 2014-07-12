@@ -14,7 +14,7 @@ public class shotodol.Extension : Replicable {
 	public Extension?getNext() {
 		return next;
 	}
-	public virtual Replicable?getInstance(etxt*service) {
+	public virtual Replicable?getInterface(etxt*service) {
 		return null;
 	}
 	public virtual int desc(OutputStream pad) {

@@ -10,7 +10,7 @@ public class shotodol.M100Extension : Extension {
 		base(mod);
 		cmd = gCommand;
 	}
-	public override Replicable?getInstance(etxt*service) {
+	public override Replicable?getInterface(etxt*service) {
 		return cmd;
 	}
 	public override int desc(OutputStream pad) {

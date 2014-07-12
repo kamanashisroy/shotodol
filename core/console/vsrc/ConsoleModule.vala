@@ -20,7 +20,7 @@ public class ConsoleModule : DynamicModule {
 		Plugin.register(command, new M100Extension(new ConsoleCommand(), this));
 		Plugin.register(command, new M100Extension(new WatchdogCommand(), this));
 		txt unittest = new txt.from_static("unittest");
-		Plugin.register(unittest, new AnyExtension(new ConsoleTest(), this));
+		Plugin.register(unittest, new AnyInterfaceExtension(new ConsoleTest(), this));
 		return 0;
 	}
 

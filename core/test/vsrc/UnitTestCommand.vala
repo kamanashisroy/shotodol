@@ -21,7 +21,7 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 		txt unittest = new txt.from_static("unittest");
 		Extension?root = Plugin.get(unittest);
 		while(root != null) {
-			UnitTest?test = (UnitTest)root.getInstance(null);
+			UnitTest?test = (UnitTest)root.getInterface(null);
 			if(test != null)
 				test.test();
 			Extension?next = root.getNext();

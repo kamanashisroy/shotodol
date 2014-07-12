@@ -11,15 +11,6 @@ using shotodol;
  *  @{
  */
 public class shotodol.CommandModule: DynamicModule {
-	class CommandOnLoad : Extension {
-		public CommandOnLoad(Module mod) {
-			base(mod);
-		}
-		public override int act(etxt*msg, etxt*output) {
-			server.cmds.rehash();
-			return 0;
-		}
-	}
 	public static CommandModule? server;
 	public M100CommandSet cmds;
 	public CommandModule() {
@@ -36,8 +27,15 @@ public class shotodol.CommandModule: DynamicModule {
 		Plugin.register(command, new M100Extension(new ModuleCommand(), this));
 		Plugin.register(command, new M100Extension(new PluginCommand(), this));
 		Plugin.register(command, new M100Extension(new RehashCommand(cmds), this));
+		HookExtension hook = new HookExtension(rehashHook, this);
 		txt onLoad = new txt.from_static("onLoad");
-		Plugin.register(onLoad, new CommandOnLoad(this));
+		Plugin.register(onLoad, hook);
+		txt rehash = new txt.from_static("rehash");
+		Plugin.register(rehash, hook);
+		cmds.rehash();
+		return 0;
+	}
+	int rehashHook(etxt*msg, etxt*output) {
 		cmds.rehash();
 		return 0;
 	}

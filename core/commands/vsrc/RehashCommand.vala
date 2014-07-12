@@ -17,7 +17,9 @@ internal class shotodol.RehashCommand : M100Command {
 	}
 
 	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		cmds.rehash();
+		//cmds.rehash();
+		txt rehash = new txt.from_static("rehash");
+		Plugin.swarm(rehash, null, null);
 		return 0;
 	}
 }
