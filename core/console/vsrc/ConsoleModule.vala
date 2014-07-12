@@ -9,9 +9,9 @@ using shotodol_platform;
 /** \addtogroup console
  *  @{
  */
-public class Console : ModulePlugin {
+public class ConsoleModule : DynamicModule {
 
-	public Console() {
+	public ConsoleModule() {
 		name = etxt.from_static("console");
 	}
 
@@ -30,7 +30,7 @@ public class Console : ModulePlugin {
 	}
 	[CCode (cname="get_module_instance")]
 	public static Module get_module_instance() {
-		return new Console();
+		return new ConsoleModule();
 	}
 }
 

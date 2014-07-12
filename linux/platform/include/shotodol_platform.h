@@ -1,14 +1,14 @@
 #ifndef SHOTODOL_PLATFORM_INCLUDE_H
 #define SHOTODOL_PLATFORM_INCLUDE_H
 
-// public class plugin
+// public class dynalib
 
-//#define PLUGIN_ROOT "/media/active/projects/shotodol/"
-#ifndef PLUGIN_ROOT
-#error "Please set PLUGIN_ROOT in cflags"
+//#define DYNALIB_ROOT "/media/active/projects/shotodol/"
+#ifndef DYNALIB_ROOT
+#error "Please set DYNALIB_ROOT in cflags"
 #endif
 
-#define plugin_open(x) ({ \
+#define dynalib_open(x) ({ \
 	void*hdl = dlopen(x,RTLD_LAZY | RTLD_GLOBAL); \
 	char*derror = NULL; \
 	if ((derror = dlerror()) != NULL)  { \
@@ -16,8 +16,8 @@
 	} \
 	hdl; \
 })
-#define plugin_close(x) ({dlclose(x);})
-#define plugin_get_instance(x) ({ \
+#define dynalib_close(x) ({dlclose(x);})
+#define dynalib_get_instance(x) ({ \
 	void*(*init_cb)(); \
 	*(void **) (&init_cb) = dlsym(x, "get_module_instance"); \
 	char*derror = NULL; \

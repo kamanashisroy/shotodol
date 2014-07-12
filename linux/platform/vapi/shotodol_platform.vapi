@@ -13,14 +13,14 @@ using aroop;
  */
 namespace shotodol_platform {
 	[CCode (cname="void", cheader_filename = "dlfcn.h")]
-	public class plugin {
-		[CCode (cname="PLUGIN_ROOT", cheader_filename = "shotodol_platform.h")]
+	public class dynalib {
+		[CCode (cname="DYNALIB_ROOT", cheader_filename = "shotodol_platform.h")]
 		public static unowned string rootDir;
-		[CCode (cname="plugin_open", cheader_filename = "shotodol_platform.h")]
-		public static unowned shotodol_platform.plugin load(string filepath);
-		[CCode (cname="plugin_get_instance", cheader_filename = "shotodol_platform.h")]
+		[CCode (cname="dynalib_open", cheader_filename = "shotodol_platform.h")]
+		public static unowned shotodol_platform.dynalib load(string filepath);
+		[CCode (cname="dynalib_get_instance", cheader_filename = "shotodol_platform.h")]
 		public shotodol.Module get_instance();
-		[CCode (cname="plugin_close", cheader_filename = "shotodol_platform.h")]
+		[CCode (cname="dynalib_close", cheader_filename = "shotodol_platform.h")]
 		public int unload();
 	}
 	

@@ -4,7 +4,7 @@ using shotodol;
 /** \addtogroup base
  *  @{
  */
-public errordomain shotodol.plugin_error {
+public errordomain shotodol.dynalib_error {
 	COULD_NOT_OPEN,
 	COULD_NOT_CREATE_INSTANCE,
 	COULD_NOT_INITIATE,
@@ -17,8 +17,8 @@ public class shotodol.ModuleLoader : Replicable {
 	public static ModuleLoader singleton;
 
 	public ModuleLoader() {
-		path_to_shotodol = etxt(shotodol_platform.plugin.rootDir);
-		modules = ArrayList<ModulePlugin>();
+		path_to_shotodol = etxt(shotodol_platform.dynalib.rootDir);
+		modules = ArrayList<Module>();
 		count = 0;
 		//load_module_helper("iostream", "libs");
 		load("str_arms", "libs");
@@ -31,21 +31,21 @@ public class shotodol.ModuleLoader : Replicable {
 		modules.destroy();
 	}
 
-	public void load_dynamic_module(string filepath) throws plugin_error {
+	public void load_dynamic_module(string filepath) throws dynalib_error {
 		// load dynamic modules ..
-		unowned shotodol_platform.plugin? plg = shotodol_platform.plugin.load(filepath);
+		unowned shotodol_platform.dynalib? plg = shotodol_platform.dynalib.load(filepath);
 		if(plg == null) {
-			throw new plugin_error.COULD_NOT_OPEN("Please check the filepath and name");
+			throw new dynalib_error.COULD_NOT_OPEN("Please check the filepath and name");
 		}
-		ModulePlugin?m = plg.get_instance() as ModulePlugin;
+		DynamicModule?m = plg.get_instance() as DynamicModule;
 		if(m == null) {
 			plg.unload();
-			throw new plugin_error.COULD_NOT_CREATE_INSTANCE("Could not create module");
+			throw new dynalib_error.COULD_NOT_CREATE_INSTANCE("Could not create module");
 		}
 		if(m.init() != 0) {
 			m.deinit();
 			plg.unload();
-			throw new plugin_error.COULD_NOT_INITIATE("Could not initiate module");
+			throw new dynalib_error.COULD_NOT_INITIATE("Could not initiate module");
 		}
 		m.initDynamic(plg);
 		modules.set(count++, m);
@@ -60,15 +60,15 @@ public class shotodol.ModuleLoader : Replicable {
 		dlg.printf("Trying to load module %s%s/%s\n", path_to_shotodol.to_string(), dir, module_name);
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		etxt path = etxt.stack(128);
-		path.printf("%s%s/%s/plugin.so", path_to_shotodol.to_string(), dir, module_name);
+		path.printf("%s%s/%s/dynalib.so", path_to_shotodol.to_string(), dir, module_name);
 		load_dynamic_module(path.to_string());
 		return 0;
 	}
 
-	public int loadStatic(Module m) throws plugin_error {
+	public int loadStatic(Module m) throws dynalib_error {
 		if(m.init() != 0) {
 			m.deinit();
-			throw new plugin_error.COULD_NOT_INITIATE("Could not initiate module");
+			throw new dynalib_error.COULD_NOT_INITIATE("Could not initiate module");
 		}
 		modules.set(count++, m);
 		etxt dlg = etxt.stack(128);

@@ -9,7 +9,7 @@ using shotodol;
 /** \addtogroup profiler
  *  @{
  */
-public class shotodol.ProfilerModule : ModulePlugin {
+public class shotodol.ProfilerModule : DynamicModule {
 	public ProfilerModule() {
 		name = etxt.from_static("profiler");
 	}

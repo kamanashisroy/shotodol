@@ -39,7 +39,7 @@ internal class ShakeTest : UnitTest {
 	void shakeScript(M100Script script) {
 		StandardOutputStream so = new StandardOutputStream();
 		etxt cmd = etxt.from_static("shake -t shaketest\n");
-		CommandServer.server.cmds.act_on(&cmd, so, script);
+		CommandModule.server.cmds.act_on(&cmd, so, script);
 	}
 	public override int test() throws UnitTestError {
 		M100Script script = new M100Script();
@@ -48,7 +48,7 @@ internal class ShakeTest : UnitTest {
 		// check value
 		bool success = false;
 		etxt varname = etxt.from_static("shaketest");
-		M100Variable?val = CommandServer.server.cmds.vars.get(&varname);
+		M100Variable?val = CommandModule.server.cmds.vars.get(&varname);
 		etxt dlg = etxt.stack(128);
 		dlg.concat(&tname);
 		dlg.concat_char(':');

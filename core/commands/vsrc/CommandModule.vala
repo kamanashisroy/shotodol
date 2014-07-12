@@ -10,7 +10,7 @@ using shotodol;
 /** \addtogroup command
  *  @{
  */
-public class shotodol.CommandServer: ModulePlugin {
+public class shotodol.CommandModule: DynamicModule {
 	class CommandOnLoad : Extension {
 		public CommandOnLoad(Module mod) {
 			base(mod);
@@ -20,9 +20,9 @@ public class shotodol.CommandServer: ModulePlugin {
 			return 0;
 		}
 	}
-	public static CommandServer? server;
+	public static CommandModule? server;
 	public M100CommandSet cmds;
-	public CommandServer() {
+	public CommandModule() {
 		name = etxt.from_static("commands");
 		cmds = new M100CommandSet();
 		ModuleLoader.singleton.loadStatic(new ProgrammingInstruction());
@@ -49,7 +49,7 @@ public class shotodol.CommandServer: ModulePlugin {
 	
 	[CCode (cname="get_module_instance")]
 	public static Module get_module_instance() {
-		return new CommandServer();
+		return new CommandModule();
 	}
 }
 /* @} */

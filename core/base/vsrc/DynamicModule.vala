@@ -11,7 +11,7 @@ using shotodol;
 /** \addtogroup base
  *  @{
  */
-public abstract class shotodol.ModulePlugin : Module {
+public abstract class shotodol.DynamicModule : Module {
 	public override int init() {
 		owner = null;
 		return 0;
@@ -20,8 +20,8 @@ public abstract class shotodol.ModulePlugin : Module {
 		owner.unload();
 		return 0;
 	}
-	unowned shotodol_platform.plugin owner;
-	public int initDynamic(shotodol_platform.plugin plg) {
+	unowned shotodol_platform.dynalib owner;
+	public int initDynamic(shotodol_platform.dynalib plg) {
 		owner = plg;
 		return 0;
 	}

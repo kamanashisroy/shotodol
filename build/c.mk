@@ -5,7 +5,7 @@ VSOURCES=$(wildcard vsrc/*.vala)
 VSOURCE_BASE=$(basename $(notdir $(VSOURCES)))
 CSOURCES=$(addprefix vsrc/, $(addsuffix .c,$(VSOURCE_BASE)))
 OBJECTS=$(addprefix $(OBJDIR)/, $(addsuffix .o,$(VSOURCE_BASE)))
-PLUGIN=./plugin.so
+PLUGIN=./dynalib.so
 OBJECT_AR=static_objects.a
 TARGETS=$(PLUGIN) $(OBJECT_AR)
 

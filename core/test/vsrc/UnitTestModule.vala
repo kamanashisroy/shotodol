@@ -9,7 +9,7 @@ using shotodol;
 /** \addtogroup test
  *  @{
  */
-public class shotodol.UnitTestModule : ModulePlugin {
+public class shotodol.UnitTestModule : DynamicModule {
 	class UnitTestModule() {
 		name = etxt.from_static("unittest");
 	}

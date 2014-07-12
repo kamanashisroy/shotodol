@@ -12,7 +12,7 @@ using shotodol;
 /** \addtogroup net_echo
  *  @{
  */
-public class shotodol.NetEchoModule : ModulePlugin {
+public class shotodol.NetEchoModule : DynamicModule {
 	public NetEchoModule() {
 		name = etxt.from_static("net_echo");
 	}

@@ -4,7 +4,7 @@ using shotodol;
 /** \addtogroup idle
  *  @{
  */
-public class shotodol.IdleModule : ModulePlugin {
+public class shotodol.IdleModule : DynamicModule {
 	IdleModule() {
 		name = etxt.from_static("idle");
 	}

@@ -10,8 +10,8 @@ using shotodol_platform;
 /** \addtogroup fileconfig
  *  @{
  */
-public class FileConfig : ModulePlugin {
-	public FileConfig() {
+public class FileConfigModule : DynamicModule {
+	public FileConfigModule() {
 		name = etxt.from_static("fileconfig");
 	}
 
@@ -30,7 +30,7 @@ public class FileConfig : ModulePlugin {
 	}
 	[CCode (cname="get_module_instance")]
 	public static Module get_module_instance() {
-		return new FileConfig();
+		return new FileConfigModule();
 	}
 }
 /* @} */

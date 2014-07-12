@@ -19,7 +19,7 @@ internal class shotodol.HelpCommand : M100Command {
 			//token.zero_terminate();
 			if(token.is_empty()) {
 				if(i == 1) {
-					CommandServer.server.cmds.list(pad);
+					CommandModule.server.cmds.list(pad);
 				}
 				break;
 			}
@@ -29,7 +29,7 @@ internal class shotodol.HelpCommand : M100Command {
 			}
 			etxt ntoken = etxt.stack_from_etxt(&token);
 			ntoken.zero_terminate();
-			M100Command? cmd = CommandServer.server.cmds.percept(&ntoken);
+			M100Command? cmd = CommandModule.server.cmds.percept(&ntoken);
 			if(cmd == null) {
 				continue;
 			}

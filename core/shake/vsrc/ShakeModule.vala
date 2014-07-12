@@ -4,17 +4,17 @@ using shotodol;
 /** \addtogroup make
  *  @{
  */
-public class shotodol.ShakeModule : ModulePlugin {
+public class shotodol.ShakeModule : DynamicModule {
 	class ShakeOnLoad : Extension {
 		public ShakeOnLoad(Module mod) {
 			base(mod);
 		}
 		public override int act(etxt*msg, etxt*output) {
-			CommandServer.server.cmds.rehash();
+			//CommandModule.server.cmds.rehash();
 			etxt greet = etxt.from_static("echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.\n");
-			CommandServer.server.cmds.act_on(&greet, new StandardOutputStream(), null);
+			CommandModule.server.cmds.act_on(&greet, new StandardOutputStream(), null);
 			etxt cmd = etxt.from_static("shake -f ./shotodol.ske -t onLoad\n");
-			CommandServer.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
+			CommandModule.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 			return 0;
 		}
 	}

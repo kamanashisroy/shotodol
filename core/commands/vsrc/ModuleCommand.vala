@@ -48,7 +48,7 @@ internal class shotodol.ModuleCommand : M100Command {
 			pad.write(&err);
 		}
 		if(vals[Options.LIST] != null) {
-			CommandServer.server.cmds.list(pad);
+			CommandModule.server.cmds.list(pad);
 		}
 		return 0;
 	}
