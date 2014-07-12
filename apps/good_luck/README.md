@@ -4,36 +4,36 @@ Good Luck Module
 'Good luck' module is simple module to demonostrate module writing. Note that there are kinds of modules, while this module is dynamic. If you want to write a module like this, you need to create a directory in apps (favorablly).
 
 ```
- a/shotodol$ mkdir apps/good\_luck
+ a/shotodol$ mkdir apps/good_luck
 ```
 
 Now you need to create the following files there.
 
-- pkg.depend : This file identifies the needed modules.
-- includes.mk : This file shows the include path.
-- vapi.mk : This is for compilation.
+- [pkg.depend](pkg.depend) : This file identifies the needed modules.
+- [includes.mk](includes.mk) : This file shows the include path.
+- [vapi.mk](vapi.mk) : This is for compilation.
 
 You may follow the files for _good\_luck_ to write your own module files.
 
 Now you need to add the vala source files. Vala sources are kept in _vsrc_ directory. 
 
 ```
- a/shotodol$ mkdir apps/good\_luck/vsrc
+ a/shotodol$ mkdir apps/good_luck/vsrc
 ```
 
 The [GoodLuckModule.vala](vsrc/GoodLuckModule.vala) defines the GoodLuckModule class. Please refer to [Hooking](../../libs/plugin/Hooking.md) to understand the source.
 
 ```
- a/shotodol$ vim apps/good\_luck/vsrc/GoodLuckModule.vala
+ a/shotodol$ vim apps/good_luck/vsrc/GoodLuckModule.vala
 ```
 
-After you are done with the code, you need to add the module in build/pkg.depend file and reconfigure and compile.
+After you are done with the code, you need to add the module in [build/pkg.depend](../../build/pkg.depend) file and reconfigure and compile.
 
 ```
- a/shotodol$ echo apps/good\_luck >> build/pkg.depend
+ a/shotodol$ echo apps/good_luck >> build/pkg.depend
  a/shotodol$ lua configure.lua
  a/shotodol$ make
- a/shotodol$ ls apps/good\_luck
+ a/shotodol$ ls apps/good_luck
 	dynalib.so pkg.depend includes.mk vapi.mk vsrc/ vapi/ include/
 ```
 

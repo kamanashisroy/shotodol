@@ -29,7 +29,7 @@ Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/
 
 ### Shake script
 
-_shake_ script provides a way to perform a task on an event. For example, there is an event like, onload. So when shotodol loads itself, it performs the onload tasks. A module can eventually generate events of their own(<a href="apps/shakeeventexample/README.md">example</a>).
+_shake_ script provides a way to perform a task on an event. For example, there is an event like, onload. So when shotodol loads itself, it performs the onload tasks. A module can eventually generate events of their own(<a href="apps/shakeeventexample/README.md">example yet to come</a>).
 
 ### Plugin/extensions
 
@@ -87,7 +87,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 User module
 ============
 
-<a href="libs/module/README.md">Writing an user module</a>
+User modules have the same potential as the builtin modules. But the point is, they are yours to write. <a href="libs/module/README.md">Here</a> is more about writing an user module.
 
 
 User interfacing with shotodol
@@ -149,7 +149,12 @@ You can execute shotodol by running the shotodol.bin file.
 Testing
 ========
 
-There are some test cases in _'tests'_ directory. You can for example change directory to tests/apps/net_echo/server and _make_ to test the _echo server_.
+There are some test cases in _'tests'_ directory. You can, for example, change directory to tests/apps/net_echo/server and _make_ to test the _echo server_.
+
+Growing
+========
+
+Shotodol is meant to be grown by you. You can grow it by adding new <a href="libs/module/README.md">modules</a>. You can write user modules and add features. Basically they are done by writting extensions for _command_ space and other event spaces. The builtin modules are there as examples.
 
 Tasks
 ======

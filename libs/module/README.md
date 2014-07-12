@@ -10,7 +10,7 @@ Both of the types of modules can be initiated on demand, allowing lazy initializ
 
 And there are two kinds of modules in terms of development and grouping.
 
-1. Core module : This kind of modules are the needed for the basic framework of shotodol.
+1. Builtin module : This kind of modules are needed for the basic framework of shotodol.
 2. User module : User module can be written by user to add new feature or alter existing.
 
 Please see the [_good_luck_](../../apps/good_luck/README.md) module for an example of user modules.
