@@ -1,1 +1,17 @@
-TODO : fill me
+Module
+=========
+
+Modules are the basic building block of the shotodol project. There are two kinds of modules in terms of loading point.
+
+1. Static module : Static modules are linked statically to shotodol.bin (binary).
+2. Dynamic module : Dynamic modules are loaded on demand.
+
+Both of the types of modules can be initiated on demand, allowing lazy initialization.
+
+And there are two kinds of modules in terms of development and grouping.
+
+1. Core module : This kind of modules are the needed for the basic framework of shotodol.
+2. User module : User module can be written by user to add new feature or alter existing.
+
+Please see the [_good_luck_](../../apps/good_luck/README.md) module for an example of user modules.
+
