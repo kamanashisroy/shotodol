@@ -26,12 +26,11 @@ public class shotodol.CommandModule: DynamicModule {
 		Plugin.register(command, new M100Extension(new HelpCommand(), this));
 		Plugin.register(command, new M100Extension(new ModuleCommand(), this));
 		Plugin.register(command, new M100Extension(new PluginCommand(), this));
-		Plugin.register(command, new M100Extension(new RehashCommand(cmds), this));
-		HookExtension hook = new HookExtension(rehashHook, this);
+		Plugin.register(command, new M100Extension(new RehashCommand(), this));
 		txt onLoad = new txt.from_static("onLoad");
-		Plugin.register(onLoad, hook);
+		Plugin.register(onLoad, new HookExtension(rehashHook, this));
 		txt rehash = new txt.from_static("rehash");
-		Plugin.register(rehash, hook);
+		Plugin.register(rehash, new HookExtension(rehashHook, this));
 		cmds.rehash();
 		return 0;
 	}

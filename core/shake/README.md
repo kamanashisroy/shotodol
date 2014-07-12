@@ -8,8 +8,12 @@ Shake instruction
 
 ## Shake command
 
-Shake commands are shell like commands. The have parameters starting with *-* . You can also write a new command extending the M100Command class . There are some special commands for flow control , comparison and arithmetic operation. They are called programming commands as a whole. While there are some commands installed for basic operations like, module loading and viewing the command description. They are called the core commands.
+Shake commands are shell like commands. The have parameters starting with *-* . You can also write a new command extending the M100Command class . There are some special commands for flow control , comparison and arithmetic operation. They are called programming commands as a whole. While there are some commands installed for basic operations like, module loading and viewing the command description. They are called the core commands. See [commands](../../core/commands/README.md)
 
 ### Programming commands
 
+FILLME
+
 ### Core commands
+
+FILLME
