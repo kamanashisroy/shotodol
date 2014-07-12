@@ -11,12 +11,12 @@ using shotodol;
  */
 public class shotodol.ProfilerModule : ModulePlugin {
 	public ProfilerModule() {
-		name = etxt.from_static("net_echo");
+		name = etxt.from_static("profiler");
 	}
 
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new ProfilerCommand(), this));
+		Plugin.register(command, new M100Extension(new ProfilerCommand(), this));
 		return 0;
 	}
 	public override int deinit() {

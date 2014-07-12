@@ -7,7 +7,6 @@ using shotodol;
 internal class shotodol.UnitTestCommand : shotodol.M100Command {
 	etxt prfx;
 	public UnitTestCommand() {
-		prfx = etxt.from_static("unittest");
 		base();
 	}
 
@@ -15,6 +14,7 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 	}
 
 	public override etxt*get_prefix() {
+		prfx = etxt.from_static("unittest");
 		return &prfx;
 	}
 	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {

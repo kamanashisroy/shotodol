@@ -12,15 +12,15 @@ using shotodol_platform;
 public class Console : ModulePlugin {
 
 	public Console() {
-		name = etxt.from_static("net_echo");
+		name = etxt.from_static("console");
 	}
 
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new ConsoleCommand(), this));
-		Plugin.register(command, new Extension.for_service(new WatchdogCommand(), this));
+		Plugin.register(command, new M100Extension(new ConsoleCommand(), this));
+		Plugin.register(command, new M100Extension(new WatchdogCommand(), this));
 		txt unittest = new txt.from_static("unittest");
-		Plugin.register(unittest, new Extension.for_service(new ConsoleTest(), this));
+		Plugin.register(unittest, new AnyExtension(new ConsoleTest(), this));
 		return 0;
 	}
 

@@ -12,14 +12,14 @@ using shotodol_platform;
  */
 public class FileConfig : ModulePlugin {
 	public FileConfig() {
-		name = etxt.from_static("net_echo");
+		name = etxt.from_static("fileconfig");
 	}
 
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new FileConfigCommand(), this));
+		Plugin.register(command, new M100Extension(new FileConfigCommand(), this));
 		txt unittest = new txt.from_static("unittest");
-		Plugin.register(unittest, new Extension.for_service(new FileConfigTest(), this));
+		Plugin.register(unittest, new AnyExtension(new FileConfigTest(), this));
 		return 0;
 	}
 

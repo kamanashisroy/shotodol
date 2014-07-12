@@ -23,9 +23,9 @@ public class shotodol.ShakeModule : ModulePlugin {
 	}
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new ShakeCommand(), this));
+		Plugin.register(command, new M100Extension(new ShakeCommand(), this));
 		txt test = new txt.from_static("unittest");
-		Plugin.register(test, new Extension.for_service(new ShakeTest(), this));
+		Plugin.register(test, new AnyExtension(new ShakeTest(), this));
 		txt onLoad = new txt.from_static("onLoad");
 		Plugin.register(onLoad, new ShakeOnLoad(this));
 		return 0;

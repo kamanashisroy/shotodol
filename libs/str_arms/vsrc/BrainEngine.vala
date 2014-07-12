@@ -18,6 +18,9 @@ public class shotodol.BrainEngine<G> : Replicable {
 	}
 	
 	public int memorize_etxt(etxt*wds, G? sense) {
+		if(wds == null || wds.is_empty_magical()) {
+			return -1;
+		}
 		// find the msg in memory
 		LineAlign<G> ln = memory.alloc_full(0,1);
 		//LineAlign<G> gn = new (ln) LignAlign<G>(words, sense);
@@ -27,11 +30,11 @@ public class shotodol.BrainEngine<G> : Replicable {
 	}
 	
 	public int memorize(InputStream strm, G? sense) {
-        // find the msg in memory
-        LineAlign<G> ln = memory.alloc_full(0,1);
-        generihack<LineAlign<G>,G>.build_generics(ln);
-        ln.build(words, sense);
-        return ln.align(strm);
+		// find the msg in memory
+		LineAlign<G> ln = memory.alloc_full(0,1);
+		generihack<LineAlign<G>,G>.build_generics(ln);
+		ln.build(words, sense);
+		return ln.align(strm);
 	}
 	
 	public G? percept_prefix_match(etxt*wds) {

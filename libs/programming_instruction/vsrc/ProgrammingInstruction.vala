@@ -17,12 +17,12 @@ public class ProgrammingInstruction : Module {
 
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new LessThanCommand(), this));
-		Plugin.register(command, new Extension.for_service(new GreaterThanCommand(), this));
-		Plugin.register(command, new Extension.for_service(new EqualsCommand(), this));
-		Plugin.register(command, new Extension.for_service(new IfCommand(), this));
-		Plugin.register(command, new Extension.for_service(new EchoCommand(), this));
-		Plugin.register(command, new Extension.for_service(new SetVariableCommand(), this));
+		Plugin.register(command, new M100Extension(new LessThanCommand(), this));
+		Plugin.register(command, new M100Extension(new GreaterThanCommand(), this));
+		Plugin.register(command, new M100Extension(new EqualsCommand(), this));
+		Plugin.register(command, new M100Extension(new IfCommand(), this));
+		Plugin.register(command, new M100Extension(new EchoCommand(), this));
+		Plugin.register(command, new M100Extension(new SetVariableCommand(), this));
 		return 0;
 	}
 

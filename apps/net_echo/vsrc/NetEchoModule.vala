@@ -18,7 +18,7 @@ public class shotodol.NetEchoModule : ModulePlugin {
 	}
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new NetEchoCommand(), this));
+		Plugin.register(command, new M100Extension(new NetEchoCommand(), this));
 		return 0;
 	}
 	public override int deinit() {

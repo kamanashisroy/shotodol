@@ -31,11 +31,11 @@ public class shotodol.CommandServer: ModulePlugin {
 	public override int init() {
 		server = this;
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new QuitCommand(), this));
-		Plugin.register(command, new Extension.for_service(new HelpCommand(), this));
-		Plugin.register(command, new Extension.for_service(new ModuleCommand(), this));
-		Plugin.register(command, new Extension.for_service(new PluginCommand(), this));
-		Plugin.register(command, new Extension.for_service(new RehashCommand(cmds), this));
+		Plugin.register(command, new M100Extension(new QuitCommand(), this));
+		Plugin.register(command, new M100Extension(new HelpCommand(), this));
+		Plugin.register(command, new M100Extension(new ModuleCommand(), this));
+		Plugin.register(command, new M100Extension(new PluginCommand(), this));
+		Plugin.register(command, new M100Extension(new RehashCommand(cmds), this));
 		txt onLoad = new txt.from_static("onLoad");
 		Plugin.register(onLoad, new CommandOnLoad(this));
 		cmds.rehash();

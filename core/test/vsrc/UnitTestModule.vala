@@ -11,7 +11,7 @@ using shotodol;
  */
 public class shotodol.UnitTestModule : ModulePlugin {
 	class UnitTestModule() {
-		name = etxt.from_static("net_echo");
+		name = etxt.from_static("unittest");
 	}
 
 	~UnitTestModule() {
@@ -19,7 +19,7 @@ public class shotodol.UnitTestModule : ModulePlugin {
 
 	public override int init() {
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new Extension.for_service(new UnitTestCommand(), this));
+		Plugin.register(command, new M100Extension(new UnitTestCommand(), this));
 		return 0;
 	}
 	public override int deinit() {
