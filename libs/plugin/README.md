@@ -13,10 +13,17 @@ command -> idle
 ```
 And eventually the command is available in the console.
 
+Hooking
+========
+
+You can write a [hook function](Hooking.md) for an event.
+
 Readings
 ========
 
 - External coupling
 - Message passing
+- [Interface](http://en.wikipedia.org/wiki/Interface_%28computing%29)
+- [Hook](http://en.wikipedia.org/wiki/Hooking)
 - [nixysa](https://code.google.com/p/nixysa/wiki/HelloWorldWalkThru)
 

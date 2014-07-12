@@ -31,13 +31,13 @@ Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/
 
 _shake_ script provides a way to perform a task on an event. For example, there is an event like, onload. So when shotodol loads itself, it performs the onload tasks. A module can eventually generate events of their own(<a href="apps/shakeeventexample/README.md">example</a>).
 
-### Message bus.
-
-TODO fillme
-
 ### Plugin/extensions
 
 You can write extensions and use them to communicate through them. <a href="libs/plugin/README.md">Here is how.</a>
+
+### Message passing.
+
+The plugins/extensions allow you to write hooks for events. See <a href="libs/plugin/Hooking.md">hooking and message passing</a>.
 
 Builtin Module
 ===============
@@ -151,6 +151,11 @@ Testing
 
 There are some test cases in _'tests'_ directory. You can for example change directory to tests/apps/net_echo/server and _make_ to test the _echo server_.
 
+Tasks
+======
+
+[Tasks](TASKS.md)
+
 Public projects
 ===============
 
@@ -158,5 +163,4 @@ There are some public projects based on shotodol. They are namely,
 
 - [Roopkotha](https://github.com/kamanashisroy/roopkotha)
 - [Onubodh](https://github.com/kamanashisroy/onubodh)
-
 

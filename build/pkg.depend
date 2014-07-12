@@ -24,5 +24,6 @@ core/idle
 core/profiler
 core/shake
 libs/turbine
-apps/net_echo
 main/main
+apps/net_echo
+apps/good_luck
