@@ -20,13 +20,8 @@ public class shotodol.MainProgram {
 		return 0;
 	}
 	static int onLoad() {
-		txt loadcmd = new txt.from_static("onLoad");
-		Extension?root = Plugin.get(loadcmd);
-		while(root != null) {
-			root.act(null,null);
-			Extension?next = root.getNext();
-			root = next;
-		}
+		txt onLoadX = new txt.from_static("onLoad");
+		Plugin.swarm(onLoadX, null, null);
 		return 0;
 	}
 	public static int main() {

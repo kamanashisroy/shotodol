@@ -54,6 +54,14 @@ public class shotodol.Plugin : Module {
 		// TODO fill me
 		return 0;
 	}
+	public static void swarm(txt target, etxt*inmsg, etxt*outmsg) {
+		Extension?root = Plugin.get(target);
+		while(root != null) {
+			root.act(inmsg, outmsg);
+			Extension?next = root.getNext();
+			root = next;
+		}
+	}
 	public static void list(OutputStream pad) {
 		etxt dlg = etxt.stack(128);
 		dlg.printf("There are %d extensions registered\n", x.registry.count_unsafe());
