@@ -173,4 +173,5 @@ Readings
 =========
 
 - [Vala](https://wiki.gnome.org/Projects/Vala)
+- [Unix philosophy](http://en.wikipedia.org/wiki/Unix_philosophy)
 

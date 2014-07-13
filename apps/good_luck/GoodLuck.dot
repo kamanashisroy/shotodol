@@ -1,0 +1,37 @@
+digraph shotodol {
+	subgraph cluster0 {
+		label="Plugin";
+		style=filled;
+		color=mintcream;
+		node [shape=box]
+		registry [label="<qt>onQuit|<ld>onLoad|<cmd>command",shape=record];
+	}
+
+	subgraph cluster1 {
+		label="Good Luck Module";
+		style=filled;
+		color=seagreen;
+		node [shape=box]
+		quitHook [label="Say Good Luck"];
+	}
+
+	subgraph cluster2 {
+		label="Quit Command";
+		style=filled;
+		color=mintcream;
+		node [shape=box]
+		quit [label="Quit"];
+	}
+	
+	subgraph cluster2 {
+		label="Shake shell";
+		style=filled;
+		color=mintcream;
+		node [shape=box]
+		excommand [label="Execute quit"];
+	}
+	shakeshell -> registry:cmd;
+	registry:cmd -> quit;
+	quit -> registry:qt;
+	registry:qt -> quitHook;
+}
