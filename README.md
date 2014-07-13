@@ -169,3 +169,8 @@ There are some public projects based on shotodol. They are namely,
 - [Roopkotha](https://github.com/kamanashisroy/roopkotha)
 - [Onubodh](https://github.com/kamanashisroy/onubodh)
 
+Readings
+=========
+
+- [Vala](https://wiki.gnome.org/Projects/Vala)
+
