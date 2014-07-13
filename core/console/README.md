@@ -1,7 +1,7 @@
 Console
 ========
 
-[Console](http://en.wikipedia.org/wiki/Command-line_interface) lets use to communicate with shotodol application in interactive way. The console is called shake shell . It is based on unix philosophy (write programs to handle text streams, because that is a universal interface.). You can also load [shake shell](../shake/README.md) and execute a target here. Use the _help_ command to know more about a command.
+[Console](http://en.wikipedia.org/wiki/Command-line_interface) lets you to communicate with shotodol application in interactive way. The console is called shake shell . It is based on unix philosophy (write programs to handle text streams, because that is a universal interface.). You can also load [shake shell](../shake/README.md) and execute a target here. Use the _help_ command to know more about a command.
 
 ```
  help commandname

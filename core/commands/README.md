@@ -6,3 +6,7 @@ Commands are the instructions for user interaction. A command can be interacted 
 ModuleCommand
 =============
 Module command lets you load a dynamic module and also unloading it. Write `help module` for further details.
+
+RehashCommand
+=============
+Rehash command lets the rehash extensions dispatch in a swarm.
