@@ -62,5 +62,8 @@ end
 
 
 parseConfig(arg[2])
-print(depend(arg[1],"SHOTODOL_HOME"))
+local x = " " .. depend(arg[1],"SHOTODOL_HOME") .. " "
+local allpkg = ""
+for pkg in string.gmatch(x, "%S+") do if not string.match(allpkg, pkg .. " ") then allpkg = allpkg .. " " .. pkg .. " " end end
+print(allpkg)
 
