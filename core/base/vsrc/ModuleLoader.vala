@@ -23,6 +23,7 @@ public class shotodol.ModuleLoader : Replicable {
 		//load_module_helper("iostream", "libs");
 		load("str_arms", "libs");
 		loadStatic(new Plugin());
+		loadStatic(new BaseModule());
 		singleton = this;
 	}
 
@@ -43,6 +44,7 @@ public class shotodol.ModuleLoader : Replicable {
 			throw new dynalib_error.COULD_NOT_CREATE_INSTANCE("Could not create module");
 		}
 		if(m.init() != 0) {
+			Plugin.unregisterModule(m);
 			m.deinit();
 			plg.unload();
 			throw new dynalib_error.COULD_NOT_INITIATE("Could not initiate module");
@@ -66,6 +68,7 @@ public class shotodol.ModuleLoader : Replicable {
 	}
 
 	public int loadStatic(Module m) throws dynalib_error {
+		// TODO check if the module is already loaded
 		if(m.init() != 0) {
 			m.deinit();
 			throw new dynalib_error.COULD_NOT_INITIATE("Could not initiate module");
@@ -85,7 +88,8 @@ public class shotodol.ModuleLoader : Replicable {
 	public int unloadAll() {
 		int i = 0;
 		for(i = count-1; i >= 0; i--) {
-			//Module? m = modules.get(i);
+			Module? m = modules.get(i);
+			if(m != null)m.deinit();
 			modules.set(i, null);
 		}
 		count = 0;

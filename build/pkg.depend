@@ -25,5 +25,5 @@ core/profiler
 core/shake
 libs/turbine
 main/main
-apps/net_echo
+web/cgi
 apps/good_luck

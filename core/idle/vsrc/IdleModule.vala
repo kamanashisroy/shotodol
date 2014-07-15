@@ -9,12 +9,14 @@ public class shotodol.IdleModule : DynamicModule {
 		name = etxt.from_static("idle");
 	}
 	public override int init() {
+		txt spindle = new txt.from_static("MainSpindle");
+		IdleCommand.IdleSpindle sp = new IdleCommand.IdleSpindle();
+		Plugin.register(spindle, new AnyInterfaceExtension(sp, this));
 		txt command = new txt.from_static("command");
-		Plugin.register(command, new M100Extension(new IdleCommand(), this));
+		Plugin.register(command, new M100Extension(new IdleCommand(sp), this));
 		return 0;
 	}
 	public override int deinit() {
-		Plugin.unregisterModule(this);
 		base.deinit();
 		return 0;
 	}

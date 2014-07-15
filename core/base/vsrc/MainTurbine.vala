@@ -5,25 +5,26 @@ using shotodol;
  *  @{
  */
 public class shotodol.MainTurbine : shotodol.Propeller {
-	private static MainTurbine? mt = null;
 	public MainTurbine() {
 		base();
-		mt = this;
 	}
 	public int startup() {
 		return start(null);
 	}
-	public static int gearup(Spindle sp) {
-		mt.sps.add(sp);
+	public int rehash() {
+		txt mains = new txt.from_static("MainSpindle");
+		Extension?root = Plugin.get(mains);
+		while(root != null) {
+			Spindle?sp = (Spindle)root.getInterface(null);
+			if(sp != null)
+				sps.add(sp);
+			Extension?next = root.getNext();
+			root = next;
+		}
 		return 0;
 	}
-	public static int geardown(Spindle sp) {
-		print("BUG: cannot remove the spindle\n");
-		//mt.sps.remove(sp);
-		return 0;
-	}
-	public static int quit() { // XXX we should not be call by anyone to quit the application, this is security violation
-		mt.cancel();
+	public int quit() { // XXX we should not be call by anyone to quit the application, this is security violation
+		cancel();
 		return 0;
 	}
 }

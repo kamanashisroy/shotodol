@@ -17,7 +17,6 @@ internal class shotodol.QuitCommand : M100Command {
 		if(!output.is_empty()) {
 			pad.write(&output);
 		}
-		MainTurbine.quit();
 		return 0;
 	}
 }

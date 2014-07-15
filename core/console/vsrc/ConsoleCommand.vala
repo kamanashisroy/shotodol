@@ -12,17 +12,15 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		GLIDE,
 	}
 	ConsoleHistory sp;
-	public ConsoleCommand() {
+	public ConsoleCommand(ConsoleHistory gSp) {
 		base();
 		addOptionString("-a", M100Command.OptionType.INT, Options.AGAIN, "Try the command again");
 		addOptionString("-gl", M100Command.OptionType.INT, Options.GLIDE, "Duration to glide(become inactive), 0 by default");
 		addOptionString("-l", M100Command.OptionType.NONE, Options.LIST, "List commands from history");
-		sp = new ConsoleHistory();
-		MainTurbine.gearup(sp);
+		sp = gSp;
 	}
 
 	~ConsoleCommand() {
-		MainTurbine.geardown(sp);
 	}
 
 	public override etxt*get_prefix() {

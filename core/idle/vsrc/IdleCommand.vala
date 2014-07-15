@@ -11,7 +11,7 @@ using shotodol;
  */
 
 internal class IdleCommand : M100Command {
-	class IdleSpindle : Spindle {
+	internal class IdleSpindle : Spindle {
 		bool on;
 		public IdleSpindle() {
 			on = true;
@@ -45,16 +45,14 @@ internal class IdleCommand : M100Command {
 		IDLE_ON = 1,
 		IDLE_OFF,
 	}
-	public IdleCommand() {
+	public IdleCommand(IdleSpindle gSp) {
 		base();
-		sp = new IdleSpindle();
-		MainTurbine.gearup(sp);
+		sp = gSp;
 		addOptionString("-on", M100Command.OptionType.NONE, Options.IDLE_ON, "Start idle process");
 		addOptionString("-off", M100Command.OptionType.NONE, Options.IDLE_OFF, "Ends idle process"); 
 	}
 
 	~IdleCommand() {
-		MainTurbine.geardown(sp);
 	}
 
 	public override etxt*get_prefix() {
