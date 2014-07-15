@@ -18,6 +18,8 @@ public class shotodol.BaseModule : Module {
 		Plugin.register(entry, new HookExtension((onLoadAlterHook), this));
 		entry = new txt.from_static("run");
 		Plugin.register(entry, new HookExtension((runHook), this));
+		entry = new txt.from_static("rehash");
+		Plugin.register(entry, new HookExtension((onRehashHook), this));
 		return 0;
 	}
 
@@ -29,6 +31,11 @@ public class shotodol.BaseModule : Module {
 	int onLoadAlterHook(etxt*msg, etxt*output) {
 		mt = new MainTurbine();
 		mt.rehash();
+		return 0;
+	}
+
+	int onRehashHook() {
+		if(mt != null)mt.rehash();
 		return 0;
 	}
 
