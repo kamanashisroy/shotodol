@@ -1,0 +1,3 @@
+
+run:
+	../../../shotodol.bin -noconsole

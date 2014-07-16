@@ -3,5 +3,5 @@
 
 onLoad:
 	fileconf -i ./shotodol.conf
-	#module -load web/cgi/dynalib.so
+	module -load ../../../web/cgi/dynalib.so
 

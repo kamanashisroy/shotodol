@@ -1,0 +1,6 @@
+digraph pluginoid {
+	label="Pluginoid"
+	rankdir=LR;
+	node[shape=Mrecord];
+	pluginoid [label="swarm\n| {\nInterface|\n\nPlugin\n\n|\nHooking}|{|\n\n\n\nspindle|\n\n\n\nrehash|}"];
+}

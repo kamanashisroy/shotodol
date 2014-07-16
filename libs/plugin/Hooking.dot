@@ -3,7 +3,7 @@ digraph Hooking {
 		label="Plugin";
 		style=filled;
 		color=mintcream;
-		node [shape=box]
+		node [shape=record]
 		registry [label="<qt>onQuit|<ld>onLoad",shape=record];
 	}
 

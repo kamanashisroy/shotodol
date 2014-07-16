@@ -4,6 +4,9 @@ Plugin lets you write ready to use named extensions. You put your extension in n
 
 Plugin techniques
 ==================
+[Pluginoid](pluginoid.dot)
+![Pluginoid](dot_generated_pluginoid.svg)
+
 ### Extension
 _Extension_ is a way to associate your facility to a plugin space. Each plugin _space_ is a string. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication.
 
