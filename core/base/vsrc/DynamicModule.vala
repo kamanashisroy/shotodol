@@ -12,6 +12,10 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.DynamicModule : Module {
+	public DynamicModule(estr*nm,estr*ver) {
+		base(nm,ver);
+	}
+	
 	public override int init() {
 		owner = null;
 		return 0;

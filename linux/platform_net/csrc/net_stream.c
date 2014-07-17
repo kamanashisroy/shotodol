@@ -16,7 +16,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 	// parse TCP://
 	for(i = 0;i < path->len;i++) {
 		if(path->str[i] == ':') {
-			aroop_txt_embeded_same_same(&proto, path);
+			aroop_txt_embeded_copy_shallow(&proto, path);
 			proto.len = i;
 			if((path->len > i+2) && (path->str[i+1] == '/') && (path->str[i+2] == '/' )) {
 				aroop_txt_embeded_stackbuffer_from_txt(&addrstr, path);
@@ -66,7 +66,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 	if((flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
 		for(i = 0;i < addrstr.len;i++) {
 			if(addrstr.str[i] == ':') {
-				aroop_txt_embeded_same_same(&portstr, &addrstr);
+				aroop_txt_embeded_copy_shallow(&portstr, &addrstr);
 				aroop_txt_shift(&portstr, i+1);
 				aroop_txt_trim_to_length(&addrstr, i);
 				break;

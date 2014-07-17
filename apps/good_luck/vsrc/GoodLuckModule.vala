@@ -11,16 +11,17 @@ using shotodol;
  */
 public class shotodol.GoodLuckModule : DynamicModule {
 	public GoodLuckModule() {
-		name = etxt.from_static("good_luck");
+		estr nm = estr.set_static_string("good_luck");
+		estr ver = estr.set_static_string("0.0.0");
+		base(&nm,&ver);
 	}
 	public override int init() {
-		txt entry = new txt.from_static("onQuit");
-		Plugin.register(entry, new HookExtension(onQuitHook, this));
+		estr entry = estr.set_static_string("onQuit");
+		Plugin.register(&entry, new HookExtension(onQuitHook, this));
 		return 0;
 	}
-	int onQuitHook(etxt*msg, etxt*output) {
-		output.destroy();
-		*output = etxt.from_static("Good Luck\n");
+	int onQuitHook(estr*msg, estr*output) {
+		output.rebuild_and_set_static_string("Good Luck\n");
 		return 0;
 	}
 	public override int deinit() {

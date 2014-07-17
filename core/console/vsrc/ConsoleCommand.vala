@@ -5,7 +5,6 @@ using shotodol;
  *  @{
  */
 internal class shotodol.ConsoleCommand : shotodol.M100Command {
-	etxt prfx;
 	enum Options {
 		LIST = 1,
 		AGAIN,
@@ -13,30 +12,24 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	}
 	ConsoleHistory sp;
 	public ConsoleCommand(ConsoleHistory gSp) {
-		base();
+		estr prefix = estr.set_static_string("shell");
+		base(&prefix);
 		addOptionString("-a", M100Command.OptionType.INT, Options.AGAIN, "Try the command again");
 		addOptionString("-gl", M100Command.OptionType.INT, Options.GLIDE, "Duration to glide(become inactive), 0 by default");
 		addOptionString("-l", M100Command.OptionType.NONE, Options.LIST, "List commands from history");
 		sp = gSp;
 	}
 
-	~ConsoleCommand() {
-	}
-
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("shell");
-		return &prfx;
-	}
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		int duration = 1000;
-		ArrayList<txt> vals = ArrayList<txt>();
+		ArrayList<str> vals = ArrayList<str>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		txt? arg;
+		str? arg;
 		if((arg = vals[Options.AGAIN]) != null) {
-			int index = arg.to_int();
-			txt?again = sp.getHistory(index);
+			int index = arg.ecast().to_int();
+			str?again = sp.getHistory(index);
 			if(again == null) {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}
@@ -47,7 +40,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 			sp.showHistoryFull();
 		}
 		if((arg = vals[Options.GLIDE]) != null) {
-			duration = arg.to_int();
+			duration = arg.ecast().to_int();
 		}
 		sp.glide(duration);
 		return 0;

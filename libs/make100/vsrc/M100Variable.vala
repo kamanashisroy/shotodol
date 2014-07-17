@@ -5,32 +5,32 @@ using aroop;
  */
 public class shotodol.M100Variable: Searchable {
 	public int intval;
-	public txt?txtval;
+	public str?strval;
 	public enum ValueType {
 		TEXT = 1,INT,ARRAY,POINTER
 	}
 	public ValueType tp;
 	public M100Variable() {
 		intval = 0;
-		txtval = null;
+		strval = null;
 		tp = ValueType.INT;
 	}
-	public void concat(etxt*dst) {
+	public void concat(estr*dst) {
 		if(tp == ValueType.INT) {
-			etxt output = etxt.stack(32);
+			estr output = estr.stack(32);
 			output.printf("%d", intval);
 			dst.concat(&output);
 		} else if(tp == ValueType.TEXT) {
-			if(txtval != null)dst.concat((etxt*)txtval);
+			if(strval != null)dst.concat((estr*)strval);
 		}
 	}
-	public void set(etxt*src) {
+	public void set(estr*src) {
 		bool isInt = true;
 		int initialZeroes = 0;
 		bool valueStarted = false;
 		if(src.is_empty_magical()) {
 			intval = 0;
-			txtval = null;
+			strval = null;
 			return;
 		} 
 		int len = src.length();
@@ -54,10 +54,10 @@ public class shotodol.M100Variable: Searchable {
 		}
 		if(isInt) {
 			intval = decimalval;
-			txtval = null;
+			strval = null;
 			tp = ValueType.INT;
 		} else {
-			txtval = new txt.memcopy_etxt(src);
+			strval = new str.copy_on_demand(src);
 			intval = decimalval;
 			tp = ValueType.TEXT;
 		}

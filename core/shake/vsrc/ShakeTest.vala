@@ -6,19 +6,13 @@ using shotodol;
  */
 
 internal class ShakeTest : UnitTest {
-	etxt tname;
 	public ShakeTest() {
-		tname = etxt.from_static("Shake Test");
-	}
-	public override aroop_hash getHash() {
-		return tname.getStringHash();
-	}
-	public override void getName(etxt*name) {
-		name.dup_etxt(&tname);
+		estr tname = estr.set_static_string("Shake Test");
+		base(&tname);
 	}
 	void loadScript(M100Script script) {
 		script.startParsing();
-		etxt x = etxt.stack(128);
+		estr x = estr.stack(128);
 		x.printf("\n");
 		x.printf("shaketest:\n");
 		script.parseLine(&x);
@@ -38,7 +32,7 @@ internal class ShakeTest : UnitTest {
 	}
 	void shakeScript(M100Script script) {
 		StandardOutputStream so = new StandardOutputStream();
-		etxt cmd = etxt.from_static("shake -t shaketest\n");
+		estr cmd = estr.set_static_string("shake -t shaketest\n");
 		CommandModule.server.cmds.act_on(&cmd, so, script);
 	}
 	public override int test() throws UnitTestError {
@@ -47,10 +41,10 @@ internal class ShakeTest : UnitTest {
 		shakeScript(script);
 		// check value
 		bool success = false;
-		etxt varname = etxt.from_static("shaketest");
+		estr varname = estr.set_static_string("shaketest");
 		M100Variable?val = CommandModule.server.cmds.vars.get(&varname);
-		etxt dlg = etxt.stack(128);
-		dlg.concat(&tname);
+		estr dlg = estr.stack(128);
+		dlg.concat_string("Shake Test");
 		dlg.concat_char(':');
 		if(val != null && val.intval == 1) {
 			success = true;

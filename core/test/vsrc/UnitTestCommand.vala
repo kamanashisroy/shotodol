@@ -5,21 +5,14 @@ using shotodol;
  *  @{
  */
 internal class shotodol.UnitTestCommand : shotodol.M100Command {
-	etxt prfx;
 	public UnitTestCommand() {
-		base();
+		estr prefix = estr.set_static_string("unittest");
+		base(&prefix);
 	}
 
-	~UnitTestCommand() {
-	}
-
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("unittest");
-		return &prfx;
-	}
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
-		txt unittest = new txt.from_static("unittest");
-		Extension?root = Plugin.get(unittest);
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
+		estr unittest = estr.set_static_string("unittest");
+		Extension?root = Plugin.get(&unittest);
 		while(root != null) {
 			UnitTest?test = (UnitTest)root.getInterface(null);
 			if(test != null)

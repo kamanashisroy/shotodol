@@ -15,7 +15,7 @@ public class shotodol.DBFactory : Replicable {
 		return 0;
 	}
 
-	public static DB? create(DB.DBType tp, etxt*address) {
+	public static DB? create(DB.DBType tp, estr*address) {
 		if(address.char_at(0) == 'm' && address.char_at(1) == 'e' && address.char_at(2) == 'm') {
 			return new MemoryDB(tp, address);
 		}

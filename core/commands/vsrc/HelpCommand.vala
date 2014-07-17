@@ -5,16 +5,15 @@ using shotodol;
  *  @{
  */
 internal class shotodol.HelpCommand : M100Command {
-	etxt prfx;
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("help");
-		return &prfx;
+	public HelpCommand() {
+		estr prefix = estr.copy_static_string("help");
+		base(&prefix);
 	}
-	public override int act_on(/*ArrayList<txt> tokens*/etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
-		etxt inp = etxt.stack_from_etxt(cmdstr);
+	public override int act_on(/*ArrayList<str> tokens*/estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
+		estr inp = estr.stack_copy_deep(cmdstr);
 		int i = 0;
 		for(i = 0; i < 32; i++) {
-			etxt token = etxt.EMPTY();
+			estr token = estr();
 			LineAlign.next_token(&inp, &token); // second token
 			//token.zero_terminate();
 			if(token.is_empty()) {
@@ -27,7 +26,7 @@ internal class shotodol.HelpCommand : M100Command {
 				// skip command(help) argument
 				continue;
 			}
-			etxt ntoken = etxt.stack_from_etxt(&token);
+			estr ntoken = estr.stack_copy_deep(&token);
 			ntoken.zero_terminate();
 			M100Command? cmd = CommandModule.server.cmds.percept(&ntoken);
 			if(cmd == null) {

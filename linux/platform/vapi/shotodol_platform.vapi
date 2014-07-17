@@ -32,9 +32,9 @@ namespace shotodol_platform {
 		[CCode (cname="fileio_available_bytes", cheader_filename = "shotodol_platform.h")]
 		public int availableBytes();
 		[CCode (cname="fileio_read", cheader_filename = "shotodol_platform.h")]
-		public int read(etxt*buf);
+		public int read(estr*buf);
 		[CCode (cname="fileio_read_line", cheader_filename = "shotodol_platform.h")]
-		public int readLine(etxt*buf);
+		public int readLine(estr*buf);
 		[CCode (cname="fileio_getc", cheader_filename = "shotodol_platform.h")]
 		public uchar getChar();
 		[CCode (cname="fileio_ungetc", cheader_filename = "shotodol_platform.h")]
@@ -94,9 +94,9 @@ namespace shotodol_platform {
 
 
 		[CCode (cname = "linux_file_stream_fread")]
-		public int read(etxt*buf);
+		public int read(estr*buf);
 		[CCode (cname = "linux_file_stream_fwrite")]
-		public int write(etxt*buf);
+		public int write(estr*buf);
 		[CCode (cname = "fclose")]
 		public void close ();
 	}

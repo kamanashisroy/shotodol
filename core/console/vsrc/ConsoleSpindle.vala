@@ -19,16 +19,16 @@ internal abstract class ConsoleSpindle : Spindle {
 	~ConsoleSpindle() {
 	}
 	public abstract void showHistory();
-	public abstract void addHistory(etxt*cmd);
+	public abstract void addHistory(estr*cmd);
 	public override int start(Spindle?plr) {
 		//print("Started console stepping ..\n");
 		
 		return 0;
 	}
 
-	void perform_action(etxt*cmd) {
+	void perform_action(estr*cmd) {
 		cmd.zero_terminate();
-		etxt dlg = etxt.stack(64);
+		estr dlg = estr.stack(64);
 		dlg.printf("Executing:%s\n", cmd.to_string());
 		pad.write(&dlg);
 		CommandModule.server.cmds.act_on(cmd, pad, null);
@@ -44,7 +44,7 @@ internal abstract class ConsoleSpindle : Spindle {
 			return 0;
 		}
 		try {
-			etxt inp = etxt.stack(512);
+			estr inp = estr.stack(512);
 			
 			int available = is.availableBytes();
 			if(available > 0) {

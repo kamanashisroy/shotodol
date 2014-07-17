@@ -22,19 +22,19 @@ public class shotodol.M100Script : M100Parser {
 		memory.destroy();
 		stack.destroy();
 	}
-	txt?current_target;
+	str?current_target;
 	HashTable<M100Variable?>args;
-	public int target(etxt*tg) {
+	public int target(estr*tg) {
 		depth = -1;
 		if(tg.is_empty_magical()) {
 			func = default_func;
 			return 0;
 		} 
-		current_target = new txt.memcopy_etxt(tg);
-		etxt inp = etxt.stack_from_etxt(current_target);
+		current_target = new str.copy_on_demand(tg);
+		estr inp = estr.stack_copy_deep(current_target);
 		int argc = 0;
 		do {
-			etxt token = etxt.EMPTY();
+			estr token = estr();
 			next_token(&inp, &token);
 			if(token.is_empty()) {
 				//current_function = null;
@@ -42,8 +42,8 @@ public class shotodol.M100Script : M100Parser {
 			}
 			M100Variable varVal = new M100Variable();
 			varVal.set(&token);
-			txt varName = new txt.memcopy("0", 4);
-			varName.printf("%d", argc);
+			str varName = new str.copy_content("0", 4);
+			varName.ecast().printf("%d", argc);
 			args.set(varName, varVal);
 			argc++;
 		} while(true);
@@ -63,7 +63,7 @@ public class shotodol.M100Script : M100Parser {
 		return 0;
 	}
 
-	public txt? step() {
+	public str? step() {
 		if(func == null) {
 			Watchdog.watchit_string(core.sourceFileName(), core.sourceLineNo(), 10,0,0,0, "no function is selected\n");
 			return null;
@@ -76,7 +76,7 @@ public class shotodol.M100Script : M100Parser {
 			depth = 0;
 			stack[depth] = scope;
 		}
-		txt?cmd = scope.nextCommand();
+		str?cmd = scope.nextCommand();
 		if(current_target == null || cmd == null) {
 			if(depth > 0) {
 				depth--;

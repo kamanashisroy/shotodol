@@ -15,8 +15,19 @@ public errordomain shotodol.UnitTestError {
 }
 
 public abstract class shotodol.UnitTest : Hashable {
-	public abstract void getName(etxt*name);
-	public abstract aroop_hash getHash();
+	estr name;
+	public UnitTest(estr*nm) {
+		name = estr.copy_on_demand(nm);
+	}
+	~UnitTest() {
+		name.destroy();
+	}
+	public void getNameAs(estr*nm) {
+		nm.rebuild_and_copy_on_demand(&name);
+	}
+	public aroop_hash getHash() {
+		return name.getStringHash();
+	}
 	public abstract int test() throws UnitTestError;
 	public virtual int assert(bool exp) throws UnitTestError {
 		throw new UnitTestError.FAILED("Assertion failed\n");

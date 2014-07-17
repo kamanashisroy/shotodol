@@ -10,26 +10,21 @@ using shotodol;
  *  @{
  */
 public class ProgrammingInstructionTest : UnitTest {
-	etxt tname;
 	public ProgrammingInstructionTest() {
-		tname = etxt.from_static("ProgrammingInstruction Test");
+		estr tname = estr.copy_static_string("ProgrammingInstruction Test");
+		base(&tname);
 	}
-	public override aroop_hash getHash() {
-		return tname.getStringHash();
-	}
-	public override void getName(etxt*name) {
-		name.dup_etxt(&tname);
-	}
+
 	public override int test() throws UnitTestError {
 #if false
 		M100CommandSet cmds = new M100CommandSet();
 		ProgrammingInstruction cp = new ProgrammingInstruction();
 		cp.register(cmds);
 		StandardOutputStream so = new StandardOutputStream();
-		etxt dlg = etxt.stack(128);
+		estr dlg = estr.stack(128);
 		dlg.concat_string("ProgrammingInstructionTest:");
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.WatchdogSeverity.LOG,0,0,&dlg);
-		etxt cmd = etxt.stack(128);
+		estr cmd = estr.stack(128);
 		cmd.concat_string("set -var x -val 1");
 		cmds.act_on(&cmd, so, null);
 		cmd.trim_to_length(0);

@@ -5,7 +5,6 @@ using shotodol;
  *  @{
  */
 internal class shotodol.WatchdogCommand : shotodol.M100Command {
-	etxt prfx;
 	enum Options {
 		LEVEL = 1,
 		FILENAME,
@@ -15,10 +14,11 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 	}
 	
 	Watchdog ?wd;
-	HashTable<txt?> namedCmds;
+	HashTable<str?> namedCmds;
 	public WatchdogCommand() {
-		base();
-		namedCmds = HashTable<txt?>();
+		estr prefix = estr.set_static_string("watchdog");;
+		base(&prefix);
+		namedCmds = HashTable<str?>();
 		wd = new Watchdog(null, 100);
 		addOptionString("-l", M100Command.OptionType.INT, Options.LEVEL, "Set log level");
 		addOptionString("-fn", M100Command.OptionType.TXT, Options.FILENAME, "Match filename");
@@ -33,33 +33,29 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		namedCmds.destroy();
 	}
 
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("watchdog");
-		return &prfx;
-	}
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		etxt*sourcefile = null;
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		estr*sourcefile = null;
 		int lineno = -1;
 		int logLevel = 3;
 		int severity = -1;
 		
-		ArrayList<txt> vals = ArrayList<txt>();
+		ArrayList<str> vals = ArrayList<str>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		txt? arg = null;
+		str? arg = null;
 		bool newNamedCmd = false;
 		if((sourcefile = vals[Options.FILENAME]) != null) {newNamedCmd = true;} 
-		if((arg = vals[Options.LINENO]) != null) {lineno = arg.to_int();newNamedCmd = true;} 
-		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.to_int();newNamedCmd = true;} 
-		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.LINENO]) != null) {lineno = arg.ecast().to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.ecast().to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.ecast().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.NAME]) != null) {
-			txt nm = arg; 
+			str nm = arg; 
 			if(newNamedCmd) {
-				txt remember = new txt.memcopy_etxt(cmdstr);
+				str remember = new str.copy_deep(cmdstr);
 				namedCmds.set(nm, remember);
 			} else {
-				txt?oldCmd = namedCmds.get(nm);
+				str?oldCmd = namedCmds.get(nm);
 				if(oldCmd != null) {
 					return act_on(oldCmd, pad, cmds);
 				}

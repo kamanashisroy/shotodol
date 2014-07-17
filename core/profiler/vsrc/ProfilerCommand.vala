@@ -5,20 +5,12 @@ using shotodol;
  *  @{
  */
 internal class ProfilerCommand : M100Command {
-	etxt prfx;
 	public ProfilerCommand() {
-		base();
+		estr prfx = estr.set_static_string("profiler");
+		base(&prfx);
 	}
 
-	~ProfilerCommand() {
-	}
-
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("profiler");
-		return &prfx;
-	}
-
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
 		core.memory_profiler_dump((contentLine) => {
 			contentLine.concat_char('\n');
 			pad.write(contentLine);

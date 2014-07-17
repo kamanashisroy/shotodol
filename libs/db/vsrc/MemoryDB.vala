@@ -6,7 +6,7 @@ using shotodol;
  */
 public class shotodol.MemoryDB : DB {
 	SearchableSet<DBEntry>db;
-	public MemoryDB(DB.DBType tp, etxt*address) {		
+	public MemoryDB(DB.DBType tp, estr*address) {		
 		db = SearchableSet<DBEntry>();
 	}
 	

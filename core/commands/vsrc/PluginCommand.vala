@@ -5,28 +5,23 @@ using shotodol;
  *  @{
  */
 internal class shotodol.PluginCommand : M100Command {
-	etxt prfx;
 	enum Options {
 		DESC = 1,
 		ACT,
 	}
 	public PluginCommand() {
-		base();
+		estr prefix = estr.copy_static_string("help");
+		base(&prefix);
 		addOptionString("-x", M100Command.OptionType.TXT, Options.DESC, "Describe an extension"); 
 		addOptionString("-act", M100Command.OptionType.NONE, Options.ACT, "Dispatch the extension command"); 
 	}
-	
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("plugin");
-		return &prfx;
-	}
 
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<txt> vals = ArrayList<txt>();
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<str> vals = ArrayList<str>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		txt?ex = vals[Options.DESC];
+		str?ex = vals[Options.DESC];
 		if(ex == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
@@ -41,7 +36,7 @@ internal class shotodol.PluginCommand : M100Command {
 			root = next;
 		}
 		//Plugin.list(pad);
-		etxt dlg = etxt.stack(128);
+		estr dlg = estr.stack(128);
 		dlg.printf("There are %d extensions in this catagory\n", count);
 		pad.write(&dlg);
 		return 0;

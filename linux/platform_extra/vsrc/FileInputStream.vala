@@ -18,7 +18,7 @@ public class shotodol.FileInputStream : InputStream {
 	shotodol_platform.PlatformFileStream?fp;
 	bool closed;
 	
-	public FileInputStream.from_file(etxt*filename) throws IOStreamError.FileInputStreamError {
+	public FileInputStream.from_file(estr*filename) throws IOStreamError.FileInputStreamError {
 		closed = true;
 		fp = shotodol_platform.PlatformFileStream.open(filename.to_string(), "r");
 		if(fp == null) {
@@ -31,7 +31,7 @@ public class shotodol.FileInputStream : InputStream {
 		close();
 	}
 
-	public override int read(etxt*buf) throws IOStreamError.InputStreamError {
+	public override int read(estr*buf) throws IOStreamError.InputStreamError {
 		int ret = 0;
 		if((ret = fp.read(buf)) == 0) {
 			throw new IOStreamError.InputStreamError.END_OF_DATA("File end");

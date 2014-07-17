@@ -11,3 +11,4 @@ Roadmap
 - [ ] Check if the shotodol CGI can use the drupal module writing experience.
 	- Write a howto on CGI. Say it is possible to write web application in vala.
 - [ ] Keep the modules in namespace like directory.
+- [ ] Know more about dbus and systemd projects.

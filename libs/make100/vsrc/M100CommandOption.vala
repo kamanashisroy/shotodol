@@ -8,37 +8,37 @@ internal errordomain shotodol.M100CommandOptionError.ParseError {
 	MISSING_ARGUMENT,
 }
 internal class shotodol.M100CommandOption : Searchable {
-	txt prefix;
-	txt elab;
+	str prefix;
+	str elab;
 	M100Command.OptionType tp;
 	aroop_hash hash;
 	
-	internal void build(etxt*pre, M100Command.OptionType opt_type, aroop_hash id, etxt*help) {
+	internal void build(estr*pre, M100Command.OptionType opt_type, aroop_hash id, estr*help) {
 		core.assert(prefix == null && elab == null);
-		txt p = new txt.memcopy_etxt(pre);
-		txt h = new txt.memcopy_etxt(help);
+		str p = new str.copy_on_demand(pre);
+		str h = new str.copy_on_demand(help);
 		build2(p, opt_type, id, h);
 	}
-	internal void build2(txt pre, M100Command.OptionType opt_type, aroop_hash id, txt help) {
+	internal void build2(str pre, M100Command.OptionType opt_type, aroop_hash id, str help) {
 		core.assert(prefix == null && elab == null);
 		prefix = pre;
 		elab = help;
 		tp = opt_type;
 		hash = id;
-		set_hash(prefix.getStringHash());
+		set_hash(prefix.ecast().getStringHash());
 	}
 	internal int desc(OutputStream pad) {
-		etxt tpText = etxt.stack(16);
+		estr tpText = estr.stack(16);
 		tp.asText(&tpText);
 		tpText.zero_terminate();
-		etxt x = etxt.stack(128);
-		x.printf("\t%10.10s\t\t%10.10s\t%s\n", prefix.to_string(), tpText.to_string(),  elab.to_string());
+		estr x = estr.stack(128);
+		x.printf("\t%10.10s\t\t%10.10s\t%s\n", prefix.ecast().to_string(), tpText.to_string(),  elab.ecast().to_string());
 		pad.write(&x);
 		return 0;
 	}
-	internal static int parseOptions(etxt*cmdstr, ArrayList<txt>*val, SearchableFactory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
-		etxt token = etxt.EMPTY();
-		etxt inp = etxt.stack_from_etxt(cmdstr);
+	internal static int parseOptions(estr*cmdstr, ArrayList<str>*val, SearchableFactory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
+		estr token = estr();
+		estr inp = estr.stack_copy_deep(cmdstr);
 		while(true) {
 			LineAlign.next_token(&inp, &token);
 			if(token.is_empty_magical()) {
@@ -52,14 +52,14 @@ internal class shotodol.M100CommandOption : Searchable {
 				// TODO say unknown option
 				continue;
 			}
-			if(token.equals((aroop.etxt*)opt.prefix)) {
+			if(token.equals((aroop.estr*)opt.prefix)) {
 				if(opt.tp == M100Command.OptionType.TXT) {
 					LineAlign.next_token(&inp, &token);
 					if(token.is_empty_magical() || token.char_at(0) == '-') {
 						//it.destroy();
 						throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected text value here");
 					}
-					txt x = new txt.memcopy_etxt(&token);
+					str x = new str.copy_on_demand(&token);
 					//val.add_container(x, opt.hash);
 					val.set(opt.hash,x);
 				} else if(opt.tp == M100Command.OptionType.INT) {
@@ -68,12 +68,12 @@ internal class shotodol.M100CommandOption : Searchable {
 						//it.destroy();
 						throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected decimal value here");
 					}
-					txt x = new txt.memcopy_etxt(&token);
+					str x = new str.copy_on_demand(&token);
 					val.set(opt.hash,x);
 					//val.add_container(x, opt.hash);
 				} else if(opt.tp == M100Command.OptionType.NONE) {
-					//val.add_container(txt.BLANK_STRING, opt.hash);
-					val.set(opt.hash, txt.BLANK_STRING);
+					//val.add_container(str.BLANK_STRING, opt.hash);
+					val.set(opt.hash, str.BLANK_STRING);
 				}
 			}
 		}

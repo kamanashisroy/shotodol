@@ -11,12 +11,14 @@ using shotodol;
  */
 public class shotodol.ProfilerModule : DynamicModule {
 	public ProfilerModule() {
-		name = etxt.from_static("profiler");
+		estr nm = estr.set_static_string("profiler");
+		estr ver = estr.set_static_string("0.0.0");
+		base(&nm,&ver);
 	}
 
 	public override int init() {
-		txt command = new txt.from_static("command");
-		Plugin.register(command, new M100Extension(new ProfilerCommand(), this));
+		estr command = estr.set_static_string("command");
+		Plugin.register(&command, new M100Extension(new ProfilerCommand(), this));
 		return 0;
 	}
 	public override int deinit() {

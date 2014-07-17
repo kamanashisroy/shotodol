@@ -18,7 +18,7 @@ public class shotodol.StandardInputStream : InputStream {
 		return fd.availableBytes();
 	}
 
-	public override int readChar(etxt*buf, bool dry) throws IOStreamError.InputStreamError {
+	public override int readChar(estr*buf, bool dry) throws IOStreamError.InputStreamError {
 		uchar ch = fd.getChar();
 		if(ch != fd.EOF) {
 			buf.concat_char(ch);
@@ -29,7 +29,7 @@ public class shotodol.StandardInputStream : InputStream {
 		return 0;
 	}
 
-	public override int read(etxt*buf) throws IOStreamError.InputStreamError {
+	public override int read(estr*buf) throws IOStreamError.InputStreamError {
 		int bytes = 0;
 		if((bytes = fd.read(buf)) == 0) {
 			throw new IOStreamError.InputStreamError.END_OF_DATA("File end");
@@ -39,7 +39,7 @@ public class shotodol.StandardInputStream : InputStream {
 		return bytes;
 	}
 	
-	public int readLine(etxt*buf) throws IOStreamError.InputStreamError {
+	public int readLine(estr*buf) throws IOStreamError.InputStreamError {
 		if(fd.readLine(buf) == 0) {
 			throw new IOStreamError.InputStreamError.END_OF_DATA("File end");
 		}

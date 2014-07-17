@@ -11,15 +11,17 @@ using shotodol;
  */
 public class shotodol.UnitTestModule : DynamicModule {
 	class UnitTestModule() {
-		name = etxt.from_static("unittest");
+		estr nm = estr.set_static_string("unittest");
+		estr ver = estr.set_static_string("0.0.0");
+		base(&nm,&ver);
 	}
 
 	~UnitTestModule() {
 	}
 
 	public override int init() {
-		txt command = new txt.from_static("command");
-		Plugin.register(command, new M100Extension(new UnitTestCommand(), this));
+		estr command = estr.set_static_string("command");
+		Plugin.register(&command, new M100Extension(new UnitTestCommand(), this));
 		return 0;
 	}
 	public override int deinit() {

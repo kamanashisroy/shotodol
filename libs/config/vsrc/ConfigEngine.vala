@@ -25,8 +25,8 @@ public abstract class shotodol.ConfigEngine : Replicable {
 		moduleSource.destroy();
 	}
 #if false
-	public int getConfig(etxt*moduleName, etxt*grp, ) {
-		container<txt>? mod;
+	public int getConfig(estr*moduleName, estr*grp, ) {
+		container<str>? mod;
 		if((mod = vals.search(id, match_all)) == null) {
 			return -1;
 		}
@@ -35,13 +35,13 @@ public abstract class shotodol.ConfigEngine : Replicable {
 	}
 #endif
 	
-	public int parseEntry(etxt*data) {
-		etxt token = etxt.EMPTY();
-		etxt inp = etxt.stack_from_etxt(data);
+	public int parseEntry(estr*data) {
+		estr token = estr();
+		estr inp = estr.stack_copy_deep(data);
 		int count = 0;
-		txt? myModuleName = null;
-		txt? myEntryName = null;
-		txt? myKey = null;
+		str? myModuleName = null;
+		str? myEntryName = null;
+		str? myKey = null;
 		for(count = 0; count < 3; count++) {
 			LineAlign.next_token(&inp, &token);
 			if(token.is_empty_magical()) {
@@ -49,13 +49,13 @@ public abstract class shotodol.ConfigEngine : Replicable {
 			}
 			switch(count) {
 				case 0:
-					myModuleName = new txt.memcopy_etxt(&token);
+					myModuleName = new str.copy_deep(&token);
 				break;
 				case 1:
-					myEntryName = new txt.memcopy_etxt(&token);
+					myEntryName = new str.copy_deep(&token);
 				break;
 				case 2:
-					myKey = new txt.memcopy_etxt(&token);
+					myKey = new str.copy_deep(&token);
 					{
 						ConfigModuleEntry? module = modules.get(myModuleName);
 						if(module == null) {
@@ -66,7 +66,7 @@ public abstract class shotodol.ConfigEngine : Replicable {
 							module.build(myModuleName);
 							modules.set(myModuleName, module);
 						}
-						txt val = new txt.memcopy_etxt(&inp);
+						str val = new str.copy_deep(&inp);
 						module.set(entrySource, myEntryName, myKey, val);
 					}
 				break;

@@ -7,19 +7,21 @@ using shotodol;
 public class shotodol.BaseModule : Module {
 	MainTurbine?mt;
 	public BaseModule() {
-		name = etxt.from_static("base");
+		estr nm = estr.set_static_string("base");
+		estr ver = estr.set_static_string("0.0.0");
+		base(&nm,&ver);
 		mt = null;
 	}
 
 	public override int init() {
-		txt entry = new txt.from_static("onQuit");
-		Plugin.register(entry, new HookExtension((onQuitHook), this));
-		entry = new txt.from_static("onLoadAlter");
-		Plugin.register(entry, new HookExtension((onLoadAlterHook), this));
-		entry = new txt.from_static("run");
-		Plugin.register(entry, new HookExtension((runHook), this));
-		entry = new txt.from_static("rehash");
-		Plugin.register(entry, new HookExtension((onRehashHook), this));
+		estr entry = estr.set_static_string("onQuit");
+		Plugin.register(&entry, new HookExtension((onQuitHook), this));
+		entry.rebuild_and_set_static_string("onLoadAlter");
+		Plugin.register(&entry, new HookExtension((onLoadAlterHook), this));
+		entry.rebuild_and_set_static_string("run");
+		Plugin.register(&entry, new HookExtension((runHook), this));
+		entry.rebuild_and_set_static_string("rehash");
+		Plugin.register(&entry, new HookExtension((onRehashHook), this));
 		return 0;
 	}
 
@@ -28,7 +30,7 @@ public class shotodol.BaseModule : Module {
 		return 0;
 	}
 
-	int onLoadAlterHook(etxt*msg, etxt*output) {
+	int onLoadAlterHook(estr*msg, estr*output) {
 		mt = new MainTurbine();
 		mt.rehash();
 		return 0;
@@ -39,12 +41,12 @@ public class shotodol.BaseModule : Module {
 		return 0;
 	}
 
-	int runHook(etxt*msg, etxt*output) {
+	int runHook(estr*msg, estr*output) {
 		if(mt != null)mt.startup();
 		return 0;
 	}
 
-	int onQuitHook(etxt*msg, etxt*output) {
+	int onQuitHook(estr*msg, estr*output) {
 		if(mt != null)mt.quit();
 		return 0;
 	}

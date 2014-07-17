@@ -5,14 +5,13 @@ using shotodol;
  *  @{
  */
 internal class shotodol.M100GotoCommand : shotodol.M100Command {
-	etxt prfx;
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("goto");
-		return &prfx;
+	public M100GotoCommand() {
+		estr prefix = estr.copy_static_string("goto");
+		base(&prefix);
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
-		etxt inp = etxt.stack_from_etxt(cmdstr);
-		etxt token = etxt.EMPTY();
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
+		estr inp = estr.stack_copy_deep(cmdstr);
+		estr token = estr();
 		LineAlign.next_token(&inp, &token); // second token
 		int lineno = inp.to_int();
 		inp.destroy();

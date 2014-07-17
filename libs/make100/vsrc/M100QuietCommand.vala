@@ -6,8 +6,8 @@ using shotodol;
  */
 
 public abstract class shotodol.M100QuietCommand : M100Command {
-	public M100QuietCommand() {
-		base();
+	public M100QuietCommand(estr*prefix) {
+		base(prefix);
 	}
 
 	public override void greet(OutputStream pad) {

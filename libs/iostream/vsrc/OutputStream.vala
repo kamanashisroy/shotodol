@@ -9,7 +9,7 @@ public errordomain IOStreamError.OutputStreamError {
 }
 
 public abstract class shotodol.OutputStream : Replicable {
-	public abstract int write(etxt*buf) throws IOStreamError.OutputStreamError;
+	public abstract int write(estr*buf) throws IOStreamError.OutputStreamError;
 	public virtual void close() throws IOStreamError.OutputStreamError {
 		return;
 	}

@@ -14,17 +14,19 @@ public class shotodol.Extension : Replicable {
 	public Extension?getNext() {
 		return next;
 	}
-	public virtual Replicable?getInterface(etxt*service) {
+	public virtual Replicable?getInterface(estr*service) {
 		return null;
 	}
 	public virtual int desc(OutputStream pad) {
-		etxt dlg = etxt.stack(128);
-		dlg.printf("Extension from module [%s]\n", src.getName().to_string());
+		estr dlg = estr.stack(128);
+		estr name = estr();
+		src.getNameAs(&name);
+		dlg.printf("Extension from module [%s]\n", name.to_string());
 		pad.write(&dlg);
 		return 0;
 	}
 	/* Message passing */
-	public virtual int act(etxt*msg, etxt*output) /*throws M100CommandError.ActionFailed*/ {
+	public virtual int act(estr*msg, estr*output) /*throws M100CommandError.ActionFailed*/ {
 		return 0;
 	}
 }

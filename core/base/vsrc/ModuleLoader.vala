@@ -13,15 +13,13 @@ public errordomain shotodol.dynalib_error {
 public class shotodol.ModuleLoader : Replicable {
 	ArrayList<Module> modules;
 	int count;
-	etxt path_to_shotodol;
+	estr path_to_shotodol;
 	public static ModuleLoader singleton;
 
 	public ModuleLoader() {
-		path_to_shotodol = etxt(shotodol_platform.dynalib.rootDir);
+		path_to_shotodol = estr.set_string(shotodol_platform.dynalib.rootDir);
 		modules = ArrayList<Module>();
 		count = 0;
-		//load_module_helper("iostream", "libs");
-		load("str_arms", "libs");
 		loadStatic(new Plugin());
 		loadStatic(new BaseModule());
 		singleton = this;
@@ -52,16 +50,16 @@ public class shotodol.ModuleLoader : Replicable {
 		m.initDynamic(plg);
 		modules.set(count++, m);
 		//print("\t\t\t\t %s module is Loaded\n", filepath);
-		etxt dlg = etxt.stack(128);
+		estr dlg = estr.stack(128);
 		dlg.printf("\t\t\t\t %s module is Loaded\n", filepath);
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 	}
 
 	public int load(string module_name, string dir) {
-		etxt dlg = etxt.stack(128);
+		estr dlg = estr.stack(128);
 		dlg.printf("Trying to load module %s%s/%s\n", path_to_shotodol.to_string(), dir, module_name);
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
-		etxt path = etxt.stack(128);
+		estr path = estr.stack(128);
 		path.printf("%s%s/%s/dynalib.so", path_to_shotodol.to_string(), dir, module_name);
 		load_dynamic_module(path.to_string());
 		return 0;
@@ -74,8 +72,10 @@ public class shotodol.ModuleLoader : Replicable {
 			throw new dynalib_error.COULD_NOT_INITIATE("Could not initiate module");
 		}
 		modules.set(count++, m);
-		etxt dlg = etxt.stack(128);
-		dlg.printf("\t\t\t\t %s module(static) is Loaded\n", m.getName().to_string());
+		estr dlg = estr.stack(128);
+		estr nm = estr();
+		m.getNameAs(&nm);
+		dlg.printf("\t\t\t\t %s module(static) is Loaded\n", nm.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		return 0;
 	}

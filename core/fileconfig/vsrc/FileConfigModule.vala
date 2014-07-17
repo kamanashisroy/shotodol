@@ -12,14 +12,16 @@ using shotodol_platform;
  */
 public class FileConfigModule : DynamicModule {
 	public FileConfigModule() {
-		name = etxt.from_static("fileconfig");
+		estr nm = estr.set_static_string("fileconfig");
+		estr ver = estr.set_static_string("0.0.0");
+		base(&nm,&ver);
 	}
 
 	public override int init() {
-		txt command = new txt.from_static("command");
-		Plugin.register(command, new M100Extension(new FileConfigCommand(), this));
-		txt unittest = new txt.from_static("unittest");
-		Plugin.register(unittest, new AnyInterfaceExtension(new FileConfigTest(), this));
+		estr command = estr.set_static_string("command");
+		Plugin.register(&command, new M100Extension(new FileConfigCommand(), this));
+		estr unittest = estr.set_static_string("unittest");
+		Plugin.register(&unittest, new AnyInterfaceExtension(new FileConfigTest(), this));
 		return 0;
 	}
 

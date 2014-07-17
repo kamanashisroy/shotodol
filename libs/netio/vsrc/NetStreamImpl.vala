@@ -11,7 +11,7 @@ public class shotodol.NetStreamImpl : NetStream {
 		protected NetInputStream(NetStreamPlatformImpl myPlat) {
 			impl = myPlat;
 		}
-		public override int read(etxt*buf) throws IOStreamError.InputStreamError {
+		public override int read(estr*buf) throws IOStreamError.InputStreamError {
 			int ret = 0;
 			if((ret = impl.read(buf)) == 0) {
 				throw new IOStreamError.InputStreamError.END_OF_DATA("File end");
@@ -27,7 +27,7 @@ public class shotodol.NetStreamImpl : NetStream {
 		protected NetOutputStream(NetStreamPlatformImpl myPlat) {
 			impl = myPlat;
 		}
-		public override int write(etxt*buf) throws IOStreamError.OutputStreamError {
+		public override int write(estr*buf) throws IOStreamError.OutputStreamError {
 			return impl.write(buf);
 		}
 	}
@@ -40,7 +40,7 @@ public class shotodol.NetStreamImpl : NetStream {
 		nis = new NetInputStream(plat);
 		nos = new NetOutputStream(plat);
 	}
-	public override void connect(etxt*path, aroop_uword8 flags) throws IOStreamError.NetStreamError {
+	public override void connect(estr*path, aroop_uword8 flags) throws IOStreamError.NetStreamError {
 		plat.connect(path, flags);
 	}
 	public override InputStream getInputStream() throws IOStreamError.NetStreamError {

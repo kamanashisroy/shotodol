@@ -22,29 +22,29 @@ public class shotodol.MainProgram {
 	static int onLoad() {
 		unowned string[] argv = core.argv();
 		int argc = core.argc();
-		etxt memory = etxt.stack(128);
+		estr memory = estr.stack(128);
 		Bundler bndlr = Bundler();
 		Carton*ctn = (Carton*)memory.to_string();
 		bndlr.buildFromCarton(ctn, memory.size());
 		int i = 0;
 		for(i=0;i<argc;i++) {
-			// TODO optimize
-			txt x = new txt.memcopy_zero_terminated_string(argv[i]);
-			bndlr.writeETxt(1,x);
+			estr x = estr.set_string(argv[i]);
+			bndlr.writeETxt(1,&x);
 		}
 		bndlr.close();
-		etxt userargs = etxt.given_length((string)ctn.data, bndlr.size, null);
-		txt onLoadX = new txt.from_static("onLoad");
-		Plugin.swarm(onLoadX, &userargs, null);
-		onLoadX = new txt.from_static("onLoadAlter");
-		Plugin.swarm(onLoadX, &userargs, null);
+		estr userargs = estr.set_content((string)ctn.data, bndlr.size, null);
+		estr onLoadX = estr.set_static_string("onLoad");
+		Plugin.swarm(&onLoadX, &userargs, null);
+		onLoadX.rebuild_and_set_static_string("onLoadAlter");
+		Plugin.swarm(&onLoadX, &userargs, null);
 		return 0;
 	}
 	public static int main() {
 		ModuleLoader loader = new ModuleLoader();
 		loadDefaultModules(loader);
 		onLoad();
-		Plugin.swarm(new txt.from_static("run"), null, null);
+		estr run = estr.set_static_string("run");
+		Plugin.swarm(&run, null, null);
 		loader.unloadAll();
 		ModuleLoader.singleton = null;
 		return 0;

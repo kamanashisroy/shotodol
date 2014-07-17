@@ -5,18 +5,18 @@ using shotodol;
  *  @{
  */
 internal class ConfigModuleEntry : Replicable {
-	internal etxt moduleName;
+	internal estr moduleName;
 	HashTable<ConfigEntry> entries;
 
 	~ConfigModuleEntry() {
 		entries.destroy();
 	}
 
-	internal void build(etxt*myModuleName) {
-		moduleName = etxt.same_same(myModuleName);
+	internal void build(estr*myModuleName) {
+		moduleName = estr.copy_on_demand(myModuleName);
 		entries = HashTable<ConfigEntry>();
 	}
-	internal int set(Factory<ConfigEntry> source, txt entryName, txt myKey, txt myValue) {
+	internal int set(Factory<ConfigEntry> source, str entryName, str myKey, str myValue) {
 		ConfigEntry? entry = entries.get(entryName);
 		if(entry == null) {
 			entry = source.alloc_full();

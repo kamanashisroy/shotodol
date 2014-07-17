@@ -7,15 +7,15 @@ using shotodol;
 public class shotodol.M100CommandSet: Replicable {
 	public HashTable<M100Variable?> vars;
 	BrainEngine<M100Command>?be;
-	txt command;
+	str command;
 	M100GotoCommand gcmd;
 	public M100CommandSet() {
-		command = new txt.from_static("command");
+		command = new str.copy_static_string("command");
 		//cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
 		vars = HashTable<M100Variable?>();
 		gcmd = new M100GotoCommand();
-		be.memorize_etxt(gcmd.get_prefix(), gcmd);
+		be.memorize_estr(gcmd.getPrefix(), gcmd);
 	}
 	~M100CommandSet() {
 		vars.destroy();
@@ -33,31 +33,31 @@ public class shotodol.M100CommandSet: Replicable {
 	}
 	public int rehash() {
 		be = new BrainEngine<M100Command>();
-		be.memorize_etxt(gcmd.get_prefix(), gcmd);
+		be.memorize_estr(gcmd.getPrefix(), gcmd);
 		Extension?root = Plugin.get(command);
 		while(root != null) {
 			M100Command?cmd = (M100Command)root.getInterface(null);
 			if(cmd != null)
-				be.memorize_etxt(cmd.get_prefix(), cmd);
+				be.memorize_estr(cmd.getPrefix(), cmd);
 			Extension?next = root.getNext();
 			root = next;
 		}
 		return 0;
 	}
-	public M100Command? percept(etxt*cmd_str) {
+	public M100Command? percept(estr*cmd_str) {
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
-	public int act_on(etxt*cmd_str, OutputStream pad, M100Script?sc) {
+	public int act_on(estr*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
 			return 0;
 		}
-		etxt target = etxt.EMPTY();
-		txt rcmd = M100Command.rewrite(cmd_str, &vars);
+		estr target = estr();
+		str rcmd = M100Command.rewrite(cmd_str, &vars);
 		M100Command? mycmd = percept(rcmd);
 		//io.say_static("acting ..\n");
 		if(mycmd == null) {
 			// show menu ..
-			etxt dlg = etxt.from_static("Command not found. Please try one of the following..\n");
+			estr dlg = estr.set_static_string("Command not found. Please try one of the following..\n");
 			pad.write(&dlg);
 			list(pad);
 			return -1;

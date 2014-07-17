@@ -10,30 +10,26 @@ using shotodol;
  *  @{
  */
 internal class ShakeCommand : M100Command {
-	etxt prfx;
 	enum Options {
 		TARGET = 1,
 		FILE,
 	}
 	public ShakeCommand() {
-		base();
+		estr prefix = estr.set_static_string("shake");
+		base(&prefix);
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
 		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "shake file name/path"); 
 		script = null;
 	}
 
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("shake");
-		return &prfx;
-	}
 	M100Script? script;
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<txt> vals = ArrayList<txt>();
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<str> vals = ArrayList<str>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		txt?fn = vals[Options.FILE];
-		txt?tgt = vals[Options.TARGET];
+		str?fn = vals[Options.FILE];
+		str?tgt = vals[Options.TARGET];
 		if(fn == null && tgt == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
@@ -46,7 +42,7 @@ internal class ShakeCommand : M100Command {
 				script.startParsing();
 				while(true) {
 					try {
-						etxt buf = etxt.stack(1024);
+						estr buf = estr.stack(1024);
 						if(lis.read(&buf) == 0) {
 							break;
 						}
@@ -62,16 +58,16 @@ internal class ShakeCommand : M100Command {
 			}
 		}
 		if(tgt != null && script != null) {
-			etxt dlg = etxt.stack(128);
-			dlg.printf("target:%s\n", tgt.to_string());
+			estr dlg = estr.stack(128);
+			dlg.printf("target:%s\n", tgt.ecast().to_string());
 			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 			script.target(tgt);
 			while(true) {
-				txt? cmd = script.step();
+				str? cmd = script.step();
 				if(cmd == null) {
 					break;
 				}
-				dlg.printf("command:%s\n", cmd.to_string());
+				dlg.printf("command:%s\n", cmd.ecast().to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 				// execute command
 				cmds.act_on(cmd, pad, script);

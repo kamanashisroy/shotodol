@@ -5,18 +5,15 @@ using shotodol;
  *  @{
  */
 internal class shotodol.IfCommand : M100Command {
-	etxt prfx;
 	public IfCommand() {
-		base();
+		estr prfx = estr.copy_static_string("if");
+		base(&prfx);
 	}
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("if");
-		return &prfx;
-	}
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		bool inverse = false;
-		etxt inp = etxt.stack_from_etxt(cmdstr);
-		etxt token = etxt.EMPTY();
+		estr inp = estr.stack_copy_deep(cmdstr);
+		estr token = estr();
 		LineAlign.next_token(&inp, &token); // if
 		if(token.is_empty())
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");

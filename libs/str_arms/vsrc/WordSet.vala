@@ -5,19 +5,19 @@ using shotodol;
  *  @{
  */
 public class shotodol.WordSet : Replicable {
-	SearchableFactory<txt> words;
+	SearchableFactory<str> words;
 	public WordSet() {
-		words = SearchableFactory<txt>.for_type();
+		words = SearchableFactory<str>.for_type();
 	}
 	~WordSet() {
 		words.destroy();
 	}
 
-	public txt?add(etxt*wrd) {
-		txt?entry = null;
+	public str?add(estr*wrd) {
+		str?entry = null;
 		entry = words.search(wrd.getStringHash(), (data) => {
-			unowned txt w = ((txt)data);
-			if(wrd.equals((etxt*)w)) {
+			unowned str w = ((str)data);
+			if(wrd.equals((estr*)w)) {
 				return 0;
 			}
 			return -1;
@@ -25,9 +25,9 @@ public class shotodol.WordSet : Replicable {
 		if(entry != null) {
 			return entry;
 		}
-		entry = words.alloc_full((uint16)sizeof(txt)+(uint16)wrd.length()+1);
+		entry = words.alloc_full((uint16)sizeof(str)+(uint16)wrd.length()+1);
 		if(entry != null) {
-			entry.factory_build_by_memcopy_from_etxt_unsafe_no_length_check(wrd);
+			entry.factory_build_by_memcopy_from_estr_unsafe_no_length_check(wrd);
 		} else {
 			// TODO throw error
 			return null;

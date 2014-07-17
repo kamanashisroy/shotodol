@@ -7,6 +7,7 @@ using shotodol;
  * [Cohesion : Functional]
  */
 
+#if false
 /** \addtogroup str_arms
  *  @{
  */
@@ -26,3 +27,4 @@ public class shotodol.StrArmsModule: Module {
 	}
 }
 /** @}*/
+#endif

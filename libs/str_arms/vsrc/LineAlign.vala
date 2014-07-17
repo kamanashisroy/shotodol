@@ -6,9 +6,9 @@ using shotodol;
  */
 public class shotodol.LineAlign<G> : Replicable {
 	WordSet? words;
-	SearchableSet<txt> aln;
+	SearchableSet<str> aln;
 	G?sense;
-	txt?firstline;
+	str?firstline;
 	public LineAlign(WordSet wds,G?given_sense) {
 		build(wds, given_sense);
 	}
@@ -21,7 +21,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	
 	public void build(WordSet wds, G?given_sense) {
 		memclean_raw();
-		aln = SearchableSet<txt>();
+		aln = SearchableSet<str>();
 		words = wds;
 		sense = given_sense;
 		firstline = null;
@@ -31,7 +31,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		return sense;
 	}
 
-	public static int next_token_delimitered(etxt*src, etxt*next, etxt*delim) {
+	public static int next_token_delimitered(estr*src, estr*next, estr*delim) {
 		uint i = 0;
 		int token_start = -1;
 		int trim_at = -1;
@@ -56,20 +56,20 @@ public class shotodol.LineAlign<G> : Replicable {
 			}
 		}
 		if(token_start >= 0) {
-			(*next) = etxt.share_etxt(src);
+			next.rebuild_and_copy_shallow(src);
 			if(trim_at >= 0) {
 				next.trim_to_length(trim_at);
 			}
 			next.shift(token_start);
 		} else {
-			(*next) = etxt.EMPTY();
+			next.trim_to_length(0);
 		}
 		src.shift((int)i);
 		return 0;
 	}
 
 
-	public static int next_token_delimitered_sliteral(etxt*src, etxt*next, etxt*delim) {
+	public static int next_token_delimitered_sliteral(estr*src, estr*next, estr*delim) {
 		uint i = 0;
 		int token_start = -1;
 		int trim_at = -1;
@@ -104,20 +104,22 @@ public class shotodol.LineAlign<G> : Replicable {
 			}
 		}
 		if(token_start >= 0) {
-			(*next) = etxt.share_etxt(src);
+			next.rebuild_and_copy_shallow(src);
+			//(*next) = estr.share_estr(src);
 			if(trim_at >= 0) {
 				next.trim_to_length(trim_at);
 			}
 			next.shift(token_start);
 		} else {
-			(*next) = etxt.EMPTY();
+			next.trim_to_length(0);
+			//(*next) = estr.EMPTY();
 		}
 		src.shift((int)i);
 		return 0;
 	}
 
 
-	public static int next_token(etxt*src, etxt*next) {
+	public static int next_token(estr*src, estr*next) {
 		uint i = 0;
 		int token_start = -1;
 		int trim_at = -1;
@@ -135,24 +137,26 @@ public class shotodol.LineAlign<G> : Replicable {
 			}
 		}
 		if(token_start >= 0) {
-			(*next) = etxt.share_etxt(src);
+			next.rebuild_and_copy_shallow(src);
+			//(*next) = estr.share_estr(src);
 			if(trim_at >= 0) {
 				next.trim_to_length(trim_at);
 			}
 			next.shift(token_start);
 		} else {
-			(*next) = etxt.EMPTY();
+			next.trim_to_length(0);
+			//(*next) = estr.EMPTY();
 		}
 		src.shift((int)i);
 		return 0;
 	}
 	
-	public int align_word(etxt*wd) {
+	public int align_word(estr*wd) {
 		if(wd.is_empty()) {
 			return 0;
 		}
 		// put in words
-		txt wdtxt = words.add(wd);
+		str wdtxt = words.add(wd);
 		if(wdtxt != null) {
 			// align the word
 			aln.add(wdtxt);
@@ -160,15 +164,15 @@ public class shotodol.LineAlign<G> : Replicable {
 		return 0;
 	}
 	
-	public int align_etxt(etxt*wds) {
+	public int align_estr(estr*wds) {
 		if(wds.is_empty()) {
 			return 0;
 		}
 		while(true) {
 			if(firstline == null) {
-				firstline = new txt.memcopy(wds.to_string(),wds.length());
+				firstline = new str.copy_content(wds.to_string(),wds.length());
 			}
-			etxt next = etxt.EMPTY();
+			estr next = estr();
 			next_token(wds, &next);
 			if(next.is_empty()) {
 				break;
@@ -179,26 +183,26 @@ public class shotodol.LineAlign<G> : Replicable {
 	}
 	
 	public int align(InputStream strm) {
-		etxt rd = etxt.stack(128);
+		estr rd = estr.stack(128);
 		while(true) {
 			strm.read(&rd);
 			if(rd.is_empty()) {
 				break;
 			}
-			align_etxt(&rd);
+			align_estr(&rd);
 		}
 		// done
 		return 0;
 	}
 	
-	private int prefix_match(etxt*pfx) requires(pfx != null && firstline != null) {
+	private int prefix_match(estr*pfx) requires(pfx != null && firstline != null) {
 		core.assert(pfx != null && firstline != null);
 		int i = 0;
-		for(;i<firstline.length() && i<pfx.length() && firstline.char_at(i) == pfx.char_at(i);i++);
+		for(;i<firstline.ecast().length() && i<pfx.length() && firstline.ecast().char_at(i) == pfx.char_at(i);i++);
 		return i;
 	}
 	
-	public G? percept_prefix_match(etxt*pfx, int*match_len) {
+	public G? percept_prefix_match(estr*pfx, int*match_len) {
 		*match_len = prefix_match(pfx);
 		if(*match_len > 0) {
 			return sense;

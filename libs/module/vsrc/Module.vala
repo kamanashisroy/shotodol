@@ -11,16 +11,22 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.Module : Replicable {
-	protected etxt name;
-	protected etxt version;
-	public virtual etxt*getName() {
-		return &name;
+	estr name;
+	estr version;
+	public Module(estr*nm,estr*ver) {
+		name = estr.copy_on_demand(nm);
+		version = estr.copy_on_demand(ver);
 	}
-#if false
-	public virtual etxt*getVersion() {
-		return &version;
+	~Module() {
+		name.destroy();
+		version.destroy();
 	}
-#endif
+	public virtual void getNameAs(estr*nm) {
+		nm.rebuild_and_copy_on_demand(&name);
+	}
+	public virtual void getVersionAs(estr ver) {
+		ver.rebuild_and_copy_on_demand(&version);
+	}
 	public abstract int init();
 	public abstract int deinit();
 }

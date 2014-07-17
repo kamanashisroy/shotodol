@@ -17,7 +17,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		words = new WordSet();
 	}
 	
-	public int memorize_etxt(etxt*wds, G? sense) {
+	public int memorize_estr(estr*wds, G? sense) {
 		if(wds == null || wds.is_empty_magical()) {
 			return -1;
 		}
@@ -26,7 +26,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		//LineAlign<G> gn = new (ln) LignAlign<G>(words, sense);
 		generihack<LineAlign<G>,G>.build_generics(ln);
 		ln.build(words, sense);
-		return ln.align_etxt(wds);
+		return ln.align_estr(wds);
 	}
 	
 	public int memorize(InputStream strm, G? sense) {
@@ -37,7 +37,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		return ln.align(strm);
 	}
 	
-	public G? percept_prefix_match(etxt*wds) {
+	public G? percept_prefix_match(estr*wds) {
 		if(wds.is_empty_magical()) {
 			return null;
 		}		
@@ -56,7 +56,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		return ret;
 	}
 	
-	public int percept(etxt word) {
+	public int percept(estr word) {
 		int similarity = 0;
 		// calculate similarity with memory
 		return similarity;

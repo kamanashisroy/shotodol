@@ -21,12 +21,12 @@ internal class shotodol.web.CGIReaderSpindle : Spindle {
 		return 0;
 	}
 
-	void parseLine(etxt*cmd) {
+	void parseLine(estr*cmd) {
 		cmd.zero_terminate();
-		etxt dlg = etxt.stack(64);
+		estr dlg = estr.stack(64);
 		dlg.printf("Parsing:%s\n", cmd.to_string());
 		pad.write(&dlg);
-		etxt token = etxt.EMPTY();
+		estr token = estr();
 		LineAlign.next_token(cmd, &token);
 		if(cmd.char_at(0) == '=') {
 			dlg.printf("key=%s\n", token.to_string());
@@ -39,7 +39,7 @@ internal class shotodol.web.CGIReaderSpindle : Spindle {
 	}
 
 	public override int step() {
-		etxt inp = etxt.stack(512);
+		estr inp = estr.stack(512);
 		try {
 			
 			int available = is.availableBytes();

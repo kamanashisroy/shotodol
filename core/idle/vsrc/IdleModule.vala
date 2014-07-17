@@ -6,14 +6,16 @@ using shotodol;
  */
 public class shotodol.IdleModule : DynamicModule {
 	IdleModule() {
-		name = etxt.from_static("idle");
+		estr nm = estr.set_static_string("idle");
+		estr ver = estr.set_static_string("0.0.0");
+		base(&nm,&ver);
 	}
 	public override int init() {
-		txt spindle = new txt.from_static("MainSpindle");
+		estr spindle = estr.set_static_string("MainSpindle");
 		IdleCommand.IdleSpindle sp = new IdleCommand.IdleSpindle();
-		Plugin.register(spindle, new AnyInterfaceExtension(sp, this));
-		txt command = new txt.from_static("command");
-		Plugin.register(command, new M100Extension(new IdleCommand(sp), this));
+		Plugin.register(&spindle, new AnyInterfaceExtension(sp, this));
+		estr command = estr.set_static_string("command");
+		Plugin.register(&command, new M100Extension(new IdleCommand(sp), this));
 		return 0;
 	}
 	public override int deinit() {

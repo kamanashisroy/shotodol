@@ -5,17 +5,17 @@ using shotodol;
  *  @{
  */
 internal class shotodol.EchoCommand : shotodol.M100Command {
-	etxt prfx;
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("echo");
-		return &prfx;
+	public EchoCommand() {
+		estr prfx = estr.copy_static_string("echo");
+		base(&prfx);
 	}
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) {
-		etxt inp = etxt.stack_from_etxt(cmdstr);
-		etxt token = etxt.EMPTY();
+
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
+		estr inp = estr.stack_copy_deep(cmdstr);
+		estr token = estr();
 		LineAlign.next_token(&inp, &token); // second token
 		pad.write(&inp);
-		etxt newLine = etxt.from_static("\n");
+		estr newLine = estr.set_static_string("\n");
 		pad.write(&newLine);
 		inp.destroy();
 		return 0;

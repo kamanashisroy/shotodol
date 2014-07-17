@@ -11,7 +11,7 @@ internal class M100VirtualMachineFrame: Replicable {
 		index = 0;
 		target = func;
 	}
-	public txt nextCommand() {
+	public str nextCommand() {
 		return target.getCommandAt(index++);
 	}
 	public M100Block?getBlockAt(int lineno) {

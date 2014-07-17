@@ -27,7 +27,7 @@ public abstract class shotodol.M100Parser: Replicable {
 		stmts.destroy();
 	}
 	
-	internal static void trim(etxt*src) {
+	internal static void trim(estr*src) {
 		int ltrim = 0;
 		int skippable = 0;
 		int i;
@@ -47,11 +47,11 @@ public abstract class shotodol.M100Parser: Replicable {
 			src.shift((-skippable));
 	}
 	
-	protected int next_token(etxt*src, etxt*next) {
+	protected int next_token(estr*src, estr*next) {
 		uint i = 0;
 		int token_start = -1;
 		int len = src.length();
-		(*next) = etxt.share_etxt(src);
+		next.rebuild_and_copy_shallow(src);
 		for(i = 0; i < len; i++) {
 			char x = src.char_at(i);
 			if(x == '\t' || x == ' ' || x == '\r' || x == '\n') { // tokens
@@ -80,7 +80,7 @@ public abstract class shotodol.M100Parser: Replicable {
 		return 0;
 	}
 
-	M100Block? addBlock(etxt*name, etxt*proto, int lineno) {
+	M100Block? addBlock(estr*name, estr*proto, int lineno) {
 		M100Block ret = funcs.alloc_full();
 		ret.build(name, proto, lineno);
 		ret.pin();
@@ -102,7 +102,7 @@ public abstract class shotodol.M100Parser: Replicable {
 	}
 
 	int addJumpTo(M100Block?scope, int depth, int lineno) {
-		etxt jumpcmd = etxt.stack(12);
+		estr jumpcmd = estr.stack(12);
 		jumpcmd.printf("\tgoto %d", lineno);
 		scope.addCommand(&jumpcmd, lineno);
 		return 0;
@@ -120,7 +120,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			gotoPreviousScope(depth - 1);
 	}
 
-	int addCommandHelper(etxt*cmdstr, etxt*instr, int lineno) {
+	int addCommandHelper(estr*cmdstr, estr*instr, int lineno) {
 		int depth = 0;
 		while(cmdstr.char_at(1) == '\t') {
 			cmdstr.shift(1);
@@ -135,7 +135,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			if(current_scope == null)
 				return -1;
 		} else if(depth > scopeDepth){
-			etxt nm = etxt.stack(32);
+			estr nm = estr.stack(32);
 			nm.printf("____scope____%d", lineno);
 			M100Block?prev = current_scope;
 			current_scope = addBlock(&nm, instr, lineno);
@@ -157,14 +157,14 @@ public abstract class shotodol.M100Parser: Replicable {
 		scopeDepth = 0;
 	}
 
-	public int parseLine(etxt*instr) {
-		etxt inp = etxt.stack_from_etxt(instr);
+	public int parseLine(estr*instr) {
+		estr inp = estr.stack_copy_deep(instr);
 		do {
 			if(inp.char_at(0) == '\t' && current_function != null) {
 				addCommandHelper(&inp, instr, lineno);
 				break;
 			}
-			etxt token = etxt.EMPTY();
+			estr token = estr();
 			next_token(&inp, &token);
 			if(token.is_empty()) {
 				//current_function = null;
@@ -173,7 +173,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			if(token.char_at(0) == '#') { // skip comment
 				break;
 			}
-			etxt name = etxt.share_etxt(&token);
+			estr name = estr.copy_shallow(&token);
 			next_token(&inp, &token);
 			if(token.equals_static_string(":")) {
 				// so this is a function

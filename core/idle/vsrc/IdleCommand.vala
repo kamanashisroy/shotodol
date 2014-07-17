@@ -39,29 +39,21 @@ internal class IdleCommand : M100Command {
 		}
 	}
 
-	etxt prfx;
 	IdleSpindle sp;
 	enum Options {
 		IDLE_ON = 1,
 		IDLE_OFF,
 	}
 	public IdleCommand(IdleSpindle gSp) {
-		base();
+		estr prefix = estr.set_static_string("idle");
+		base(&prefix);
 		sp = gSp;
 		addOptionString("-on", M100Command.OptionType.NONE, Options.IDLE_ON, "Start idle process");
 		addOptionString("-off", M100Command.OptionType.NONE, Options.IDLE_OFF, "Ends idle process"); 
 	}
 
-	~IdleCommand() {
-	}
-
-	public override etxt*get_prefix() {
-		prfx = etxt.from_static("idle");
-		return &prfx;
-	}
-
-	public override int act_on(etxt*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<txt> vals = ArrayList<txt>();
+	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<str> vals = ArrayList<str>();
 		bool on = false;
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
