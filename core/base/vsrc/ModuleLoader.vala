@@ -89,7 +89,13 @@ public class shotodol.ModuleLoader : Replicable {
 		int i = 0;
 		for(i = count-1; i >= 0; i--) {
 			Module? m = modules.get(i);
-			if(m != null)m.deinit();
+			if(m != null) {
+				extring nm = extring();
+				m.getNameAs(&nm);
+				print("Unloading %s\n", nm.to_string());
+				Plugin.unregisterModule(m);
+				m.deinit();
+			}
 			modules.set(i, null);
 		}
 		count = 0;

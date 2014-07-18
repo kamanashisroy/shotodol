@@ -36,18 +36,32 @@ public class shotodol.MainProgram {
 		extring hook = extring.set_static_string("onLoad");
 		Plugin.swarm(&hook, &userargs, null);
 		hook.rebuild_and_set_static_string("onLoadAlter");
-		print("onLoadAlter:%s\n",hook.to_string());
 		Plugin.swarm(&hook, &userargs, null);
 		return 0;
+	}
+#if false
+	static void debugPlugin(extring*ex) {
+		int count = 0;
+		Extension?root = Plugin.get(ex);
+		while(root != null) {
+			count++;
+			Extension?next = root.getNext();
+			root = next;
+		}
+		print("There are %d extensions in %s directory\n", count, ex.to_string());
+	}
+#endif
+	static void run() {
+		onLoad();
+		extring run = extring.set_static_string("run");
+		Plugin.swarm(&run, null, null);
 	}
 	public static int main() {
 		ModuleLoader loader = new ModuleLoader();
 		loadDefaultModules(loader);
-		onLoad();
-		extring run = extring.set_static_string("run");
-		Plugin.swarm(&run, null, null);
+		run();
 		loader.unloadAll();
-		ModuleLoader.singleton = null;
+		loader.singleton = null;
 		return 0;
 	}
 }
