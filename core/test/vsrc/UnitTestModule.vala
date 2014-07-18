@@ -11,8 +11,8 @@ using shotodol;
  */
 public class shotodol.UnitTestModule : DynamicModule {
 	class UnitTestModule() {
-		estr nm = estr.set_static_string("unittest");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("unittest");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
 
@@ -20,7 +20,7 @@ public class shotodol.UnitTestModule : DynamicModule {
 	}
 
 	public override int init() {
-		estr command = estr.set_static_string("command");
+		extring command = extring.set_static_string("command");
 		Plugin.register(&command, new M100Extension(new UnitTestCommand(), this));
 		return 0;
 	}

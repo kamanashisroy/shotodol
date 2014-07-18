@@ -6,7 +6,7 @@ using shotodol;
  */
 internal class FileConfigTest : UnitTest {
 	public FileConfigTest() {
-		estr tname = estr.set_static_string("FileConfig Test");
+		extring tname = extring.set_static_string("FileConfig Test");
 		base(&tname);
 	}
 	public override int test() throws UnitTestError {

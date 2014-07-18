@@ -21,13 +21,13 @@ namespace shotodol_platform_net {
 		[CCode (cname="net_stream_empty", cheader_filename = "shotodol_platform_net.h")]
 		public NetStreamPlatformImpl();
 		[CCode (cname="net_stream_create", cheader_filename = "shotodol_platform_net.h")]
-		public int connect(estr*path, aroop_uword8 flags);
+		public int connect(extring*path, aroop_uword8 flags);
 		[CCode (cname="net_stream_accept_new", cheader_filename = "shotodol_platform_net.h")]
 		public int accept(NetStreamPlatformImpl*server);
 		[CCode (cname="net_stream_recv", cheader_filename = "shotodol_platform_net.h")]
-		public int read(estr*buf);
+		public int read(extring*buf);
 		[CCode (cname="net_stream_send", cheader_filename = "shotodol_platform_net.h")]
-		public int write(estr*buf);
+		public int write(extring*buf);
 		[CCode (cname="net_stream_close", cheader_filename = "shotodol_platform_net.h")]
 		public int close();
 	}

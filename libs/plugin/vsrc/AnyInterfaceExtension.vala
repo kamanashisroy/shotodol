@@ -10,7 +10,7 @@ public class shotodol.AnyInterfaceExtension : Extension {
 		base(mod);
 		x = e;
 	}
-	public override Replicable?getInterface(estr*service) {
+	public override Replicable?getInterface(extring*service) {
 		return x;
 	}
 }

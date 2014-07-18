@@ -14,11 +14,11 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 	}
 	
 	Watchdog ?wd;
-	HashTable<str?> namedCmds;
+	HashTable<xtring?> namedCmds;
 	public WatchdogCommand() {
-		estr prefix = estr.set_static_string("watchdog");;
+		extring prefix = extring.set_static_string("watchdog");;
 		base(&prefix);
-		namedCmds = HashTable<str?>();
+		namedCmds = HashTable<xtring?>();
 		wd = new Watchdog(null, 100);
 		addOptionString("-l", M100Command.OptionType.INT, Options.LEVEL, "Set log level");
 		addOptionString("-fn", M100Command.OptionType.TXT, Options.FILENAME, "Match filename");
@@ -33,29 +33,29 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		namedCmds.destroy();
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		estr*sourcefile = null;
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		extring*sourcefile = null;
 		int lineno = -1;
 		int logLevel = 3;
 		int severity = -1;
 		
-		ArrayList<str> vals = ArrayList<str>();
+		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		str? arg = null;
+		xtring? arg = null;
 		bool newNamedCmd = false;
 		if((sourcefile = vals[Options.FILENAME]) != null) {newNamedCmd = true;} 
 		if((arg = vals[Options.LINENO]) != null) {lineno = arg.ecast().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.ecast().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.ecast().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.NAME]) != null) {
-			str nm = arg; 
+			xtring nm = arg; 
 			if(newNamedCmd) {
-				str remember = new str.copy_deep(cmdstr);
+				xtring remember = new xtring.copy_deep(cmdstr);
 				namedCmds.set(nm, remember);
 			} else {
-				str?oldCmd = namedCmds.get(nm);
+				xtring?oldCmd = namedCmds.get(nm);
 				if(oldCmd != null) {
 					return act_on(oldCmd, pad, cmds);
 				}

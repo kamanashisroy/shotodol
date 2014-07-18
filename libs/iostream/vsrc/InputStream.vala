@@ -20,10 +20,10 @@ public abstract class shotodol.InputStream : Replicable {
 	public virtual int availableBytes() throws IOStreamError.InputStreamError {
 		throw new IOStreamError.InputStreamError.NOT_SUPPORTED("available_bytes() is not supported");
 	}
-	public virtual int readChar(estr*buf, bool dry) throws IOStreamError.InputStreamError {
+	public virtual int readChar(extring*buf, bool dry) throws IOStreamError.InputStreamError {
 		throw new IOStreamError.InputStreamError.NOT_SUPPORTED("readChar() is not supported");
 	}
-	public abstract int read(estr*buf) throws IOStreamError.InputStreamError;
+	public abstract int read(extring*buf) throws IOStreamError.InputStreamError;
 	public virtual bool rewind() throws IOStreamError.InputStreamError {
 		throw new IOStreamError.InputStreamError.NOT_SUPPORTED("rewind() is not supported");
 	}

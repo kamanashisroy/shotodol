@@ -10,18 +10,18 @@ internal class shotodol.PluginCommand : M100Command {
 		ACT,
 	}
 	public PluginCommand() {
-		estr prefix = estr.copy_static_string("help");
+		extring prefix = extring.copy_static_string("help");
 		base(&prefix);
 		addOptionString("-x", M100Command.OptionType.TXT, Options.DESC, "Describe an extension"); 
 		addOptionString("-act", M100Command.OptionType.NONE, Options.ACT, "Dispatch the extension command"); 
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<str> vals = ArrayList<str>();
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		str?ex = vals[Options.DESC];
+		xtring?ex = vals[Options.DESC];
 		if(ex == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
@@ -36,7 +36,7 @@ internal class shotodol.PluginCommand : M100Command {
 			root = next;
 		}
 		//Plugin.list(pad);
-		estr dlg = estr.stack(128);
+		extring dlg = extring.stack(128);
 		dlg.printf("There are %d extensions in this catagory\n", count);
 		pad.write(&dlg);
 		return 0;

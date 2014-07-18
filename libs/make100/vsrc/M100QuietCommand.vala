@@ -6,7 +6,7 @@ using shotodol;
  */
 
 public abstract class shotodol.M100QuietCommand : M100Command {
-	public M100QuietCommand(estr*prefix) {
+	public M100QuietCommand(extring*prefix) {
 		base(prefix);
 	}
 

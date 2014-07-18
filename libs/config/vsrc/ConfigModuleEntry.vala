@@ -5,18 +5,18 @@ using shotodol;
  *  @{
  */
 internal class ConfigModuleEntry : Replicable {
-	internal estr moduleName;
+	internal extring moduleName;
 	HashTable<ConfigEntry> entries;
 
 	~ConfigModuleEntry() {
 		entries.destroy();
 	}
 
-	internal void build(estr*myModuleName) {
-		moduleName = estr.copy_on_demand(myModuleName);
+	internal void build(extring*myModuleName) {
+		moduleName = extring.copy_on_demand(myModuleName);
 		entries = HashTable<ConfigEntry>();
 	}
-	internal int set(Factory<ConfigEntry> source, str entryName, str myKey, str myValue) {
+	internal int set(Factory<ConfigEntry> source, xtring entryName, xtring myKey, xtring myValue) {
 		ConfigEntry? entry = entries.get(entryName);
 		if(entry == null) {
 			entry = source.alloc_full();

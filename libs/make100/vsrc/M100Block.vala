@@ -5,21 +5,21 @@ using shotodol;
  *  @{
  */
 internal class M100Block: Searchable {
-	str name;
-	str upper;
-	ArrayList<str> cmds;
+	xtring name;
+	xtring upper;
+	ArrayList<xtring> cmds;
 	ArrayList<M100Block> blocks;
 	int ccount;
 	int fnlineno;
-	internal void build(estr*nm, estr*proto, int lineno) {
-		name = new str.copy_on_demand(nm);
-		upper = new str.copy_on_demand(proto);
+	internal void build(extring*nm, extring*proto, int lineno) {
+		name = new xtring.copy_on_demand(nm);
+		upper = new xtring.copy_on_demand(proto);
 		fnlineno = lineno;
 		ccount = 0;
-		cmds = ArrayList<str>();
+		cmds = ArrayList<xtring>();
 		blocks = ArrayList<M100Block>();
 		set_hash(name.ecast().getStringHash());
-		estr varname = estr.set_static_string("function");
+		extring varname = extring.set_static_string("function");
 		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&varname,name);
 	}
 	~M100Block() {
@@ -36,15 +36,15 @@ internal class M100Block: Searchable {
 		return blocks[lineno];
 	}
 	
-	internal int addCommand(estr*cmd, int lineno) {
-		str newcmd = new str.copy_on_demand(cmd);
+	internal int addCommand(extring*cmd, int lineno) {
+		xtring newcmd = new xtring.copy_on_demand(cmd);
 		M100Parser.trim(newcmd);
 		cmds[ccount++] = newcmd;
-		estr varname = estr.set_static_string("function_command");
+		extring varname = extring.set_static_string("function_command");
 		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&varname,newcmd);
 		return 0;
 	}
-	internal str? getCommandAt(int index) {
+	internal xtring? getCommandAt(int index) {
 		return cmds[index];
 	}
 }

@@ -7,7 +7,7 @@ using shotodol;
 
 internal class ConsoleTest : UnitTest {
 	public ConsoleTest() {
-		estr tname = estr.copy_static_string("Console Test");
+		extring tname = extring.copy_static_string("Console Test");
 		base(&tname);
 	}
 	public override int test() throws UnitTestError {

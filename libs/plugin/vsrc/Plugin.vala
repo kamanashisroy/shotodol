@@ -14,15 +14,15 @@ public class shotodol.Plugin : Module {
 	HashTable<Extension>registry;
 	public static Plugin?x;
 	public Plugin() {
-		estr nm = estr.set_static_string("Plugin");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("Plugin");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 		registry = HashTable<Extension>();
 	}
-	public static int register(estr*target, Extension e) {
+	public static int register(extring*target, Extension e) {
 		Extension?root = x.registry.get(target);
 		if(root == null) {
-			str tgt = new str.copy_on_demand(target);
+			xtring tgt = new xtring.copy_on_demand(target);
 			x.registry.set(tgt, e);
 			return 0;
 		}
@@ -33,14 +33,14 @@ public class shotodol.Plugin : Module {
 		root.next = e;
 		return 0;
 	}
-	public static Extension?get(estr*target) {
+	public static Extension?get(extring*target) {
 		return x.registry.get(target);
 	}
-	public static int unregister(estr*target, Extension e) {
+	public static int unregister(extring*target, Extension e) {
 		Extension?root = x.registry.get(target);
 		if(root == null) return 0;
 		if(root == e) {
-			str tgt = new str.copy_on_demand(target);
+			xtring tgt = new xtring.copy_on_demand(target);
 			x.registry.set(tgt, root.next);
 			return 0;
 		}
@@ -58,7 +58,7 @@ public class shotodol.Plugin : Module {
 		// TODO fill me
 		return 0;
 	}
-	public static void swarm(estr*target, estr*inmsg, estr*outmsg) {
+	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {
 		Extension?root = Plugin.get(target);
 		while(root != null) {
 			root.act(inmsg, outmsg);
@@ -67,7 +67,7 @@ public class shotodol.Plugin : Module {
 		}
 	}
 	public static void list(OutputStream pad) {
-		estr dlg = estr.stack(128);
+		extring dlg = extring.stack(128);
 		dlg.printf("There are %d extensions registered\n", x.registry.count_unsafe());
 		pad.write(&dlg);
 #if false

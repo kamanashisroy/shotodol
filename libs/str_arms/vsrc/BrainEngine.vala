@@ -17,7 +17,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		words = new WordSet();
 	}
 	
-	public int memorize_estr(estr*wds, G? sense) {
+	public int memorize_estr(extring*wds, G? sense) {
 		if(wds == null || wds.is_empty_magical()) {
 			return -1;
 		}
@@ -37,7 +37,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		return ln.align(strm);
 	}
 	
-	public G? percept_prefix_match(estr*wds) {
+	public G? percept_prefix_match(extring*wds) {
 		if(wds.is_empty_magical()) {
 			return null;
 		}		
@@ -56,7 +56,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 		return ret;
 	}
 	
-	public int percept(estr word) {
+	public int percept(extring word) {
 		int similarity = 0;
 		// calculate similarity with memory
 		return similarity;

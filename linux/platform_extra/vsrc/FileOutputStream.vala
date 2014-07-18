@@ -12,7 +12,7 @@ public class shotodol.FileOutputStream : OutputStream {
 	shotodol_platform.PlatformFileStream?fp;
 	bool closed;
 	
-	public FileOutputStream.from_file(estr*filename) throws IOStreamError.FileOutputStreamError {
+	public FileOutputStream.from_file(extring*filename) throws IOStreamError.FileOutputStreamError {
 		closed = true;
 		fp = shotodol_platform.PlatformFileStream.open(filename.to_string(), "w");
 		if(fp == null) {
@@ -25,7 +25,7 @@ public class shotodol.FileOutputStream : OutputStream {
 		close();
 	}
 
-	public override int write(estr*buf) throws IOStreamError.OutputStreamError {
+	public override int write(extring*buf) throws IOStreamError.OutputStreamError {
 		return fp.write(buf);
 	}
 

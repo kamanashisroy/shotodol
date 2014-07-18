@@ -11,20 +11,20 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.Module : Replicable {
-	estr name;
-	estr version;
-	public Module(estr*nm,estr*ver) {
-		name = estr.copy_on_demand(nm);
-		version = estr.copy_on_demand(ver);
+	extring name;
+	extring version;
+	public Module(extring*nm,extring*ver) {
+		name = extring.copy_on_demand(nm);
+		version = extring.copy_on_demand(ver);
 	}
 	~Module() {
 		name.destroy();
 		version.destroy();
 	}
-	public virtual void getNameAs(estr*nm) {
+	public virtual void getNameAs(extring*nm) {
 		nm.rebuild_and_copy_on_demand(&name);
 	}
-	public virtual void getVersionAs(estr ver) {
+	public virtual void getVersionAs(extring ver) {
 		ver.rebuild_and_copy_on_demand(&version);
 	}
 	public abstract int init();

@@ -5,24 +5,24 @@ using shotodol;
  *  @{
  */
 public class shotodol.BufferedOutputStream : OutputStream {
-	estr cache;
+	extring cache;
 	bool closed;
 	public BufferedOutputStream(int sz) {
-		cache = estr();
+		cache = extring();
 		cache.buffer(sz);
 		closed = false;
 	}
-	public BufferedOutputStream.forCache(estr*gCache) {
-		cache = estr.copy_shallow(gCache);
+	public BufferedOutputStream.forCache(extring*gCache) {
+		cache = extring.copy_shallow(gCache);
 	}
-	public void getAs(estr*content) {
+	public void getAs(extring*content) {
 		content.rebuild_and_copy_on_demand(&cache);
 	}
 	public int reset() {
 		cache.trim_to_length(0);
 		return 0;
 	}
-	public override int write(estr*buf) throws IOStreamError.OutputStreamError {
+	public override int write(extring*buf) throws IOStreamError.OutputStreamError {
 		if(closed) {
 			return 0;
 		}

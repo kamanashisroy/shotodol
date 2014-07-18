@@ -12,7 +12,7 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.DynamicModule : Module {
-	public DynamicModule(estr*nm,estr*ver) {
+	public DynamicModule(extring*nm,extring*ver) {
 		base(nm,ver);
 	}
 	

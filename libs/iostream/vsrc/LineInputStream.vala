@@ -6,24 +6,24 @@ using shotodol;
  */
 public class shotodol.LineInputStream : InputStream {
 	InputStream is;
-	estr rbuf;
-	estr rmem;
+	extring rbuf;
+	extring rmem;
 	public LineInputStream(InputStream down_stream, int bufferSize = 1024) {
 		is = down_stream;
-		rmem = estr();
-		rbuf = estr();
+		rmem = extring();
+		rbuf = extring();
 		rmem.buffer(bufferSize);
 	}
 	public override int availableBytes() throws IOStreamError.InputStreamError {
 		return is.availableBytes();
 	}
-	public override int readChar(estr*buf, bool dry) throws IOStreamError.InputStreamError {
+	public override int readChar(extring*buf, bool dry) throws IOStreamError.InputStreamError {
 		return is.readChar(buf, dry);
 	}
-	public override int read(estr*ln) throws IOStreamError.InputStreamError {
+	public override int read(extring*ln) throws IOStreamError.InputStreamError {
 		if(rbuf.is_empty()) {
 			rbuf.destroy();
-			rbuf = estr.copy_shallow(&rmem);
+			rbuf = extring.copy_shallow(&rmem);
 			rmem.trim_to_length(0);
 			if(is.read(&rbuf) == 0) {
 				return 0;

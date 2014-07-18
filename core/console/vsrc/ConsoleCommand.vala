@@ -12,7 +12,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 	}
 	ConsoleHistory sp;
 	public ConsoleCommand(ConsoleHistory gSp) {
-		estr prefix = estr.set_static_string("shell");
+		extring prefix = extring.set_static_string("shell");
 		base(&prefix);
 		addOptionString("-a", M100Command.OptionType.INT, Options.AGAIN, "Try the command again");
 		addOptionString("-gl", M100Command.OptionType.INT, Options.GLIDE, "Duration to glide(become inactive), 0 by default");
@@ -20,16 +20,16 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		sp = gSp;
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		int duration = 1000;
-		ArrayList<str> vals = ArrayList<str>();
+		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		str? arg;
+		xtring? arg;
 		if((arg = vals[Options.AGAIN]) != null) {
 			int index = arg.ecast().to_int();
-			str?again = sp.getHistory(index);
+			xtring?again = sp.getHistory(index);
 			if(again == null) {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 			}

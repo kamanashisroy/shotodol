@@ -5,11 +5,11 @@ using shotodol;
  *  @{
  */
 public class shotodol.StandardOutputStream : OutputStream {
-	public override int write(estr*buf) throws IOStreamError.OutputStreamError {
+	public override int write(extring*buf) throws IOStreamError.OutputStreamError {
 		if(buf.is_zero_terminated()) {
 			print(buf.to_string_magical());
 		} else {
-			estr dlg = estr.stack_copy_deep(buf);
+			extring dlg = extring.stack_copy_deep(buf);
 			dlg.zero_terminate();
 			print(dlg.to_string_magical());
 		}

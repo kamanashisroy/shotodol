@@ -6,14 +6,14 @@ using shotodol;
  */
 internal class shotodol.IfCommand : M100Command {
 	public IfCommand() {
-		estr prfx = estr.copy_static_string("if");
+		extring prfx = extring.copy_static_string("if");
 		base(&prfx);
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		bool inverse = false;
-		estr inp = estr.stack_copy_deep(cmdstr);
-		estr token = estr();
+		extring inp = extring.stack_copy_deep(cmdstr);
+		extring token = extring();
 		LineAlign.next_token(&inp, &token); // if
 		if(token.is_empty())
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");

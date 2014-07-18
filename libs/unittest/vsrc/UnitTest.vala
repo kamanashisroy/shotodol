@@ -15,14 +15,14 @@ public errordomain shotodol.UnitTestError {
 }
 
 public abstract class shotodol.UnitTest : Hashable {
-	estr name;
-	public UnitTest(estr*nm) {
-		name = estr.copy_on_demand(nm);
+	extring name;
+	public UnitTest(extring*nm) {
+		name = extring.copy_on_demand(nm);
 	}
 	~UnitTest() {
 		name.destroy();
 	}
-	public void getNameAs(estr*nm) {
+	public void getNameAs(extring*nm) {
 		nm.rebuild_and_copy_on_demand(&name);
 	}
 	public aroop_hash getHash() {

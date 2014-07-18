@@ -13,12 +13,12 @@ using shotodol.web;
  */
 public class shotodol.web.CGIModule : shotodol.DynamicModule {
 	public CGIModule() {
-		estr nm = estr.set_static_string("cgi");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("cgi");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
 	public override int init() {
-		estr spindle = estr.set_static_string("MainSpindle");
+		extring spindle = extring.set_static_string("MainSpindle");
 		Plugin.register(&spindle, new AnyInterfaceExtension(new CGIReaderSpindle(), this));
 		return 0;
 	}

@@ -50,7 +50,7 @@ public struct shotodol.Bundler {
 		bytes = 0;
 		this.size = size;
 	}
-	public void buildFromEstr(estr*content) {
+	public void buildFromEstr(extring*content) {
 		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
 		setter.set(ctn,content.to_string());
 		entries = 0;
@@ -83,7 +83,7 @@ public struct shotodol.Bundler {
 		entries++;
 		return flen;
 	}
-	public int writeETxt(aroop_uword8 key, estr*val) throws BundlerError {
+	public int writeETxt(aroop_uword8 key, extring*val) throws BundlerError {
 		// TODO check Carton.size
 		int len = val.length();
 		if(len > 100) { // make sure that the string is sizable

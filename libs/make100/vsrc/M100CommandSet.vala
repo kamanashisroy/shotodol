@@ -7,15 +7,17 @@ using shotodol;
 public class shotodol.M100CommandSet: Replicable {
 	public HashTable<M100Variable?> vars;
 	BrainEngine<M100Command>?be;
-	str command;
+	xtring command;
 	M100GotoCommand gcmd;
 	public M100CommandSet() {
-		command = new str.copy_static_string("command");
+		command = new xtring.copy_static_string("command");
 		//cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
 		vars = HashTable<M100Variable?>();
 		gcmd = new M100GotoCommand();
-		be.memorize_estr(gcmd.getPrefix(), gcmd);
+		extring prfx = extring();
+		gcmd.getPrefixAs(&prfx);
+		be.memorize_estr(&prfx, gcmd);
 	}
 	~M100CommandSet() {
 		vars.destroy();
@@ -33,31 +35,36 @@ public class shotodol.M100CommandSet: Replicable {
 	}
 	public int rehash() {
 		be = new BrainEngine<M100Command>();
-		be.memorize_estr(gcmd.getPrefix(), gcmd);
+		extring gprfx = extring();
+		gcmd.getPrefixAs(&gprfx);
+		be.memorize_estr(&gprfx, gcmd);
 		Extension?root = Plugin.get(command);
 		while(root != null) {
 			M100Command?cmd = (M100Command)root.getInterface(null);
-			if(cmd != null)
-				be.memorize_estr(cmd.getPrefix(), cmd);
+			if(cmd != null) {
+				extring prfx = extring();
+				cmd.getPrefixAs(&prfx);
+				be.memorize_estr(&prfx, cmd);
+			}
 			Extension?next = root.getNext();
 			root = next;
 		}
 		return 0;
 	}
-	public M100Command? percept(estr*cmd_str) {
+	public M100Command? percept(extring*cmd_str) {
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
-	public int act_on(estr*cmd_str, OutputStream pad, M100Script?sc) {
+	public int act_on(extring*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
 			return 0;
 		}
-		estr target = estr();
-		str rcmd = M100Command.rewrite(cmd_str, &vars);
+		extring target = extring();
+		xtring rcmd = M100Command.rewrite(cmd_str, &vars);
 		M100Command? mycmd = percept(rcmd);
 		//io.say_static("acting ..\n");
 		if(mycmd == null) {
 			// show menu ..
-			estr dlg = estr.set_static_string("Command not found. Please try one of the following..\n");
+			extring dlg = extring.set_static_string("Command not found. Please try one of the following..\n");
 			pad.write(&dlg);
 			list(pad);
 			return -1;

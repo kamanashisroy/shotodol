@@ -7,12 +7,12 @@ using shotodol;
 
 internal class ShakeTest : UnitTest {
 	public ShakeTest() {
-		estr tname = estr.set_static_string("Shake Test");
+		extring tname = extring.set_static_string("Shake Test");
 		base(&tname);
 	}
 	void loadScript(M100Script script) {
 		script.startParsing();
-		estr x = estr.stack(128);
+		extring x = extring.stack(128);
 		x.printf("\n");
 		x.printf("shaketest:\n");
 		script.parseLine(&x);
@@ -32,7 +32,7 @@ internal class ShakeTest : UnitTest {
 	}
 	void shakeScript(M100Script script) {
 		StandardOutputStream so = new StandardOutputStream();
-		estr cmd = estr.set_static_string("shake -t shaketest\n");
+		extring cmd = extring.set_static_string("shake -t shaketest\n");
 		CommandModule.server.cmds.act_on(&cmd, so, script);
 	}
 	public override int test() throws UnitTestError {
@@ -41,9 +41,9 @@ internal class ShakeTest : UnitTest {
 		shakeScript(script);
 		// check value
 		bool success = false;
-		estr varname = estr.set_static_string("shaketest");
+		extring varname = extring.set_static_string("shaketest");
 		M100Variable?val = CommandModule.server.cmds.vars.get(&varname);
-		estr dlg = estr.stack(128);
+		extring dlg = extring.stack(128);
 		dlg.concat_string("Shake Test");
 		dlg.concat_char(':');
 		if(val != null && val.intval == 1) {

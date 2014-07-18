@@ -7,14 +7,14 @@ using shotodol;
 public class shotodol.BaseModule : Module {
 	MainTurbine?mt;
 	public BaseModule() {
-		estr nm = estr.set_static_string("base");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("base");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 		mt = null;
 	}
 
 	public override int init() {
-		estr entry = estr.set_static_string("onQuit");
+		extring entry = extring.set_static_string("onQuit");
 		Plugin.register(&entry, new HookExtension((onQuitHook), this));
 		entry.rebuild_and_set_static_string("onLoadAlter");
 		Plugin.register(&entry, new HookExtension((onLoadAlterHook), this));
@@ -30,7 +30,7 @@ public class shotodol.BaseModule : Module {
 		return 0;
 	}
 
-	int onLoadAlterHook(estr*msg, estr*output) {
+	int onLoadAlterHook(extring*msg, extring*output) {
 		mt = new MainTurbine();
 		mt.rehash();
 		return 0;
@@ -41,12 +41,12 @@ public class shotodol.BaseModule : Module {
 		return 0;
 	}
 
-	int runHook(estr*msg, estr*output) {
+	int runHook(extring*msg, extring*output) {
 		if(mt != null)mt.startup();
 		return 0;
 	}
 
-	int onQuitHook(estr*msg, estr*output) {
+	int onQuitHook(extring*msg, extring*output) {
 		if(mt != null)mt.quit();
 		return 0;
 	}

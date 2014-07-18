@@ -66,7 +66,7 @@ public class shotodol.DBEntry : Searchable {
 		return 0;
 	}
 	
-	public int addTxt(int index, str val) throws BundlerError {
+	public int addTxt(int index, xtring val) throws BundlerError {
 		if(closed) {
 			throw new db_entry.entry_error.entry_closed("entry closed\n");
 		}
@@ -74,7 +74,7 @@ public class shotodol.DBEntry : Searchable {
 		return 0;
 	}
 
-	public int addETxt(int index, estr*val) throws BundlerError {
+	public int addETxt(int index, extring*val) throws BundlerError {
 		if(closed) {
 			throw new db_entry.entry_error.entry_closed("entry closed\n");
 		}
@@ -82,7 +82,7 @@ public class shotodol.DBEntry : Searchable {
 		return 0;
 	}
 
-	public int copyAs(estr*output) {
+	public int copyAs(extring*output) {
 		output.rebuild_and_set_content((string)bndlr.ctn.data, bndlr.bytes,this);
 		return 0;
 	}

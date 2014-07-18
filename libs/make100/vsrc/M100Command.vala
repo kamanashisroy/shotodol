@@ -25,7 +25,7 @@ public abstract class shotodol.M100Command : Replicable {
 		TXT,
 		INT,
 		NONE;
-		public void asText(estr*buf) {
+		public void asText(extring*buf) {
 			switch(this) {
 				case TXT:
 					buf.concat_string("<text>");
@@ -41,11 +41,11 @@ public abstract class shotodol.M100Command : Replicable {
 			}
 		}
 	}
-	estr prfx;
+	extring prfx;
 	SearchableFactory<M100CommandOption> options;
-	public M100Command(estr*prefix) {
+	public M100Command(extring*prefix) {
 		options = SearchableFactory<M100CommandOption>.for_type(4, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
-		prfx = estr.copy_on_demand(prefix);
+		prfx = extring.copy_on_demand(prefix);
 	}
 	
 	~M100Command() {
@@ -54,25 +54,25 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 
 #if false
-	public int match_all(container<str> can) {
+	public int match_all(container<xtring> can) {
 		return 0;
 	}
 #endif
-	public void addOption(estr*prefix, OptionType tp, aroop_hash id, estr*help) {
+	public void addOption(extring*prefix, OptionType tp, aroop_hash id, extring*help) {
 		M100CommandOption opt = options.alloc_full();
 		opt.pin();
 		opt.build(prefix, tp, id, help);
 	}
 
 	public void addOptionString(string pre, OptionType tp, aroop_hash id, string he) {
-		str prefix = new str.copy_string(pre);
-		str help = new str.copy_string(he);
+		xtring prefix = new xtring.copy_string(pre);
+		xtring help = new xtring.copy_string(he);
 		M100CommandOption opt = options.alloc_full();
 		opt.pin();
 		opt.build2(prefix, tp, id, help);
 	}
 	
-	public int parseOptions(estr*cmdstr, ArrayList<str>*val) {
+	public int parseOptions(extring*cmdstr, ArrayList<xtring>*val) {
 		try {
 			M100CommandOption.parseOptions(cmdstr, val, &options);
 		} catch(M100CommandOptionError.ParseError e) {
@@ -83,27 +83,27 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 
 	public virtual void greet(OutputStream pad) {
-		estr greetings = estr.stack(128);
-		greetings.printf("<%16s> -----------------------------------------------------------------\n" , getPrefix().to_string());
+		extring greetings = extring.stack(128);
+		greetings.printf("<%16s> -----------------------------------------------------------------\n" , prfx.to_string());
 		pad.write(&greetings);
 	} 
 	public virtual void bye(OutputStream pad, bool success) {
-		estr byebye = estr.stack(128);
+		extring byebye = extring.stack(128);
 		byebye.printf("<%16s> -----------------------------------------------------------------\n" , success?"Successful":"Failed");
 		pad.write(&byebye);
 		if(!success)
 		desc(CommandDescType.COMMAND_DESC_FULL, pad);
 	} 
 	
-	public estr*getPrefix() {
-		return &prfx;
+	public void getPrefixAs(extring*outvar) {
+		outvar.rebuild_and_copy_shallow(&prfx);
 	}
-	public virtual int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+	public virtual int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		return 0;
 	}
 	public virtual int desc(CommandDescType tp, OutputStream pad) {
-		estr x = estr.stack(32);
-		x.printf("%s\n", getPrefix().to_string());
+		extring x = extring.stack(32);
+		x.printf("%s\n", prfx.to_string());
 		switch(tp) {
 			case CommandDescType.COMMAND_DESC_TITLE:
 			pad.write(&x);
@@ -121,21 +121,21 @@ public abstract class shotodol.M100Command : Replicable {
 		}
 		return 0;
 	}
-	public static str? rewrite(estr*cmd, HashTable<M100Variable?>*gVars) {
+	public static xtring? rewrite(extring*cmd, HashTable<M100Variable?>*gVars) {
 		// rewrite the command with args
 		int rewritelen = cmd.length();
 		rewritelen+= 512;
-		estr rewritecmd = estr.stack(rewritelen);
+		extring rewritecmd = extring.stack(rewritelen);
 		char p = '\0';
 		int i;
 		int len = cmd.length();
 		int varStart = -1;
-		estr varName = estr();
+		extring varName = extring();
 		for(i = 0; i < len; i++) {
 			char x = cmd.char_at(i);
 			if(varStart >= 0) {
 				if(x == ')') {
-					varName = estr.copy_deep(cmd);
+					varName = extring.copy_deep(cmd);
 					varName.trim_to_length(i);
 					varName.shift(varStart);
 					varStart = -1;
@@ -147,7 +147,7 @@ public abstract class shotodol.M100Command : Replicable {
 				continue;
 			}
 			if(p == '$' && (x - '0') >= 0 && (x - '0') <= 9 ) { // variable
-				varName = estr.stack(2);
+				varName = extring.stack(2);
 				varName.concat_char(x);
 				varStart = -1;
 				M100Variable?varVal = gVars.get(&varName);
@@ -168,7 +168,7 @@ public abstract class shotodol.M100Command : Replicable {
 			}
 			p = x;
 		}
-		return new str.copy_deep(&rewritecmd);
+		return new xtring.copy_deep(&rewritecmd);
 	}
 
 }

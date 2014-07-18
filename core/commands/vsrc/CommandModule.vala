@@ -14,8 +14,8 @@ public class shotodol.CommandModule: DynamicModule {
 	public static CommandModule? server;
 	public M100CommandSet cmds;
 	public CommandModule() {
-		estr nm = estr.set_static_string("commands");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("commands");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 		cmds = new M100CommandSet();
 		ModuleLoader.singleton.loadStatic(new ProgrammingInstruction());
@@ -23,20 +23,20 @@ public class shotodol.CommandModule: DynamicModule {
 	
 	public override int init() {
 		server = this;
-		estr command = estr.set_static_string("command");
+		extring command = extring.set_static_string("command");
 		Plugin.register(&command, new M100Extension(new QuitCommand(), this));
 		Plugin.register(&command, new M100Extension(new HelpCommand(), this));
 		Plugin.register(&command, new M100Extension(new ModuleCommand(), this));
 		Plugin.register(&command, new M100Extension(new PluginCommand(), this));
 		Plugin.register(&command, new M100Extension(new RehashCommand(), this));
-		estr onLoad = estr.set_static_string("onLoad");
+		extring onLoad = extring.set_static_string("onLoad");
 		Plugin.register(&onLoad, new HookExtension(rehashHook, this));
-		estr rehash = estr.set_static_string("rehash");
+		extring rehash = extring.set_static_string("rehash");
 		Plugin.register(&rehash, new HookExtension(rehashHook, this));
 		cmds.rehash();
 		return 0;
 	}
-	int rehashHook(estr*msg, estr*output) {
+	int rehashHook(extring*msg, extring*output) {
 		cmds.rehash();
 		return 0;
 	}

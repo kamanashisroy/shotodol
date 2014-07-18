@@ -6,14 +6,14 @@ using shotodol;
  */
 internal class shotodol.HelpCommand : M100Command {
 	public HelpCommand() {
-		estr prefix = estr.copy_static_string("help");
+		extring prefix = extring.copy_static_string("help");
 		base(&prefix);
 	}
-	public override int act_on(/*ArrayList<str> tokens*/estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
-		estr inp = estr.stack_copy_deep(cmdstr);
+	public override int act_on(/*ArrayList<xtring> tokens*/extring*cmdstr, OutputStream pad, M100CommandSet cmds) {
+		extring inp = extring.stack_copy_deep(cmdstr);
 		int i = 0;
 		for(i = 0; i < 32; i++) {
-			estr token = estr();
+			extring token = extring();
 			LineAlign.next_token(&inp, &token); // second token
 			//token.zero_terminate();
 			if(token.is_empty()) {
@@ -26,7 +26,7 @@ internal class shotodol.HelpCommand : M100Command {
 				// skip command(help) argument
 				continue;
 			}
-			estr ntoken = estr.stack_copy_deep(&token);
+			extring ntoken = extring.stack_copy_deep(&token);
 			ntoken.zero_terminate();
 			M100Command? cmd = CommandModule.server.cmds.percept(&ntoken);
 			if(cmd == null) {

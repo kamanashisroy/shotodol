@@ -11,7 +11,7 @@ using shotodol;
  */
 public class ProgrammingInstructionTest : UnitTest {
 	public ProgrammingInstructionTest() {
-		estr tname = estr.copy_static_string("ProgrammingInstruction Test");
+		extring tname = extring.copy_static_string("ProgrammingInstruction Test");
 		base(&tname);
 	}
 
@@ -21,10 +21,10 @@ public class ProgrammingInstructionTest : UnitTest {
 		ProgrammingInstruction cp = new ProgrammingInstruction();
 		cp.register(cmds);
 		StandardOutputStream so = new StandardOutputStream();
-		estr dlg = estr.stack(128);
+		extring dlg = extring.stack(128);
 		dlg.concat_string("ProgrammingInstructionTest:");
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.WatchdogSeverity.LOG,0,0,&dlg);
-		estr cmd = estr.stack(128);
+		extring cmd = extring.stack(128);
 		cmd.concat_string("set -var x -val 1");
 		cmds.act_on(&cmd, so, null);
 		cmd.trim_to_length(0);

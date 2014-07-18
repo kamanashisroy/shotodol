@@ -12,3 +12,7 @@ Roadmap
 	- Write a howto on CGI. Say it is possible to write web application in vala.
 - [ ] Keep the modules in namespace like directory.
 - [ ] Know more about dbus and systemd projects.
+- [ ] Add support for module writing in lua. 
+	- Load lua library and load lua hooks by function. They can communicate with the program using message passing.
+	- Add a module function to load script modules.
+- [ ] **Rename str to xtring** .

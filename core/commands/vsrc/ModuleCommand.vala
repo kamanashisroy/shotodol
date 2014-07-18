@@ -11,7 +11,7 @@ internal class shotodol.ModuleCommand : M100Command {
 		LIST,
 	}
 	public ModuleCommand() {
-		estr prefix = estr.copy_static_string("help");
+		extring prefix = extring.copy_static_string("help");
 		base(&prefix);
 		addOptionString("-load", M100Command.OptionType.TXT, Options.LOAD, "Load given module");
 		addOptionString("-unload", M100Command.OptionType.TXT, Options.UNLOAD, "Unload given module"); 
@@ -19,7 +19,7 @@ internal class shotodol.ModuleCommand : M100Command {
 	}
 
 	int load_module_helper(string module) {
-		estr dlg = estr.stack(128);
+		extring dlg = extring.stack(128);
 		dlg.printf("Trying to load module %s\n", module);
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		ModuleLoader.singleton.load_dynamic_module(module);
@@ -28,18 +28,18 @@ internal class shotodol.ModuleCommand : M100Command {
 		return 0;
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<str> vals = ArrayList<str>();
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		str?fn = vals[Options.LOAD];
+		xtring?fn = vals[Options.LOAD];
 		if(fn != null) {
 			load_module_helper(fn.ecast().to_string());
 		}
 		fn = vals[Options.UNLOAD];
 		if(fn != null) {
-			estr err = estr.set_static_string("TODO:unload module\n");
+			extring err = extring.set_static_string("TODO:unload module\n");
 			pad.write(&err);
 		}
 		if(vals[Options.LIST] != null) {

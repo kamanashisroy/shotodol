@@ -15,7 +15,7 @@ internal class ShakeCommand : M100Command {
 		FILE,
 	}
 	public ShakeCommand() {
-		estr prefix = estr.set_static_string("shake");
+		extring prefix = extring.set_static_string("shake");
 		base(&prefix);
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
 		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "shake file name/path"); 
@@ -23,13 +23,13 @@ internal class ShakeCommand : M100Command {
 	}
 
 	M100Script? script;
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<str> vals = ArrayList<str>();
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		str?fn = vals[Options.FILE];
-		str?tgt = vals[Options.TARGET];
+		xtring?fn = vals[Options.FILE];
+		xtring?tgt = vals[Options.TARGET];
 		if(fn == null && tgt == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
@@ -42,7 +42,7 @@ internal class ShakeCommand : M100Command {
 				script.startParsing();
 				while(true) {
 					try {
-						estr buf = estr.stack(1024);
+						extring buf = extring.stack(1024);
 						if(lis.read(&buf) == 0) {
 							break;
 						}
@@ -58,12 +58,12 @@ internal class ShakeCommand : M100Command {
 			}
 		}
 		if(tgt != null && script != null) {
-			estr dlg = estr.stack(128);
+			extring dlg = extring.stack(128);
 			dlg.printf("target:%s\n", tgt.ecast().to_string());
 			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 			script.target(tgt);
 			while(true) {
-				str? cmd = script.step();
+				xtring? cmd = script.step();
 				if(cmd == null) {
 					break;
 				}

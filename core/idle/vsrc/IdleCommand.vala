@@ -45,15 +45,15 @@ internal class IdleCommand : M100Command {
 		IDLE_OFF,
 	}
 	public IdleCommand(IdleSpindle gSp) {
-		estr prefix = estr.set_static_string("idle");
+		extring prefix = extring.set_static_string("idle");
 		base(&prefix);
 		sp = gSp;
 		addOptionString("-on", M100Command.OptionType.NONE, Options.IDLE_ON, "Start idle process");
 		addOptionString("-off", M100Command.OptionType.NONE, Options.IDLE_OFF, "Ends idle process"); 
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
-		ArrayList<str> vals = ArrayList<str>();
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ArrayList<xtring> vals = ArrayList<xtring>();
 		bool on = false;
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");

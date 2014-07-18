@@ -12,15 +12,15 @@ using shotodol_platform;
  */
 public class FileConfigModule : DynamicModule {
 	public FileConfigModule() {
-		estr nm = estr.set_static_string("fileconfig");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("fileconfig");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
 
 	public override int init() {
-		estr command = estr.set_static_string("command");
+		extring command = extring.set_static_string("command");
 		Plugin.register(&command, new M100Extension(new FileConfigCommand(), this));
-		estr unittest = estr.set_static_string("unittest");
+		extring unittest = extring.set_static_string("unittest");
 		Plugin.register(&unittest, new AnyInterfaceExtension(new FileConfigTest(), this));
 		return 0;
 	}

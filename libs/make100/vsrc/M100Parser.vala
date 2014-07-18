@@ -27,7 +27,7 @@ public abstract class shotodol.M100Parser: Replicable {
 		stmts.destroy();
 	}
 	
-	internal static void trim(estr*src) {
+	internal static void trim(extring*src) {
 		int ltrim = 0;
 		int skippable = 0;
 		int i;
@@ -47,7 +47,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			src.shift((-skippable));
 	}
 	
-	protected int next_token(estr*src, estr*next) {
+	protected int next_token(extring*src, extring*next) {
 		uint i = 0;
 		int token_start = -1;
 		int len = src.length();
@@ -80,7 +80,7 @@ public abstract class shotodol.M100Parser: Replicable {
 		return 0;
 	}
 
-	M100Block? addBlock(estr*name, estr*proto, int lineno) {
+	M100Block? addBlock(extring*name, extring*proto, int lineno) {
 		M100Block ret = funcs.alloc_full();
 		ret.build(name, proto, lineno);
 		ret.pin();
@@ -102,7 +102,7 @@ public abstract class shotodol.M100Parser: Replicable {
 	}
 
 	int addJumpTo(M100Block?scope, int depth, int lineno) {
-		estr jumpcmd = estr.stack(12);
+		extring jumpcmd = extring.stack(12);
 		jumpcmd.printf("\tgoto %d", lineno);
 		scope.addCommand(&jumpcmd, lineno);
 		return 0;
@@ -120,7 +120,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			gotoPreviousScope(depth - 1);
 	}
 
-	int addCommandHelper(estr*cmdstr, estr*instr, int lineno) {
+	int addCommandHelper(extring*cmdstr, extring*instr, int lineno) {
 		int depth = 0;
 		while(cmdstr.char_at(1) == '\t') {
 			cmdstr.shift(1);
@@ -135,7 +135,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			if(current_scope == null)
 				return -1;
 		} else if(depth > scopeDepth){
-			estr nm = estr.stack(32);
+			extring nm = extring.stack(32);
 			nm.printf("____scope____%d", lineno);
 			M100Block?prev = current_scope;
 			current_scope = addBlock(&nm, instr, lineno);
@@ -157,14 +157,14 @@ public abstract class shotodol.M100Parser: Replicable {
 		scopeDepth = 0;
 	}
 
-	public int parseLine(estr*instr) {
-		estr inp = estr.stack_copy_deep(instr);
+	public int parseLine(extring*instr) {
+		extring inp = extring.stack_copy_deep(instr);
 		do {
 			if(inp.char_at(0) == '\t' && current_function != null) {
 				addCommandHelper(&inp, instr, lineno);
 				break;
 			}
-			estr token = estr();
+			extring token = extring();
 			next_token(&inp, &token);
 			if(token.is_empty()) {
 				//current_function = null;
@@ -173,7 +173,7 @@ public abstract class shotodol.M100Parser: Replicable {
 			if(token.char_at(0) == '#') { // skip comment
 				break;
 			}
-			estr name = estr.copy_shallow(&token);
+			extring name = extring.copy_shallow(&token);
 			next_token(&inp, &token);
 			if(token.equals_static_string(":")) {
 				// so this is a function

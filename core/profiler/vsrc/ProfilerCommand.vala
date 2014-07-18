@@ -6,11 +6,11 @@ using shotodol;
  */
 internal class ProfilerCommand : M100Command {
 	public ProfilerCommand() {
-		estr prfx = estr.set_static_string("profiler");
+		extring prfx = extring.set_static_string("profiler");
 		base(&prfx);
 	}
 
-	public override int act_on(estr*cmdstr, OutputStream pad, M100CommandSet cmds) {
+	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) {
 		core.memory_profiler_dump((contentLine) => {
 			contentLine.concat_char('\n');
 			pad.write(contentLine);

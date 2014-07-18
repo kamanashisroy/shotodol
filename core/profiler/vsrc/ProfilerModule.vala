@@ -11,13 +11,13 @@ using shotodol;
  */
 public class shotodol.ProfilerModule : DynamicModule {
 	public ProfilerModule() {
-		estr nm = estr.set_static_string("profiler");
-		estr ver = estr.set_static_string("0.0.0");
+		extring nm = extring.set_static_string("profiler");
+		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
 
 	public override int init() {
-		estr command = estr.set_static_string("command");
+		extring command = extring.set_static_string("command");
 		Plugin.register(&command, new M100Extension(new ProfilerCommand(), this));
 		return 0;
 	}

@@ -5,7 +5,7 @@ using aroop;
  */
 public class shotodol.M100Variable: Searchable {
 	public int intval;
-	public str?strval;
+	public xtring?strval;
 	public enum ValueType {
 		TEXT = 1,INT,ARRAY,POINTER
 	}
@@ -15,16 +15,16 @@ public class shotodol.M100Variable: Searchable {
 		strval = null;
 		tp = ValueType.INT;
 	}
-	public void concat(estr*dst) {
+	public void concat(extring*dst) {
 		if(tp == ValueType.INT) {
-			estr output = estr.stack(32);
+			extring output = extring.stack(32);
 			output.printf("%d", intval);
 			dst.concat(&output);
 		} else if(tp == ValueType.TEXT) {
-			if(strval != null)dst.concat((estr*)strval);
+			if(strval != null)dst.concat((extring*)strval);
 		}
 	}
-	public void set(estr*src) {
+	public void set(extring*src) {
 		bool isInt = true;
 		int initialZeroes = 0;
 		bool valueStarted = false;
@@ -57,7 +57,7 @@ public class shotodol.M100Variable: Searchable {
 			strval = null;
 			tp = ValueType.INT;
 		} else {
-			strval = new str.copy_on_demand(src);
+			strval = new xtring.copy_on_demand(src);
 			intval = decimalval;
 			tp = ValueType.TEXT;
 		}

@@ -12,24 +12,24 @@ using shotodol;
  */
 
 internal class shotodol.WatchdogEntry : Replicable {
-	internal str sourcefile;
+	internal xtring sourcefile;
 	internal int lineno;
 	internal int level;
 	internal Watchdog.WatchdogSeverity severity;
 	internal int subtype;
 	internal int id;
-	str msg;
-	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, estr*gmsg) {
-		//estr sf = estr.stack(64);
+	xtring msg;
+	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, extring*gmsg) {
+		//extring sf = extring.stack(64);
 		//sf.concat_string(gsourcefile);
-		sourcefile = new str.copy_string(gsourcefile);
+		sourcefile = new xtring.copy_string(gsourcefile);
 		if(sourcefile != null)sourcefile.ecast().zero_terminate();
 		lineno = glineno;
 		level = glevel;
 		severity = gseverity;
 		subtype = gsubtype;
 		id = gid;
-		msg = new str.copy_content(gmsg.to_string(), gmsg.length()+2);
+		msg = new xtring.copy_content(gmsg.to_string(), gmsg.length()+2);
 		// trim new line
 		if(msg.ecast().length() >= 1 && msg.ecast().char_at(msg.ecast().length()-1) == '\n') {
 			msg.ecast().trim_to_length(msg.ecast().length()-1);
@@ -42,7 +42,7 @@ internal class shotodol.WatchdogEntry : Replicable {
 	}
 
 	internal void serialize(OutputStream strm) {
-		estr fullmsg = estr.stack(msg.ecast().length()+128);
+		extring fullmsg = extring.stack(msg.ecast().length()+128);
 		fullmsg.printf("[%20.10s %-5d][%s] %s\n", sourcefile.ecast().to_string(), lineno, severity.to_string(severity), msg.ecast().to_string());
 		strm.write(&fullmsg);
 	}
@@ -92,7 +92,7 @@ public class shotodol.Watchdog : Replicable {
 		watch = null;
 		return 0;
 	}
-	public int dump(OutputStream outs, estr*sourcefile, int lineno, int level, int severity) {
+	public int dump(OutputStream outs, extring*sourcefile, int lineno, int level, int severity) {
 		int i = 0;
 		for(;i < numberOfOnMemoryLogs;i++) {
 			int pos = i+rotator;
@@ -116,9 +116,9 @@ public class shotodol.Watchdog : Replicable {
 		}
 		return 0;
 	}
-	public static int watchvar_helper(estr*buf, estr*varname, estr*varval) {
-		estr EQUALS = estr.set_static_string("=");
-		estr header = estr.stack(8);
+	public static int watchvar_helper(extring*buf, extring*varname, extring*varval) {
+		extring EQUALS = extring.set_static_string("=");
+		extring header = extring.stack(8);
 		buf.concat(varname);
 		buf.concat(&EQUALS);
 		header.printf("%d:", varval.length());
@@ -126,13 +126,13 @@ public class shotodol.Watchdog : Replicable {
 		buf.concat(varval);
 		return 0;
 	}
-	public static int watchvar(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, estr*varname, estr*varval) {
-		estr buf = estr.stack(128);
+	public static int watchvar(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, extring*varname, extring*varval) {
+		extring buf = extring.stack(128);
 		watchvar_helper(&buf, varname, varval);
 		watchit(sourcefile, lineno, level, severity, subtype, id, &buf);
 		return 0;
 	}
-	public static int watchit(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, estr*msg) {
+	public static int watchit(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, extring*msg) {
 		if(watch == null || watch.logLevel < level) return 0;
 		
 		WatchdogEntry x = new WatchdogEntry(sourcefile, lineno, level, severity, subtype, id, msg);
@@ -143,17 +143,17 @@ public class shotodol.Watchdog : Replicable {
 		return 0;
 	}
 	public static int watchit_string(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, string data) {
-		estr msg = estr.set_string(data);
+		extring msg = extring.set_string(data);
 		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &msg);
 		return 0;
 	}
 	public static int logString(string sourcefile, int lineno, int level, string st) {
-		estr buf = estr.set_string(st);
+		extring buf = extring.set_string(st);
 		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &buf);
 		return 0;
 	}
 	public static int logInt(string sourcefile, int lineno, int level, string st, int val) {
-		estr buf = estr.stack(128);
+		extring buf = extring.stack(128);
 		buf.printf("%s:%d\n", st, val);
 		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &buf);
 		return 0;
@@ -161,7 +161,7 @@ public class shotodol.Watchdog : Replicable {
 #if false
 	public static int logit(string input, ...) {
 		var l = va_list();
-		estr dlg = estr.stack(128);
+		extring dlg = extring.stack(128);
 		dlg.printf(input, l);
 		logMsgDoNotUse(&dlg);
 		return 0;

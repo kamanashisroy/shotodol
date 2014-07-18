@@ -5,19 +5,19 @@ using shotodol;
  *  @{
  */
 internal class ConfigEntry : Replicable {
-	internal estr name;
-	HashTable<str> tbl;
+	internal extring name;
+	HashTable<xtring> tbl;
 
 	~ConfigEntry() {
 		tbl.destroy();
 	}
 
-	internal void build(estr*myName) {
-		name = estr.copy_shallow(myName);
-		tbl = HashTable<str>();
+	internal void build(extring*myName) {
+		name = extring.copy_shallow(myName);
+		tbl = HashTable<xtring>();
 	}
 
-	internal int set(str myKey, str myValue) {
+	internal int set(xtring myKey, xtring myValue) {
 		return tbl.set(myKey, myValue);
 	}
 }

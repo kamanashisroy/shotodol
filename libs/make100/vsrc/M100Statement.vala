@@ -8,10 +8,10 @@ internal class M100Statement: Replicable {
 		ASSIGN,
 		SUFFIX,
 	}
-	str dest;
-	str exp;
+	xtring dest;
+	xtring exp;
 	m100_op op;
-	public M100Statement(estr*given_dest, estr*given_op, estr*given_exp) {
+	public M100Statement(extring*given_dest, extring*given_op, extring*given_exp) {
 		if(given_op.equals_static_string(":=")) {
 			op = m100_op.ASSIGN;
 		} else if(given_op.equals_static_string("+=")) {
@@ -19,8 +19,8 @@ internal class M100Statement: Replicable {
 		} else {
 			// throw error
 		}
-		dest = new str.copy_on_demand(given_dest);
-		exp = new str.copy_on_demand(given_exp);
+		dest = new xtring.copy_on_demand(given_dest);
+		exp = new xtring.copy_on_demand(given_exp);
 	}
 }
 /** @}*/
