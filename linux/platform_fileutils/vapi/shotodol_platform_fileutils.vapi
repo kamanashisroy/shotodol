@@ -13,12 +13,12 @@ namespace shotodol_platform_fileutils {
 	[CCode (cname="shotodol_platform_filenode_t", cheader_filename = "shotodol_platform_fileutils.h")]
 	public class FileNode {
 		[CCode (cname="filename", cheader_filename = "shotodol_platform_fileutils.h")]
-		public etxt fileName;
+		public extring fileName;
 	}
 	[CCode (cname="shotodol_dir_t", cheader_filename = "shotodol_platform_fileutils.h")]
 	public struct Directory {
 		[CCode (cname="shotodol_dir_open", cheader_filename = "shotodol_platform_fileutils.h")]
-		public Directory(etxt*dir); // etxt SHOULD be zero terminated
+		public Directory(extring*dir); // extring SHOULD be zero terminated
 		[CCode (cname="shotodol_default_iterator", cheader_filename = "shotodol_platform_fileutils.h")]
 		public unowned shotodol.DefaultIterator<FileNode> iterator();
 		[CCode (cname="shotodol_closedir", cheader_filename = "shotodol_platform_fileutils.h")]

@@ -30,7 +30,7 @@ public class ConsoleModule : DynamicModule {
 	int onLoadHook(extring*msg, extring*output) {
 		bool hasConsole = true;
 		Bundler bndlr = Bundler();
-		bndlr.buildFromEstr(msg);
+		bndlr.buildFromEXtring(msg);
 		do {
 			try {
 				int key = bndlr.next();

@@ -50,7 +50,7 @@ public struct shotodol.Bundler {
 		bytes = 0;
 		this.size = size;
 	}
-	public void buildFromEstr(extring*content) {
+	public void buildFromEXtring(extring*content) {
 		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
 		setter.set(ctn,content.to_string());
 		entries = 0;
