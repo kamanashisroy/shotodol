@@ -10,7 +10,7 @@ internal class shotodol.PluginCommand : M100Command {
 		ACT,
 	}
 	public PluginCommand() {
-		extring prefix = extring.copy_static_string("help");
+		var prefix = extring.copy_static_string("plugin");
 		base(&prefix);
 		addOptionString("-x", M100Command.OptionType.TXT, Options.DESC, "Describe an extension"); 
 		addOptionString("-act", M100Command.OptionType.NONE, Options.ACT, "Dispatch the extension command"); 

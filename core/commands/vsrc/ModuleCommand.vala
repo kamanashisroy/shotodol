@@ -11,7 +11,7 @@ internal class shotodol.ModuleCommand : M100Command {
 		LIST,
 	}
 	public ModuleCommand() {
-		extring prefix = extring.copy_static_string("help");
+		var prefix = extring.copy_static_string("module");
 		base(&prefix);
 		addOptionString("-load", M100Command.OptionType.TXT, Options.LOAD, "Load given module");
 		addOptionString("-unload", M100Command.OptionType.TXT, Options.UNLOAD, "Unload given module"); 

@@ -6,7 +6,7 @@ using shotodol;
  */
 internal class shotodol.QuitCommand : M100Command {
 	public QuitCommand() {
-		extring prefix = extring.set_static_string("quit");
+		var prefix = extring.set_static_string("quit");
 		base(&prefix);
 	}
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) {

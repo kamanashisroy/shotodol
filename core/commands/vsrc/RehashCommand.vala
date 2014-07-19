@@ -6,7 +6,7 @@ using shotodol;
  */
 internal class shotodol.RehashCommand : M100Command {
 	public RehashCommand() {
-		extring prefix = extring.copy_static_string("rehash");
+		var prefix = extring.copy_static_string("rehash");
 		base(&prefix);
 	}
 

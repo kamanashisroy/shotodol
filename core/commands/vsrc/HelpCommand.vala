@@ -6,7 +6,7 @@ using shotodol;
  */
 internal class shotodol.HelpCommand : M100Command {
 	public HelpCommand() {
-		extring prefix = extring.copy_static_string("help");
+		var prefix = extring.copy_static_string("help");
 		base(&prefix);
 	}
 	public override int act_on(/*ArrayList<xtring> tokens*/extring*cmdstr, OutputStream pad, M100CommandSet cmds) {
