@@ -5,7 +5,7 @@ using shotodol;
  *  @{
  */
 public class shotodol.M100CommandSet: Replicable {
-	public HashTable<M100Variable?> vars;
+	public HashTable<xtring,M100Variable?> vars;
 	BrainEngine<M100Command>?be;
 	xtring command;
 	M100GotoCommand gcmd;
@@ -13,7 +13,7 @@ public class shotodol.M100CommandSet: Replicable {
 		command = new xtring.copy_static_string("command");
 		//cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
-		vars = HashTable<M100Variable?>();
+		vars = HashTable<xtring,M100Variable?>(xtring.hCb,xtring.eCb);
 		gcmd = new M100GotoCommand();
 		extring prfx = extring();
 		gcmd.getPrefixAs(&prfx);

@@ -6,13 +6,13 @@ using shotodol;
  */
 internal class shotodol.PluginCommand : M100Command {
 	enum Options {
-		DESC = 1,
+		EXTENSION = 1,
 		ACT,
 	}
 	public PluginCommand() {
 		var prefix = extring.copy_static_string("plugin");
 		base(&prefix);
-		addOptionString("-x", M100Command.OptionType.TXT, Options.DESC, "Describe an extension"); 
+		addOptionString("-x", M100Command.OptionType.TXT, Options.EXTENSION, "Choose an extension"); 
 		addOptionString("-act", M100Command.OptionType.NONE, Options.ACT, "Dispatch the extension command"); 
 	}
 
@@ -21,9 +21,10 @@ internal class shotodol.PluginCommand : M100Command {
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		xtring?ex = vals[Options.DESC];
+		xtring?ex = vals[Options.EXTENSION];
 		if(ex == null) {
-			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
+			Plugin.list(pad);
+			return 0;
 		}
 		int count = 0;
 		bool dispatch = vals[Options.ACT] != null;

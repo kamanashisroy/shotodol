@@ -121,7 +121,7 @@ public abstract class shotodol.M100Command : Replicable {
 		}
 		return 0;
 	}
-	public static xtring? rewrite(extring*cmd, HashTable<M100Variable?>*gVars) {
+	public static xtring? rewrite(extring*cmd, HashTable<xtring,M100Variable?>*gVars) {
 		// rewrite the command with args
 		int rewritelen = cmd.length();
 		rewritelen+= 512;
@@ -139,7 +139,7 @@ public abstract class shotodol.M100Command : Replicable {
 					varName.trim_to_length(i);
 					varName.shift(varStart);
 					varStart = -1;
-					M100Variable?varVal = gVars.get(&varName);
+					M100Variable?varVal = gVars.getProperty(&varName);
 					if(varVal != null)varVal.concat(&rewritecmd);
 					//print("var name %s[%d]\n", varName.to_string(), varName.length());
 					varName.destroy();
@@ -150,7 +150,7 @@ public abstract class shotodol.M100Command : Replicable {
 				varName = extring.stack(2);
 				varName.concat_char(x);
 				varStart = -1;
-				M100Variable?varVal = gVars.get(&varName);
+				M100Variable?varVal = gVars.getProperty(&varName);
 				if(varVal != null)varVal.concat(&rewritecmd);
 				print("var name %s\n", varName.to_string());
 				varName.destroy();

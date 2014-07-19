@@ -11,11 +11,11 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.ConfigEngine : Replicable {
-	HashTable<ConfigModuleEntry> modules;
+	HashTable<xtring,ConfigModuleEntry> modules;
 	internal Factory<ConfigModuleEntry> moduleSource;
 	internal Factory<ConfigEntry> entrySource;
 	public ConfigEngine() {
-		modules = HashTable<ConfigModuleEntry>();
+		modules = HashTable<xtring,ConfigModuleEntry>(xtring.hCb,xtring.eCb);
 		entrySource = Factory<ConfigEntry>.for_type();
 		moduleSource = Factory<ConfigModuleEntry>.for_type();
 	}

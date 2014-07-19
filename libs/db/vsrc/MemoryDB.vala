@@ -15,7 +15,7 @@ public class shotodol.MemoryDB : DB {
 	}
 	
 	public override int save(DBId id, DBEntry entry) {
-		db.add_container(entry, id.hash);
+		db.addPointer(entry, id.hash);
 		return 0;
 	}
 	

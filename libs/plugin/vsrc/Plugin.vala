@@ -11,16 +11,16 @@ using shotodol;
  *  @{
  */
 public class shotodol.Plugin : Module {
-	HashTable<Extension>registry;
+	HashTable<xtring,Extension>registry;
 	public static Plugin?x;
 	public Plugin() {
 		extring nm = extring.set_static_string("Plugin");
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
-		registry = HashTable<Extension>();
+		registry = HashTable<xtring,Extension>(xtring.hCb,xtring.eCb);
 	}
 	public static int register(extring*target, Extension e) {
-		Extension?root = x.registry.get(target);
+		Extension?root = x.registry.getProperty(target);
 		if(root == null) {
 			xtring tgt = new xtring.copy_on_demand(target);
 			x.registry.set(tgt, e);
@@ -34,10 +34,10 @@ public class shotodol.Plugin : Module {
 		return 0;
 	}
 	public static Extension?get(extring*target) {
-		return x.registry.get(target);
+		return x.registry.getProperty(target);
 	}
 	public static int unregister(extring*target, Extension e) {
-		Extension?root = x.registry.get(target);
+		Extension?root = x.registry.getProperty(target);
 		if(root == null) return 0;
 		if(root == e) {
 			xtring tgt = new xtring.copy_on_demand(target);
@@ -55,7 +55,45 @@ public class shotodol.Plugin : Module {
 		return 0;
 	}
 	public static int unregisterModule(Module mod) {
-		// TODO fill me
+		int pruneFlag = 1<<1;
+		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
+		x.registry.iterator_hacked(&it);
+		while(it.next()) {
+			AroopPointer<Extension> map = it.get_unowned();
+			Extension root = map.get();
+			// fix the root node
+			if(root.src == mod) {
+				if(root.next == null) {
+					map.mark(pruneFlag);
+					continue;
+				}
+				Extension e = root.next;
+				while(e != null) {
+					if(e.src != mod) {
+						break;
+					}
+					unowned Extension next = e.next;
+					e = next;
+				}
+				if(e == null) {
+					map.mark(pruneFlag);
+					continue;
+				}
+				map.set(e);
+				root = e;
+			}
+			// fix the others
+			while(root.next != null) {
+				Extension next = root.next;
+				if(next.src == mod) {
+					root.next = next.next;
+				} else {
+					root = next;
+				}
+			}
+		}
+		it.destroy();
+		x.registry.pruneMarkedPointer(pruneFlag);
 		return 0;
 	}
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {
@@ -70,13 +108,18 @@ public class shotodol.Plugin : Module {
 		extring dlg = extring.stack(128);
 		dlg.printf("There are %d extensions registered\n", x.registry.count_unsafe());
 		pad.write(&dlg);
-#if false
-		x.registry.visit_each((data) =>{
-			unowned Extension x = ((container<Extension>)data).get();
-			x.desc(pad);
-			return 0;
-		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
-#endif
+		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
+		x.registry.iterator_hacked(&it);
+		while(it.next()) {
+			AroopPointer<Extension> map = it.get_unowned();
+			Extension e = map.get();
+			do {
+				e.desc(pad);
+				Extension next = e.next;
+				e = next;
+			} while(e != null);
+		}
+		it.destroy();
 	}
 	~Plugin() {
 		registry.destroy();

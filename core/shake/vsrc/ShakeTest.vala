@@ -42,7 +42,7 @@ internal class ShakeTest : UnitTest {
 		// check value
 		bool success = false;
 		extring varname = extring.set_static_string("shaketest");
-		M100Variable?val = CommandModule.server.cmds.vars.get(&varname);
+		M100Variable?val = CommandModule.server.cmds.vars.getProperty(&varname);
 		extring dlg = extring.stack(128);
 		dlg.concat_string("Shake Test");
 		dlg.concat_char(':');

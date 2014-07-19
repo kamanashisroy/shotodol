@@ -11,7 +11,7 @@ public class shotodol.M100Script : M100Parser {
 	int depth;
 	public M100Script() {
 		base();
-		args = HashTable<M100Variable?>();
+		args = HashTable<xtring,M100Variable?>(xtring.hCb,xtring.eCb);
 		scope = null;
 		depth = 0;
 		memory = Factory<M100VirtualMachineFrame>.for_type(4, 0, factory_flags.MEMORY_CLEAN);
@@ -23,7 +23,7 @@ public class shotodol.M100Script : M100Parser {
 		stack.destroy();
 	}
 	xtring?current_target;
-	HashTable<M100Variable?>args;
+	HashTable<xtring,M100Variable?>args;
 	public int target(extring*tg) {
 		depth = -1;
 		if(tg.is_empty_magical()) {

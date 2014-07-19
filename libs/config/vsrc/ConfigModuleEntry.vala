@@ -6,7 +6,7 @@ using shotodol;
  */
 internal class ConfigModuleEntry : Replicable {
 	internal extring moduleName;
-	HashTable<ConfigEntry> entries;
+	HashTable<xtring,ConfigEntry> entries;
 
 	~ConfigModuleEntry() {
 		entries.destroy();
@@ -14,7 +14,7 @@ internal class ConfigModuleEntry : Replicable {
 
 	internal void build(extring*myModuleName) {
 		moduleName = extring.copy_on_demand(myModuleName);
-		entries = HashTable<ConfigEntry>();
+		entries = HashTable<xtring,ConfigEntry>(xtring.hCb,xtring.eCb);
 	}
 	internal int set(Factory<ConfigEntry> source, xtring entryName, xtring myKey, xtring myValue) {
 		ConfigEntry? entry = entries.get(entryName);

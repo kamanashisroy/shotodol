@@ -27,7 +27,7 @@ public abstract class shotodol.Propeller : Spindle {
 	protected override int start(Spindle?p) {
 		cancelled = false;
 		sps.visit_each((data) => {
-			unowned Spindle sp = ((container<Spindle>)data).get();
+			unowned Spindle sp = ((AroopPointer<Spindle>)data).get();
 			sp.start(this);
 			return 0;
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
@@ -41,7 +41,7 @@ public abstract class shotodol.Propeller : Spindle {
 	
 	protected override int step() {
 		sps.visit_each((data) => {
-			unowned Spindle sp = ((container<Spindle>)data).get();
+			unowned Spindle sp = ((AroopPointer<Spindle>)data).get();
 			if(sp.step() != 0) {
 				data.unpin(); // delete this process from list
 			}

@@ -14,11 +14,11 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 	}
 	
 	Watchdog ?wd;
-	HashTable<xtring?> namedCmds;
+	HashTable<xtring,xtring?> namedCmds;
 	public WatchdogCommand() {
 		extring prefix = extring.set_static_string("watchdog");;
 		base(&prefix);
-		namedCmds = HashTable<xtring?>();
+		namedCmds = HashTable<xtring,xtring?>(xtring.hCb,xtring.eCb);
 		wd = new Watchdog(null, 100);
 		addOptionString("-l", M100Command.OptionType.INT, Options.LEVEL, "Set log level");
 		addOptionString("-fn", M100Command.OptionType.TXT, Options.FILENAME, "Match filename");
