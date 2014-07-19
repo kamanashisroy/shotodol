@@ -88,15 +88,30 @@ public class shotodol.ModuleLoader : Replicable {
 	public int unloadAll() {
 		int i = 0;
 		for(i = count-1; i >= 0; i--) {
-			Module? m = modules.get(i);
-			if(m != null) {
-				extring nm = extring();
-				m.getNameAs(&nm);
-				print("Unloading %s\n", nm.to_string());
-				Plugin.unregisterModule(m);
-				m.deinit();
+			unowned shotodol_platform.dynalib?owner = null;
+			{
+				Module? m = modules.get(i);
+				if(m != null) {
+					extring nm = extring();
+					m.getNameAs(&nm);
+					print("Unregistering %s from registry ..\n", nm.to_string());
+					Plugin.unregisterModule(m);
+					print("Deinit %s ..\n", nm.to_string());
+					nm.destroy();
+					// unload dynamic module is prone to crash ..
+					if(m.isDynamic) {
+						owner = ((DynamicModule)m).owner;
+					}
+					m.deinit();
+					print("Done\n");
+				}
+				modules.set(i, null);
 			}
-			modules.set(i, null);
+			if(owner != null) {
+				print("Unloading dynamic objects ..\n");
+				owner.unload();
+				print("Done\n");
+			}
 		}
 		count = 0;
 		return 0;

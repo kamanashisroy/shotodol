@@ -94,6 +94,8 @@ public class shotodol.Plugin : Module {
 		}
 		it.destroy();
 		x.registry.pruneMarkedPointer(pruneFlag);
+		extring str = extring.set_static_string("rehash");
+		swarm(&str, null, null);
 		return 0;
 	}
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {

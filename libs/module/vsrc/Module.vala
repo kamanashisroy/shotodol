@@ -13,9 +13,11 @@ using shotodol;
 public abstract class shotodol.Module : Replicable {
 	extring name;
 	extring version;
+	public bool isDynamic;
 	public Module(extring*nm,extring*ver) {
 		name = extring.copy_on_demand(nm);
 		version = extring.copy_on_demand(ver);
+		isDynamic = false;
 	}
 	~Module() {
 		name.destroy();

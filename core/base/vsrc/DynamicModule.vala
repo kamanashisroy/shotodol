@@ -14,6 +14,7 @@ using shotodol;
 public abstract class shotodol.DynamicModule : Module {
 	public DynamicModule(extring*nm,extring*ver) {
 		base(nm,ver);
+		isDynamic = true;
 	}
 	
 	public override int init() {
@@ -21,10 +22,10 @@ public abstract class shotodol.DynamicModule : Module {
 		return 0;
 	}
 	public override int deinit() {
-		owner.unload();
+		//owner.unload();
 		return 0;
 	}
-	unowned shotodol_platform.dynalib owner;
+	internal unowned shotodol_platform.dynalib owner;
 	public int initDynamic(shotodol_platform.dynalib plg) {
 		owner = plg;
 		return 0;

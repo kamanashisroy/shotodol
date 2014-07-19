@@ -27,7 +27,9 @@ public class shotodol.ShakeModule : DynamicModule {
 		return 0;
 	}
 	public override int deinit() {
+		print("Shake deinit ..\n");
 		base.deinit();
+		print("Done with shake\n");
 		return 0;
 	}
 	[CCode (cname="get_module_instance")]
