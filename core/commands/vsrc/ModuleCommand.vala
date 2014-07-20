@@ -35,7 +35,7 @@ internal class shotodol.ModuleCommand : M100Command {
 		}
 		xtring?fn = vals[Options.LOAD];
 		if(fn != null) {
-			load_module_helper(fn.ecast().to_string());
+			load_module_helper(fn.fly().to_string());
 		}
 		fn = vals[Options.UNLOAD];
 		if(fn != null) {

@@ -43,7 +43,7 @@ public class shotodol.M100Script : M100Parser {
 			M100Variable varVal = new M100Variable();
 			varVal.set(&token);
 			xtring varName = new xtring.copy_content("0", 4);
-			varName.ecast().printf("%d", argc);
+			varName.fly().printf("%d", argc);
 			args.set(varName, varVal);
 			argc++;
 		} while(true);

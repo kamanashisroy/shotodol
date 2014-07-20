@@ -46,9 +46,9 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		xtring? arg = null;
 		bool newNamedCmd = false;
 		if((sourcefile = vals[Options.FILENAME]) != null) {newNamedCmd = true;} 
-		if((arg = vals[Options.LINENO]) != null) {lineno = arg.ecast().to_int();newNamedCmd = true;} 
-		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.ecast().to_int();newNamedCmd = true;} 
-		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.ecast().to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.LINENO]) != null) {lineno = arg.fly().to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.fly().to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.fly().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.NAME]) != null) {
 			xtring nm = arg; 
 			if(newNamedCmd) {

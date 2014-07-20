@@ -9,7 +9,7 @@ Plugin techniques
 <img src="https://rawgit.com/kamanashisroy/shotodol/master/libs/plugin/dot_generated_pluginoid.svg"/>
 
 ### Extension
-_Extension_ is a way to associate your facility to a plugin space. Each plugin _space_ is a string. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication.
+_Extension_ is a way to associate your facility to a plugin space. Each plugin _space_ is a string. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication. It uses [composite pattern](http://en.wikipedia.org/wiki/Composite_pattern).
 
 ### Interface
 _Interface_ in an _extension_ is an _object_ returned by getInterface() method. You can type-cast this _object_(Replicable) into something that meet your purpose. Interface here allows better performance. Once a _plugin_ registers an _interface_ it is mapped when _rehash_ is done. For example, the commands module loads all the commands under the name space "command" and makes them available for user.

@@ -23,7 +23,7 @@ internal class shotodol.WatchdogEntry : Replicable {
 		//extring sf = extring.stack(64);
 		//sf.concat_string(gsourcefile);
 		sourcefile = new xtring.copy_string(gsourcefile);
-		if(sourcefile != null)sourcefile.ecast().zero_terminate();
+		if(sourcefile != null)sourcefile.fly().zero_terminate();
 		lineno = glineno;
 		level = glevel;
 		severity = gseverity;
@@ -31,19 +31,19 @@ internal class shotodol.WatchdogEntry : Replicable {
 		id = gid;
 		msg = new xtring.copy_content(gmsg.to_string(), gmsg.length()+2);
 		// trim new line
-		if(msg.ecast().length() >= 1 && msg.ecast().char_at(msg.ecast().length()-1) == '\n') {
-			msg.ecast().trim_to_length(msg.ecast().length()-1);
-		} else if(msg.ecast().length() >= 2 && msg.ecast().char_at(msg.ecast().length()-2) == '\n' && msg.ecast().char_at(msg.ecast().length()-1) == '\0') {
-			msg.ecast().trim_to_length(msg.ecast().length()-2);
-		} else if(msg.ecast().length() >= 3 && msg.ecast().char_at(msg.ecast().length()-3) == '\n' && msg.ecast().char_at(msg.ecast().length()-2) == '\0') {
-			msg.ecast().trim_to_length(msg.ecast().length()-3);
+		if(msg.fly().length() >= 1 && msg.fly().char_at(msg.fly().length()-1) == '\n') {
+			msg.fly().trim_to_length(msg.fly().length()-1);
+		} else if(msg.fly().length() >= 2 && msg.fly().char_at(msg.fly().length()-2) == '\n' && msg.fly().char_at(msg.fly().length()-1) == '\0') {
+			msg.fly().trim_to_length(msg.fly().length()-2);
+		} else if(msg.fly().length() >= 3 && msg.fly().char_at(msg.fly().length()-3) == '\n' && msg.fly().char_at(msg.fly().length()-2) == '\0') {
+			msg.fly().trim_to_length(msg.fly().length()-3);
 		}
-		msg.ecast().zero_terminate();
+		msg.fly().zero_terminate();
 	}
 
 	internal void serialize(OutputStream strm) {
-		extring fullmsg = extring.stack(msg.ecast().length()+128);
-		fullmsg.printf("[%20.10s %-5d][%s] %s\n", sourcefile.ecast().to_string(), lineno, severity.to_string(severity), msg.ecast().to_string());
+		extring fullmsg = extring.stack(msg.fly().length()+128);
+		fullmsg.printf("[%20.10s %-5d][%s] %s\n", sourcefile.fly().to_string(), lineno, severity.to_string(severity), msg.fly().to_string());
 		strm.write(&fullmsg);
 	}
 }

@@ -49,7 +49,7 @@ internal class ConsoleHistory : ConsoleSpindle {
 			index = index % Conf.HIGHEST_HISTORY_BACKUP;
 			old = history.get(index);
 			if(old != null) {
-				dlg.printf("[%d] %s\n", index, old.ecast().to_string());
+				dlg.printf("[%d] %s\n", index, old.fly().to_string());
 				pad.write(&dlg);
 			}
 		}

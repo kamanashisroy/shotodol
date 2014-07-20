@@ -198,7 +198,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	private int prefix_match(extring*pfx) requires(pfx != null && firstline != null) {
 		core.assert(pfx != null && firstline != null);
 		int i = 0;
-		for(;i<firstline.ecast().length() && i<pfx.length() && firstline.ecast().char_at(i) == pfx.char_at(i);i++);
+		for(;i<firstline.fly().length() && i<pfx.length() && firstline.fly().char_at(i) == pfx.char_at(i);i++);
 		return i;
 	}
 	

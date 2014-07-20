@@ -18,7 +18,7 @@ internal class M100Block: Searchable {
 		ccount = 0;
 		cmds = ArrayList<xtring>();
 		blocks = ArrayList<M100Block>();
-		set_hash(name.ecast().getStringHash());
+		set_hash(name.fly().getStringHash());
 		extring varname = extring.set_static_string("function");
 		Watchdog.watchvar(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&varname,name);
 	}

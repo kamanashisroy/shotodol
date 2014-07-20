@@ -37,7 +37,7 @@ internal class shotodol.PluginCommand : M100Command {
 			root = next;
 		}
 		extring dlg = extring.stack(128);
-		dlg.printf("There are %d extensions in %s directory\n", count, ex.ecast().to_string());
+		dlg.printf("There are %d extensions in %s directory\n", count, ex.fly().to_string());
 		pad.write(&dlg);
 		return 0;
 	}

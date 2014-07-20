@@ -59,7 +59,7 @@ internal class ShakeCommand : M100Command {
 		}
 		if(tgt != null && script != null) {
 			extring dlg = extring.stack(128);
-			dlg.printf("target:%s\n", tgt.ecast().to_string());
+			dlg.printf("target:%s\n", tgt.fly().to_string());
 			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 			script.target(tgt);
 			while(true) {
@@ -67,7 +67,7 @@ internal class ShakeCommand : M100Command {
 				if(cmd == null) {
 					break;
 				}
-				dlg.printf("command:%s\n", cmd.ecast().to_string());
+				dlg.printf("command:%s\n", cmd.fly().to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 				// execute command
 				cmds.act_on(cmd, pad, script);

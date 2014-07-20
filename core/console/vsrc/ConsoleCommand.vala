@@ -28,7 +28,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 		}
 		xtring? arg;
 		if((arg = vals[Options.AGAIN]) != null) {
-			int index = arg.ecast().to_int();
+			int index = arg.fly().to_int();
 			xtring?again = sp.getHistory(index);
 			if(again == null) {
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
@@ -40,7 +40,7 @@ internal class shotodol.ConsoleCommand : shotodol.M100Command {
 			sp.showHistoryFull();
 		}
 		if((arg = vals[Options.GLIDE]) != null) {
-			duration = arg.ecast().to_int();
+			duration = arg.fly().to_int();
 		}
 		sp.glide(duration);
 		return 0;

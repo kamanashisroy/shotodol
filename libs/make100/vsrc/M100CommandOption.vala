@@ -25,14 +25,14 @@ internal class shotodol.M100CommandOption : Searchable {
 		elab = help;
 		tp = opt_type;
 		hash = id;
-		set_hash(prefix.ecast().getStringHash());
+		set_hash(prefix.fly().getStringHash());
 	}
 	internal int desc(OutputStream pad) {
 		extring tpText = extring.stack(16);
 		tp.asText(&tpText);
 		tpText.zero_terminate();
 		extring x = extring.stack(128);
-		x.printf("\t%10.10s\t\t%10.10s\t%s\n", prefix.ecast().to_string(), tpText.to_string(),  elab.ecast().to_string());
+		x.printf("\t%10.10s\t\t%10.10s\t%s\n", prefix.fly().to_string(), tpText.to_string(),  elab.fly().to_string());
 		pad.write(&x);
 		return 0;
 	}
