@@ -18,10 +18,17 @@ public abstract class shotodol.Propeller : Spindle {
 	protected Set<Spindle> sps; 
 	protected Queue<Replicable> msgs; // message queue
 	protected bool cancelled;
+	bool clear;
 	
 	public Propeller() {
-		sps = Set<Spindle>();
+		sps = Set<Spindle>(16, factory_flags.HAS_LOCK | factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED);
 		msgs = Queue<Replicable>((uchar)get_id());
+		clear = false;
+	}
+
+	protected void clearAll() {
+		sps.markAll(8);
+		clear = true;
 	}
 	
 	protected override int start(Spindle?p) {
@@ -47,6 +54,10 @@ public abstract class shotodol.Propeller : Spindle {
 			}
 			return 0;
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
+		if(clear) {
+			sps.pruneMarked(8);
+			clear = false;
+		}
 		return 0;
 	}
 	

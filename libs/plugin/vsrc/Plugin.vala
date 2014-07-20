@@ -93,7 +93,7 @@ public class shotodol.Plugin : Module {
 			}
 		}
 		it.destroy();
-		x.registry.pruneMarkedPointer(pruneFlag);
+		x.registry.pruneMarked(pruneFlag);
 		extring str = extring.set_static_string("rehash");
 		swarm(&str, null, null);
 		return 0;

@@ -12,7 +12,7 @@ public class shotodol.MainTurbine : shotodol.Propeller {
 		return start(null);
 	}
 	public int rehash() {
-		// TODO remove the old spindles
+		clearAll();
 		extring mains = extring.set_static_string("MainSpindle");
 		Extension?root = Plugin.get(&mains);
 		while(root != null) {
