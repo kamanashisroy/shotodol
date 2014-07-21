@@ -13,6 +13,9 @@ public class shotodol.MainTurbine : shotodol.Propeller {
 	}
 	public int rehash() {
 		clearAll();
+		if(state == PropellerState.CANCELLED || state == PropellerState.CANCELLING) {
+			return 0;
+		}
 		extring mains = extring.set_static_string("MainSpindle");
 		Extension?root = Plugin.get(&mains);
 		while(root != null) {

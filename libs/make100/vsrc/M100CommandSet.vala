@@ -34,6 +34,7 @@ public class shotodol.M100CommandSet: Replicable {
 		return 0;
 	}
 	public int rehash() {
+		be = null; // we do not keep any reference to older interfaces after this point.
 		be = new BrainEngine<M100Command>();
 		extring gprfx = extring();
 		gcmd.getPrefixAs(&gprfx);

@@ -18,7 +18,6 @@ public class shotodol.Turbine : Propeller {
 	shotodol_platform.PlatformThread pt;
 	public Turbine() {
 		base();
-		cancelled = false;
 		pt = shotodol_platform.PlatformThread();
 	}
 	public void startup() throws TurbineError {

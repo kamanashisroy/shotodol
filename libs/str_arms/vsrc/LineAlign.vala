@@ -19,12 +19,19 @@ public class shotodol.LineAlign<G> : Replicable {
 		aln.destroy();
 	}
 	
-	public void build(WordSet wds, G?given_sense) {
-		memclean_raw();
+	void build(WordSet wds, G?given_sense) {
+		memclean_raw();	// clear garbage
 		aln = SearchableSet<SearchableString>();
 		words = wds;
 		sense = given_sense;
 		firstline = null;
+	}
+
+	public static LineAlign<G> factoryBuild(Factory<LineAlign<G>>*fac, WordSet wds, G?given_sense) {
+		LineAlign<G> ln = fac.alloc_full();
+		//generihack<LineAlign<G>,G>.build_generics(ln); // what does it do ?
+		ln.build(wds, given_sense);
+		return ln;
 	}
 	
 	public G? get() {

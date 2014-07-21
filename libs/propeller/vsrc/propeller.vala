@@ -15,29 +15,51 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.Propeller : Spindle {
+	protected enum PropellerState {
+		NONE,
+		STARTING,
+		RUNNING,
+		CANCELLING,
+		CANCELLED,
+	}
 	protected Set<Spindle> sps; 
 	protected Queue<Replicable> msgs; // message queue
-	protected bool cancelled;
+	protected PropellerState state;
 	bool clear;
 	
 	public Propeller() {
 		sps = Set<Spindle>(16, factory_flags.HAS_LOCK | factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED);
 		msgs = Queue<Replicable>((uchar)get_id());
+		state = PropellerState.NONE;
 		clear = false;
 	}
 
 	protected void clearAll() {
 		sps.markAll(8);
 		clear = true;
+		if(state == PropellerState.CANCELLED) {
+			sps.pruneMarked(8);
+			sps.gc_unsafe(); // make sure they are unloaded correctly ..
+			clear = false;
+		}
 	}
 	
 	protected override int start(Spindle?p) {
-		cancelled = false;
+		if(state != PropellerState.NONE && state != PropellerState.CANCELLED) {
+			core.assert(state != PropellerState.NONE && state != PropellerState.CANCELLED);
+			return 0;
+		}
+		state = PropellerState.STARTING;
 		sps.visit_each((data) => {
 			unowned Spindle sp = ((AroopPointer<Spindle>)data).get();
 			sp.start(this);
 			return 0;
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
+		if(state == PropellerState.CANCELLING) {
+			state = PropellerState.CANCELLED;
+			return 0;
+		}
+		state = PropellerState.RUNNING;
 		run();
 		return 0;
 	}
@@ -56,19 +78,24 @@ public abstract class shotodol.Propeller : Spindle {
 		}, Replica_flags.ALL, 0, Replica_flags.ALL, 0, 0, 0);
 		if(clear) {
 			sps.pruneMarked(8);
+			sps.gc_unsafe(); // make sure they are unloaded correctly ..
 			clear = false;
 		}
 		return 0;
 	}
 	
 	protected void run() {
-		while(!cancelled) {
+		while(state == PropellerState.RUNNING) {
 			step();
 		}
+		core.assert(state == PropellerState.CANCELLING);
+		state = PropellerState.CANCELLED;
 	}
 	
 	public override int cancel() {
-		cancelled = true;
+		if(state == PropellerState.RUNNING || state == PropellerState.STARTING) {
+			state = PropellerState.CANCELLING;
+		}
 		return 0;
 	}
 	

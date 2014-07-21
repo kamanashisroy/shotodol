@@ -16,24 +16,24 @@ public class shotodol.BrainEngine<G> : Replicable {
 		sandbox = Factory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
 		words = new WordSet();
 	}
+
+	~BrainEngine() {
+		memory.destroy();
+		sandbox.destroy();
+	}
 	
 	public int memorize_estr(extring*wds, G? sense) {
 		if(wds == null || wds.is_empty_magical()) {
 			return -1;
 		}
-		// find the msg in memory
-		LineAlign<G> ln = memory.alloc_full(0,1);
-		//LineAlign<G> gn = new (ln) LignAlign<G>(words, sense);
-		generihack<LineAlign<G>,G>.build_generics(ln);
-		ln.build(words, sense);
+		LineAlign<G> ln = LineAlign.factoryBuild(&memory,words,sense);
+		ln.pin();
 		return ln.align_estr(wds);
 	}
 	
 	public int memorize(InputStream strm, G? sense) {
-		// find the msg in memory
-		LineAlign<G> ln = memory.alloc_full(0,1);
-		generihack<LineAlign<G>,G>.build_generics(ln);
-		ln.build(words, sense);
+		LineAlign<G> ln = LineAlign.factoryBuild(&memory,words,sense);
+		ln.pin();
 		return ln.align(strm);
 	}
 	
