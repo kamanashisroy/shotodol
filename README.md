@@ -156,6 +156,10 @@ Growing
 
 Shotodol is meant to be grown by you. You can grow it by adding new <a href="libs/module/README.md">modules</a>. You can write user modules and add features. Basically they are done by writting extensions for _command_ space and other event spaces. The builtin modules are there as examples.
 
+Design Patterns
+================
+- [Design patterns](Design_Patterns.md)
+
 Tasks
 ======
 
