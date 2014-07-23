@@ -23,9 +23,9 @@ all:objects $(TARGETS)
 
 objects:preobjects $(OBJECTS)
 
+#lua $(SHOTODOL_HOME)/build/pkg.any.lua . $(PROJECT_HOME)
 preobjects:
 	mkdir -p $(OBJDIR)/
-	lua $(SHOTODOL_HOME)/build/pkg.any.lua . $(PROJECT_HOME)
 
 $(OBJDIR)/%.o:vsrc/%.c
 	$(CC) $(CFLAGS) -c $(INCLUDES) $< -o $@

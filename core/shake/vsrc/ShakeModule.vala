@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup make
+/** \addtogroup shake
  *  @{
  */
 public class shotodol.ShakeModule : DynamicModule {

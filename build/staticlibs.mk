@@ -11,6 +11,9 @@ include $(SHOTODOL_HOME)/libs/str_arms/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/make100/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/bundle/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/programming_instruction/staticlibs.mk
+ifneq ("$(LUA_LIB)", "n")
+include $(SHOTODOL_HOME)/linux/lua/staticlibs.mk
+endif
 OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core.o
 #
 #OBJECTS+=$(OBJDIR)/imageio.o
@@ -23,3 +26,6 @@ OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core.o
 ifneq ($(SHOTODOL_HOME), $(PROJECT_HOME))
 include $(PROJECT_HOME)/build/staticlibs.mk
 endif
+
+
+

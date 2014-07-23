@@ -8,6 +8,7 @@ libs/config
 libs/iterator
 OS_PLATFORM/platform_extra
 OS_PLATFORM/platform_fileutils
+OS_PLATFORM/lua
 libs/propeller
 libs/bundle
 libs/db
@@ -23,6 +24,7 @@ core/console
 core/idle
 core/profiler
 core/shake
+core/script
 libs/turbine
 main/main
 web/cgi
