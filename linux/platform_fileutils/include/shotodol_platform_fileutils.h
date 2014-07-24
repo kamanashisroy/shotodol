@@ -2,7 +2,7 @@
 #define SHOTODOL_PLATFORM_FILE_UTILS_INCLUDE_H
 
 #include <dirent.h>
-#include "core/txt.h"
+#include "aroop/core/txt.h"
 #include "shotodol_iterator.h"
 
 typedef struct {

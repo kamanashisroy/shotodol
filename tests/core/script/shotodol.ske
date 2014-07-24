@@ -1,0 +1,6 @@
+
+onLoad:
+	rehash
+	module -load ../../../core/script/dynalib.so
+	rehash
+	script -f test.lua -t hello
