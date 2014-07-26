@@ -18,6 +18,7 @@ include includes.mk
 
 # use -fPIC when building shared object
 CFLAGS+=-fPIC
+CFLAGS+=-DDYNALIB_ROOT=\"$(PROJECT_HOME)/\"
 
 all:objects $(TARGETS)
 

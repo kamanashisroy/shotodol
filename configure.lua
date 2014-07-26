@@ -58,7 +58,7 @@ end
 if yes_no_to_bool(configLines["LINUX_BLUETOOTH"]) then
 	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DLINUX_BLUETOOTH"
 end
-configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DDYNALIB_ROOT=\\\"$(PROJECT_HOME)/\\\""
+-- configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DDYNALIB_ROOT=\\\"$(PROJECT_HOME)/\\\""
 
 local conf = assert(io.open("build/.config.mk", "w"))
 for x in pairs(configLines) do
