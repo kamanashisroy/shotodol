@@ -1,7 +1,7 @@
 #include <errno.h>
 #include <arpa/inet.h>
 #include "aroop/aroop_core.h"
-#include "aroop/core/txt.h"
+#include "aroop/core/xtring.h"
 #include "shotodol_platform_net.h"
 
 int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8_T flags) {

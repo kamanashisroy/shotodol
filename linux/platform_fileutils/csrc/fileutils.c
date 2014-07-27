@@ -1,5 +1,5 @@
 #include "aroop/aroop_core.h"
-#include "aroop/core/txt.h"
+#include "aroop/core/xtring.h"
 #include "shotodol_platform_fileutils.h"
 
 static aroop_bool shotodol_dir_next (aroop_cl_shotodol_shotodol_default_iterator* self_data) {
