@@ -16,12 +16,14 @@ internal class ScriptCommand : M100Command {
 		TARGET = 1,
 		FILE,
 	}
-	public ScriptCommand() {
+	CompositeExtension ex;
+	public ScriptCommand(CompositeExtension container) {
 		extring prefix = extring.set_static_string("script");
 		base(&prefix);
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
 		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "script file name/path"); 
 		script = null;
+		ex = container;
 	}
 
 	unowned LuaStack? script;
@@ -46,6 +48,7 @@ internal class ScriptCommand : M100Command {
 			} else {
 				script.call(0,0,0);
 			}
+			// TODO hook all the functions prefixed with 'exten_' ..
 		}
 		if(tgt != null && script != null) {
 			script.setOutputStream(pad);

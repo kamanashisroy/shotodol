@@ -33,11 +33,19 @@ public class shotodol.CommandModule: DynamicModule {
 		Plugin.register(&onLoad, new HookExtension(rehashHook, this));
 		extring rehash = extring.set_static_string("rehash");
 		Plugin.register(&rehash, new HookExtension(rehashHook, this));
+		extring cmdServ = extring.set_static_string("command/server");
+		Plugin.register(&cmdServ, new HookExtension(commandServerHook, this));
 		cmds.rehash();
 		return 0;
 	}
 	int rehashHook(extring*msg, extring*output) {
 		cmds.rehash();
+		return 0;
+	}
+	int commandServerHook(extring*callstr, extring*output) {
+		if(callstr == null) return 0;
+		// now parse the callstr
+		server.cmds.act_on(callstr, new StandardOutputStream(), null);
 		return 0;
 	}
 	public override int deinit() {
