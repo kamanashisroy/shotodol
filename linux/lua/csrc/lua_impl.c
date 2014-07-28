@@ -37,6 +37,10 @@ lua_State* lua_impl_newstate() {
 }
 
 void lua_impl_get_xtring_as(lua_State*script, aroop_txt_t*x, int idx) {
+	if(!x) {
+		lua_pop(script, 1);
+		return;
+	}
 	size_t len = 0;
 	const char*content = lua_tolstring(script, idx, &len);
 	if(content) {
@@ -44,6 +48,10 @@ void lua_impl_get_xtring_as(lua_State*script, aroop_txt_t*x, int idx) {
 	} else
 		aroop_txt_destroy(x);
 	lua_pop(script, 1);
+}
+
+void lua_impl_pushextring(lua_State*script, aroop_txt_t*msg) {
+	lua_pushlstring(script, (msg && msg->str)?msg->str:"", msg?msg->len:0);
 }
 
 void lua_impl_set_output_stream(lua_State*script, void*ostrm) {

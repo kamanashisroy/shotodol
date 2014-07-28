@@ -48,23 +48,40 @@ internal class ScriptCommand : M100Command {
 			} else {
 				script.call(0,0,0);
 			}
-			// TODO hook all the functions prefixed with 'exten_' ..
 		}
-		if(tgt != null && script != null) {
-			script.setOutputStream(pad);
-			extring dlg = extring.stack(128);
-			dlg.printf("target:[%s]\n", tgt.fly().to_string());
-			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
-			script.getField(script.GLOBAL_SPACE, tgt.fly().to_string());
-			script.call(0,0,0);
-			if(script.isString(-1)) {
-				extring scriptout = extring();
-				script.getXtringAs(&scriptout, -1);
-				pad.write(&scriptout);
+		if(script == null)
+			return 0;
+		if(tgt == null) {
+			tgt = new xtring.set_static_string("rehash");
+		}
+		script.setOutputStream(pad);
+		extring dlg = extring.stack(128);
+		dlg.printf("target:[%s]\n", tgt.fly().to_string());
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
+		script.getField(script.GLOBAL_SPACE, tgt.fly().to_string());
+		script.call(0,1,0);
+		if(script.isString(-1)) {
+			extring scriptout = extring();
+			script.getXtringAs(&scriptout, -1);
+			pad.write(&scriptout);
+			if(tgt.fly().equals_static_string("rehash")) {
+				registerHookExtensions(fn, &scriptout);
 			}
-			script.pop(1);
 		}
+		script.pop(1);
 		return 0;
+	}
+	void registerHookExtensions(extring*fn, extring*funcs) {
+		extring token = extring();
+		extring inp = extring.stack_copy_deep(funcs);
+		while(true) {
+			LineAlign.next_token(&inp, &token);
+			if(token.is_empty_magical()) {
+				break;
+			}
+			print("registering %s hook\n", token.to_string());
+			ex.register(&token, new LuaExtension(script, fn, &token, null));
+		}
 	}
 }
 #endif

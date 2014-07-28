@@ -11,10 +11,14 @@ public class shotodol.LuaExtension : Extension {
 	extring scriptName;
 	extring targetFunction;
 	unowned LuaStack? script;
-	public LuaExtension(LuaStack givenScript, extring givenScriptName, extring givenTargetFunction, Module?mod) {
+	public LuaExtension(LuaStack givenScript, extring*givenScriptName, extring*givenTargetFunction, Module?mod) {
 		script = givenScript;
-		scriptName = extring.copy_deep(&givenScriptName);
-		targetFunction = extring.copy_deep(&givenTargetFunction);
+		scriptName = extring.copy_deep(givenScriptName);
+		targetFunction = extring();
+		extring exten = extring.set_static_string("exten_");
+		targetFunction.buffer(givenTargetFunction.length()+exten.length()+1);
+		targetFunction.concat(&exten);
+		targetFunction.concat(givenTargetFunction);
 		base(mod);
 	}
 	public override int desc(OutputStream pad) {
@@ -30,9 +34,10 @@ public class shotodol.LuaExtension : Extension {
 		dlg.printf("target:[%s]\n", targetFunction.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		script.getField(script.GLOBAL_SPACE, targetFunction.to_string());
-		script.call(0,0,0);
+		script.pushEXtring(msg); // function argument is *msg*
+		script.call(1,1,0);
 		if(script.isString(-1)) {
-			script.getXtringAs(scriptout, -1);
+			script.getXtringAs(scriptout, -1); // function return is scriptout
 		}
 		script.pop(1);
 		return 0;

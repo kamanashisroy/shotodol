@@ -73,6 +73,14 @@ public class shotodol.Plugin : Module {
 	}
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {
 		x.swarm(target, inmsg, outmsg);
+		extring composite = extring.set_static_string("extension/composite");
+		Extension?root = get(&composite);
+		while(root != null) {
+			CompositeExtension cx = (CompositeExtension)root;
+			cx.swarm(target, inmsg, outmsg);
+			Extension?next = root.getNext();
+			root = next;
+		}
 	}
 	public static void list(OutputStream pad) {
 		extring dlg = extring.stack(128);

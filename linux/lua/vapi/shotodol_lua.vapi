@@ -30,6 +30,8 @@ namespace shotodol_lua {
 		public void setField(int space, string fname); // set the field in a table space
 		[CCode (cname="lua_pushstring", cheader_filename = "shotodol_lua.h")]
 		public void pushString(string value); // push string to the stack
+		[CCode (cname="lua_impl_pushextring", cheader_filename = "shotodol_lua.h")]
+		public void pushEXtring(extring*msg); // push string to the stack
 		[CCode (cname="lua_pushinteger", cheader_filename = "shotodol_lua.h")]
 		public void pushInt(int value); // push integer to the stack
 		[CCode (cname="lua_tonumber", cheader_filename = "shotodol_lua.h")]

@@ -70,6 +70,11 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 - [iostream](libs/iostream/README.md)
 - [netio](libs/netio/README.md)
 
+### Scripting modules
+
+- [script](core/script/README.md)
+- [shake](core/shake/README.md)
+
 ### Packeting modules
 
 - [bundle](libs/bundle/README.md)
@@ -82,7 +87,6 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 - [str\_arms](libs/str_arms/README.md)
 - [iterator](libs/iterator/README.md)
-
 
 User module
 ============

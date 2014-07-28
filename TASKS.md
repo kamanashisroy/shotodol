@@ -10,9 +10,9 @@ Roadmap
 - [ ] Allow module info in the vala comment or a seperate file.
 - [ ] Check if the shotodol CGI can use the drupal module writing experience.
 	- Write a howto on CGI. Say it is possible to write web application in vala.
-- [ ] Keep the modules in namespace like directory.
+- [ ] ~Keep the modules in namespace like directory.~ (This will complicate writing modules as script functions as the script functions may need forward-slash in their name, we could replace them with underscore though)
 - [ ] Know more about dbus and systemd projects.
-- [ ] Add support for module writing in lua. 
+- [x] Add support for module writing in lua. 
 	- Load lua library and load lua hooks by function. They can communicate with the program using message passing.
 	- Add a module function to load script modules.
 - [x] Rename str to xtring.
