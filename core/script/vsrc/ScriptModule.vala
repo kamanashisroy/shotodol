@@ -14,9 +14,18 @@ public class shotodol.ScriptModule : DynamicModule {
 #if LUA_LIB
 		extring command = extring.set_static_string("command");
 		Plugin.register(&command, new M100Extension(new ScriptCommand(), this));
+		extring rehash = extring.set_static_string("rehash");
+		Plugin.register(&rehash, new HookExtension(onRehash, this));
 #endif
 		return 0;
 	}
+#if LUA_LIB
+	int onRehash(extring*msg, extring*output) {
+		extring cmd = extring.set_static_string("script -f ./shotodol.lua -t rehash\n");
+		CommandModule.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
+		return 0;
+	}
+#endif
 	public override int deinit() {
 		base.deinit();
 		return 0;

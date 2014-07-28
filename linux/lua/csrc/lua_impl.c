@@ -1,5 +1,4 @@
 #include "aroop/aroop_core.h"
-#include "aroop/core/txt.h"
 #include "shotodol_lua.h"
 #include "shotodol_iostream.h"
 

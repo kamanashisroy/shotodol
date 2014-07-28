@@ -12,7 +12,7 @@ using shotodol;
  */
 public class shotodol.CommandModule: DynamicModule {
 	public static CommandModule? server;
-	public M100CommandSet cmds;
+	public M100CommandSet?cmds;
 	public CommandModule() {
 		extring nm = extring.set_static_string("commands");
 		extring ver = extring.set_static_string("0.0.0");
@@ -42,6 +42,7 @@ public class shotodol.CommandModule: DynamicModule {
 	}
 	public override int deinit() {
 		server = null;
+		cmds = null;
 		base.deinit();
 		return 0;
 	}
