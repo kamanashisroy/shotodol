@@ -1,5 +1,5 @@
 
-include ../../build/.config.mk
+include $(MODULE_DEPTH)/build/.config.mk
 VALAC=$(VALA_HOME)/aroop/compiler/aroopc
 VAPI=--vapidir $(VALA_HOME)/vapi
 VAPI+=--vapidir $(VALA_HOME)/aroop/vapi --pkg aroop_pthread-0.1

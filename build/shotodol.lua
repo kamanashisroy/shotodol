@@ -88,13 +88,17 @@ function shotodol.genmake(projecthome)
 	makefile:write("\n")
 	makefile:write("makeplugins:\n")
 	for i,x in ipairs(plugin_dirs) do
-		makefile:write("\t$(BUILD) -C " .. x .. "\n")
+		local module_depth = "../"
+		for word in string.gmatch(x, "/") do module_depth = module_depth .. "../" end
+		makefile:write("\t$(BUILD) -C " .. x .. " MODULE_DEPTH=\"".. module_depth .."\"\n")
 	end
 	makefile:write("\n")
 	makefile:write("\n")
 	makefile:write("cleanplugins:\n")
 	for i,x in ipairs(plugin_dirs) do
-		makefile:write("\t$(CLEAN) -C " .. x .. "\n")
+		local module_depth = "../"
+		for word in string.gmatch(x, "/") do module_depth = module_depth .. "../" end
+		makefile:write("\t$(CLEAN) -C " .. x .. " MODULE_DEPTH=\"".. module_depth .."\"\n")
 	end
 	makefile:write("\n")
 	makefile:write("\n")
