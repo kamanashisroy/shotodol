@@ -7,7 +7,7 @@ using shotodol;
 
 internal class ShakeTest : UnitTest {
 	public ShakeTest() {
-		extring tname = extring.set_static_string("Shake Test");
+		extring tname = extring.set_static_string("Shake");
 		base(&tname);
 	}
 	void loadScript(M100Script script) {
