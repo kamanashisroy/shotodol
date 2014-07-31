@@ -33,13 +33,13 @@ public class shotodol.M100CommandSet: Replicable {
 		}
 		return 0;
 	}
-	public int rehash() {
+	public int rehash(Extension root) {
 		be = null; // we do not keep any reference to older interfaces after this point.
 		be = new BrainEngine<M100Command>();
 		extring gprfx = extring();
 		gcmd.getPrefixAs(&gprfx);
 		be.memorize_estr(&gprfx, gcmd);
-		Extension?root = Plugin.get(command);
+		//Extension?root = Plugin.get(command);
 		while(root != null) {
 			M100Command?cmd = (M100Command)root.getInterface(null);
 			if(cmd != null) {

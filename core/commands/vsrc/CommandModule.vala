@@ -35,11 +35,13 @@ public class shotodol.CommandModule: DynamicModule {
 		Plugin.register(&rehash, new HookExtension(rehashHook, this));
 		extring cmdServ = extring.set_static_string("command/server");
 		Plugin.register(&cmdServ, new HookExtension(commandServerHook, this));
-		cmds.rehash();
+		rehashHook(null, null);
 		return 0;
 	}
 	int rehashHook(extring*msg, extring*output) {
-		cmds.rehash();
+		extring command = extring.set_static_string("command");
+		Extension?root = Plugin.get(&command);
+		cmds.rehash(root);
 		return 0;
 	}
 	int commandServerHook(extring*callstr, extring*output) {
