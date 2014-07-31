@@ -14,7 +14,7 @@ include $(SHOTODOL_HOME)/libs/programming_instruction/staticlibs.mk
 ifneq ("$(LUA_LIB)", "n")
 include $(SHOTODOL_HOME)/linux/lua/staticlibs.mk
 endif
-OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core.o
+OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core$(AROOP_VARIANT).a
 #
 #OBJECTS+=$(OBJDIR)/imageio.o
 #OBJECTS+=$(OBJDIR)/fast-edge.o

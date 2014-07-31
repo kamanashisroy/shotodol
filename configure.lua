@@ -51,9 +51,11 @@ configLines["VALAFLAGS+"] = ""
 if configLines["LUA_LIB"] ~= "n" then
 	configLines["VALAFLAGS+"] = configLines["VALAFLAGS+"] .. " -D LUA_LIB"
 end
+configLines["AROOP_VARIANT"] = "_static"
 configLines["CFLAGS+"] = ""
 if yes_no_to_bool(prompt_yes_no("enable debug (ggdb3) ?(y/n) > ")) then
 	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -ggdb3"
+	configLines["AROOP_VARIANT"] = "_debug"
 end
 if yes_no_to_bool(configLines["LINUX_BLUETOOTH"]) then
 	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DLINUX_BLUETOOTH"
