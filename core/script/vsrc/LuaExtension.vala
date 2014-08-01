@@ -18,7 +18,12 @@ public class shotodol.LuaExtension : Extension {
 		extring exten = extring.set_static_string("exten_");
 		targetFunction.buffer(givenTargetFunction.length()+exten.length()+1);
 		targetFunction.concat(&exten);
-		targetFunction.concat(givenTargetFunction);
+		int i = 0;
+		for(i = 0; i < givenTargetFunction.length(); i++) {
+			char c = givenTargetFunction.char_at(i);
+			// replace '/' into '_' while coping ..
+			targetFunction.concat_char(c == '/' ? '_' : c);
+		}
 		base(mod);
 	}
 	public override int desc(OutputStream pad) {
