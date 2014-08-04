@@ -19,6 +19,7 @@ include includes.mk
 # use -fPIC when building shared object
 CFLAGS+=-fPIC
 CFLAGS+=-DDYNALIB_ROOT=\"$(PROJECT_HOME)/\"
+CFLAGS+=-DAROOP_MODULE_NAME=\"$(AROOP_MODULE_NAME)\"
 
 all:objects $(TARGETS)
 
