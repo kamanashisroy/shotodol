@@ -19,6 +19,10 @@ internal class ConsoleHistory : ConsoleSpindle {
 		counter = 0;
 	}
 
+	~ConsoleHistory() {
+		history.destroy();
+	}
+
 	public override void addHistory(extring*cmd) {
 		xtring? myCmd = new xtring.copy_on_demand(cmd);
 		counter = (counter+1) % Conf.HIGHEST_HISTORY_BACKUP;
@@ -57,10 +61,6 @@ internal class ConsoleHistory : ConsoleSpindle {
 
 	public xtring? getHistory(int i) {
 		return history.get(i);
-	}
-
-	~ConsoleHistory() {
-		history.destroy();
 	}
 }
 /* @} */

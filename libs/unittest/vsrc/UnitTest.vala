@@ -29,8 +29,9 @@ public abstract class shotodol.UnitTest : Hashable {
 		return name.getStringHash();
 	}
 	public abstract int test() throws UnitTestError;
-	public virtual int assert(bool exp) throws UnitTestError {
-		throw new UnitTestError.FAILED("Assertion failed\n");
+	public virtual int testassert(bool exp) throws UnitTestError { // XXX calling the method is not working !!!
+		if(!exp)throw new UnitTestError.FAILED("Assertion failed\n");
+		return 0;
 	}
 }
 /** @}*/

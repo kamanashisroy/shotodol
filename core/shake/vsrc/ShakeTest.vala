@@ -43,17 +43,7 @@ internal class ShakeTest : UnitTest {
 		bool success = false;
 		extring varname = extring.set_static_string("shaketest");
 		M100Variable?val = CommandModule.server.cmds.vars.getProperty(&varname);
-		extring dlg = extring.stack(128);
-		dlg.concat_string("Shake Test");
-		dlg.concat_char(':');
-		if(val != null && val.intval == 1) {
-			success = true;
-			dlg.concat_string("Success");
-		} else {
-			success = false;
-			dlg.concat_string("Fail");
-		}
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,success?Watchdog.WatchdogSeverity.LOG:Watchdog.WatchdogSeverity.ERROR,0,0,&dlg);
+		if(val != null && val.intval == 1)throw new UnitTestError.FAILED("Failed\n");
 		return 0;
 	}
 }

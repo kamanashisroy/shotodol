@@ -10,7 +10,7 @@ internal class FileConfigTest : UnitTest {
 		base(&tname);
 	}
 	public override int test() throws UnitTestError {
-		print("FileConfigTest:~~~~TODO fill me\n");
+		throw new UnitTestError.FAILED("Unimplemented\n");
 		return 0;
 	}
 }

@@ -26,8 +26,15 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 		dlg.concat(&nm);
 		dlg.concat_char('\n');
 		pad.write(&dlg);
-		if(lst == null)
-			test.test();
+		if(lst == null) {
+			try {
+				test.test();
+			} catch(UnitTestError e) {
+				dlg.printf("Test [%s] failed\n", nm.to_string());
+				pad.write(&dlg);
+				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.WatchdogSeverity.ERROR,0,0,&dlg);
+			}
+		}
 		return true;
 	}
 

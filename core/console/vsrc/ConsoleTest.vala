@@ -11,8 +11,7 @@ internal class ConsoleTest : UnitTest {
 		base(&tname);
 	}
 	public override int test() throws UnitTestError {
-		print("ConsoleTest:~~~~TODO fill me\n");
-		return 0;
+		throw new UnitTestError.FAILED("Unimplemented\n");
 	}
 }
 
