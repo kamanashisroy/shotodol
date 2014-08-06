@@ -1,4 +1,4 @@
 
 
-DEPEND_VAPI=$(foreach dir,$(DEPEND), --vapidir $(dir)/vapi --pkg shotodol_$(subst .,,$(suffix $(subst /,.,$(dir)))))
+DEPEND_VAPI=$(foreach ldir,$(DEPEND), --vapidir $(subst .,/,$(ldir))/vapi --pkg shotodol_$(subst .,_,$(notdir $(ldir))))
 VAPI+=$(DEPEND_VAPI)

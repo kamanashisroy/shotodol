@@ -18,3 +18,4 @@ Roadmap
 - [x] Rename str to xtring.
 - [ ] **Finish up the primary messaging code, named, pollen.**
 - [ ] Add a homebrew package.(Is it feasible ?)
+- [ ] Implement infix/postfix/prefix bundlers.

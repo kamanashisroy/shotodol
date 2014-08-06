@@ -11,10 +11,12 @@ end
 
 function depend(pkg,p)
 	local x = pkg
-	local fpath = projects[p] .. "/" .. pkg;
+	local fpath = ".";
 	if pkg == "." then
-		fpath = "."
 		x = ""
+	else
+		pkg = string.gsub(pkg, "[.]","/");
+		fpath = projects[p] .. "/" .. pkg;
 	end
 	local f = assert(io.open(fpath .. "/pkg.depend", "r"))
 	if f == nil then
