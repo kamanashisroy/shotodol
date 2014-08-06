@@ -3,6 +3,6 @@
 
 onLoad:
 	module -load core/script/dynalib.so
-	fileconf -i ./shotodol.conf
+	fileconf -i ./autoload/shotodol.conf
 	#module -load web/cgi/dynalib.so
 

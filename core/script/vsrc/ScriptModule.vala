@@ -25,12 +25,12 @@ public class shotodol.ScriptModule : DynamicModule {
 #if LUA_LIB
 	int onRehash(extring*msg, extring*output) {
 #if false
-		extring cmd = extring.set_static_string("script -f ./shotodol.lua -t rehash\n");
+		extring cmd = extring.set_static_string("script -f ./autoload/shotodol.lua -t rehash\n");
 		CommandModule.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 #else
 		extring tgt = extring.set_static_string("command/server");
 		//extring callstr = extring.set_static_string("script(./shotodol.lua,rehash)");
-		extring callstr = extring.set_static_string("script -f ./shotodol.lua -t rehash\n");
+		extring callstr = extring.set_static_string("script -f ./autoload/shotodol.lua -t rehash\n");
 		Plugin.swarm(&tgt, &callstr, null);
 #endif
 		return 0;

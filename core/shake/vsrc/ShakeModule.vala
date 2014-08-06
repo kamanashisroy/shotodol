@@ -22,7 +22,7 @@ public class shotodol.ShakeModule : DynamicModule {
 	int greetHook(extring*msg, extring*output) {
 		extring greet = extring.set_static_string("echo Welcome to opensource shotodol environment. This toy comes with no guaranty. Use it at your own risk.\n");
 		CommandModule.server.cmds.act_on(&greet, new StandardOutputStream(), null);
-		extring cmd = extring.set_static_string("shake -f ./shotodol.ske -t onLoad\n");
+		extring cmd = extring.set_static_string("shake -f ./autoload/shotodol.ske -t onLoad\n");
 		CommandModule.server.cmds.act_on(&cmd, new StandardOutputStream(), null);
 		return 0;
 	}
