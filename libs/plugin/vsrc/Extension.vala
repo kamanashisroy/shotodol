@@ -11,7 +11,7 @@ public class shotodol.Extension : Replicable {
 		next = null;
 		src = mod;
 	}
-	public Extension?getNext() {
+	internal Extension?getNext() {
 		return next;
 	}
 	public virtual Replicable?getInterface(extring*service) {
