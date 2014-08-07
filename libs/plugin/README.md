@@ -9,16 +9,23 @@ Plugin techniques
 <img src="https://rawgit.com/kamanashisroy/shotodol/master/libs/plugin/dot_generated_pluginoid.svg"/>
 
 ### Extension
-_Extension_ is a way to associate your facility to a plugin space. Each plugin _space_ is a string. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication. It uses [composite pattern](http://en.wikipedia.org/wiki/Composite_pattern).
+_Extension_ is a way to associate your facility to a plugin space. Each plugin _space_ is a string. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication. 
 
 ### Interface
 _Interface_ in an _extension_ is an _object_ returned by getInterface() method. You can type-cast this _object_(Replicable) into something that meet your purpose. Interface here allows better performance. Once a _plugin_ registers an _interface_ it is mapped when _rehash_ is done. For example, the commands module loads all the commands under the name space "command" and makes them available for user.
 
 ### rehash
-Rehash is an event. This event is generated from [rehash command](../../core/commands/README.md#RehashCommand). It asks everyone to get the extensions from plugin name space and get the insterface for future use. Rehash is done normally after a module load or unload. (May be we need to do rehash when there is any change in plugin)
+Rehash is an event. This event is generated from [rehash command](../../core/commands/README.md#RehashCommand). It asks everyone to get the extensions from plugin name space and get the insterface for future use. Rehash is done normally after a module load or unload. (May be we need to do rehash when there is any change in plugin).
 
 ### Hooking
 You can write a [hook function](Hooking.md) for an event.
+
+Composite techniques
+======================
+
+Plugin is a collection of extensions. It is a [composite pattern](http://en.wikipedia.org/wiki/Composite_pattern). You can summon them using _swarm_ and _acceptVisitor_ method.
+- `swarm` method is in fact a collective [message passing](http://en.wikipedia.org/wiki/Message_Passing) technique. It sends message to each of the extensions under a namespace.
+- `acceptVisitor` method lets you do your task/instructions for each of the extensions hooked in a namespace.
 
 Example
 ========

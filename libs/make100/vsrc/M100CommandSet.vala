@@ -7,10 +7,10 @@ using shotodol;
 public class shotodol.M100CommandSet: Replicable {
 	public HashTable<xtring,M100Variable?> vars;
 	BrainEngine<M100Command>?be;
-	xtring command;
+	extring command;
 	M100GotoCommand gcmd;
 	public M100CommandSet() {
-		command = new xtring.copy_static_string("command");
+		command = extring.set_static_string("command");
 		//cmds = Set<M100Command>();
 		be = new BrainEngine<M100Command>();
 		vars = HashTable<xtring,M100Variable?>(xtring.hCb,xtring.eCb);
@@ -22,36 +22,35 @@ public class shotodol.M100CommandSet: Replicable {
 	~M100CommandSet() {
 		vars.destroy();
 	}
+
 	public int list(OutputStream pad) {		
-		Extension?root = Plugin.get(command);
-		while(root != null) {
-			M100Command?cmd = (M100Command)root.getInterface(null);
+		Plugin.acceptVisitor(&command, (x) => {
+			M100Command?cmd = (M100Command)x.getInterface(null);
 			if(cmd != null)
 				cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
-			Extension?next = root.getNext();
-			root = next;
-		}
+		});
 		return 0;
 	}
-	public int rehash(Extension root) {
+
+	public int rehash(extring*namesp) {
+		if(!command.equals(namesp))
+			command.rebuild_and_copy_on_demand(namesp);
 		be = null; // we do not keep any reference to older interfaces after this point.
 		be = new BrainEngine<M100Command>();
 		extring gprfx = extring();
 		gcmd.getPrefixAs(&gprfx);
 		be.memorize_estr(&gprfx, gcmd);
-		//Extension?root = Plugin.get(command);
-		while(root != null) {
-			M100Command?cmd = (M100Command)root.getInterface(null);
+		Plugin.acceptVisitor(namesp, (x) => {
+			M100Command?cmd = (M100Command)x.getInterface(null);
 			if(cmd != null) {
 				extring prfx = extring();
 				cmd.getPrefixAs(&prfx);
 				be.memorize_estr(&prfx, cmd);
 			}
-			Extension?next = root.getNext();
-			root = next;
-		}
+		});
 		return 0;
 	}
+
 	public M100Command? percept(extring*cmd_str) {
 		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
 	}

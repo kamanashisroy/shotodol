@@ -17,14 +17,11 @@ public class shotodol.MainTurbine : shotodol.Propeller {
 			return 0;
 		}
 		extring mains = extring.set_static_string("MainSpindle");
-		Extension?root = Plugin.get(&mains);
-		while(root != null) {
-			Spindle?sp = (Spindle)root.getInterface(null);
+		Plugin.acceptVisitor(&mains, (x) => {
+			Spindle?sp = (Spindle)x.getInterface(null);
 			if(sp != null)
 				sps.add(sp);
-			Extension?next = root.getNext();
-			root = next;
-		}
+		});
 		return 0;
 	}
 	public int quit() { // XXX we should not be call by anyone to quit the application, this is security violation

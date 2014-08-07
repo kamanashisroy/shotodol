@@ -28,13 +28,10 @@ internal class shotodol.PluginCommand : M100Command {
 		}
 		int count = 0;
 		bool dispatch = vals[Options.ACT] != null;
-		Extension?root = Plugin.get(ex);
-		while(root != null) {
+		Plugin.acceptVisitor(ex, (x) => {
 			count++;
-			root.desc(pad);
-			Extension?next = root.getNext();
-			root = next;
-		}
+			x.desc(pad);
+		});
 		if(dispatch) Plugin.swarm(ex, null, null);
 		extring dlg = extring.stack(128);
 		dlg.printf("There are %d extensions in %s directory\n", count, ex.fly().to_string());

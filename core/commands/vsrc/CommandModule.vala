@@ -40,8 +40,7 @@ public class shotodol.CommandModule: DynamicModule {
 	}
 	int rehashHook(extring*msg, extring*output) {
 		extring command = extring.set_static_string("command");
-		Extension?root = Plugin.get(&command);
-		cmds.rehash(root);
+		cmds.rehash(&command);
 		return 0;
 	}
 	int commandServerHook(extring*callstr, extring*output) {

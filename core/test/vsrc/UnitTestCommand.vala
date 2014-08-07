@@ -45,19 +45,15 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 		}
 		xtring?lst = vals[Options.LIST];
 		xtring?tgt = vals[Options.TARGET];
-		extring unittest = extring.set_static_string("unittest");
-		Extension?root = Plugin.get(&unittest);
 		bool hit = false;
-		
-		while(root != null) {
-			UnitTest?test = (UnitTest)root.getInterface(null);
+		extring unittest = extring.set_static_string("unittest");
+		Plugin.acceptVisitor(&unittest, (x) => {
+			UnitTest?test = (UnitTest)x.getInterface(null);
 			if(test != null) {
 				bool ret = actHelper(test, tgt, lst, pad);
 				hit = hit || ret;
 			}
-			Extension?next = root.getNext();
-			root = next;
-		}
+		});
 		if(!hit && tgt != null) {
 			extring dlg = extring.set_static_string("Target not found\n");
 			pad.write(&dlg);

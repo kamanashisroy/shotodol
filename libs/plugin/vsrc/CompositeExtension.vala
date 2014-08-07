@@ -56,6 +56,14 @@ public class shotodol.CompositeExtension : Extension {
 			root = next;
 		}
 	}
+	public void acceptVisitor(extring*target, ExtensionVisitor visitor) {
+		Extension?root = get(target);
+		while(root != null) {
+			visitor(root);
+			Extension?next = root.getNext();
+			root = next;
+		}
+	}
 	public void buildIterator(aroop.Iterator<AroopPointer<Extension>>*it) {
 		registry.iterator_hacked(it);
 	}
