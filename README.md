@@ -20,7 +20,7 @@ You need to get the following project sources,
 Module
 ========
 
-Most of the code done in shotodol are in modules. A module is a group of code that provide a functional support to the shotodol environment. You can say the following things about shotodol modules,
+Most of the code done in shotodol are in modules, simply to achieve **[robustness](http://en.wikipedia.org/wiki/Structural_robustness)**. A module is a [group of code](http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29) that provides a functional support to the shotodol environment. You can say the following things about shotodol modules,
 
 - Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, you can write modules in apps/net\_echo or core/commands directory. 
 - You may choose to load a module dinamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
