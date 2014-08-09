@@ -13,9 +13,9 @@ internal class shotodol.RenuTest : UnitTest {
 		Renu r = builder.createRenu(128);
 		Bundler bndlr = Bundler();
 		bndlr.buildFromCarton(&r.msg, r.size, affix, 5);
-		bndlr.writeInt(0, 0);
 		bndlr.writeInt(1, 1);
 		bndlr.writeInt(2, 2);
+		bndlr.writeInt(3, 3);
 		r.finalize(&bndlr);
 		return r;
 	}
@@ -23,35 +23,39 @@ internal class shotodol.RenuTest : UnitTest {
 		Renu r = testBuild(builder, affix);
 		Bundler bndlr = Bundler();
 		bndlr.buildFromCarton(&r.msg, r.len, affix, 5);
-		uint8 i = 0;
+		uint8 i = 1;
 		while(true) {
-			if(bndlr.getVal(i) == -1)
+			if(bndlr.get(i) == -1)
 				break;
-			int key = bndlr.getContentType();
+			int ct = bndlr.getContentType();
 			uint32 val = bndlr.getIntContent();
-			if(key != 0 && val != i)
+			if(ct != 0 && val != i) {
 				throw new UnitTestError.FAILED("Renu serialization test failed\n");
+			}
 			i++;
 		}
-		if(i != 3)
+		if(i != 4)
 			throw new UnitTestError.FAILED("Renu serialization test failed\n");
 	}
 	void test2(RenuFactory builder, int affix) throws UnitTestError {
 		Renu r = testBuild(builder, affix);
 		Bundler bndlr = Bundler();
 		bndlr.buildFromCarton(&r.msg, r.len, affix, 5);
-		uint8 i = 0;
+		uint8 i = 1;
 		while(true) {
 			if(bndlr.next() == -1)
 				break;
-			int key = bndlr.getContentType();
+			uint8 key = bndlr.getContentKey();
+			int ct = bndlr.getContentType();
 			uint32 val = bndlr.getIntContent();
-			if(key != 0 && val != i)
+			if(ct != 0 && val != key) {
 				throw new UnitTestError.FAILED("Renu serialization test failed\n");
+			}
 			i++;
 		}
-		if(i != 3)
+		if(i != 4) {
 			throw new UnitTestError.FAILED("Renu serialization test failed\n");
+		}
 	}
 	public override int test() throws UnitTestError {
 		RenuFactory?builder = null;

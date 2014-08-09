@@ -25,7 +25,7 @@ public class shotodol.MainProgram {
 		extring memory = extring.stack(128);
 		Bundler bndlr = Bundler();
 		Carton*ctn = (Carton*)memory.to_string();
-		bndlr.buildFromCarton(ctn, memory.size(), BundlerAffixes.PREFIX, argc+1);
+		bndlr.buildFromCarton(ctn, memory.size(), BundlerAffixes.PREFIX, (uint8)(argc+1));
 		int i = 0;
 		for(i=0;i<argc;i++) {
 			extring x = extring.set_string(argv[i]);

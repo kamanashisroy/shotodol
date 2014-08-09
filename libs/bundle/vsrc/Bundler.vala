@@ -52,7 +52,7 @@ public struct shotodol.Bundler {
 	uint bytes;
 	uint size;
 	int affix;
-	uint numberOfEntries;
+	uint8 numberOfEntries;
 	uint flag;
 	void reset() {
 		entries = 0;
@@ -60,11 +60,11 @@ public struct shotodol.Bundler {
 		flag = 0;
 		if(affix == BundlerAffixes.PREFIX) {
 			if(numberOfEntries == 0)
-				numberOfEntries = size>>4;
+				numberOfEntries = 4;
 			bytes = numberOfEntries << 1;
 		}
 	}
-	public void buildFromCarton(Carton*ctn, uint size, int affix = BundlerAffixes.INFIX, uint givenNumberOfEntries = 0) {
+	public void buildFromCarton(Carton*ctn, uint size, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
 		core.assert(ctn != null);
 		this.ctn = ctn;
 		this.size = size;
@@ -72,7 +72,7 @@ public struct shotodol.Bundler {
 		numberOfEntries = givenNumberOfEntries;
 		reset();
 	}
-	public void buildFromEXtring(extring*content, int affix = BundlerAffixes.INFIX, uint givenNumberOfEntries = 0) {
+	public void buildFromEXtring(extring*content, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
 		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
 		setter.set(ctn,content.to_string());
 		this.size = (uint)content.length();
@@ -80,9 +80,14 @@ public struct shotodol.Bundler {
 		numberOfEntries = givenNumberOfEntries;
 		reset();
 	}
-	public void close() {
-		ctn.data[(entries<<1)] = 0;
-		ctn.data[(entries<<1)+1] = 0; // set length = 0, to indicate the end of data
+	public void close() throws BundlerError {
+		if(affix == BundlerAffixes.PREFIX) {
+			if((entries >= numberOfEntries)) {
+				throw new BundlerError.ctn_full("No space to write more entry\n");
+			}
+			ctn.data[(entries<<1)] = 0;
+			ctn.data[(entries<<1)+1] = numberOfEntries;
+		}
 		this.size = (int)bytes;
 		entries = 0;
 		bytes = 0;
@@ -168,15 +173,24 @@ public struct shotodol.Bundler {
 	public uint getCartonOccupied() {
 		return bytes;
 	}
-	public void readHeader() {
+	void readHeader() throws BundlerError {
+		// sanity check
+		if(cur_len != 0)
+			throw new BundlerError.faulty_ctn("Internal error\n");
 		numberOfEntries = 0;
-		while(ctn.data[(numberOfEntries << 1) + 1] == 0) {
+		bytes = 0;
+		while(ctn.data[(numberOfEntries << 1)] != 0) {
+			if((numberOfEntries<<1) > size)
+				throw new BundlerError.faulty_ctn("Faulty packet\n");
 			numberOfEntries++;
 		}
-		bytes = numberOfEntries;
+		numberOfEntries = ctn.data[(numberOfEntries<<1)+1] & 0x3F;
+		bytes = numberOfEntries << 1;
+		if(bytes > size)
+			throw new BundlerError.faulty_ctn("Faulty packet\n");
 		flag |= BundlerStates.READ_HEADER;
 	}
-	int cur_key;
+	uint8 cur_key;
 	int cur_type;
 	int cur_len;
 	public int next() throws BundlerError {
@@ -195,15 +209,16 @@ public struct shotodol.Bundler {
 			cur_key = ctn.data[bytes++];
 			desc = ctn.data[bytes++];
 		}
+		if(cur_key == 0) return -1;
 		cur_type = (desc >> 6);
 		cur_len = (desc & 0x3F); // 11000000
 		if((bytes+cur_len) > size) {
 			throw new BundlerError.faulty_ctn("Faulty packet\n");
 		}
 		entries++;
-		return cur_key;
+		return (int)cur_key;
 	}
-	public int getVal(aroop_uword8 key) {
+	public int get(aroop_uword8 key) {
 		int i = 0;
 		uint pos = 0;
 		if(affix == BundlerAffixes.PREFIX) {
@@ -213,6 +228,7 @@ public struct shotodol.Bundler {
 			for(i = 0; i < numberOfEntries; i++) {
 				aroop_uword8 entryKey = ctn.data[i<<1];
 				aroop_uword8 entryDesc = ctn.data[(i<<1)+1];
+				if(entryKey == 0) return -1;
 				int len = (entryDesc & 0x3F);
 				if(entryKey != key) {
 					pos += len;
@@ -227,6 +243,7 @@ public struct shotodol.Bundler {
 			for(i = 0; i < size; i++) {
 				aroop_uword8 entryKey = ctn.data[pos++];
 				aroop_uword8 entryDesc = ctn.data[pos++];
+				if(entryKey == 0) return -1;
 				int len = (entryDesc & 0x3F);
 				if(entryKey != key) {
 					pos += len;
@@ -240,7 +257,7 @@ public struct shotodol.Bundler {
 		}
 		return -1;
 	}
-	public int getContentKey() throws BundlerError {
+	public uint8 getContentKey() throws BundlerError {
 		return cur_key;
 	}
 	public int getContentType() throws BundlerError {

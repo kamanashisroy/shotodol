@@ -42,6 +42,7 @@ public class shotodol.Renu : Replicable {
 		len = bndlr.size;
 		immutable = true;
 		shrink((int)len);
+		size = len;
 	}
 	public void getTaskAs(extring*task) {
 		task.rebuild_and_set_content((string)msg.data, (int)len, this);
