@@ -21,9 +21,6 @@ public class shotodol.Plugin : Module {
 	public static int register(extring*target, Extension e) {
 		return x.register(target, e);
 	}
-	static Extension?get(extring*target) {
-		return x.get(target);
-	}
 	public static int unregister(extring*target, Extension e) {
 		return x.unregister(target, e);
 	}
@@ -75,7 +72,7 @@ public class shotodol.Plugin : Module {
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {
 		x.swarm(target, inmsg, outmsg);
 		extring composite = extring.set_static_string("extension/composite");
-		Extension?root = get(&composite);
+		Extension?root = x.get(&composite);
 		while(root != null) {
 			CompositeExtension cx = (CompositeExtension)root;
 			cx.swarm(target, inmsg, outmsg);
@@ -86,7 +83,7 @@ public class shotodol.Plugin : Module {
 	public static void acceptVisitor(extring*target, ExtensionVisitor visitor) {
 		x.acceptVisitor(target, visitor);
 		extring composite = extring.set_static_string("extension/composite");
-		Extension?root = get(&composite);
+		Extension?root = x.get(&composite);
 		while(root != null) {
 			CompositeExtension cx = (CompositeExtension)root;
 			cx.acceptVisitor(target, visitor);

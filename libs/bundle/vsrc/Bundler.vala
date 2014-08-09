@@ -29,54 +29,80 @@ public errordomain BundlerError {
 }
 
 public struct shotodol.Carton {
-	public aroop_uword8 data[16];
+	public aroop_uword8 data[1];
 }
 
 public enum shotodol.BundledContentType {
-	BINARY_CONTENT = 0,
+	NUMERIC_CONTENT = 0,
 	STRING_CONTENT,
-	NUMERIC_CONTENT,
+	BINARY_CONTENT,
 }
 
+public enum shotodol.BundlerAffixes {
+	INFIX = 0, // memory efficient
+	POSTFIX,PREFIX // time efficient
+}
+
+internal enum BundlerStates {
+	READ_HEADER = 1,
+}
 public struct shotodol.Bundler {
 	Carton*ctn;
 	int entries;
-	int bytes;
-	int size;
-	public void buildFromCarton(Carton*ctn, int size) {
+	uint bytes;
+	uint size;
+	int affix;
+	uint numberOfEntries;
+	uint flag;
+	void reset() {
+		entries = 0;
+		bytes = 0;
+		flag = 0;
+		if(affix == BundlerAffixes.PREFIX) {
+			if(numberOfEntries == 0)
+				numberOfEntries = size>>4;
+			bytes = numberOfEntries << 1;
+		}
+	}
+	public void buildFromCarton(Carton*ctn, uint size, int affix = BundlerAffixes.INFIX, uint givenNumberOfEntries = 0) {
 		core.assert(ctn != null);
 		this.ctn = ctn;
-		entries = 0;
-		bytes = 0;
 		this.size = size;
+		this.affix = affix;
+		numberOfEntries = givenNumberOfEntries;
+		reset();
 	}
-	public void buildFromEXtring(extring*content) {
+	public void buildFromEXtring(extring*content, int affix = BundlerAffixes.INFIX, uint givenNumberOfEntries = 0) {
 		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
 		setter.set(ctn,content.to_string());
-		entries = 0;
-		bytes = 0;
-		this.size = content.length();
+		this.size = (uint)content.length();
+		this.affix = affix;
+		numberOfEntries = givenNumberOfEntries;
+		reset();
 	}
 	public void close() {
-		this.size = bytes;
+		ctn.data[(entries<<1)] = 0;
+		ctn.data[(entries<<1)+1] = 0; // set length = 0, to indicate the end of data
+		this.size = (int)bytes;
 		entries = 0;
 		bytes = 0;
 	}
 	public int writeInt(aroop_uword8 key, aroop_uword32 val) throws BundlerError {
-		if(bytes+6 > size) {
+		if(bytes+6 > size || (affix == BundlerAffixes.PREFIX && entries >= numberOfEntries)) {
 			throw new BundlerError.ctn_full("No space to write int\n");
 		}
-		
-		ctn.data[bytes++] = (aroop_uword8)key;
-		int flen = 0;
-		if(val >= 0xFFFF) {
-			ctn.data[bytes++] = /*(0<<6) |*/ 4; // 0 means numeral , 4 is the numeral size
+		aroop_uword8 flen = (val > 0xFFFF) ? 4 : 2;
+		if(affix == BundlerAffixes.PREFIX) {
+			ctn.data[(entries<<1)] = (aroop_uword8)key;
+			ctn.data[(entries<<1)+1] = flen;
+		} else {
+			ctn.data[bytes++] = (aroop_uword8)key;
+			ctn.data[bytes++] = flen; // 0 means numeral , 4 is the numeral size
+			flen += 2;
+		}
+		if(val > 0xFFFF) {
 			ctn.data[bytes++] = (aroop_uword8)((val & 0xFF000000)>>24);
 			ctn.data[bytes++] = (aroop_uword8)((val & 0x00FF0000)>>16);
-			flen = 6;
-		} else {
-			ctn.data[bytes++] = /*(0<<6) |*/ 2; // 0 means numeral , 2 is the numeral size
-			flen = 4;
 		}
 		ctn.data[bytes++] = (aroop_uword8)((val & 0x0000FF00)>>8);
 		ctn.data[bytes++] = (aroop_uword8)(val & 0x000000FF);
@@ -84,51 +110,135 @@ public struct shotodol.Bundler {
 		return flen;
 	}
 	public int writeETxt(aroop_uword8 key, extring*val) throws BundlerError {
-		// TODO check Carton.size
+		int headerlen = 0;
 		int len = val.length();
-		if(len > 100) { // make sure that the string is sizable
+		if(len > 100 || (len+bytes+3) > size) { // make sure that the string is sizable
 			throw new BundlerError.too_big_value("Too big string to write\n");
 		}
-		ctn.data[bytes++] = (aroop_uword8)key;
-		ctn.data[bytes++] = (1<<6) | (len+1); // 1 means string
+		int sentinel = 0;
+		if(len == 0 || val.char_at(len-1) != '\0') {
+			sentinel = 1;
+		}
+		aroop_uword8 desc = (1<<6) | (len+sentinel); // 1 means string
+		if(affix == BundlerAffixes.PREFIX) {
+			if((entries >= numberOfEntries)) {
+				throw new BundlerError.ctn_full("No space to write more entry\n");
+			}
+			ctn.data[(entries<<1)] = (aroop_uword8)key;
+			ctn.data[(entries<<1)+1] = desc;
+		} else {
+			ctn.data[bytes++] = (aroop_uword8)key;
+			ctn.data[bytes++] = desc;
+			headerlen += 2;
+		}
 		if(len > 0) {
-			((mem)ctn.data).shift(bytes).copy_from((mem)val.to_string(), len);
+			((mem)ctn.data).shift((int)bytes).copy_from((mem)val.to_string(), len);
 			bytes+= len;
 		}
-		ctn.data[bytes++] = '\0'; // null terminate
-		return len+1+2;
+		if(sentinel > 0) {
+			ctn.data[bytes++] = '\0'; // null terminate
+		}
+		entries++;
+		return headerlen + len + sentinel;
 	}
 	public int writeBin(aroop_uword8 key, mem val, int len) throws BundlerError {
-		// TODO check Carton.size
-		if(len > 100) { // make sure that the string is sizable
+		int headerlen = 0;
+		if(len > 100 || (len+bytes+3) > size) { // make sure that the binary data is sizable
 			throw new BundlerError.too_big_value("Too big binary data to write\n");
 		}
-		ctn.data[bytes++] = (aroop_uword8)key;
-		ctn.data[bytes++] = (2<<6) | len; // 2 means binary
+		aroop_uword8 desc = (2<<6) | len; // 2 means binary
+		if(affix == BundlerAffixes.PREFIX) {
+			if((entries >= numberOfEntries)) {
+				throw new BundlerError.ctn_full("No space to write more entry\n");
+			}
+			ctn.data[(entries<<1)] = (aroop_uword8)key;
+			ctn.data[(entries<<1)+1] = desc;
+		} else {
+			ctn.data[bytes++] = (aroop_uword8)key;
+			ctn.data[bytes++] = desc;
+			headerlen += 2;
+		}
 		if(len > 0) {
-			((mem)ctn.data).shift(bytes).copy_from(val, len);
+			((mem)ctn.data).shift((int)bytes).copy_from(val, len);
 			bytes+= len;
 		}
-		return len+2;
+		entries++;
+		return headerlen + len;
 	}
-	public int getCartonOccupied() {
+	public uint getCartonOccupied() {
 		return bytes;
+	}
+	public void readHeader() {
+		numberOfEntries = 0;
+		while(ctn.data[(numberOfEntries << 1) + 1] == 0) {
+			numberOfEntries++;
+		}
+		bytes = numberOfEntries;
+		flag |= BundlerStates.READ_HEADER;
 	}
 	int cur_key;
 	int cur_type;
 	int cur_len;
 	public int next() throws BundlerError {
 		bytes+=cur_len;
-		if((bytes+2) >= size) {
-			return -1;
+		cur_key = 0;
+		aroop_uword8 desc = 0;
+		if(affix == BundlerAffixes.PREFIX) {
+			if((flag & BundlerStates.READ_HEADER) == 0)
+				readHeader();
+			cur_key = ctn.data[entries<<1];
+			desc = ctn.data[(entries<<1)+1];
+		} else {
+			if((bytes+2) >= size) {
+				return -1;
+			}
+			cur_key = ctn.data[bytes++];
+			desc = ctn.data[bytes++];
 		}
-		cur_key = ctn.data[bytes++];
-		cur_type = (ctn.data[bytes] >> 6);
-		cur_len = (ctn.data[bytes++] & 0x3F); // 11000000
+		cur_type = (desc >> 6);
+		cur_len = (desc & 0x3F); // 11000000
 		if((bytes+cur_len) > size) {
 			throw new BundlerError.faulty_ctn("Faulty packet\n");
 		}
+		entries++;
 		return cur_key;
+	}
+	public int getVal(aroop_uword8 key) {
+		int i = 0;
+		uint pos = 0;
+		if(affix == BundlerAffixes.PREFIX) {
+			if((flag & BundlerStates.READ_HEADER) == 0)
+				readHeader();
+			pos = numberOfEntries<<1;
+			for(i = 0; i < numberOfEntries; i++) {
+				aroop_uword8 entryKey = ctn.data[i<<1];
+				aroop_uword8 entryDesc = ctn.data[(i<<1)+1];
+				int len = (entryDesc & 0x3F);
+				if(entryKey != key) {
+					pos += len;
+					continue;
+				}
+				cur_key = entryKey;
+				cur_len = len;
+				bytes = pos;
+				return 0;
+			}
+		} else {
+			for(i = 0; i < size; i++) {
+				aroop_uword8 entryKey = ctn.data[pos++];
+				aroop_uword8 entryDesc = ctn.data[pos++];
+				int len = (entryDesc & 0x3F);
+				if(entryKey != key) {
+					pos += len;
+					continue;
+				}
+				cur_key = entryKey;
+				cur_len = len;
+				bytes = pos;
+				return 0;
+			}
+		}
+		return -1;
 	}
 	public int getContentKey() throws BundlerError {
 		return cur_key;
@@ -137,7 +247,7 @@ public struct shotodol.Bundler {
 		return cur_type;
 	}
 	public unowned mem getContent() throws BundlerError {
-		return ((mem)ctn.data).shift(bytes);
+		return ((mem)ctn.data).shift((int)bytes);
 	}
 	public aroop_uword32 getIntContent() throws BundlerError {
 		aroop_uword32 output = 0;
@@ -158,7 +268,7 @@ public struct shotodol.Bundler {
 		}
 		return output;
 	}
-	public int getContentLength() throws BundlerError {
+	public uint getContentLength() throws BundlerError {
 		return cur_len;
 	}
 }

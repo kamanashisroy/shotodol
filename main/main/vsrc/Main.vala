@@ -25,14 +25,14 @@ public class shotodol.MainProgram {
 		extring memory = extring.stack(128);
 		Bundler bndlr = Bundler();
 		Carton*ctn = (Carton*)memory.to_string();
-		bndlr.buildFromCarton(ctn, memory.size());
+		bndlr.buildFromCarton(ctn, memory.size(), BundlerAffixes.PREFIX, argc+1);
 		int i = 0;
 		for(i=0;i<argc;i++) {
 			extring x = extring.set_string(argv[i]);
 			bndlr.writeETxt(1,&x);
 		}
 		bndlr.close();
-		extring userargs = extring.set_content((string)ctn.data, bndlr.size, null);
+		extring userargs = extring.set_content((string)ctn.data, (int)bndlr.size, null);
 		extring hook = extring.set_static_string("onLoad");
 		Plugin.swarm(&hook, &userargs, null);
 		hook.rebuild_and_set_static_string("onLoadAlter");

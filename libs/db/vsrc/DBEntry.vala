@@ -83,7 +83,7 @@ public class shotodol.DBEntry : Searchable {
 	}
 
 	public int copyAs(extring*output) {
-		output.rebuild_and_set_content((string)bndlr.ctn.data, bndlr.bytes,this);
+		output.rebuild_and_set_content((string)bndlr.ctn.data, (int)bndlr.bytes,this);
 		return 0;
 	}
 	

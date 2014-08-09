@@ -30,13 +30,13 @@ public class ConsoleModule : DynamicModule {
 	int onLoadHook(extring*msg, extring*output) {
 		bool hasConsole = true;
 		Bundler bndlr = Bundler();
-		bndlr.buildFromEXtring(msg);
+		bndlr.buildFromEXtring(msg, BundlerAffixes.PREFIX);
 		do {
 			try {
 				int key = bndlr.next();
 				if(key == -1) break;
 				if(bndlr.getContentType() != BundledContentType.STRING_CONTENT) continue;
-				extring uarg = extring.set_content((string)bndlr.getContent(), bndlr.getContentLength());
+				extring uarg = extring.set_content((string)bndlr.getContent(), (int)bndlr.getContentLength());
 				if(uarg.equals_string("-noconsole")) {
 					hasConsole = false;
 				} else if(uarg.equals_string("--help")) {

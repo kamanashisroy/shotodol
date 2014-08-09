@@ -10,7 +10,7 @@ using shotodol;
 /** \addtogroup command_programming
  *  @{
  */
-public class ProgrammingInstruction : Module {
+public class shotodol.ProgrammingInstruction : Module {
 	public ProgrammingInstruction() {
 		extring nm = extring.set_static_string("programming");
 		extring ver = extring.set_static_string("0.0.0");

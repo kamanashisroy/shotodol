@@ -22,6 +22,7 @@ public class shotodol.ModuleLoader : Replicable {
 		count = 0;
 		loadStatic(new Plugin());
 		loadStatic(new BaseModule());
+		loadStatic(new RenuModule());
 		singleton = this;
 	}
 

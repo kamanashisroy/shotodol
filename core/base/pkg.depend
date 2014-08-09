@@ -4,3 +4,5 @@ libs/module
 libs/plugin
 libs/watchdog
 libs/iostream
+libs/unittest
+libs/bundle
