@@ -6,39 +6,91 @@ using shotodol.web;
  *  @{
  */
 internal class shotodol.web.CGIReaderSpindle : Spindle {
+	enum cgiRequest {
+		REQUEST_METHOD = 1,
+		REQUEST_URL,
+		REQUEST_VERSION,
+		REQUEST_KEY,
+		REQUEST_VALUE,
+	}
 	LineInputStream is;
 	protected StandardOutputStream pad;
+	extring colonSign;
+	Renu?header;
+	Bundler bndlr;
+	int lineNumber;
+	bool endOfParsing;
+	extring url;
 	public CGIReaderSpindle() {
 		StandardInputStream x = new StandardInputStream();
 		is = new LineInputStream(x);
 		pad = new StandardOutputStream();
+		colonSign = extring.set_static_string(":");
+		Bundler bndlr = Bundler();
+		header = null;
+		lineNumber = 0;
+		endOfParsing = false;
+		url = extring();
 	}
 	~CGIReaderSpindle() {
 	}
 	public override int start(Spindle?plr) {
-		//print("Started console stepping ..\n");
-		
+		// do late initialization here ..
+		RenuFactory? renuBuilder = null;
+		extring ex = extring.set_static_string("renu/factory");
+		Plugin.acceptVisitor(&ex, (x) => {
+			renuBuilder = (RenuFactory)x.getInterface(null);
+		});
+		if(renuBuilder == null) {
+			print("Could not get renu factory\n");
+			// fatal error
+			return -1;
+		}
+		header = renuBuilder.createRenu(1024);
+		bndlr.buildFromCarton(&header.msg, header.size);
 		return 0;
 	}
 
-	void parseLine(extring*cmd) {
-		cmd.zero_terminate();
-		extring dlg = extring.stack(64);
-		dlg.printf("Parsing:%s\n", cmd.to_string());
-		pad.write(&dlg);
+	void notifyPageHook() {
+		extring page = extring.stack(url.length()+8);
+		page.concat_string("page/");
+		page.concat(&url);
+		extring status = extring();
+		extring headerXtring = extring();
+		header.getTaskAs(&headerXtring);
+		Plugin.swarm(&page, &headerXtring, &status);
+	}
+
+	void parseFirstLine(extring*cmd) {
 		extring token = extring();
 		LineAlign.next_token(cmd, &token);
-		if(cmd.char_at(0) == '=') {
-			dlg.printf("key=%s\n", token.to_string());
-			pad.write(&dlg);
-			dlg.printf("value=%s\n", cmd.to_string());
-			pad.write(&dlg);
+		bndlr.writeETxt(cgiRequest.REQUEST_METHOD, &token);
+		LineAlign.next_token(cmd, &token);
+		bndlr.writeETxt(cgiRequest.REQUEST_URL, &token);
+		bndlr.writeETxt(cgiRequest.REQUEST_VERSION, cmd);
+		url.buffer(token.length()+1);
+		url.concat(&token);
+		lineNumber++;
+	}
+
+	void parseLine(extring*cmd) {
+		if(lineNumber == 0) {
+			parseFirstLine(cmd);
+			return;
 		}
-		dlg.printf("\n");
-		pad.write(&dlg);
+		cmd.zero_terminate();
+		extring token = extring();
+		LineAlign.next_token_delimitered(cmd, &token, &colonSign);
+		if(cmd.char_at(0) == '=') {
+			bndlr.writeETxt(cgiRequest.REQUEST_KEY, &token);
+			bndlr.writeETxt(cgiRequest.REQUEST_VALUE, cmd);
+		}
+		lineNumber++;
 	}
 
 	public override int step() {
+		if(endOfParsing)
+			return 0;
 		extring inp = extring.stack(512);
 		try {
 			
@@ -47,6 +99,11 @@ internal class shotodol.web.CGIReaderSpindle : Spindle {
 				is.read(&inp);
 				if(!inp.is_empty()) {
 					parseLine(&inp);
+				} else {
+					print("End of header\n");
+					header.finalize(&bndlr);
+					endOfParsing = true;
+					notifyPageHook();
 				}
 			}
 		} catch (IOStreamError.InputStreamError e) {
