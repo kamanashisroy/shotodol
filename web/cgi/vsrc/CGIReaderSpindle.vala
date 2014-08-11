@@ -64,10 +64,10 @@ internal class shotodol.web.CGIReaderSpindle : Spindle {
 	void parseFirstLine(extring*cmd) {
 		extring token = extring();
 		LineAlign.next_token(cmd, &token);
-		bndlr.writeETxt(cgiRequest.REQUEST_METHOD, &token);
+		bndlr.writeEXtring(cgiRequest.REQUEST_METHOD, &token);
 		LineAlign.next_token(cmd, &token);
-		bndlr.writeETxt(cgiRequest.REQUEST_URL, &token);
-		bndlr.writeETxt(cgiRequest.REQUEST_VERSION, cmd);
+		bndlr.writeEXtring(cgiRequest.REQUEST_URL, &token);
+		bndlr.writeEXtring(cgiRequest.REQUEST_VERSION, cmd);
 		url.buffer(token.length()+1);
 		url.concat(&token);
 		lineNumber++;
@@ -82,8 +82,8 @@ internal class shotodol.web.CGIReaderSpindle : Spindle {
 		extring token = extring();
 		LineAlign.next_token_delimitered(cmd, &token, &colonSign);
 		if(cmd.char_at(0) == '=') {
-			bndlr.writeETxt(cgiRequest.REQUEST_KEY, &token);
-			bndlr.writeETxt(cgiRequest.REQUEST_VALUE, cmd);
+			bndlr.writeEXtring(cgiRequest.REQUEST_KEY, &token);
+			bndlr.writeEXtring(cgiRequest.REQUEST_VALUE, cmd);
 		}
 		lineNumber++;
 	}

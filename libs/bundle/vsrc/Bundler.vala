@@ -114,7 +114,7 @@ public struct shotodol.Bundler {
 		entries++;
 		return flen;
 	}
-	public int writeETxt(aroop_uword8 key, extring*val) throws BundlerError {
+	public int writeEXtring(aroop_uword8 key, extring*val) throws BundlerError {
 		int headerlen = 0;
 		int len = val.length();
 		if(len > 100 || (len+bytes+3) > size) { // make sure that the string is sizable

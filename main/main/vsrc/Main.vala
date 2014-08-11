@@ -29,7 +29,7 @@ public class shotodol.MainProgram {
 		int i = 0;
 		for(i=0;i<argc;i++) {
 			extring x = extring.set_string(argv[i]);
-			bndlr.writeETxt(1,&x);
+			bndlr.writeEXtring(1,&x);
 		}
 		bndlr.close();
 		extring userargs = extring.set_content((string)ctn.data, (int)bndlr.size, null);

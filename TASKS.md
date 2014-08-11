@@ -19,3 +19,4 @@ Roadmap
 - [ ] **Finish up the primary messaging code, named, pollen.**
 - [ ] Add a homebrew package.(Is it feasible ?)
 - [x] Implement infix/prefix bundlers.
+- [ ] Implement major,minor,patch,release versioning.

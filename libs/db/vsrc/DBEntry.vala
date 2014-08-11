@@ -70,7 +70,7 @@ public class shotodol.DBEntry : Searchable {
 		if(closed) {
 			throw new db_entry.entry_error.entry_closed("entry closed\n");
 		}
-		bndlr.writeETxt((aroop_uword8)index, val);
+		bndlr.writeEXtring((aroop_uword8)index, val);
 		return 0;
 	}
 
@@ -78,7 +78,7 @@ public class shotodol.DBEntry : Searchable {
 		if(closed) {
 			throw new db_entry.entry_error.entry_closed("entry closed\n");
 		}
-		bndlr.writeETxt((aroop_uword8)index, val);
+		bndlr.writeEXtring((aroop_uword8)index, val);
 		return 0;
 	}
 
