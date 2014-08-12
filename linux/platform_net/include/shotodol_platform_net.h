@@ -19,6 +19,7 @@ enum {
 	NET_STREAM_FLAG_RFCOMM = 1<<4,
 	NET_STREAM_FLAG_SCO = 1<<5,
 #endif
+	NET_STREAM_FLAG_LISTEN = 1<<6,
 };
 struct net_stream {
 	int sock;

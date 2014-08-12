@@ -20,3 +20,4 @@ Roadmap
 - [ ] Add a homebrew package.(Is it feasible ?)
 - [x] Implement infix/prefix bundlers.
 - [ ] Implement major,minor,patch,release versioning.
+- [ ] Profile memory move/copy events(with the memory size). It can be done in for example extring.copy_on_demand implementations.
