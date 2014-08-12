@@ -13,5 +13,12 @@ public class shotodol.AnyInterfaceExtension : Extension {
 	public override Replicable?getInterface(extring*service) {
 		return x;
 	}
+	public override int desc(OutputStream pad) {
+		base.desc(pad);
+		extring dlg = extring.stack(128);
+		dlg.concat_string("\tInterface,\n");
+		pad.write(&dlg);
+		return 0;
+	}
 }
 /** @}*/

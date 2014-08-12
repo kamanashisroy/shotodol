@@ -21,7 +21,7 @@ public class shotodol.Extension : Replicable {
 		extring dlg = extring.stack(128);
 		extring name = extring();
 		src.getNameAs(&name);
-		dlg.printf("Extension from module [%s]\n", name.to_string());
+		dlg.printf("\t[%s]\t\t", name.to_string());
 		pad.write(&dlg);
 		return 0;
 	}

@@ -70,5 +70,39 @@ public class shotodol.CompositeExtension : Extension {
 	public int count() {
 		return registry.count_unsafe();
 	}
+	public override int desc(OutputStream pad) {
+		base.desc(pad);
+		extring dlg = extring.stack(128);
+		dlg.concat_string("\tComposite,\n");
+		pad.write(&dlg);
+		return 0;
+	}
+	public void list(OutputStream pad) {
+		extring dlg = extring.stack(128);
+		dlg.printf("There are %d extensions registered\n", count());
+		pad.write(&dlg);
+		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
+		buildIterator(&it);
+		while(it.next()) {
+			AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
+			Extension e = map.get();
+			do {
+				dlg.printf("%s\t\t\t\t\t", map.key().fly().to_string());
+				pad.write(&dlg);
+				e.desc(pad);
+				Extension next = e.next;
+				e = next;
+			} while(e != null);
+		}
+		it.destroy();
+		extring composite = extring.set_static_string("extension/composite");
+		Extension?root = get(&composite);
+		while(root != null) {
+			CompositeExtension cx = (CompositeExtension)root;
+			cx.list(pad);
+			Extension?next = root.getNext();
+			root = next;
+		}
+	}
 }
 /** @}*/

@@ -14,5 +14,12 @@ public class shotodol.HookExtension : Extension {
 	public override int act(extring*msg, extring*output) {
 		return hook(msg, output);
 	}
+	public override int desc(OutputStream pad) {
+		base.desc(pad);
+		extring dlg = extring.stack(128);
+		dlg.concat_string("\tHook,\n");
+		pad.write(&dlg);
+		return 0;
+	}
 }
 /** @}*/

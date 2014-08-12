@@ -15,6 +15,9 @@ public class shotodol.M100Extension : Extension {
 	}
 	public override int desc(OutputStream pad) {
 		base.desc(pad);
+		extring dlg = extring.stack(128);
+		dlg.concat_string("\tCommand,\t\t");
+		pad.write(&dlg);
 		cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
 		return 0;
 	}
