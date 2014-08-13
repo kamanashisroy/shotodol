@@ -48,6 +48,15 @@ public class shotodol.M100CommandSet: Replicable {
 				be.memorize_estr(&prfx, cmd);
 			}
 		});
+		extring command_programming = extring.set_static_string("command/programming");
+		Plugin.acceptVisitor(&command_programming, (x) => {
+			M100Command?cmd = (M100Command)x.getInterface(null);
+			if(cmd != null) {
+				extring prfx = extring();
+				cmd.getPrefixAs(&prfx);
+				be.memorize_estr(&prfx, cmd);
+			}
+		});
 		return 0;
 	}
 

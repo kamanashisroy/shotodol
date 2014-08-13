@@ -18,7 +18,7 @@ public class shotodol.ProgrammingInstruction : Module {
 	}
 
 	public override int init() {
-		extring command = extring.set_static_string("command");
+		extring command = extring.set_static_string("command/programming");
 		Plugin.register(&command, new M100Extension(new LessThanCommand(), this));
 		Plugin.register(&command, new M100Extension(new GreaterThanCommand(), this));
 		Plugin.register(&command, new M100Extension(new EqualsCommand(), this));

@@ -63,6 +63,7 @@ public struct shotodol.Bundler {
 				numberOfEntries = 4;
 			bytes = numberOfEntries << 1;
 		}
+		cur_len = 0;
 	}
 	public void buildFromCarton(Carton*ctn, uint size, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
 		core.assert(ctn != null);
@@ -211,7 +212,7 @@ public struct shotodol.Bundler {
 		}
 		if(cur_key == 0) return -1;
 		cur_type = (desc >> 6);
-		cur_len = (desc & 0x3F); // 11000000
+		cur_len = (desc & 0x3F); // 00111111
 		if((bytes+cur_len) > size) {
 			throw new BundlerError.faulty_ctn("Faulty packet\n");
 		}
