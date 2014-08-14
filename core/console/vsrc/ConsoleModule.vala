@@ -50,11 +50,11 @@ public class ConsoleModule : DynamicModule {
 		if(!hasConsole) return 0;
 
 		print("Loading console spindle\n");
-		extring spindle = extring.set_static_string("MainSpindle");
+		extring entry = extring.set_static_string("MainSpindle");
 		ConsoleHistory sp = new ConsoleHistory();
-		Plugin.register(&spindle, new AnyInterfaceExtension(sp, this));
-		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new ConsoleCommand(sp), this));
+		Plugin.register(&entry, new AnyInterfaceExtension(sp, this));
+		entry.rebuild_and_set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new ConsoleCommand(sp), this));
 		return 0;
 	}
 

@@ -31,7 +31,9 @@ internal abstract class ConsoleSpindle : Spindle {
 		extring dlg = extring.stack(64);
 		dlg.printf("Executing:%s\n", cmd.to_string());
 		pad.write(&dlg);
-		CommandModule.server.cmds.act_on(cmd, pad, null);
+		extring serv = extring.set_static_string("command/server");
+		Plugin.swarm(&serv, cmd, null);
+		//CommandModule.server.cmds.act_on(cmd, pad, null);
 		dlg.printf("\n");
 		pad.write(&dlg);
 		addHistory(cmd);

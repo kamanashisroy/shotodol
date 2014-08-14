@@ -24,7 +24,7 @@ public class shotodol.MainTurbine : shotodol.Propeller {
 		});
 		return 0;
 	}
-	public int quit() { // XXX we should not be call by anyone to quit the application, this is security violation
+	public int quit() { // XXX we should not be called by anyone to quit the application, this is security violation
 		cancel();
 		return 0;
 	}

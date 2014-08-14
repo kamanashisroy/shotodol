@@ -8,13 +8,14 @@ Plugin techniques
 ![Pluginoid](dot_generated_pluginoid.svg)
 <img src="https://rawgit.com/kamanashisroy/shotodol/master/libs/plugin/dot_generated_pluginoid.svg"/>
 
-### Extension point or plugin space
+### Extension point or plugin spaces
+Extension points or plugin spaces are the names to locate a service or extension. Each plugin _space_ is a string. See [service locator](http://en.wikipedia.org/wiki/Service_locator_pattern).
 
 ### Extension
-_Extension_ is a way to associate your facility to a plugin space. Each plugin _space_ is a string. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication.  See [service locator](http://en.wikipedia.org/wiki/Service_locator_pattern).
+_Extension_ is a way to associate your facility to a plugin space. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication. 
 
 ### Interface
-_Interface_ in an _extension_ is an _object_ returned by getInterface() method. You can type-cast this _object_(Replicable) into something that meet your purpose. Interface here allows better performance. Once a _plugin_ registers an _interface_ it is mapped when _rehash_ is done. For example, the commands module loads all the commands under the name space "command" and makes them available for user. See [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection).
+_Interface_ in an _extension_ is an _object_ returned by getInterface() method. You can type-cast this _object_(Replicable) into something that meet your purpose. Once a _plugin_ registers an _interface_, it is mapped when _rehash_ is done. For example, the commands module loads all the commands under the name space "command" and makes them available for user. Notably, all the commands inherit M100Command class. This is an example of [design by contract](http://en.wikipedia.org/wiki/Design_by_contract). Interface here allows better performance than hooking technique. On the other hand, this kind of extensions implements the idea of [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection).
 
 ### rehash
 Rehash is an event. This event is generated from [rehash command](../../core/commands/README.md#RehashCommand). It asks everyone to get the extensions from plugin name space and get the insterface for future use. Rehash is done normally after a module load or unload. (May be we need to do rehash when there is any change in plugin).
