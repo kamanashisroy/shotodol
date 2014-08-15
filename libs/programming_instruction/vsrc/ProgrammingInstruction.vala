@@ -29,8 +29,8 @@ public class shotodol.ProgrammingInstruction : Module {
 	}
 
 	public override int deinit() {
-		Plugin.unregisterModule(this);
-		base.deinit();
+		//Plugin.unregisterModule(this);
+		//base.deinit();
 		return 0;
 	}
 }

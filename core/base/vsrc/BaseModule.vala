@@ -26,7 +26,7 @@ public class shotodol.BaseModule : Module {
 	}
 
 	public override int deinit() {
-		base.deinit();
+		//base.deinit();
 		return 0;
 	}
 

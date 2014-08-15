@@ -119,5 +119,13 @@ namespace shotodol_platform {
 		[CCode (cname = "linux_millisleep")]
 		public static void millisleep(long msec);
 	}
+
+	[CCode (cname = "void", cheader_filename = "mcheck.h")]
+	public class MemoryTrace {
+		[CCode (cname = "mtrace")]
+		public static void start();
+		[CCode (cname = "muntrace")]
+		public static void stop();
+	}
 }
 /* @} */

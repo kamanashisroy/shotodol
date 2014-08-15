@@ -176,7 +176,7 @@ Shotodol is meant to be grown by you. You can grow it by adding new <a href="lib
 
 Design Patterns
 ================
-- [Design patterns](Design_Patterns.md)
+- [Design patterns](docs/Design_Patterns.md)
 - [Diagrams](docs/diagrams.md)
 
 Tasks

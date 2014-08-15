@@ -23,3 +23,4 @@ Roadmap
 - [ ] Profile memory move/copy events(with the memory size). It can be done in for example extring.copy_on_demand implementations.
 - [ ] Implement green threads/coroutine. Spindle.longRun() instread of Spindle.step() may reduce the setup execution cost in each call.
 - [ ] Add tagging support in watchdog log.
+- [ ] ** see if there is any object of a class of a module still exists in any_obj_factory after unloading the module **

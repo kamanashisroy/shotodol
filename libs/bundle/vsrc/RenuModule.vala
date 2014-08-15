@@ -20,8 +20,8 @@ public class shotodol.RenuModule : Module {
 	}
 
 	public override int deinit() {
-		Plugin.unregisterModule(this);
-		base.deinit();
+		//Plugin.unregisterModule(this);
+		//base.deinit();
 		return 0;
 	}
 }

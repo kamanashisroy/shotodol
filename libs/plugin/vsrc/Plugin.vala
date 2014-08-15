@@ -25,49 +25,7 @@ public class shotodol.Plugin : Module {
 		return x.unregister(target, e);
 	}
 	public static int unregisterModule(Module mod) {
-		int pruneFlag = 1<<1;
-		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
-		x.buildIterator(&it);
-		while(it.next()) {
-			AroopPointer<Extension> map = it.get_unowned();
-			Extension root = map.get();
-			// fix the root node
-			if(root.src == mod) {
-				if(root.next == null) {
-					map.mark(pruneFlag);
-					continue;
-				}
-				Extension e = root.next;
-				while(e != null) {
-					if(e.src != mod) {
-						break;
-					}
-					unowned Extension next = e.next;
-					e = next;
-				}
-				if(e == null) {
-					map.mark(pruneFlag);
-					continue;
-				}
-				map.set(e);
-				root = e;
-			}
-			// fix the others
-			while(root.next != null) {
-				Extension next = root.next;
-				if(next.src == mod) {
-					root.next = next.next;
-				} else {
-					root = next;
-				}
-			}
-		}
-		it.destroy();
-		//x.registry.pruneMarked(pruneFlag);
-		//x.registry.gc_unsafe();
-		extring str = extring.set_static_string("rehash");
-		swarm(&str, null, null);
-		return 0;
+		return x.unregisterModule(mod);
 	}
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {
 		x.swarm(target, inmsg, outmsg);

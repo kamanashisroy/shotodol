@@ -96,16 +96,16 @@ public class shotodol.ModuleLoader : Replicable {
 				if(m != null) {
 					extring nm = extring();
 					m.getNameAs(&nm);
-					print("Unregistering %s from registry ..\n", nm.to_string());
+					//print("Unregistering %s from registry ..\n", nm.to_string());
 					Plugin.unregisterModule(m);
-					print("Deinit %s ..\n", nm.to_string());
+					//print("Deinit %s ..\n", nm.to_string());
 					nm.destroy();
 					// unload dynamic module is prone to crash ..
 					if(m.isDynamic) {
 						owner = ((DynamicModule)m).owner;
 					}
 					m.deinit();
-					print("Done\n");
+					//print("Done\n");
 				}
 				modules.set(i, null);
 				modules.gc_unsafe(); // make sure that we do not keep any reference to the module .
@@ -113,9 +113,9 @@ public class shotodol.ModuleLoader : Replicable {
 			} // This scope makes sure that the module instance is destroyed ..
 			if(owner != null) {
 				// So this is the dynamic library of the last unloaded module ..
-				print("Unloading dynamic objects ..\n");
+				//print("Unloading dynamic objects ..\n");
 				owner.unload();
-				print("Done\n");
+				//print("Done\n");
 			}
 			core.gc_unsafe(); // let all the objects destroyed and collected
 		}
