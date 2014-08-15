@@ -7,7 +7,7 @@ This is an all in one **server environment** written in [aroop](https://github.c
 - An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate.
 - An interface where the modules communicate.
 
-The idea here is to provide you an environment to write your own service via modules. The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together.  
+The idea here is to provide you an environment to write your own service via modules. The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
 Dependencies
 ============
@@ -25,7 +25,12 @@ Most of the code done in shotodol are in modules, simply to achieve **[robustnes
 - Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, you can write modules in apps/net\_echo or core/commands directory. 
 - You may choose to load a module dinamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
 
-Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29) and low [coupling](http://en.wikipedia.org/wiki/Coupling_%28computer_science%29). The modules can communicate with each other. There are several ways to communicate,
+Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29) and low [coupling](http://en.wikipedia.org/wiki/Coupling_%28computer_science%29).
+
+Module Interaction
+===================
+
+The modules can communicate with each other. There are several ways to communicate,
 
 ### Shake script
 
@@ -33,13 +38,15 @@ _shake_ script provides a way to perform a task on an event. For example, there 
 
 ### Plugin/extensions
 
-You can write extensions and use them to communicate through them. <a href="libs/plugin/README.md">Here is how.</a>
+You can write extensions and use them to communicate through them using interfaces. <a href="libs/plugin/README.md">Here is how.</a>
 
 ### Message passing.
 
 The plugins/extensions allow you to write hooks for events. See <a href="libs/plugin/Hooking.md">hooking and message passing</a>.
 
-Builtin Module
+![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
+
+Builtin Modules
 ===============
 
 Shotodol comes with some builtin modules to support more extensions. These modules are namely,
