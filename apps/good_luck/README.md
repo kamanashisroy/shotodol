@@ -53,6 +53,7 @@ Now when you quit the application by writing _quit_ command, it will say you 'Go
 	Good Luck
 ```
 
+![good_luck_module](https://cloud.githubusercontent.com/assets/973414/3932083/3024c45a-2464-11e4-8832-506e935eca7b.jpg)
 Here is the [dot diagram](GoodLuck.dot).
 
 I hope this _good\_luck_ module reveals a lot of shotodol basics.

@@ -6,7 +6,7 @@ Modules are the basic building block of the shotodol project. There are two kind
 1. Static module : Static modules are linked statically to shotodol.bin (binary).
 2. Dynamic module : Dynamic modules are loaded on demand.
 
-Both of the types of modules can be initiated on demand, allowing lazy initialization.
+Both of the types of modules can be initiated on demand, allowing [lazy initialization](http://en.wikipedia.org/wiki/Lazy_initialization).
 
 And there are two kinds of modules in terms of development and grouping.
 
