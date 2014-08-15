@@ -46,6 +46,8 @@ The plugins/extensions allow you to write hooks for events. See <a href="libs/pl
 
 ![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 
+In the diagram above, _Quit_, _Module_, _Plugin_, _Help_, _Rehash_ are registered as commands in _plugin_ system. _Command server_ makes them available for use as instructions in _command/server_ extension point. And _Console module_(interactive shell) uses the _command server_ to access the commands.
+
 Builtin Modules
 ===============
 
