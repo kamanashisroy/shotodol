@@ -6,7 +6,7 @@ using shotodol;
  */
 public class shotodol.ScriptModule : DynamicModule {
 	public ScriptModule() {
-		extring nm = extring.set_static_string("script");
+		extring nm = extring.set_static_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}

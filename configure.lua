@@ -53,8 +53,8 @@ if configLines["LUA_LIB"] ~= "n" then
 end
 configLines["AROOP_VARIANT"] = "_static"
 configLines["CFLAGS+"] = ""
-if yes_no_to_bool(prompt_yes_no("enable debug (-ggdb3 -DAROOP_OPP_PROFILE) ?(y/n) > ")) then
-	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -ggdb3 -DAROOP_OPP_PROFILE"
+if yes_no_to_bool(prompt_yes_no("enable debug (-ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG) ?(y/n) > ")) then
+	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG"
 	configLines["AROOP_VARIANT"] = "_debug"
 end
 if yes_no_to_bool(configLines["LINUX_BLUETOOTH"]) then

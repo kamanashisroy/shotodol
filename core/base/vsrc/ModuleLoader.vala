@@ -92,11 +92,13 @@ public class shotodol.ModuleLoader : Replicable {
 		for(i = count-1; i >= 0; i--) {
 			unowned shotodol_platform.dynalib?owner = null; // dynamic library should unload after all the references to the code are unlinked
 			{ // This scope makes sure that the module instance is destroyed ..
+				extring moduleName = extring();
 				Module? m = modules.get(i);
 				if(m != null) {
 					extring nm = extring();
 					m.getNameAs(&nm);
-					//print("Unregistering %s from registry ..\n", nm.to_string());
+					moduleName.rebuild_and_copy_on_demand(&nm);
+					print("Unregistering %s from registry ..\n", nm.to_string());
 					Plugin.unregisterModule(m);
 					//print("Deinit %s ..\n", nm.to_string());
 					nm.destroy();
@@ -110,6 +112,8 @@ public class shotodol.ModuleLoader : Replicable {
 				modules.set(i, null);
 				modules.gc_unsafe(); // make sure that we do not keep any reference to the module .
 				core.gc_unsafe(); // let all the objects destroyed and collected
+				print("Searching %s module\n", moduleName.to_string());
+				core.assert_no_module(moduleName.to_string());
 			} // This scope makes sure that the module instance is destroyed ..
 			if(owner != null) {
 				// So this is the dynamic library of the last unloaded module ..

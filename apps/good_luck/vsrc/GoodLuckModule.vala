@@ -11,7 +11,7 @@ using shotodol;
  */
 public class shotodol.GoodLuckModule : DynamicModule {
 	public GoodLuckModule() {
-		extring nm = extring.set_static_string("good_luck");
+		extring nm = extring.set_static_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
