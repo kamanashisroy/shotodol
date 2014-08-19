@@ -11,16 +11,14 @@ public errordomain shotodol.dynalib_error {
 }
 
 public class shotodol.ModuleLoader : Replicable {
-	HashTable<xtring,Module> modules;
 	extring path_to_shotodol;
 	public static ModuleLoader singleton;
-	ArrayList<xtring>moduleStack;
+	ArrayList<Module>moduleStack;
 	int stackPointer;
 
 	public ModuleLoader() {
 		path_to_shotodol = extring.set_string(shotodol_platform.dynalib.rootDir);
-		modules = HashTable<xtring,Module>(xtring.hCb,xtring.eCb);
-		moduleStack = ArrayList<xtring>();
+		moduleStack = ArrayList<Module>();
 		stackPointer = 0;
 		loadStatic(new Plugin());
 		loadStatic(new BaseModule());
@@ -30,18 +28,14 @@ public class shotodol.ModuleLoader : Replicable {
 
 	~ModuleLoader() {
 		unloadAll();
-		modules.destroy();
 		moduleStack.destroy();
 	}
 
 	void pushModule(Module x) {
-		extring mn = extring();
-		x.getNameAs(&mn);
-		xtring myModuleName = new xtring.copy_on_demand(&mn);
-		moduleStack.set(stackPointer++, myModuleName);
+		moduleStack.set(stackPointer++, x);
 	}
 
-	xtring? popModule() {
+	Module? popModule() {
 		return moduleStack.get(stackPointer--);
 	}
 
@@ -65,8 +59,6 @@ public class shotodol.ModuleLoader : Replicable {
 		m.initDynamic(plg);
 		extring mn = extring();
 		m.getNameAs(&mn);
-		xtring moduleName = new xtring.copy_deep(&mn);
-		modules.set(moduleName, m);
 		extring dlg = extring.stack(128);
 		dlg.printf("\t\t\t\t %s module is Loaded, file:%s\n", mn.to_string(), filepath);
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
@@ -91,8 +83,6 @@ public class shotodol.ModuleLoader : Replicable {
 		}
 		extring mn = extring();
 		m.getNameAs(&mn);
-		xtring moduleName = new xtring.copy_deep(&mn);
-		modules.set(moduleName, m);
 		extring dlg = extring.stack(128);
 		dlg.printf("\t\t\t\t %s module(static) is Loaded\n", mn.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
@@ -106,10 +96,15 @@ public class shotodol.ModuleLoader : Replicable {
 	}
 
 	public int unloadAll() {
-		xtring?moduleName = null;
+		Module?module = null;
 		while(stackPointer >= 0) {
-			if((moduleName = popModule()) != null)
-				unloadModuleByName(moduleName);
+			extring nm = extring();
+			{
+				if((module = popModule()) == null)continue;
+				module.getNameAs(&nm);
+				module = null;
+			}
+			unloadModuleByName(&nm);
 		}
 		return 0;
 	}
@@ -117,7 +112,7 @@ public class shotodol.ModuleLoader : Replicable {
 	public int unloadModuleByName(extring*givenModuleName = null) {
 		int pruneFlag = 1<<1;
 		aroop.Iterator<AroopPointer<Module>>it = aroop.Iterator<AroopPointer<Module>>.EMPTY();
-		modules.iterator_hacked(&it);
+		moduleStack.iterator_hacked(&it);
 		while(it.next()) {
 			xtring?moduleName = null;
 			unowned shotodol_platform.dynalib?owner = null; // dynamic library should unload after all the references to the code are unlinked
@@ -140,9 +135,9 @@ public class shotodol.ModuleLoader : Replicable {
 				}
 				m.deinit();
 				it.unlink();
-				modules.pruneMarked(pruneFlag);
+				moduleStack.pruneMarked(pruneFlag);
 				//print("Done\n");
-				modules.gc_unsafe(); // make sure that we do not keep any reference to the module .
+				moduleStack.gc_unsafe(); // make sure that we do not keep any reference to the module .
 				core.gc_unsafe(); // let all the objects destroyed and collected
 				print("Searching %s module\n", moduleName.fly().to_string());
 			} // This scope makes sure that the module instance is destroyed ..
