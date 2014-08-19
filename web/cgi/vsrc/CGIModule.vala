@@ -13,7 +13,7 @@ using shotodol.web;
  */
 public class shotodol.web.CGIModule : shotodol.DynamicModule {
 	public CGIModule() {
-		extring nm = extring.set_static_string("cgi");
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}

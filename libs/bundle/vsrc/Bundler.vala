@@ -73,10 +73,18 @@ public struct shotodol.Bundler {
 		numberOfEntries = givenNumberOfEntries;
 		reset();
 	}
-	public void buildFromEXtring(extring*content, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
+	public void build_extring_reader(extring*content, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
 		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
-		setter.set(ctn,content.to_string());
+		setter.set(ctn,content.to_memory());
 		this.size = (uint)content.length();
+		this.affix = affix;
+		numberOfEntries = givenNumberOfEntries;
+		reset();
+	}
+	public void build_extring_writer(extring*content, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
+		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
+		setter.set(ctn,content.to_memory());
+		this.size = (uint)content.size();
 		this.affix = affix;
 		numberOfEntries = givenNumberOfEntries;
 		reset();

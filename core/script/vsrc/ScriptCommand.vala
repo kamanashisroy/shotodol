@@ -17,13 +17,15 @@ internal class ScriptCommand : M100Command {
 		FILE,
 	}
 	CompositeExtension ex;
-	public ScriptCommand(CompositeExtension container) {
+	Module sourceModule;
+	public ScriptCommand(CompositeExtension container, Module mod) {
 		extring prefix = extring.set_static_string("script");
 		base(&prefix);
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
 		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "script file name/path"); 
 		script = null;
 		ex = container;
+		sourceModule = mod;
 	}
 
 	unowned LuaStack? script;
@@ -80,7 +82,7 @@ internal class ScriptCommand : M100Command {
 				break;
 			}
 			print("registering %s hook\n", token.to_string());
-			ex.register(&token, new LuaExtension(script, fn, &token, null));
+			ex.register(&token, new LuaExtension(script, fn, &token, sourceModule));
 		}
 	}
 }

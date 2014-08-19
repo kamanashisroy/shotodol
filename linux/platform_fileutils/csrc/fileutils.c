@@ -15,8 +15,7 @@ static aroop_none* shotodol_dir_get (aroop_cl_shotodol_shotodol_default_iterator
 		*result = NULL;
 		return *result;
 	}
-	x->filenode.filename.str = node->d_name;
-	x->filenode.filename.len = strlen(node->d_name);
+	aroop_txt_embeded_rebuild_and_set_content(&x->filenode.filename,node->d_name,strlen(node->d_name),NULL);
 	*result = &x->filenode;
 	return *result;
 }
@@ -33,19 +32,20 @@ static int shotodol_dir_setup(shotodol_dir_t*x) {
 
 int shotodol_dir_open(shotodol_dir_t*x, struct aroop_txt*gPath) {
 	shotodol_dir_setup(x);
-	if(gPath->len < gPath->size) {
-		if(gPath->str[gPath->len] == '\0') {
-			x->dir = opendir(gPath->str);
-			return 0;
-		}
+	char*pathstr = aroop_txt_to_string(gPath);
+	if(aroop_txt_embeded_zero_terminate(gPath)) {
+		x->dir = opendir(pathstr);
+		return 0;
 	}
 	struct aroop_txt path;
 	aroop_memclean_raw(&path, sizeof(path));
 	int len = gPath->len+1;
-	aroop_txt_embeded_buffer(&path, len);
-	memcpy(path.str, gPath->str, len-1);
-	path.str[len-1] = '\0';
-	x->dir = opendir(gPath->str);
+	aroop_txt_embeded_stackbuffer(&path, len);
+	char*newpathstr = aroop_txt_to_string(&path);
+	memcpy(newpathstr, pathstr, len-1);
+	newpathstr[len-1] = '\0';
+	x->dir = opendir(newpathstr);
+	aroop_txt_destroy(&path);
 	return 0;
 }
 

@@ -12,7 +12,7 @@ using shotodol;
  */
 public class shotodol.ProgrammingInstruction : Module {
 	public ProgrammingInstruction() {
-		extring nm = extring.set_static_string("programming");
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}

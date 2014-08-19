@@ -12,7 +12,7 @@ using shotodol_platform;
 public class ConsoleModule : DynamicModule {
 
 	public ConsoleModule() {
-		extring nm = extring.set_static_string("console");
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
@@ -30,7 +30,7 @@ public class ConsoleModule : DynamicModule {
 	int onLoadHook(extring*msg, extring*output) {
 		bool hasConsole = true;
 		Bundler bndlr = Bundler();
-		bndlr.buildFromEXtring(msg, BundlerAffixes.PREFIX);
+		bndlr.build_extring_reader(msg, BundlerAffixes.PREFIX);
 		do {
 			try {
 				int key = bndlr.next();

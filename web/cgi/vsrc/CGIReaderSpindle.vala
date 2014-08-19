@@ -68,7 +68,7 @@ internal class shotodol.web.CGIReaderSpindle : Spindle {
 		LineAlign.next_token(cmd, &token);
 		bndlr.writeEXtring(cgiRequest.REQUEST_URL, &token);
 		bndlr.writeEXtring(cgiRequest.REQUEST_VERSION, cmd);
-		url.buffer(token.length()+1);
+		url.rebuild_in_heap(token.length()+1);
 		url.concat(&token);
 		lineNumber++;
 	}

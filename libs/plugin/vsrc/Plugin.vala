@@ -12,11 +12,12 @@ using shotodol;
  */
 public delegate void shotodol.ExtensionVisitor(Extension e);
 public class shotodol.Plugin : Module {
-	static CompositeExtension x;
+	static CompositeExtension?x;
 	public Plugin() {
-		extring nm = extring.set_static_string("Plugin");
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
+		x = null;
 	}
 	public static int register(extring*target, Extension e) {
 		return x.register(target, e);
@@ -25,7 +26,9 @@ public class shotodol.Plugin : Module {
 		return x.unregister(target, e);
 	}
 	public static int unregisterModule(Module mod) {
-		return x.unregisterModule(mod);
+		if(x != null)
+			return x.unregisterModule(mod);
+		return 0;
 	}
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {
 		x.swarm(target, inmsg, outmsg);

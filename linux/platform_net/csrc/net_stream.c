@@ -15,35 +15,35 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 	int i = 0;
 	aroop_txt_is_empty(&proto);
 	aroop_txt_is_empty(&addrstr);
-	printf("Parsing appropriate protocol from [%s]:%d\n", path->str, path->len);
+	printf("Parsing appropriate protocol from [%s]:%d\n", aroop_txt_to_string(path), path->len);
 	// parse TCP://
 	for(i = 0;i < path->len;i++) {
-		if(path->str[i] == ':') {
-			aroop_txt_embeded_copy_shallow(&proto, path);
+		if(aroop_txt_char_at(path,i) == ':') {
+			aroop_txt_embeded_txt_copy_shallow(&proto, path);
 			proto.len = i;
-			if((path->len > i+2) && (path->str[i+1] == '/') && (path->str[i+2] == '/' )) {
+			if((path->len > i+2) && aroop_txt_char_at(path,i+1) == '/' && aroop_txt_char_at(path, i+2) == '/' ) {
 				aroop_txt_embeded_stackbuffer_from_txt(&addrstr, path);
 				aroop_txt_shift(&addrstr, i+3);
 			}
 			break;
 		}
 	}
-	printf("Parsed protocol from [%s]\n", path->str);
+	printf("Parsed protocol from [%s]\n", aroop_txt_to_string(path));
 	if(!aroop_txt_is_empty(&proto)) {
-		if(proto.len == 3 && proto.str[0] == 'T' && proto.str[1] == 'C' && proto.str[2] == 'P') {
+		if(proto.len == 3 && aroop_txt_char_at(&proto,0) == 'T' && aroop_txt_char_at(&proto,1) == 'C' && aroop_txt_char_at(&proto,2) == 'P') {
 			flags |= NET_STREAM_FLAG_TCP;
 			if(!(flags & NET_STREAM_FLAG_CONNECT)) {
 				flags |= NET_STREAM_FLAG_LISTEN;
 			}
-		} else if(proto.len == 3 && proto.str[0] == 'U' && proto.str[1] == 'D' && proto.str[2] == 'P') {
+		} else if(proto.len == 3 && aroop_txt_char_at(&proto,0) == 'U' && aroop_txt_char_at(&proto,1) == 'D' && aroop_txt_char_at(&proto,2) == 'P') {
 			flags |= NET_STREAM_FLAG_UDP;
 #ifdef LINUX_BLUETOOTH
-		} else if(proto.len == 6 && proto.str[0] == 'R' && proto.str[1] == 'F' && proto.str[2] == 'C') {
+		} else if(proto.len == 6 && aroop_txt_char_at(&proto,0) == 'R' && aroop_txt_char_at(&proto,1) == 'F' && aroop_txt_char_at(&proto,2) == 'C') {
 			flags |= NET_STREAM_FLAG_RFCOMM;
 			if(!(flags & NET_STREAM_FLAG_CONNECT)) {
 				flags |= NET_STREAM_FLAG_LISTEN;
 			}
-		} else if(proto.len == 3 && proto.str[0] == 'S' && proto.str[1] == 'C' && proto.str[2] == 'O') {
+		} else if(proto.len == 3 && aroop_txt_char_at(&proto,0) == 'S' && aroop_txt_char_at(&proto,1) == 'C' && aroop_txt_char_at(&proto,2) == 'O') {
 			flags |= NET_STREAM_FLAG_SCO;
 			flags |= NET_STREAM_FLAG_BIND;
 			if(!(flags & NET_STREAM_FLAG_CONNECT)) {
@@ -70,15 +70,15 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
     return -1;
   }
 
-	printf("Opened socket %d for [%s]\n", strm->sock, path->str);
+	printf("Opened socket %d for [%s]\n", strm->sock, aroop_txt_to_string(path));
 	struct aroop_txt portstr;
 	aroop_txt_is_empty(&portstr);
 
 	memset(&(strm->addr.in), 0, sizeof(strm->addr.in));
 	if((flags & (NET_STREAM_FLAG_UDP|NET_STREAM_FLAG_TCP))) {
 		for(i = 0;i < addrstr.len;i++) {
-			if(addrstr.str[i] == ':') {
-				aroop_txt_embeded_copy_shallow(&portstr, &addrstr);
+			if(aroop_txt_char_at(&addrstr, i) == ':') {
+				aroop_txt_embeded_txt_copy_shallow(&portstr, &addrstr);
 				aroop_txt_shift(&portstr, i+1);
 				aroop_txt_trim_to_length(&addrstr, i);
 				break;
@@ -86,7 +86,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		}
 		strm->addr.in.sin_family = AF_INET;
 		aroop_txt_zero_terminate(&addrstr);
-		inet_aton(addrstr.str, &(strm->addr.in.sin_addr));
+		inet_aton(aroop_txt_to_string(&addrstr), &(strm->addr.in.sin_addr));
 		aroop_txt_zero_terminate(&portstr);
 		strm->addr.in.sin_port = htons(aroop_txt_to_int(&portstr));
 	}
@@ -124,14 +124,14 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 #endif
 
 	if((flags & NET_STREAM_FLAG_BIND)) {
-		printf("binding %s\n", addrstr.str);
+		printf("binding %s\n", aroop_txt_to_string(&addrstr));
 		int sock_flag = 0;
 		// reuse socket server to avoid bind error(Already in use)
 		setsockopt(strm->sock, SOL_SOCKET, SO_REUSEADDR, (char*)&sock_flag, sizeof sock_flag);
-		//SYNC_LOG(SYNC_VERB, "Binding %s\n", path->str);
+		//SYNC_LOG(SYNC_VERB, "Binding %s\n", aroop_txt_to_string(path));
 		if(bind(strm->sock, (struct sockaddr*)&strm->addr, sizeof(strm->addr)) < 0) {
 			//printf("Failed to bind at [%s][%s:%d]:%s\n", (flags & NET_STREAM_FLAG_TCP)?"TCP":"UDP", addrstr.str, aroop_txt_to_int(&portstr), strerror(errno));
-			printf("Failed to bind at [%s]:%s\n", path->str, strerror(errno));
+			printf("Failed to bind at [%s]:%s\n", aroop_txt_to_string(path), strerror(errno));
 			net_stream_close(strm);
 			return -1;
 		}
@@ -147,7 +147,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 #define DEFAULT_SYN_BACKLOG 1024 /* XXX we are setting this too high */
 		if((flags & NET_STREAM_FLAG_LISTEN))if(listen(strm->sock, DEFAULT_SYN_BACKLOG) < 0) {
 			//printf("Failed to listen to %s:%d:%s\n", addrstr.str, aroop_txt_to_int(&portstr), strerror(errno));
-			printf("Failed to listen on [%s]:%s\n", path->str, strerror(errno));
+			printf("Failed to listen on [%s]:%s\n", aroop_txt_to_string(path), strerror(errno));
 			net_stream_close(strm);
 			return -1;
 		}
@@ -186,7 +186,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 		printf("Connecting to server at socket %d\n", strm->sock);
 		if(connect(strm->sock, (struct sockaddr*)&strm->addr, sizeof(strm->addr)) < 0) {
 			//printf("Failed to connect to [%s][%s:%d]:%s\n", (flags & NET_STREAM_FLAG_TCP)?"TCP":"UDP", addrstr.str, aroop_txt_to_int(&portstr), strerror(errno));
-			printf("Failed to connect to [%s]:%s\n", path->str, strerror(errno));
+			printf("Failed to connect to [%s]:%s\n", aroop_txt_to_string(path), strerror(errno));
 			net_stream_close(strm);
 			return -1;
 		}
@@ -196,7 +196,7 @@ int net_stream_create(struct net_stream*strm, struct aroop_txt*path, SYNC_UWORD8
 
 int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf) {
 	printf("Reading %d\n", strm->sock);
-	int len = recv(strm->sock, buf->str+buf->len, buf->size - buf->len, MSG_DONTWAIT);
+	int len = recv(strm->sock, aroop_txt_to_string(buf)+buf->len, buf->size - buf->len, MSG_DONTWAIT);
 	if(len > 0) {
 		buf->len += len;
 	}
@@ -208,14 +208,14 @@ int net_stream_recv(struct net_stream*strm, struct aroop_txt*buf) {
 
 int net_stream_send(struct net_stream*strm, struct aroop_txt*buf) {
 	printf("Writing %d\n", strm->sock);
-	int len = send(strm->sock, buf->str, buf->len, MSG_DONTWAIT);
+	int len = send(strm->sock, aroop_txt_to_string(buf), buf->len, MSG_DONTWAIT);
 	if(len < 0) {
 		printf("Error while sending [%d]:%s\n", strm->sock, strerror(errno));
 	}
 	if(len > 0) {
 		int left = buf->len - len;
 		if(left) {
-			memmove(buf->str, buf->str+len, left);
+			memmove(aroop_txt_to_string(buf), aroop_txt_to_string(buf)+len, left);
 		}
 		buf->len = left;
 	}

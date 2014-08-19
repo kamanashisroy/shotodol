@@ -12,7 +12,7 @@ public class shotodol.LineInputStream : InputStream {
 		is = down_stream;
 		rmem = extring();
 		rbuf = extring();
-		rmem.buffer(bufferSize);
+		rmem.rebuild_in_heap(bufferSize);
 	}
 	public override int availableBytes() throws IOStreamError.InputStreamError {
 		return is.availableBytes();

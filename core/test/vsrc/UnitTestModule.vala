@@ -11,7 +11,7 @@ using shotodol;
  */
 public class shotodol.UnitTestModule : DynamicModule {
 	class UnitTestModule() {
-		extring nm = extring.set_static_string(core.sourceModuleName());
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}

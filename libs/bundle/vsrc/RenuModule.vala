@@ -6,7 +6,7 @@ using shotodol;
  */
 public class shotodol.RenuModule : Module {
 	public RenuModule() {
-		extring nm = extring.set_static_string("RenuModule");
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}

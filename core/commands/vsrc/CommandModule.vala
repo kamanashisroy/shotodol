@@ -14,7 +14,7 @@ public class shotodol.CommandModule: DynamicModule {
 	public static CommandModule? server;
 	public M100CommandSet?cmds;
 	public CommandModule() {
-		extring nm = extring.set_static_string(core.sourceModuleName());
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 		cmds = new M100CommandSet();

@@ -11,6 +11,7 @@ using shotodol;
  */
 public class shotodol.HTTPModule : shotodol.Module {
 	public HTTPModule() {
+		extring nm = extring.set_string(core.sourceModuleName());
 	}
 	public override int init() {
 		// TODO listen to 80 port

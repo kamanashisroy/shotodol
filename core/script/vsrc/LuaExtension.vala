@@ -16,7 +16,7 @@ public class shotodol.LuaExtension : Extension {
 		scriptName = extring.copy_deep(givenScriptName);
 		targetFunction = extring();
 		extring exten = extring.set_static_string("exten_");
-		targetFunction.buffer(givenTargetFunction.length()+exten.length()+1);
+		targetFunction.rebuild_in_heap(givenTargetFunction.length()+exten.length()+1);
 		targetFunction.concat(&exten);
 		int i = 0;
 		for(i = 0; i < givenTargetFunction.length(); i++) {

@@ -6,17 +6,23 @@ using shotodol;
  */
 public class shotodol.CompositeExtension : Extension {
 	HashTable<xtring,Extension>registry;
+	Factory<xtring> xtringBuffer;
 	public CompositeExtension(Module mod) {
 		base(mod);
 		registry = HashTable<xtring,Extension>(xtring.hCb,xtring.eCb);
+		xtringBuffer = Factory<xtring>.for_type_full(16,(uint)sizeof(extring)+16);
 	}
 	~CompositeExtension() {
 		registry.destroy();
+		xtringBuffer.destroy();
 	}
 	public int register(extring*target, Extension e) {
+		core.assert(e.src != null);
 		Extension?root = registry.getProperty(target);
 		if(root == null) {
-			xtring tgt = new xtring.copy_on_demand(target);
+			//xtring tgt = new xtring.copy_on_demand(target, &xtringBuffer);
+			xtring tgt = new xtring.copy_deep(target, &xtringBuffer);
+			core.assert(tgt != null);
 			registry.set(tgt, e);
 			return 0;
 		}
@@ -53,8 +59,8 @@ public class shotodol.CompositeExtension : Extension {
 		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
 		buildIterator(&it);
 		while(it.next()) {
-			AroopPointer<Extension> map = it.get_unowned();
-			Extension root = map.get();
+			unowned AroopPointer<Extension> map = it.get_unowned();
+			unowned Extension root = map.getUnowned();
 			// fix the root node
 			if(root.src == mod) {
 				if(root.next == null) {
@@ -132,8 +138,8 @@ public class shotodol.CompositeExtension : Extension {
 		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
 		buildIterator(&it);
 		while(it.next()) {
-			AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
-			Extension e = map.get();
+			unowned AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
+			unowned Extension e = map.getUnowned();
 			do {
 				dlg.printf("%s\t\t\t\t\t", map.key().fly().to_string());
 				pad.write(&dlg);

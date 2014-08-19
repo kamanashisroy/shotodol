@@ -5,8 +5,8 @@ using shotodol;
  *  @{
  */
 public class shotodol.ScriptModule : DynamicModule {
-	public ScriptModule() {
-		extring nm = extring.set_static_string(core.sourceModuleName());
+	ScriptModule() {
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
@@ -14,7 +14,7 @@ public class shotodol.ScriptModule : DynamicModule {
 #if LUA_LIB
 		CompositeExtension ext = new CompositeExtension(this);
 		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new ScriptCommand(ext), this));
+		Plugin.register(&command, new M100Extension(new ScriptCommand(ext, this), this));
 		extring rehash = extring.set_static_string("rehash");
 		Plugin.register(&rehash, new HookExtension(onRehash, this));
 		extring composite = extring.set_static_string("extension/composite");

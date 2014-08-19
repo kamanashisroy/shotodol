@@ -39,8 +39,7 @@ internal class shotodol.ModuleCommand : M100Command {
 		}
 		fn = vals[Options.UNLOAD];
 		if(fn != null) {
-			extring err = extring.set_static_string("TODO:unload module\n");
-			pad.write(&err);
+			ModuleLoader.singleton.unloadModuleByName(fn);
 		}
 		if(vals[Options.LIST] != null) {
 			CommandModule.server.cmds.list(pad);

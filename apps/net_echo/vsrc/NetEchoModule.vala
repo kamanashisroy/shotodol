@@ -14,7 +14,8 @@ using shotodol;
  */
 public class shotodol.NetEchoModule : DynamicModule {
 	public NetEchoModule() {
-		name = etxt.from_static("net_echo");
+		extring nm = extring.set_string(core.sourceModuleName());
+		base(&nm);
 	}
 	public override int init() {
 		txt command = new txt.from_static("command");

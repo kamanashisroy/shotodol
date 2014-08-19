@@ -9,7 +9,7 @@ public class shotodol.BufferedOutputStream : OutputStream {
 	bool closed;
 	public BufferedOutputStream(int sz) {
 		cache = extring();
-		cache.buffer(sz);
+		cache.rebuild_in_heap(sz);
 		closed = false;
 	}
 	public BufferedOutputStream.forCache(extring*gCache) {

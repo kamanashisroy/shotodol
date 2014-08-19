@@ -12,7 +12,7 @@ using shotodol_platform;
  */
 public class FileConfigModule : DynamicModule {
 	public FileConfigModule() {
-		extring nm = extring.set_static_string("fileconfig");
+		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}

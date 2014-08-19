@@ -55,7 +55,7 @@
 
 #if 1
 #define fileio_read(x,y) ({ \
-	int __rt = read(x, (y)->str+(y)->len, (y)->size - (y)->len - 1);if(__rt > 0) {(y)->len += __rt;}__rt; \
+	int __rt = read(x, aroop_txt_to_string(y)+(y)->len, (y)->size - (y)->len - 1);if(__rt > 0) {(y)->len += __rt;}__rt; \
 })
 #else
 #define fileio_read(x,y) ({ \
@@ -64,7 +64,7 @@
 #endif
 
 #define fileio_read_line(x,y) ({ \
-	int __len = 0;char* __rt = fgets((y)->str+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
+	int __len = 0;char* __rt = fgets(aroop_txt_to_string(y)+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
 })
 
 #define fileio_getc(x) ({getc(stdin);})
@@ -72,10 +72,10 @@
 
 //public class PlatformFileStream
 #define linux_file_stream_fread(x,y) ({ \
-	int __rt = fread((y)->str+(y)->len, 1, (y)->size - (y)->len - 1, x);if(__rt > 0) {(y)->len += __rt;}__rt; \
+	int __rt = fread(aroop_txt_to_string(y)+(y)->len, 1, (y)->size - (y)->len - 1, x);if(__rt > 0) {(y)->len += __rt;}__rt; \
 })
 #define linux_file_stream_fwrite(x,y) ({ \
-	fwrite((y)->str, 1, (y)->len, x);\
+	fwrite(aroop_txt_to_string(y), 1, (y)->len, x);\
 })
 
 typedef int (*linux_pthread_go_cb_t)(void*data);

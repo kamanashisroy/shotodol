@@ -51,7 +51,7 @@ void lua_impl_get_xtring_as(lua_State*script, aroop_txt_t*x, int idx) {
 }
 
 void lua_impl_pushextring(lua_State*script, aroop_txt_t*msg) {
-	lua_pushlstring(script, (msg && msg->str)?msg->str:"", msg?msg->len:0);
+	lua_pushlstring(script, aroop_txt_to_string_cb(msg,(char*),""), msg?msg->len:0);
 }
 
 void lua_impl_set_output_stream(lua_State*script, void*ostrm) {
