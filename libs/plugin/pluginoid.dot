@@ -2,5 +2,5 @@ digraph pluginoid {
 	label="Pluginoid"
 	rankdir=LR;
 	node[shape=Mrecord];
-	pluginoid [label="swarm\n| {\nInterface|\n\nPlugin\n\n|\nHooking}|{|\n\n\n\nspindle|\n\n\n\nrehash|}"];
+	pluginoid [label="register(extension point)\n| {\nInterface\ngetInterface()|\n\n-\n\n|\nHooking\nact()}|{|\n\n\n\nacceptVisitor()|\n\n\n\nswarm()|}"];
 }

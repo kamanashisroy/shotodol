@@ -1,6 +1,6 @@
 Plugin
 =========
-Plugin lets you write ready to use named extensions. You put your extension in named list using register() function. Other plugins can use that extension to do certain tasks.
+Plugin lets you write ready to use named extensions. You put your extension in named list using register() function. Others can use that extension to do certain tasks.
 
 Plugin techniques
 ==================
@@ -26,7 +26,7 @@ You can write a [hook function](Hooking.md) for an event.
 Composite techniques
 ======================
 
-Plugin is a collection of extensions. It is a [composite pattern](http://en.wikipedia.org/wiki/Composite_pattern). You can summon them using _swarm_ and _acceptVisitor_ method.
+Plugin system contains collection of extensions. It is a [composite pattern](http://en.wikipedia.org/wiki/Composite_pattern). You can summon them using _swarm_ and _acceptVisitor_ method.
 - `swarm` method is in fact a collective [message passing](http://en.wikipedia.org/wiki/Message_Passing) technique. It sends message to each of the extensions under a namespace.
 - `acceptVisitor` method lets you do your task/instructions for each of the extensions hooked in a namespace.
 
@@ -45,7 +45,7 @@ plugin -x command
 The above command will show all the registered commands. 
 
 ### Dispatch
-You can dispatch an event on your own using plugin command.
+You can dispatch an event using plugin command.
 ```
 plugin -x onQuit -act
 ```

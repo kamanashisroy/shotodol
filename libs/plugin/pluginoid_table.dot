@@ -3,9 +3,9 @@ digraph pluginoid {
 	rankdir=LR;
 	node[shape=Mrecord];
 	pluginoid2 [label = <<table border="0" cellspacing="0">
-                    <tr><td border="0"></td><td colspan="2" border="1" bgcolor="green">swarm</td><td border="0"></td></tr>
-                    <tr><td border="1" bgcolor="green">Interface</td><td colspan="2" rowspan="2" border="1" bgcolor="green">Plugin</td><td border="1" bgcolor="green">Hooking</td></tr>
+                    <tr><td border="0"></td><td colspan="2" border="1" bgcolor="green">Extension Point</td><td border="0"></td></tr>
+                    <tr><td border="1" bgcolor="green">Interface</td><td colspan="2" rowspan="2" border="1" bgcolor="green">-</td><td border="1" bgcolor="green">Hooking</td></tr>
                     <tr><td border="0"></td><td border="0"></td></tr>
-                    <tr><td border="0"></td><td border="1" bgcolor="green">Rehash</td><td border="1" bgcolor="green">Spindle</td><td border="0"></td></tr>
+                    <tr><td border="0"></td><td border="1" bgcolor="green">acceptVisitor</td><td border="1" bgcolor="green">Swarm</td><td border="0"></td></tr>
                 </table>>]
 }
