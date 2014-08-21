@@ -44,7 +44,7 @@ namespace shotodol_platform {
 	}
 
 	[Compact]
-	[CCode (cname = "FILE", free_function = "fclose", cheader_filename = "stdio.h")]
+	[CCode (cname = "FILE", free_function = "fclose", cheader_filename = "stdio.h", unref_function = "platform_file_stream_unref")]
 	public class PlatformFileStream {
 		[CCode (cname = "EOF", cheader_filename = "stdio.h")]
 		public const int EOF;
@@ -97,8 +97,6 @@ namespace shotodol_platform {
 		public int read(extring*buf);
 		[CCode (cname = "linux_file_stream_fwrite")]
 		public int write(extring*buf);
-		[CCode (cname = "fclose")]
-		public void close ();
 	}
 	[CCode (cname = "linux_pthread_go_t", cheader_filename = "pthread.h", has_copy_function=false, has_destroy_function=false)]
 	public delegate int PlatformThreadRun();

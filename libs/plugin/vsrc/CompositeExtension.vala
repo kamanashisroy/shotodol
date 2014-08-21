@@ -59,10 +59,11 @@ public class shotodol.CompositeExtension : Extension {
 		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
 		buildIterator(&it);
 		while(it.next()) {
-			unowned AroopPointer<Extension> map = it.get_unowned();
+			unowned AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
 			unowned Extension root = map.getUnowned();
 			// fix the root node
 			if(root.src == mod) {
+				print("Deleting extension .. for %s\n", map.key().fly().to_string());
 				if(root.next == null) {
 					map.mark(pruneFlag);
 					continue;

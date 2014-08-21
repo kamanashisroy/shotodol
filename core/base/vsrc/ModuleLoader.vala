@@ -35,8 +35,12 @@ public class shotodol.ModuleLoader : Replicable {
 		moduleStack.set(stackPointer++, x);
 	}
 
-	Module? popModule() {
-		return moduleStack.get(stackPointer--);
+	void popModuleName(extring*mn) {
+		mn.destroy();
+		Module? mod = moduleStack.get(stackPointer--);
+		if(mod != null) {
+			mod.getNameAs(mn);
+		}
 	}
 
 	public void load_dynamic_module(string filepath) throws dynalib_error {
@@ -96,20 +100,16 @@ public class shotodol.ModuleLoader : Replicable {
 	}
 
 	public int unloadAll() {
-		Module?module = null;
 		while(stackPointer >= 0) {
 			extring nm = extring();
-			{
-				if((module = popModule()) == null)continue;
-				module.getNameAs(&nm);
-				module = null;
-			}
-			unloadModuleByName(&nm);
+			popModuleName(&nm);
+			if(!nm.is_empty())unloadModuleByName(&nm);
 		}
 		return 0;
 	}
 
-	public int unloadModuleByName(extring*givenModuleName = null) {
+	public int unloadModuleByName(extring*givenModuleName) {
+		print("Unloading module %s\n", givenModuleName.to_string());
 		int pruneFlag = 1<<1;
 		aroop.Iterator<AroopPointer<Module>>it = aroop.Iterator<AroopPointer<Module>>.EMPTY();
 		moduleStack.iterator_hacked(&it);
@@ -121,8 +121,11 @@ public class shotodol.ModuleLoader : Replicable {
 				Module m = map.getUnowned();
 				extring mn = extring();
 				m.getNameAs(&mn);
-				if(givenModuleName != null && !mn.equals(givenModuleName))
+				print("checking %s[%d]-%s[%d]\n", mn.to_string(), mn.length(), givenModuleName.to_string(), givenModuleName.length());
+				if(!mn.equals(givenModuleName)) {
 					continue;
+				}
+				print("unloading %s-%s\n", mn.to_string(), givenModuleName.to_string());
 				map.mark(pruneFlag);
 				moduleName = new xtring.copy_deep(&mn);
 				print("Unregistering %s,%d,%s,%d from registry ..\n", mn.to_string(), mn.length() , moduleName.fly().to_string(), moduleName.fly().length());
@@ -130,7 +133,7 @@ public class shotodol.ModuleLoader : Replicable {
 				//print("Deinit %s ..\n", mn.to_string());
 				mn.destroy();
 				// unload dynamic module is prone to crash ..
-				if(m.isDynamic) {
+				if(m is DynamicModule) {
 					owner = ((DynamicModule)m).owner;
 				}
 				m.deinit();
@@ -141,12 +144,12 @@ public class shotodol.ModuleLoader : Replicable {
 				core.gc_unsafe(); // let all the objects destroyed and collected
 				print("Searching %s module\n", moduleName.fly().to_string());
 			} // This scope makes sure that the module instance is destroyed ..
-			if(moduleName != null)core.assert_no_module(moduleName.fly().to_string());
+			//if(moduleName != null)core.assert_no_module(moduleName.fly().to_string());
 			if(owner != null) {
 				// So this is the dynamic library of the last unloaded module ..
-				//print("Unloading dynamic objects ..\n");
-				owner.unload();
-				//print("Done\n");
+				print("Unloading dynamic objects ..\n");
+				//owner.unload();
+				print("Done\n");
 			}
 			core.gc_unsafe(); // let all the objects destroyed and collected
 		}

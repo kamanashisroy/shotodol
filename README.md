@@ -4,10 +4,14 @@ Shotodol
 This is an all in one **server environment** written in [aroop](https://github.com/kamanashisroy/aroop)(aka [Vala programming language](https://wiki.gnome.org/Projects/Vala) with aroop profile). The target of the project is to provide,
 
 - A [_module_](http://en.wikipedia.org/wiki/Module_%28programming%29) writing system to extend existing functionality.
+- An interface(plugin system) where the modules communicate.
 - An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate.
-- An interface where the modules communicate.
 
-The idea here is to provide you an environment to write your own service via modules. The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
+The idea here is to provide you an environment to write your own service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple. Note,
+
+> If a thing can be done adequately by means of one, it is superfluous to do it by means of several; for we observe that nature does not employ two instruments where one suffices (Aquinas 1945, p. 129).
+
+The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
 Dependencies
 ============
@@ -70,6 +74,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 ### Testing and benchmarking modules
 
+- [profiler](core/profiler/README.md)
 - [unittest](libs/unittest/README.md)
 - [benchmark](libs/benchmark/README.md)
 - [watchdog](libs/watchdog/README.md)
@@ -153,7 +158,7 @@ Now, after you have the _Makefile_ in the shotodol directory you are ready to [_
 	shotodol.bin
 ```
 
-The above command will create shotodol.bin as an executable binary. It reads the _shotodol.ske_ (_shake_ script file) for loading required plugins. 
+The above command will create shotodol.bin as an executable binary. It reads the _autoload/shotodol.ske_ (_shake_ script file) for loading required plugins and execute other command blocks. 
 
 Running
 ========

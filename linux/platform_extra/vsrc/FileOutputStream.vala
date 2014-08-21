@@ -10,15 +10,12 @@ public errordomain IOStreamError.FileOutputStreamError {
 
 public class shotodol.FileOutputStream : OutputStream {
 	shotodol_platform.PlatformFileStream?fp;
-	bool closed;
 	
 	public FileOutputStream.from_file(extring*filename) throws IOStreamError.FileOutputStreamError {
-		closed = true;
 		fp = shotodol_platform.PlatformFileStream.open(filename.to_string(), "w");
 		if(fp == null) {
 			throw new IOStreamError.FileOutputStreamError.COULD_NOT_OPEN_FILE_FOR_WRITING("Could not open file");
 		}
-		closed = false;
 	}
 
 	~FileOutputStream() {
@@ -30,9 +27,8 @@ public class shotodol.FileOutputStream : OutputStream {
 	}
 
 	public override void close() throws IOStreamError.OutputStreamError {
-		if(!closed) {
-			fp.close();
-			closed = true;
+		if(fp != null) {
+			fp = null;
 		}
 	}
 }

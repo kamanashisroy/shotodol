@@ -16,15 +16,12 @@ public errordomain IOStreamError.FileInputStreamError {
 
 public class shotodol.FileInputStream : InputStream {
 	shotodol_platform.PlatformFileStream?fp;
-	bool closed;
 	
 	public FileInputStream.from_file(extring*filename) throws IOStreamError.FileInputStreamError {
-		closed = true;
 		fp = shotodol_platform.PlatformFileStream.open(filename.to_string(), "r");
 		if(fp == null) {
 			throw new IOStreamError.FileInputStreamError.COULD_NOT_OPEN_FILE("Could not open file");
 		}
-		closed = false;
 	}
 
 	~FileInputStream() {
@@ -40,9 +37,8 @@ public class shotodol.FileInputStream : InputStream {
 	}
 
 	public override void close() throws IOStreamError.InputStreamError {
-		if(!closed) {
-			fp.close();
-			closed = true;
+		if(fp != null) {
+			fp = null;
 		}
 	}
 }

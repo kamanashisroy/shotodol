@@ -14,7 +14,6 @@ using shotodol;
 public abstract class shotodol.DynamicModule : Module {
 	public DynamicModule(extring*nm,extring*ver) {
 		base(nm,ver);
-		isDynamic = true;
 	}
 	
 	public override int init() {
