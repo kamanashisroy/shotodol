@@ -10,6 +10,7 @@ Roadmap
 - [ ] Allow module info in the vala comment or a seperate file.
 - [ ] Check if the shotodol CGI can use the drupal module writing experience.
 	- Write a howto on CGI. Say it is possible to write web application in vala.
+	- move shotodol web in seperate project directory.
 - [x] Keep the modules in namespace like directory.
 - [ ] Know more about dbus and systemd projects.
 - [x] Add support for module writing in lua. 
@@ -21,6 +22,9 @@ Roadmap
 - [x] Implement infix/prefix bundlers.
 - [ ] Implement major,minor,patch,release versioning.
 - [ ] Profile memory move/copy events(with the memory size). It can be done in for example extring.copy_on_demand implementations.
+	- See zero copy memory management in gstreamer.
 - [ ] Implement green threads/coroutine. Spindle.longRun() instread of Spindle.step() may reduce the setup execution cost in each call.
+	- Use generators.
 - [ ] Add tagging support in watchdog log.
-- [ ] ** see if there is any object of a class of a module still exists in any_obj_factory after unloading the module **
+- [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
+- [ ] Keep shotodol bare minimum. Move extra modules in other projects.
