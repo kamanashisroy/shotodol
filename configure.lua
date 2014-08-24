@@ -45,7 +45,6 @@ configLines["PROJECT_HOME"] = prompt("Project path " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
 local ahome = string.gsub(configLines["SHOTODOL_HOME"],"shotodol$","aroop")
 configLines["VALA_HOME"] = prompt("Aroop path " .. ahome .. " > ", ahome)
-configLines["LINUX_BLUETOOTH"] = prompt_yes_no("enable bluetooth ?(y/n) > ")
 configLines["LUA_LIB"] = prompt("enable lua library ?(50/5.1/n) > ", "50")
 configLines["VALAFLAGS+"] = ""
 if configLines["LUA_LIB"] ~= "n" then
@@ -56,9 +55,6 @@ configLines["CFLAGS+"] = ""
 if yes_no_to_bool(prompt_yes_no("enable debug (-ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG) ?(y/n) > ")) then
 	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG"
 	configLines["AROOP_VARIANT"] = "_debug"
-end
-if yes_no_to_bool(configLines["LINUX_BLUETOOTH"]) then
-	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DLINUX_BLUETOOTH"
 end
 -- configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DDYNALIB_ROOT=\\\"$(PROJECT_HOME)/\\\""
 

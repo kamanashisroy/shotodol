@@ -8,9 +8,6 @@ Roadmap
 - [x] Fill the README.md for the console module.
 - [ ] Write a console module to connect to another console of shotodol as unix socket client.
 - [ ] Allow module info in the vala comment or a seperate file.
-- [ ] Check if the shotodol CGI can use the drupal module writing experience.
-	- Write a howto on CGI. Say it is possible to write web application in vala.
-	- move shotodol web in seperate project directory.
 - [x] Keep the modules in namespace like directory.
 - [ ] Know more about dbus and systemd projects.
 - [x] Add support for module writing in lua. 
@@ -27,4 +24,4 @@ Roadmap
 	- Use generators.
 - [ ] Add tagging support in watchdog log.
 - [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
-- [ ] Keep shotodol bare minimum. Move extra modules in other projects.
+- [x] Keep shotodol bare minimum. Move extra modules in other projects.

@@ -13,8 +13,6 @@ libs/propeller
 libs/bundle
 libs/db
 libs/make100
-OS_PLATFORM/platform_net
-libs/netio
 libs/programming_instruction
 core/base
 core/commands
@@ -27,5 +25,4 @@ core/shake
 core/script
 libs/turbine
 main/main
-web/cgi
 apps/good_luck

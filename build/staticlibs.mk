@@ -5,7 +5,6 @@ include $(SHOTODOL_HOME)/libs/watchdog/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/config/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/bundle/staticlibs.mk
 include $(SHOTODOL_HOME)/$(PLATFORM)/platform_extra/staticlibs.mk
-include $(SHOTODOL_HOME)/$(PLATFORM)/platform_net/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/iostream/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/plugin/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/str_arms/staticlibs.mk
@@ -16,10 +15,6 @@ include $(SHOTODOL_HOME)/linux/lua/staticlibs.mk
 endif
 OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core$(AROOP_VARIANT).a
 #
-#OBJECTS+=$(OBJDIR)/imageio.o
-#OBJECTS+=$(OBJDIR)/fast-edge.o
-#OBJECTS+=$(OBJDIR)/shotodol_fastedge.o
-#OBJECTS+=$(OBJDIR)/dryman_kmeans.o
 #LIBS+=-lm
 #OBJECTS+=$(OBJDIR)/ProtoPktizer.o
 #OBJECTS+=$(OBJDIR)/DBEntry.o
