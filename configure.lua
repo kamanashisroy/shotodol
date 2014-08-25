@@ -28,7 +28,12 @@ local configLines = {}
 local configOps = {}
 
 io.write("This is the configure script built for shotodol\n")
-configLines["PLATFORM"] = "linux"
+local platforms = {}
+platforms[0] = "linux"
+platforms[1] = "raspberrypi_bare_metal"
+local pindex = prompt("Project path \r\n#0. " .. platforms[0] .. "\r\n#1. " .. platforms[1] .. "\r\n > " , 0)
+configLines["PLATFORM"] = platforms[tonumber(pindex)]
+
 
 -- LUA_INCLUDE=-I/usr/include/lua5.1
 -- LUA_LIB=-L/usr/lib/ -llua5.1
@@ -45,7 +50,11 @@ configLines["PROJECT_HOME"] = prompt("Project path " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
 local ahome = string.gsub(configLines["SHOTODOL_HOME"],"shotodol$","aroop")
 configLines["VALA_HOME"] = prompt("Aroop path " .. ahome .. " > ", ahome)
-configLines["LUA_LIB"] = prompt("enable lua library ?(50/5.1/n) > ", "50")
+if configLines["PLATFORM"] == "linux" then
+	configLines["LUA_LIB"] = prompt("enable lua library ?(50/5.1/n) > ", "50")
+else
+	configLines["LUA_LIB"] = "n"
+end
 configLines["VALAFLAGS+"] = ""
 if configLines["LUA_LIB"] ~= "n" then
 	configLines["VALAFLAGS+"] = configLines["VALAFLAGS+"] .. " -D LUA_LIB"
