@@ -1,4 +1,4 @@
-[icon](https://cloud.githubusercontent.com/assets/973414/4041121/6f1fdb82-2cf1-11e4-9bae-255ca34f309f.jpg)
+![icon](https://cloud.githubusercontent.com/assets/973414/4041121/6f1fdb82-2cf1-11e4-9bae-255ca34f309f.jpg)
 
 Shotodol
 ========
