@@ -17,7 +17,7 @@ internal class ScriptCommand : M100Command {
 		FILE,
 	}
 	CompositeExtension ex;
-	Module sourceModule;
+	unowned Module sourceModule;
 	public ScriptCommand(CompositeExtension container, Module mod) {
 		extring prefix = extring.set_static_string("script");
 		base(&prefix);

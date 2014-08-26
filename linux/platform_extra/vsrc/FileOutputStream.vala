@@ -19,7 +19,7 @@ public class shotodol.FileOutputStream : OutputStream {
 	}
 
 	~FileOutputStream() {
-		close();
+		//close();
 	}
 
 	public override int write(extring*buf) throws IOStreamError.OutputStreamError {

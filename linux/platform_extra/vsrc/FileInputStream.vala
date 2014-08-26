@@ -25,7 +25,7 @@ public class shotodol.FileInputStream : InputStream {
 	}
 
 	~FileInputStream() {
-		close();
+		//close();
 	}
 
 	public override int read(extring*buf) throws IOStreamError.InputStreamError {

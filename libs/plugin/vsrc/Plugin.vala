@@ -25,9 +25,9 @@ public class shotodol.Plugin : Module {
 	public static int unregister(extring*target, Extension e) {
 		return x.unregister(target, e);
 	}
-	public static int unregisterModule(Module mod) {
+	public static int unregisterModule(Module mod, OutputStream?pad = null) {
 		if(x != null)
-			return x.unregisterModule(mod);
+			return x.unregisterModule(mod, pad);
 		return 0;
 	}
 	public static void swarm(extring*target, extring*inmsg, extring*outmsg) {

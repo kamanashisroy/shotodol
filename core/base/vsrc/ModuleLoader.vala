@@ -108,7 +108,7 @@ public class shotodol.ModuleLoader : Replicable {
 		return 0;
 	}
 
-	public int unloadModuleByName(extring*givenModuleName) {
+	public int unloadModuleByName(extring*givenModuleName, OutputStream?pad = null) {
 		print("Unloading module %s\n", givenModuleName.to_string());
 		int pruneFlag = 1<<1;
 		aroop.Iterator<AroopPointer<Module>>it = aroop.Iterator<AroopPointer<Module>>.EMPTY();
@@ -129,7 +129,7 @@ public class shotodol.ModuleLoader : Replicable {
 				map.mark(pruneFlag);
 				moduleName = new xtring.copy_deep(&mn);
 				print("Unregistering %s,%d,%s,%d from registry ..\n", mn.to_string(), mn.length() , moduleName.fly().to_string(), moduleName.fly().length());
-				Plugin.unregisterModule(m);
+				Plugin.unregisterModule(m, pad);
 				//print("Deinit %s ..\n", mn.to_string());
 				mn.destroy();
 				// unload dynamic module is prone to crash ..
@@ -144,11 +144,11 @@ public class shotodol.ModuleLoader : Replicable {
 				core.gc_unsafe(); // let all the objects destroyed and collected
 				print("Searching %s module\n", moduleName.fly().to_string());
 			} // This scope makes sure that the module instance is destroyed ..
-			//if(moduleName != null)core.assert_no_module(moduleName.fly().to_string());
+			if(moduleName != null)core.assert_no_module(moduleName.fly().to_string());
 			if(owner != null) {
 				// So this is the dynamic library of the last unloaded module ..
 				print("Unloading dynamic objects ..\n");
-				//owner.unload();
+				owner.unload();
 				print("Done\n");
 			}
 			core.gc_unsafe(); // let all the objects destroyed and collected

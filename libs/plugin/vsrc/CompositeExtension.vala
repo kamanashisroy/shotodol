@@ -54,7 +54,7 @@ public class shotodol.CompositeExtension : Extension {
 		}
 		return 0;
 	}
-	public int unregisterModule(Module mod) {
+	public int unregisterModule(Module mod, OutputStream?pad) {
 		int pruneFlag = 1<<1;
 		aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
 		buildIterator(&it);
@@ -63,7 +63,10 @@ public class shotodol.CompositeExtension : Extension {
 			unowned Extension root = map.getUnowned();
 			// fix the root node
 			if(root.src == mod) {
-				print("Deleting extension .. for %s\n", map.key().fly().to_string());
+//#if AROOP_OPP_DEBUG
+				print("Deleting root extension .. for %s\n", map.key().fly().to_string());
+				if(pad != null)root.desc(pad);
+//#endif
 				if(root.next == null) {
 					map.mark(pruneFlag);
 					continue;
@@ -73,6 +76,10 @@ public class shotodol.CompositeExtension : Extension {
 					if(e.src != mod) {
 						break;
 					}
+//#if AROOP_OPP_DEBUG
+					print("Deleting extension node .. for %s\n", map.key().fly().to_string());
+					if(pad != null)e.desc(pad);
+//#endif
 					unowned Extension next = e.next;
 					e.next = null;
 					e = next;
@@ -88,6 +95,10 @@ public class shotodol.CompositeExtension : Extension {
 			while(root.next != null) {
 				Extension next = root.next;
 				if(next.src == mod) {
+//#if AROOP_OPP_DEBUG
+					print("Deleting extension node .. for %s\n", map.key().fly().to_string());
+					if(pad != null)next.desc(pad);
+//#endif
 					root.next = next.next;
 					next.next = null;
 				} else {

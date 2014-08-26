@@ -39,7 +39,7 @@ internal class shotodol.ModuleCommand : M100Command {
 		}
 		fn = vals[Options.UNLOAD];
 		if(fn != null) {
-			ModuleLoader.singleton.unloadModuleByName(fn);
+			ModuleLoader.singleton.unloadModuleByName(fn, pad);
 		}
 		if(vals[Options.LIST] != null) {
 			CommandModule.server.cmds.list(pad);

@@ -6,7 +6,7 @@ using shotodol;
  */
 public class shotodol.Extension : Replicable {
 	internal Extension?next;
-	internal Module?src;
+	internal unowned Module?src;
 	public Extension(Module mod) {
 		next = null;
 		src = mod;
