@@ -33,7 +33,7 @@ static int shotodol_dir_setup(shotodol_dir_t*x) {
 int shotodol_dir_open(shotodol_dir_t*x, struct aroop_txt*gPath) {
 	shotodol_dir_setup(x);
 	char*pathstr = aroop_txt_to_string(gPath);
-	if(aroop_txt_embeded_zero_terminate(gPath)) {
+	if(aroop_txt_zero_terminate(gPath)) {
 		x->dir = opendir(pathstr);
 		return 0;
 	}
