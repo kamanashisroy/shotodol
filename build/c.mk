@@ -1,6 +1,7 @@
 
 include $(MODULE_DEPTH)/build/.config.mk
 OBJDIR=$(PROJECT_HOME)/build/.objects
+OBJDIR_COMMON=/build/.objects
 VSOURCES=$(wildcard vsrc/*.vala)
 VSOURCE_BASE=$(basename $(notdir $(VSOURCES)))
 CSOURCES=$(addprefix vsrc/, $(addsuffix .c,$(VSOURCE_BASE)))
