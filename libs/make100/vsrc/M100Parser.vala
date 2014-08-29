@@ -33,7 +33,7 @@ public abstract class shotodol.M100Parser: Replicable {
 		int i;
 		int len = src.length();
 		for(i = 0; i < len; i++) {
-			char x = src.char_at(i);
+			uchar x = src.char_at(i);
 			if(x == '\t' || x == ' ' || x == '\r' || x == '\n') { // trim them
 				skippable++;
 			} else {
@@ -53,7 +53,7 @@ public abstract class shotodol.M100Parser: Replicable {
 		int len = src.length();
 		next.rebuild_and_copy_shallow(src);
 		for(i = 0; i < len; i++) {
-			char x = src.char_at(i);
+			uchar x = src.char_at(i);
 			if(x == '\t' || x == ' ' || x == '\r' || x == '\n') { // tokens
 				if(token_start == -1) {
 					continue;

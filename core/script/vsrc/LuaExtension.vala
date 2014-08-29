@@ -20,7 +20,7 @@ public class shotodol.LuaExtension : Extension {
 		targetFunction.concat(&exten);
 		int i = 0;
 		for(i = 0; i < givenTargetFunction.length(); i++) {
-			char c = givenTargetFunction.char_at(i);
+			uchar c = givenTargetFunction.char_at(i);
 			// replace '/' into '_' while coping ..
 			targetFunction.concat_char(c == '/' ? '_' : c);
 		}

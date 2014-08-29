@@ -126,13 +126,13 @@ public abstract class shotodol.M100Command : Replicable {
 		int rewritelen = cmd.length();
 		rewritelen+= 512;
 		extring rewritecmd = extring.stack(rewritelen);
-		char p = '\0';
+		uchar p = '\0';
 		int i;
 		int len = cmd.length();
 		int varStart = -1;
 		extring varName = extring();
 		for(i = 0; i < len; i++) {
-			char x = cmd.char_at(i);
+			uchar x = cmd.char_at(i);
 			if(varStart >= 0) {
 				if(x == ')') {
 					varName = extring.copy_deep(cmd);

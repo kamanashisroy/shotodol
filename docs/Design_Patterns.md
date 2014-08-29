@@ -17,3 +17,4 @@ The pollen has an inheritance pattern.
 Readings
 ==========
 [Drupal OOP](https://www.drupal.org/node/547518)
+[When OOP do not fit](http://technosophos.com/2010/10/13/why-object-oriented-programming-bad-drupal.html)

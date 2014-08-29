@@ -44,7 +44,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		int trim_at = -1;
 		int len = src.length();
 		for(i = 0; i < len; i++) {
-			char x = src.char_at(i);
+			uchar x = src.char_at(i);
 			if(x == ' ' || x == '\r' || x == '\n') {
 				if(token_start == -1) {
 					continue;
@@ -83,7 +83,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		int len = src.length();
 		bool stringLiteral = false;
 		for(i = 0; i < len; i++) {
-			char x = src.char_at(i);
+			uchar x = src.char_at(i);
 			bool isQuote = (x == '\"');
 			if((stringLiteral && isQuote) || ( !stringLiteral && ( x == ' ' || x == '\r' || x == '\n' || isQuote) ) ) {
 				if(token_start == -1) {
@@ -132,7 +132,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		int trim_at = -1;
 		int len = src.length();
 		for(i = 0; i < len; i++) {
-			char x = src.char_at(i);
+			uchar x = src.char_at(i);
 			if(x == ' ' || x == '\r' || x == '\n') {
 				if(token_start == -1) {
 					continue;
