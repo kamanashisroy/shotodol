@@ -9,7 +9,7 @@ public class shotodol.CompositeOutputStream : OutputStream {
 	Set<OutputStream> collection;
 	public CompositeOutputStream(int inc = 16, uchar mark = aroop.factory_flags.HAS_LOCK | aroop.factory_flags.SWEEP_ON_UNREF) {
 		closed = false;
-		collection = Set<OutputStream>(inc, mark);
+		collection = Set<OutputStream>(inc, mark | aroop.factory_flags.EXTENDED /* token will only work when it is EXTENDED */);
 	}
 	~CompositeOutputStream() {
 		collection.destroy();
