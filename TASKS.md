@@ -3,6 +3,7 @@ Roadmap
 
 - [x] Write an example to demonstrate hooking.
 - [ ] Fix the crash bug on exit.
+	- [ ] Fix the reference bug in generics.
 - [ ] Write profiler checking command.
 - [ ] Write an example to generate a custom event/task.
 - [x] Fill the README.md for the console module.

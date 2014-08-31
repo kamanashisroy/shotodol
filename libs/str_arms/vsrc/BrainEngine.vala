@@ -51,6 +51,7 @@ public class shotodol.BrainEngine<G> : Replicable {
 				ret = sense;
 				strength = len;
 			}
+			sense = null;
 			return 0;
 		}, Replica_flags.ALL, 0, 0);
 		return ret;

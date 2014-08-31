@@ -183,6 +183,10 @@ Design Patterns
 - [Design patterns](docs/Design_Patterns.md)
 - [Diagrams](docs/diagrams.md)
 
+Debugging
+==========
+- [Debugging](docs/debugging.md)
+
 Tasks
 ======
 
