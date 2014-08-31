@@ -19,7 +19,7 @@ public abstract class shotodol.ConfigEngine : Replicable {
 		entrySource = Factory<ConfigEntry>.for_type();
 		moduleSource = Factory<ConfigModuleEntry>.for_type();
 	}
-	~Config() {
+	~ConfigEngine() {
 		modules.destroy();
 		entrySource.destroy();
 		moduleSource.destroy();

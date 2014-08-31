@@ -80,7 +80,7 @@ public class shotodol.CompositeExtension : Extension {
 					print("Deleting extension node .. for %s\n", map.key().fly().to_string());
 					if(pad != null)e.desc(pad);
 //#endif
-					unowned Extension next = e.next;
+					Extension next = e.next;
 					e.next = null;
 					e = next;
 				}

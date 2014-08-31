@@ -9,6 +9,9 @@ public class shotodol.DefaultConfigEngine : ConfigEngine {
 	public DefaultConfigEngine() {
 		base();
 	}
+	~DefaultConfigEngine() {
+		single = null;
+	}
 	public static ConfigEngine getDefault() {
 		return single;
 	}

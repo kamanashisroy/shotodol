@@ -19,7 +19,10 @@ internal class shotodol.WatchdogEntry : Replicable {
 	internal int subtype;
 	internal int id;
 	xtring msg;
-	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, extring*gmsg) {
+	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, extring*gmsg, Factory<xtring>*xtringBuilder) {
+		build(gsourcefile, glineno, glevel, gseverity, gsubtype, gid, gmsg, xtringBuilder);
+	}
+	internal void build(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, extring*gmsg, Factory<xtring>*xtringBuilder) {
 		//extring sf = extring.stack(64);
 		//sf.concat_string(gsourcefile);
 		sourcefile = new xtring.copy_string(gsourcefile);
@@ -29,7 +32,7 @@ internal class shotodol.WatchdogEntry : Replicable {
 		severity = gseverity;
 		subtype = gsubtype;
 		id = gid;
-		msg = new xtring.copy_content(gmsg.to_string(), gmsg.length()+2);
+		msg = new xtring.copy_content(gmsg.to_string(), gmsg.length()+2, xtringBuilder);
 		// trim new line
 		if(msg.fly().length() >= 1 && msg.fly().char_at(msg.fly().length()-1) == '\n') {
 			msg.fly().trim_to_length(msg.fly().length()-1);
@@ -78,15 +81,24 @@ public class shotodol.Watchdog : Replicable {
 	}
 	int numberOfOnMemoryLogs;
 	ArrayList<WatchdogEntry> logs;
+	Factory<WatchdogEntry>entryFactory;
+	Factory<xtring>xtringFactory;
 	int rotator;
 	int logLevel;
 	public Watchdog(OutputStream?logger, int givenNumberOfOnMemoryLogs) {
 		pad = logger;
 		numberOfOnMemoryLogs = givenNumberOfOnMemoryLogs;
 		logs = ArrayList<WatchdogEntry>();
+		entryFactory = Factory<WatchdogEntry>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
+		xtringFactory = Factory<xtring>.for_type_full(32, (uint)sizeof(xtring)+64);
 		logLevel = 20;
 		rotator = 0;
 		watch = this;
+	}
+	~Watchdog() {
+		logs.destroy(); // logs must be destroyed before factory
+		entryFactory.destroy();
+		xtringFactory.destroy(); // xtring must be destroyed after entry factory
 	}
 	public int stop() {
 		watch = null;
@@ -135,7 +147,9 @@ public class shotodol.Watchdog : Replicable {
 	public static int watchit(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, extring*msg) {
 		if(watch == null || watch.logLevel < level) return 0;
 		
-		WatchdogEntry x = new WatchdogEntry(sourcefile, lineno, level, severity, subtype, id, msg);
+		//WatchdogEntry x = new WatchdogEntry();
+		WatchdogEntry x = watch.entryFactory.alloc_full();
+		x.build(sourcefile, lineno, level, severity, subtype, id, msg, &watch.xtringFactory);
 		if(watch.pad != null) x.serialize(watch.pad);
 		if(watch.numberOfOnMemoryLogs == 0) return 0;
 		watch.logs.set(watch.rotator, x);

@@ -18,14 +18,25 @@ public class ConsoleModule : DynamicModule {
 	}
 
 	public override int init() {
-		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new WatchdogCommand(), this));
-		extring unittest = extring.set_static_string("unittest");
-		Plugin.register(&unittest, new AnyInterfaceExtension(new ConsoleTest(), this));
-		extring onLoad = extring.set_static_string("onLoad");
-		Plugin.register(&onLoad, new HookExtension(onLoadHook, this));
+		extring entry = extring.set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new WatchdogCommand(), this));
+		entry.rebuild_and_set_static_string("unittest");
+		Plugin.register(&entry, new AnyInterfaceExtension(new ConsoleTest(), this));
+		entry.rebuild_and_set_static_string("onLoad");
+		Plugin.register(&entry, new HookExtension(onLoadHook, this));
+#if false
+		entry.rebuild_and_set_static_string("onQuit");
+		Plugin.register(&entry, new HookExtension((onQuitHook), this));
+#endif
 		return 0;
 	}
+
+#if false
+	int onQuitHook(extring*msg, extring*output) {
+		// Do we need this ?
+		return 0;
+	}
+#endif
 
 	int onLoadHook(extring*msg, extring*output) {
 		bool hasConsole = true;

@@ -144,7 +144,9 @@ public class shotodol.ModuleLoader : Replicable {
 				core.gc_unsafe(); // let all the objects destroyed and collected
 				print("Searching %s module\n", moduleName.fly().to_string());
 			} // This scope makes sure that the module instance is destroyed ..
-			if(moduleName != null)core.assert_no_module(moduleName.fly().to_string());
+			if(moduleName != null && !moduleName.fly().equals_static_string("core/base")) {
+				core.assert_no_module(moduleName.fly().to_string());
+			}
 			if(owner != null) {
 				// So this is the dynamic library of the last unloaded module ..
 				print("Unloading dynamic objects ..\n");

@@ -26,6 +26,7 @@ public class shotodol.MainTurbine : shotodol.Propeller {
 	}
 	public int quit() { // XXX we should not be called by anyone to quit the application, this is security violation
 		cancel();
+		clearAll();
 		return 0;
 	}
 }

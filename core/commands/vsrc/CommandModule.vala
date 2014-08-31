@@ -13,38 +13,54 @@ using shotodol;
 public class shotodol.CommandModule: DynamicModule {
 	public static CommandModule? server;
 	public M100CommandSet?cmds;
+	bool freeze;
 	public CommandModule() {
 		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
+		freeze = false;
 		cmds = new M100CommandSet();
 		ModuleLoader.singleton.loadStatic(new ProgrammingInstruction());
 	}
 	
 	public override int init() {
 		server = this;
-		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new QuitCommand(), this));
-		Plugin.register(&command, new M100Extension(new HelpCommand(), this));
-		Plugin.register(&command, new M100Extension(new ModuleCommand(), this));
-		Plugin.register(&command, new M100Extension(new PluginCommand(), this));
-		Plugin.register(&command, new M100Extension(new RehashCommand(), this));
-		Plugin.register(&command, new M100Extension(new MemoryTraceCommand(), this));
-		extring onLoad = extring.set_static_string("onLoad");
-		Plugin.register(&onLoad, new HookExtension(rehashHook, this));
-		extring rehash = extring.set_static_string("rehash");
-		Plugin.register(&rehash, new HookExtension(rehashHook, this));
-		extring cmdServ = extring.set_static_string("command/server");
-		Plugin.register(&cmdServ, new HookExtension(commandServerHook, this));
+		extring entry = extring.set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new QuitCommand(), this));
+		Plugin.register(&entry, new M100Extension(new HelpCommand(), this));
+		Plugin.register(&entry, new M100Extension(new ModuleCommand(), this));
+		Plugin.register(&entry, new M100Extension(new PluginCommand(), this));
+		Plugin.register(&entry, new M100Extension(new RehashCommand(), this));
+		Plugin.register(&entry, new M100Extension(new MemoryTraceCommand(), this));
+		entry.rebuild_and_set_static_string("onLoad");
+		Plugin.register(&entry, new HookExtension(rehashHook, this));
+		entry.rebuild_and_set_static_string("rehash");
+		Plugin.register(&entry, new HookExtension(rehashHook, this));
+		entry.rebuild_and_set_static_string("command/server");
+		Plugin.register(&entry, new HookExtension(commandServerHook, this));
+		entry.rebuild_and_set_static_string("onQuit");
+		Plugin.register(&entry, new HookExtension((onQuitHook), this));
 		rehashHook(null, null);
 		return 0;
 	}
+
+	int onQuitHook(extring*msg, extring*output) {
+		freeze = true;
+		//server = null;
+		cmds = null;
+		return 0;
+	}
+
 	int rehashHook(extring*msg, extring*output) {
+		if(freeze)
+			return 0;
 		extring command = extring.set_static_string("command");
 		cmds.rehash(&command);
 		return 0;
 	}
 	int commandServerHook(extring*callstr, extring*output) {
+		if(freeze)
+			return 0;
 		if(callstr == null) return 0;
 		// now parse the callstr
 		server.cmds.act_on(callstr, new StandardOutputStream(), null);
