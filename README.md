@@ -9,7 +9,7 @@ This is an all in one **server environment** written in [aroop](https://github.c
 - An interface(plugin system) where the modules communicate.
 - An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate.
 
-The idea here is to provide you an environment to write your own service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple.
+The idea here is to provide you an environment to write your own service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple. It minimises the required information [overhead](http://en.wikipedia.org/wiki/Information_overload) to write plugin/feature.
 
 The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
