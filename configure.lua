@@ -24,6 +24,28 @@ function prompt(y,xval)
 	return x
 end
 
+function promptOptions(greet,options,xval)
+	local x = xval
+	local i = 0
+	local mygreet = greet
+	while true do
+		if options[i] == nil then break end
+		mygreet = mygreet .. "\r\n#" .. i .. " (" .. options[i] ..")"
+		i = i + 1
+	end
+	mygreet = mygreet .. "\r\n>"
+	repeat
+		io.write(mygreet)
+		io.flush()
+		x=io.read()
+	until x=="" or tonumber(x)~=nil
+	if x == "" then
+		return xval
+	end
+	return x
+end
+
+
 local configLines = {}
 local configOps = {}
 
@@ -31,7 +53,8 @@ io.write("This is the configure script built for shotodol\n")
 local platforms = {}
 platforms[0] = "linux"
 platforms[1] = "raspberrypi_bare_metal"
-local pindex = prompt("Project path \r\n#0. " .. platforms[0] .. "\r\n#1. " .. platforms[1] .. "\r\n > " , 0)
+platforms[2] = "raspberrypi"
+local pindex = promptOptions("Platform >" , platforms, 0)
 configLines["PLATFORM"] = platforms[tonumber(pindex)]
 
 
@@ -66,6 +89,22 @@ if yes_no_to_bool(prompt_yes_no("enable debug (-ggdb3 -DAROOP_OPP_PROFILE -DAROO
 	configLines["AROOP_VARIANT"] = "_debug"
 end
 -- configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DDYNALIB_ROOT=\\\"$(PROJECT_HOME)/\\\""
+
+
+if configLines["PLATFORM"] == "raspberrypi" then
+	configLines["ARMGNU?"] = configLines["PROJECT_HOME"] .. "/tools-master/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf"
+	configLines["AFLAGS"] = " --warn --fatal-warnings -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mcpu=arm1176jzf-s $(DEBUGFLAG)"
+
+	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -O2 -nostdlib -nostartfiles -ffreestanding -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176jzf-s"
+	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -Wall"
+	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -DRASPBERRY_PI -DAROOP_BASIC "
+	configLines["CC"] = configLines["ARMGNU?"] .. "-gcc"
+	configLines["PLATFORM"] = "linux" -- redirect to linux
+	local raspberry_note = "Welcome to raspberry pi compilation script.\r\n================================================\r\nTo compile the application you neet to get the raspberry pi compiler and put that in tools-master directory inside the project directory(current directory). Otherwise you can do a `wget -N https://github.com/raspberrypi/tools/archive/master.zip;unzip master.zip` command to download it from internet.\r\nGood luck\r\n"
+	io.write(raspberry_note)
+	io.flush()
+end
+
 
 local conf = assert(io.open("build/.config.mk", "w"))
 for x in pairs(configLines) do
