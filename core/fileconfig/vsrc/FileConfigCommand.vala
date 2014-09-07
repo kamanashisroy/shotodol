@@ -25,10 +25,13 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 		}
 		FileInputStream fis = new FileInputStream.from_file(infile);
 		LineInputStream lis = new LineInputStream(fis);
-		ConfigEngine?cfg = DefaultConfigEngine.getDefault();
+		ConfigEngine?cfg = null;
+		extring entry = extring.set_static_string("config/server");
+		Plugin.acceptVisitor(&entry, (x) => {
+			cfg = (ConfigEngine)x.getInterface(null);
+		});
 		if(cfg == null) {
-			cfg = new DefaultConfigEngine();
-			DefaultConfigEngine.setDefault(cfg);
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Not ready");
 		}
 		do {
 			extring configLine = extring.stack(128);

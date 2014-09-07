@@ -37,6 +37,10 @@ public class shotodol.MainProgram {
 		Plugin.swarm(&hook, &memory, null);
 		hook.rebuild_and_set_static_string("onLoadAlter");
 		Plugin.swarm(&hook, &memory, null);
+		hook.rebuild_and_set_static_string("onReady");
+		Plugin.swarm(&hook, &memory, null);
+		hook.rebuild_and_set_static_string("onReadyAlter");
+		Plugin.swarm(&hook, &memory, null);
 		return 0;
 	}
 #if false

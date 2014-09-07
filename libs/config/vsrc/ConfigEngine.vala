@@ -10,7 +10,7 @@ using shotodol;
 /** \addtogroup config
  *  @{
  */
-public abstract class shotodol.ConfigEngine : Replicable {
+public class shotodol.ConfigEngine : Replicable {
 	HashTable<xtring,ConfigModuleEntry> modules;
 	internal Factory<ConfigModuleEntry> moduleSource;
 	internal Factory<ConfigEntry> entrySource;
@@ -24,16 +24,17 @@ public abstract class shotodol.ConfigEngine : Replicable {
 		entrySource.destroy();
 		moduleSource.destroy();
 	}
-#if false
-	public int getConfig(extring*moduleName, extring*grp, ) {
-		container<xtring>? mod;
-		if((mod = vals.search(id, match_all)) == null) {
-			return -1;
-		}
-		output.cat(mod.get());
+
+	public int getValueAs(extring*moduleName, extring*grp, extring*key, extring*outValue) {
+		ConfigModuleEntry? module = modules.get((xtring)moduleName);
+		if(module == null)
+			return 0;
+		ConfigEntry?entry = module.get((xtring)grp);
+		if(entry == null)
+			return 0;
+		entry.getAs(key, outValue);
 		return 0;
 	}
-#endif
 	
 	public int parseEntry(extring*data) {
 		extring token = extring();

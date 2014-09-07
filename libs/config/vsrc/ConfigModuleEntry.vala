@@ -29,5 +29,8 @@ internal class ConfigModuleEntry : Replicable {
 		entry.set(myKey, myValue);
 		return 0;
 	}
+	internal ConfigEntry? get(extring*entryName) {
+		return entries.get((xtring)entryName);
+	}
 }
 /** @}*/

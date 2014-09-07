@@ -18,15 +18,16 @@ public class FileConfigModule : DynamicModule {
 	}
 
 	public override int init() {
-		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new FileConfigCommand(), this));
-		extring unittest = extring.set_static_string("unittest");
-		Plugin.register(&unittest, new AnyInterfaceExtension(new FileConfigTest(), this));
+		extring entry = extring.set_static_string("config/server");
+		Plugin.register(&entry, new ConfigExtension(this));
+		entry.rebuild_and_set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new FileConfigCommand(), this));
+		entry.rebuild_and_set_static_string("unittest");
+		Plugin.register(&entry, new AnyInterfaceExtension(new FileConfigTest(), this));
 		return 0;
 	}
 
 	public override int deinit() {
-		DefaultConfigEngine.setDefault(null);
 		base.deinit();
 		return 0;
 	}
