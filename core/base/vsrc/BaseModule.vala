@@ -16,8 +16,8 @@ public class shotodol.BaseModule : Module {
 	public override int init() {
 		extring entry = extring.set_static_string("onQuit");
 		Plugin.register(&entry, new HookExtension((onQuitHook), this));
-		entry.rebuild_and_set_static_string("onReady");
-		Plugin.register(&entry, new HookExtension((onReadyHook), this));
+		entry.rebuild_and_set_static_string("onReadyAlter");
+		Plugin.register(&entry, new HookExtension((onReadyAlterHook), this));
 		entry.rebuild_and_set_static_string("run");
 		Plugin.register(&entry, new HookExtension((runHook), this));
 		entry.rebuild_and_set_static_string("rehash");
@@ -30,7 +30,7 @@ public class shotodol.BaseModule : Module {
 		return 0;
 	}
 
-	int onReadyHook(extring*msg, extring*output) {
+	int onReadyAlterHook(extring*msg, extring*output) {
 		mt = new MainTurbine();
 		mt.rehash();
 		return 0;

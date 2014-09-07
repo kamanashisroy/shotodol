@@ -68,6 +68,9 @@ public class shotodol.ConfigEngine : Replicable {
 							modules.set(myModuleName, module);
 						}
 						xtring val = new xtring.copy_deep(&inp);
+						if(val.fly().char_at(0) == ' ') {
+							val.fly().shift(1);
+						}
 						module.set(entrySource, myEntryName, myKey, val);
 					}
 				break;
