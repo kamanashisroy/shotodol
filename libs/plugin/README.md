@@ -63,4 +63,5 @@ Readings
 - [Interface](http://en.wikipedia.org/wiki/Interface_%28computing%29)
 - [Hook](http://en.wikipedia.org/wiki/Hooking)
 - [nixysa](https://code.google.com/p/nixysa/wiki/HelloWorldWalkThru)
+- [Plugin](http://miniim.blogspot.com/2014/09/plugin.html)
 

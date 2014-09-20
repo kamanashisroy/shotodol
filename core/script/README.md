@@ -1,7 +1,7 @@
 Script module
 ==============
 
-This module loads lua scripts and registers hook extensions.
+This module loads lua scripts and registers hook extensions. It is easy to write script module. It has a goal that the 'best API is no API'. Scripts can be used here as metaprogramming tool too.
 
 ### Writing a hook extension
 
