@@ -92,10 +92,6 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 - [bundle](libs/bundle/README.md)
 
-### DB modules
-
-- [db](libs/db/README.md)
-
 ### Unsorted modules
 
 - [str\_arms](libs/str_arms/README.md)

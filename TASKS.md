@@ -16,7 +16,7 @@ Roadmap
 	- Add a module function to load script modules.
 - [x] Rename str to xtring.
 - [x] Finish up the primary messaging code, named, pollen.
-- [ ] Add a homebrew package.(Is it feasible ?)
+- [ ] Add a homebrew package.(Is it feasible ?). Or we may write bricks/rocks packages.
 - [x] Implement infix/prefix bundlers.
 - [ ] Implement major,minor,patch,release versioning.
 - [ ] Profile memory move/copy events(with the memory size). It can be done in for example extring.copy_on_demand implementations.
