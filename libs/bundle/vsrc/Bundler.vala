@@ -297,5 +297,13 @@ public struct shotodol.Bundler {
 	public uint getContentLength() throws BundlerError {
 		return cur_len;
 	}
+	public void getEXtring(extring*outparam) throws BundlerError {
+		if(cur_len == 0) {
+			outparam.destroy();
+			return;
+		}
+		int len = cur_len - 1;/*ommit the null character*/
+		outparam.rebuild_and_set_content((string)getContent(), len);
+	}
 }
 /** @}*/
