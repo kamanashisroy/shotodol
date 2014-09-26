@@ -62,8 +62,13 @@ public class shotodol.CommandModule: DynamicModule {
 		if(freeze)
 			return 0;
 		if(callstr == null) return 0;
-		// now parse the callstr
-		server.cmds.act_on(callstr, new StandardOutputStream(), null);
+		if(output == null) {
+			server.cmds.act_on(callstr, new StandardOutputStream(), null);
+			return 0;
+		}
+		BufferedOutputStream pad = new BufferedOutputStream(4096);
+		server.cmds.act_on(callstr, pad, null);
+		pad.getAs(output);
 		return 0;
 	}
 	public override int deinit() {
