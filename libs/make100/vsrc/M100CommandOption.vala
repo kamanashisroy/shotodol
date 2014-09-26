@@ -7,7 +7,7 @@ using shotodol;
 internal errordomain shotodol.M100CommandOptionError.ParseError {
 	MISSING_ARGUMENT,
 }
-internal class shotodol.M100CommandOption : Searchable {
+public class shotodol.M100CommandOption : Searchable {
 	xtring prefix;
 	xtring elab;
 	M100Command.OptionType tp;
@@ -78,6 +78,13 @@ internal class shotodol.M100CommandOption : Searchable {
 			}
 		}
 		return 0;
+	}
+	
+	public M100Command.OptionType getType() {
+		return tp;
+	}
+	public void getPrefixAs(extring*outvar) {
+		outvar.rebuild_and_copy_shallow(prefix);
 	}
 }
 /** @}*/

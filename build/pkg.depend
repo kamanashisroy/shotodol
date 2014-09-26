@@ -11,7 +11,6 @@ OS_PLATFORM/platform_fileutils
 OS_PLATFORM/lua
 libs/propeller
 libs/bundle
-libs/db
 libs/make100
 libs/programming_instruction
 core/base

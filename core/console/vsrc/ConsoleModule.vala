@@ -9,7 +9,7 @@ using shotodol_platform;
 /** \addtogroup console
  *  @{
  */
-public class ConsoleModule : DynamicModule {
+public class shotodol.ConsoleModule : DynamicModule {
 
 	public ConsoleModule() {
 		extring nm = extring.set_string(core.sourceModuleName());

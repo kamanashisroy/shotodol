@@ -11,6 +11,7 @@ public errordomain M100CommandError.ActionFailed {
 	OTHER,
 }
 
+public delegate void shotodol.M100CommandOptionVisitor(M100CommandOption opt);
 public abstract class shotodol.M100Command : Replicable {
 	public enum CommandDescType {
 		COMMAND_DESC_TITLE,
@@ -100,6 +101,13 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 	public virtual int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		return 0;
+	}
+	public void acceptOptionsVisitor(M100CommandOptionVisitor visitor) {
+		Iterator<M100CommandOption> it = Iterator<M100CommandOption>(&options, Replica_flags.ALL, 0, 0);
+		while(it.next()) {
+			M100CommandOption? opt = it.get();
+			visitor(opt);
+		}
 	}
 	public virtual int desc(CommandDescType tp, OutputStream pad) {
 		extring x = extring.stack(32);
