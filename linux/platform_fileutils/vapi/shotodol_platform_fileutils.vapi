@@ -24,5 +24,12 @@ namespace shotodol_platform_fileutils {
 		[CCode (cname="shotodol_closedir", cheader_filename = "shotodol_platform_fileutils.h")]
 		public int close();
 	}
+	[CCode (cname="void", cheader_filename = "shotodol_platform_fileutils.h")]
+	public struct FileUtil {
+		[CCode (cname="shotodol_platform_filenode_exists", cheader_filename = "shotodol_platform_fileutils.h")]
+		public static bool exists(extring*filename);
+		[CCode (cname="shotodol_platform_filenode_mkdir", cheader_filename = "shotodol_platform_fileutils.h")]
+		public static bool mkdir(extring*filename, long mode);
+	}
 }
 /* @} */
