@@ -16,7 +16,7 @@ public class shotodol.RenuFactoryImpl : RenuFactory {
 	}
 
 	public override Renu createRenu(uint16 sz) {
-		Renu x = fac.alloc_full(sz);
+		Renu x = fac.alloc_full((uint16)sizeof(Renu)+sz);
 		x.build(sz);
 		return x;
 	}

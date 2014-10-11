@@ -41,7 +41,7 @@ public class shotodol.Renu : Replicable {
 		bndlr.close();
 		len = bndlr.size;
 		immutable = true;
-		shrink((int)len);
+		shrink((int)sizeof(Renu)+(int)len);
 		size = len;
 	}
 	public void getTaskAs(extring*task) {
