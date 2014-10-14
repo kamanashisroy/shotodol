@@ -22,7 +22,7 @@ public class shotodol.ModuleLoader : Replicable {
 		stackPointer = 0;
 		loadStatic(new Plugin());
 		loadStatic(new BaseModule());
-		loadStatic(new RenuModule());
+		loadStatic(new BagModule());
 		singleton = this;
 	}
 

@@ -17,18 +17,18 @@ using shotodol;
 
 /**
  * \ingroup bundle
- * \defgroup renu Renu(Renu), is a table that contains some values. It is intended for messaging. And modules can register their attributes here and set them while messaging.
+ * \defgroup bag Bag(Bag), is a table that contains some values. It is intended for messaging. And modules can register their attributes here and set them while messaging.
  */
 
-/** \addtogroup renu
+/** \addtogroup bag
  *  @{
  */
-public class shotodol.Renu : Replicable {
+public class shotodol.Bag : Replicable {
 	public uint size;
 	public uint len;
 	bool immutable;
 	public Carton msg; // It must be the last element
-	Renu(uint gSize = 32) {
+	Bag(uint gSize = 32) {
 		build(gSize);
 	}
 	public void build(uint gSize = 32) {
@@ -41,14 +41,14 @@ public class shotodol.Renu : Replicable {
 		bndlr.close();
 		len = bndlr.size;
 		immutable = true;
-		shrink((int)sizeof(Renu)+(int)len);
+		shrink((int)sizeof(Bag)+(int)len);
 		size = len;
 	}
 	public void getTaskAs(extring*task) {
 		task.rebuild_and_set_content((string)msg.data, (int)len, this);
 	}
 }
-public abstract class shotodol.RenuFactory : Replicable {
-	public abstract Renu createRenu(uint16 sz);
+public abstract class shotodol.BagFactory : Replicable {
+	public abstract Bag createBag(uint16 sz);
 }
 /** @}*/

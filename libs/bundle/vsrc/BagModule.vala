@@ -1,11 +1,11 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup renu
+/** \addtogroup bag
  *  @{
  */
-public class shotodol.RenuModule : Module {
-	public RenuModule() {
+public class shotodol.BagModule : Module {
+	public BagModule() {
 		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
@@ -13,9 +13,9 @@ public class shotodol.RenuModule : Module {
 
 	public override int init() {
 		extring entry = extring.set_static_string("unittest");
-		Plugin.register(&entry, new AnyInterfaceExtension(new RenuTest(), this));
-		entry.rebuild_and_set_static_string("renu/factory");
-		Plugin.register(&entry, new AnyInterfaceExtension(new RenuFactoryImpl(), this));
+		Plugin.register(&entry, new AnyInterfaceExtension(new BagTest(), this));
+		entry.rebuild_and_set_static_string("bag/factory");
+		Plugin.register(&entry, new AnyInterfaceExtension(new BagFactoryImpl(), this));
 		return 0;
 	}
 
