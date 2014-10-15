@@ -10,7 +10,7 @@ using aroop;
  */
 namespace shotodol_platform_fileutils {
 	[Compact]
-	[CCode (cname="shotodol_platform_filenode_t", cheader_filename = "shotodol_platform_fileutils.h")]
+	[CCode (cname="shotodol_platform_filenode_t", cheader_filename = "shotodol_platform_fileutils.h", free_function = "aroop_donothing", unref_function = "aroop_donothing3")]
 	public class FileNode {
 		[CCode (cname="filename", cheader_filename = "shotodol_platform_fileutils.h")]
 		public extring fileName;
