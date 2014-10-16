@@ -40,14 +40,14 @@ public class shotodol.ConsoleModule : DynamicModule {
 
 	int onLoadHook(extring*msg, extring*output) {
 		bool hasConsole = true;
-		Bundler bndlr = Bundler();
-		bndlr.build_extring_reader(msg, BundlerAffixes.PREFIX);
+		Unbundler ubndlr = Unbundler();
+		ubndlr.build(msg, BundlerAffixes.PREFIX);
 		do {
 			try {
-				int key = bndlr.next();
+				int key = ubndlr.next();
 				if(key == -1) break;
-				if(bndlr.getContentType() != BundledContentType.STRING_CONTENT) continue;
-				extring uarg = extring.set_content((string)bndlr.getContent(), (int)bndlr.getContentLength());
+				if(ubndlr.getContentType() != BundledContentType.STRING_CONTENT) continue;
+				extring uarg = extring.set_content((string)ubndlr.getContent(), (int)ubndlr.getContentLength());
 				if(uarg.equals_string("-noconsole")) {
 					hasConsole = false;
 				} else if(uarg.equals_string("--help")) {

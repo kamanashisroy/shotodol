@@ -21,14 +21,14 @@ internal class shotodol.BagTest : UnitTest {
 	}
 	void test1(BagFactory builder, int affix) throws UnitTestError {
 		Bag r = testBuild(builder, affix);
-		Bundler bndlr = Bundler();
-		bndlr.buildFromCarton(&r.msg, r.len, affix, 5);
+		Unbundler ubndlr = Unbundler();
+		ubndlr.buildFromCarton(&r.msg, r.len, affix, 5);
 		uint8 i = 1;
 		while(true) {
-			if(bndlr.get(i) == -1)
+			if(ubndlr.get(i) == -1)
 				break;
-			int ct = bndlr.getContentType();
-			uint32 val = bndlr.getIntContent();
+			int ct = ubndlr.getContentType();
+			uint32 val = ubndlr.getIntContent();
 			if(ct != 0 && val != i) {
 				throw new UnitTestError.FAILED("Bag serialization test failed\n");
 			}
@@ -39,15 +39,15 @@ internal class shotodol.BagTest : UnitTest {
 	}
 	void test2(BagFactory builder, int affix) throws UnitTestError {
 		Bag r = testBuild(builder, affix);
-		Bundler bndlr = Bundler();
-		bndlr.buildFromCarton(&r.msg, r.len, affix, 5);
+		Unbundler ubndlr = Unbundler();
+		ubndlr.buildFromCarton(&r.msg, r.len, affix, 5);
 		uint8 i = 1;
 		while(true) {
-			if(bndlr.next() == -1)
+			if(ubndlr.next() == -1)
 				break;
-			uint8 key = bndlr.getContentKey();
-			int ct = bndlr.getContentType();
-			uint32 val = bndlr.getIntContent();
+			uint8 key = ubndlr.getContentKey();
+			int ct = ubndlr.getContentType();
+			uint32 val = ubndlr.getIntContent();
 			if(ct != 0 && val != key) {
 				throw new UnitTestError.FAILED("Bag serialization test failed\n");
 			}
