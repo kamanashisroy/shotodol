@@ -25,7 +25,6 @@ using shotodol;
  */
 public class shotodol.Bag : Replicable {
 	public uint size;
-	public uint len;
 	bool immutable;
 	public Carton msg; // It must be the last element
 	Bag(uint gSize = 32) {
@@ -33,19 +32,17 @@ public class shotodol.Bag : Replicable {
 	}
 	public void build(uint gSize = 32) {
 		size = gSize;
-		len = 0;
 		immutable = false;
 	}
 	public void finalize(Bundler*bndlr) {
 		core.assert(immutable == false);
 		bndlr.close();
-		len = bndlr.size;
+		size = bndlr.size;
 		immutable = true;
-		shrink((int)sizeof(Bag)+(int)len);
-		size = len;
+		shrink((int)sizeof(Bag)+(int)size);
 	}
-	public void getTaskAs(extring*task) {
-		task.rebuild_and_set_content((string)msg.data, (int)len, this);
+	public void getContentAs(extring*content) {
+		content.rebuild_and_set_content((string)msg.data, (int)size, this);
 	}
 }
 public abstract class shotodol.BagFactory : Replicable {

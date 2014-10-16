@@ -22,7 +22,7 @@ internal class shotodol.BagTest : UnitTest {
 	void test1(BagFactory builder, int affix) throws UnitTestError {
 		Bag r = testBuild(builder, affix);
 		Unbundler ubndlr = Unbundler();
-		ubndlr.buildFromCarton(&r.msg, r.len, affix, 5);
+		ubndlr.buildFromCarton(&r.msg, r.size, affix, 5);
 		uint8 i = 1;
 		while(true) {
 			if(ubndlr.get(i) == -1)
@@ -40,7 +40,7 @@ internal class shotodol.BagTest : UnitTest {
 	void test2(BagFactory builder, int affix) throws UnitTestError {
 		Bag r = testBuild(builder, affix);
 		Unbundler ubndlr = Unbundler();
-		ubndlr.buildFromCarton(&r.msg, r.len, affix, 5);
+		ubndlr.buildFromCarton(&r.msg, r.size, affix, 5);
 		uint8 i = 1;
 		while(true) {
 			if(ubndlr.next() == -1)
