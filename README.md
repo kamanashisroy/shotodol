@@ -203,4 +203,5 @@ Readings
 - [Unix philosophy](http://en.wikipedia.org/wiki/Unix_philosophy)
 - [Inversion of control](http://en.wikipedia.org/wiki/Inversion_of_control)
 - [Simple English](http://simple.wikipedia.org/wiki/Wikipedia:How_to_write_Simple_English_pages)
+- [The idea of Plugin](http://miniim.blogspot.com/2014/09/plugin.html)
 
