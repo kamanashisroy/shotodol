@@ -49,7 +49,7 @@ The step() method in a _Spindle_ is executed one by one by _Propeller_. So it is
 |_Propeller.run()_|atomic|_Turbine_|
 |_Propeller.run()_|non-atomic|Multi-threaded application |
 
-### Preemptive
+### Preemption
 
 Shotodol incorporates both preemptive and non-preemptive way to execute instructions. The _Propeller_ and _Spindle_ are both non-preemptive, while the _Turbine_ execution is preemptive. 
 
