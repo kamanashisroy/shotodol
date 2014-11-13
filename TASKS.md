@@ -25,3 +25,6 @@ Roadmap
 - [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
 - [ ] Integrate python.
+- [ ] Study node.js modules.
+	- [ ] Study a basic [addon](http://www.nodejs.org/api/addons.html).
+	- [ ] Apply sort of stability index like [this](http://www.nodejs.org/api/documentation.html).
