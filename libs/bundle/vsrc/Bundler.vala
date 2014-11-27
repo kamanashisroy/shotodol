@@ -26,6 +26,7 @@ public errordomain BundlerError {
 	too_big_value,
 	faulty_ctn,
 	ctn_full,
+	unexpected_header,
 }
 
 public struct shotodol.Carton {
@@ -49,6 +50,7 @@ internal enum BundlerStates {
 public struct shotodol.Bundler {
 	Carton*ctn;
 	int entries;
+	uint bagTag;
 	uint bytes;
 	uint size;
 	int affix;
@@ -79,13 +81,25 @@ public struct shotodol.Bundler {
 		numberOfEntries = givenNumberOfEntries;
 		reset();
 	}
+	/**
+	 * Bag tags are header memory kept unused for tagging.
+	 */
+	public void setBagTagLength(uint givenBagTagLength) throws BundlerError {
+		if(bytes != 0)
+			throw new BundlerError.unexpected_header("Cannot add header now\n");
+		if(givenBagTagLength >= size)
+			throw new BundlerError.ctn_full("No space to add header\n");
+
+		bagTag = givenBagTagLength;
+		bytes += bagTag;
+	}
 	public void close() throws BundlerError {
 		if(affix == BundlerAffixes.PREFIX) {
 			if((entries >= numberOfEntries)) {
 				throw new BundlerError.ctn_full("No space to write more entry\n");
 			}
-			ctn.data[(entries<<1)] = 0;
-			ctn.data[(entries<<1)+1] = numberOfEntries;
+			ctn.data[bagTag+(entries<<1)] = 0;
+			ctn.data[bagTag+(entries<<1)+1] = numberOfEntries;
 		}
 		this.size = (int)bytes;
 		entries = 0;
@@ -97,8 +111,8 @@ public struct shotodol.Bundler {
 		}
 		aroop_uword8 flen = (val > 0xFFFF) ? 4 : 2;
 		if(affix == BundlerAffixes.PREFIX) {
-			ctn.data[(entries<<1)] = (aroop_uword8)key;
-			ctn.data[(entries<<1)+1] = flen;
+			ctn.data[bagTag+(entries<<1)] = (aroop_uword8)key;
+			ctn.data[bagTag+(entries<<1)+1] = flen;
 		} else {
 			ctn.data[bytes++] = (aroop_uword8)key;
 			ctn.data[bytes++] = flen; // 0 means numeral , 4 is the numeral size
@@ -128,8 +142,8 @@ public struct shotodol.Bundler {
 			if((entries >= numberOfEntries)) {
 				throw new BundlerError.ctn_full("No space to write more entry\n");
 			}
-			ctn.data[(entries<<1)] = (aroop_uword8)key;
-			ctn.data[(entries<<1)+1] = desc;
+			ctn.data[headerlen+(entries<<1)] = (aroop_uword8)key;
+			ctn.data[headerlen+(entries<<1)+1] = desc;
 		} else {
 			ctn.data[bytes++] = (aroop_uword8)key;
 			ctn.data[bytes++] = desc;
@@ -155,8 +169,8 @@ public struct shotodol.Bundler {
 			if((entries >= numberOfEntries)) {
 				throw new BundlerError.ctn_full("No space to write more entry\n");
 			}
-			ctn.data[(entries<<1)] = (aroop_uword8)key;
-			ctn.data[(entries<<1)+1] = desc;
+			ctn.data[headerlen+(entries<<1)] = (aroop_uword8)key;
+			ctn.data[headerlen+(entries<<1)+1] = desc;
 		} else {
 			ctn.data[bytes++] = (aroop_uword8)key;
 			ctn.data[bytes++] = desc;
