@@ -207,4 +207,5 @@ Readings
 Documentation
 ===============
 - [Simple English](http://simple.wikipedia.org/wiki/Wikipedia:How_to_write_Simple_English_pages)
+- [Architecture of opensource applications](http://aosabook.org/en/index.html)
 
