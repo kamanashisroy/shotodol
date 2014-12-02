@@ -127,6 +127,7 @@ public struct shotodol.Bundler {
 		entries++;
 		return flen;
 	}
+	
 	public int writeEXtring(aroop_uword8 key, extring*val) throws BundlerError {
 		int headerlen = 0;
 		int len = val.length();
@@ -159,7 +160,7 @@ public struct shotodol.Bundler {
 		entries++;
 		return headerlen + len + sentinel;
 	}
-	public int writeBin(aroop_uword8 key, mem val, int len) throws BundlerError {
+	public int writeBin(aroop_uword8 key, mem val, uint len) throws BundlerError {
 		int headerlen = 0;
 		if(len > 100 || (len+bytes+3) > size) { // make sure that the binary data is sizable
 			throw new BundlerError.too_big_value("Too big binary data to write\n");
@@ -181,7 +182,7 @@ public struct shotodol.Bundler {
 			bytes+= len;
 		}
 		entries++;
-		return headerlen + len;
+		return headerlen + (int)len;
 	}
 	public uint getCartonOccupied() {
 		return bytes;
