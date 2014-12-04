@@ -6,6 +6,7 @@ using aroop;
 public class shotodol.M100Variable: Searchable {
 	public int intval;
 	public xtring?strval;
+	public Replicable ptval;
 	public enum ValueType {
 		TEXT = 1,INT,ARRAY,POINTER
 	}
@@ -13,6 +14,7 @@ public class shotodol.M100Variable: Searchable {
 	public M100Variable() {
 		intval = 0;
 		strval = null;
+		ptval = null;
 		tp = ValueType.INT;
 	}
 	public void concat(extring*dst) {
@@ -69,6 +71,10 @@ public class shotodol.M100Variable: Searchable {
 	public void setInt(int val) {
 		intval = val;
 		tp = ValueType.INT;
+	}
+	public void setPointer(Replicable?val) {
+		ptval = val;
+		tp = ValueType.POINTER;
 	}
 }
 
