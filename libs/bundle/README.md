@@ -51,3 +51,10 @@ The bndlr.writeExtring is used to put the value in the bag.
 #### Deserialize
 
 FILL ME
+
+
+See also
+===========
+- [ZeroMQ](http://aosabook.org/en/zeromq.html), is a message passing library that uses less memory copy and less system call. It uses batching and memory pooling.
+
+
