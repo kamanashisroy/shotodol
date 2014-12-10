@@ -22,6 +22,7 @@ core/idle
 core/profiler
 core/shake
 core/script
+core/fork
 libs/turbine
 main/main
 apps/good_luck

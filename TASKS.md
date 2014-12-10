@@ -29,3 +29,4 @@ Roadmap
 - [ ] Integrate python.
 - [ ] Study node.js modules.
 	- [ ] Study a basic [addon](http://www.nodejs.org/api/addons.html).
+- [ ] Remove all the locks, lower the atomic operations.
