@@ -18,7 +18,7 @@ Roadmap
 - [ ] Implement green threads/coroutine. Spindle.longRun() instread of Spindle.step() may reduce the setup execution cost in each call.
 	- [ ] Use generators.
 - [x] Implement forking and associate different console with a pipe to the parent process.
-	- [ ] Create jobs console command like in unix shell.
+	- [x] Create jobs console command like in unix shell.
 	- [ ] Use fg,bg command to change or select target process.
 - [ ] Remove all the locks, lower the atomic operations.
 

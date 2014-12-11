@@ -7,8 +7,8 @@ using shotodol.fork;
  */
 internal abstract class JobSpindle : ConsoleSpindle {
 	ArrayList<ForkStream> children;
-	int forkIndex;
-	int pipeCount;
+	uint forkIndex;
+	uint pipeCount;
 	public JobSpindle() {
 		base();
 		pipeCount = 0;
@@ -37,6 +37,15 @@ internal abstract class JobSpindle : ConsoleSpindle {
 		child.onFork_After(true);
 		setInputStream(child.getInputStream());
 		return 0;
+	}
+	internal OutputStream?getChildOutputStream(int x) {
+		ForkStream?child = children[forkIndex];
+		if(child == null)
+			return null;
+		return child.getOutputStream();
+	}
+	internal uint getChildCount() {
+		return pipeCount;
 	}
 }
 
