@@ -3,6 +3,7 @@ OS_PLATFORM/platform_extra
 core/base
 core/test
 core/commands
+core/fork
 libs/bundle
 libs/iostream
 libs/watchdog

@@ -1,10 +1,10 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup console
+/** \addtogroup fork
  *  @{
  */
-internal class shotodol.ForkCommand : shotodol.M100Command {
+internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 	public ForkCommand() {
 		extring prefix = extring.set_static_string("fork");
 		base(&prefix);
@@ -16,9 +16,17 @@ internal class shotodol.ForkCommand : shotodol.M100Command {
 	}
 
 	internal int forkHook(extring*msg, extring*output) {
-		// fork and return the pipe ..
-		//if(msg != null && msg.contains_static_string("core"))
-		fork();
+		extring forkEntry = extring.set_static_string("onFork/before");
+		Plugin.swarm(&forkEntry, msg, output); // before fork
+		int pid = shotodol_platform.ProcessControl.fork();
+		if(pid < 0) { // fork error
+			forkEntry.rebuild_and_set_static_string("onFork/error");
+		} else if(pid == 0) { // child process
+			forkEntry.rebuild_and_set_static_string("onFork/after/child");
+		} else { // parent process
+			forkEntry.rebuild_and_set_static_string("onFork/after/parent");
+		}
+		Plugin.swarm(&forkEntry, msg, output); // after fork
 		return 0;
 	}
 }

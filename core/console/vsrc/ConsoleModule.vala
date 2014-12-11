@@ -66,6 +66,12 @@ public class shotodol.ConsoleModule : DynamicModule {
 		Plugin.register(&entry, new AnyInterfaceExtension(sp, this));
 		entry.rebuild_and_set_static_string("command");
 		Plugin.register(&entry, new M100Extension(new ConsoleCommand(sp), this));
+		entry.rebuild_and_set_static_string("onFork/before");
+		Plugin.register(&entry, new HookExtension(sp.onFork_Before, this));
+		entry.rebuild_and_set_static_string("onFork/after/parent");
+		Plugin.register(&entry, new HookExtension(sp.onFork_After_Parent, this));
+		entry.rebuild_and_set_static_string("onFork/after/child");
+		Plugin.register(&entry, new HookExtension(sp.onFork_After_Child, this));
 		return 0;
 	}
 

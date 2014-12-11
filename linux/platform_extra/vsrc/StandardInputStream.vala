@@ -5,7 +5,7 @@ using shotodol;
  *  @{
  */
 public class shotodol.StandardInputStream : InputStream {
-	shotodol_platform.fileio?fd;
+	internal shotodol_platform.fileio fd;
 	
 	public StandardInputStream() {
 		fd = shotodol_platform.fileio.stdin();

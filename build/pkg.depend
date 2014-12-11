@@ -17,12 +17,12 @@ core/base
 core/commands
 core/test
 core/fileconfig
+core/fork
 core/console
 core/idle
 core/profiler
 core/shake
 core/script
-core/fork
 libs/turbine
 main/main
 apps/good_luck

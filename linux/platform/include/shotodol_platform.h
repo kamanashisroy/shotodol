@@ -35,7 +35,9 @@
 
 #include <unistd.h>
 #include <fcntl.h>
+#define fileio_stdout() ({dup(STDOUT_FILENO);})
 #define fileio_stdin() ({int _stdfd = dup(STDIN_FILENO);long flags = fcntl(_stdfd, F_GETFL);fcntl(_stdfd, F_SETFL, flags|O_NONBLOCK);_stdfd;})
+#define fileio_pipe(x) ({pipe(x);})
 #define platform_file_stream_unref(tdata,index,x) ({if(x)fclose(x);0;})
 
 #if 1
@@ -64,6 +66,9 @@
 })
 #endif
 
+#define fileio_write(x,y) ({ \
+	int __rt = write(x, aroop_txt_to_string(y), (y)->len);if(__rt > 0) {aroop_txt_shift(y, __rt);}__rt; \
+})
 #define fileio_read_line(x,y) ({ \
 	int __len = 0;char* __rt = fgets(aroop_txt_to_string(y)+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
 })

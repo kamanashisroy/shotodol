@@ -3,12 +3,12 @@ using shotodol;
 
 /**
  * \ingroup core
- * \defgroup fork Fork command support.
+ * \defgroup fork Forking a new process support.
  */
 /** \addtogroup fork
  *  @{
  */
-public class shotodol.ForkModule : DynamicModule {
+public class shotodol.fork.ForkModule : DynamicModule {
 
 	public ForkModule() {
 		extring nm = extring.set_string(core.sourceModuleName());

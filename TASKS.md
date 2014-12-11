@@ -17,7 +17,7 @@ Roadmap
 #### Concurrency
 - [ ] Implement green threads/coroutine. Spindle.longRun() instread of Spindle.step() may reduce the setup execution cost in each call.
 	- [ ] Use generators.
-- [ ] Implement forking and associate different console with a pipe to the parent process.
+- [x] Implement forking and associate different console with a pipe to the parent process.
 	- [ ] Create jobs console command like in unix shell.
 	- [ ] Use fg,bg command to change or select target process.
 - [ ] Remove all the locks, lower the atomic operations.
@@ -48,3 +48,6 @@ Roadmap
 	- [ ] See zero copy memory management in gstreamer.
 - [ ] Add tagging support in watchdog log.
 - [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
+
+#### Decoupling
+- [ ] Move all the platfrom dependent code into named extensions(see roopkotha guicore).

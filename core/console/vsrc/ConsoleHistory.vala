@@ -5,7 +5,7 @@ using shotodol;
  *  @{
  */
 
-internal class ConsoleHistory : ConsoleSpindle {
+internal class ConsoleHistory : JobSpindle {
 	enum Conf {
 		HIGHEST_HISTORY_BACKUP = 100,
 	}

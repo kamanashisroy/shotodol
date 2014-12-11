@@ -28,11 +28,17 @@ namespace shotodol_platform {
 	[IntegerType (rank = 6)]
 	public struct fileio {
 		[CCode (cname="fileio_stdin", cheader_filename = "shotodol_platform.h")]
-		public static fileio stdin();
+		public fileio.stdin();
+		[CCode (cname="fileio_stdout", cheader_filename = "shotodol_platform.h")]
+		public fileio.stdout();
+		[CCode (cname="fileio_pipe", cheader_filename = "shotodol_platform.h")]
+		public static int pipe(shotodol_platform.fileio fd[2]);
 		[CCode (cname="fileio_available_bytes", cheader_filename = "shotodol_platform.h")]
 		public int availableBytes();
 		[CCode (cname="fileio_read", cheader_filename = "shotodol_platform.h")]
 		public int read(extring*buf);
+		[CCode (cname="fileio_write", cheader_filename = "shotodol_platform.h")]
+		public int write(extring*buf);
 		[CCode (cname="fileio_read_line", cheader_filename = "shotodol_platform.h")]
 		public int readLine(extring*buf);
 		[CCode (cname="fileio_getc", cheader_filename = "shotodol_platform.h")]
@@ -116,6 +122,8 @@ namespace shotodol_platform {
 		public static void mesmerize();
 		[CCode (cname = "linux_millisleep")]
 		public static void millisleep(long msec);
+		[CCode (cname = "fork")]
+		public static int fork();
 	}
 
 	[CCode (cname = "void", cheader_filename = "mcheck.h")]

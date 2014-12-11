@@ -1,22 +1,27 @@
 using aroop;
 using shotodol;
+using shotodol.fork;
 
 /** \addtogroup console
  *  @{
  */
 internal abstract class ConsoleSpindle : Spindle {
-	LineInputStream is;
-	protected StandardOutputStream pad;
+	LineInputStream lis;
+	protected OutputStream pad;
 	//bool iamdeaf;
 	int countDown;
 	public ConsoleSpindle() {
 		StandardInputStream x = new StandardInputStream();
-		is = new LineInputStream(x);
+		lis = new LineInputStream(x);
 		pad = new StandardOutputStream();
 		//iamdeaf = false;
 		countDown = 0;
 	}
 	~ConsoleSpindle() {
+	}
+	public void setInputStream(InputStream x) {
+		lis.close();
+		lis = new LineInputStream(x);
 	}
 	public abstract void showHistory();
 	public abstract void addHistory(extring*cmd);
@@ -48,16 +53,16 @@ internal abstract class ConsoleSpindle : Spindle {
 		try {
 			extring inp = extring.stack(512);
 			
-			int available = is.availableBytes();
+			int available = lis.availableBytes();
 			if(available > 0) {
-				is.read(&inp);
+				lis.read(&inp);
 				if(!inp.is_empty()) {
 					perform_action(&inp);
 				}
 			}
 #if false
 			if(available == 1) {
-				is.readChar(&inp, true);
+				lis.readChar(&inp, true);
 				if(inp.length() == 1 && inp.char_at(inp.length()-1) == 72) { // left:75 right:77 down:80 up:72
 					showHistory();
 					return 0;
