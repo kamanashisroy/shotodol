@@ -27,17 +27,25 @@ internal class shotodol.JobCommand : shotodol.M100Command {
 		if((arg = vals[Options.CHILD]) != null) {
 			int index = arg.fly().to_int();
 			OutputStream?other = sp.getChildOutputStream(index);
-			if(other == null)
-				return 0;
-			
-			if((arg = vals[Options.CHILD]) == null) {
+			if(other == null) {
+				extring dlg = extring.stack(128);
+				dlg.printf("Job not found at %d\n", index);
+				pad.write(&dlg);
 				return 0;
 			}
-			other.write(arg);
+			
+			if((arg = vals[Options.ACT]) == null) {
+				return 0;
+			}
+			extring ccmd = extring.stack(arg.fly().length()+4);
+			ccmd.concat(arg);
+			ccmd.concat_string("\r\n");
+			pad.write(&ccmd);
+			other.write(&ccmd);
 			return 0;
 		}
 		extring dlg = extring.stack(128);
-		dlg.printf("%u Jobs\n", sp.getChildCount());
+		dlg.printf("%u Jobs(%s)\n", sp.getChildCount(), sp.isParent?"parent":"child");
 		pad.write(&dlg);
 		return 0;
 	}

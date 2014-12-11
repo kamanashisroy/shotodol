@@ -6,7 +6,7 @@ using shotodol;
  */
 
 public class shotodol.PipeStream : StreamDescriptor {
-	shotodol_platform.fileio pipeFD[2];
+	protected shotodol_platform.fileio pipeFD[2];
 	StandardOutputStream?pout;
 	StandardInputStream?pin;
 	protected int index;

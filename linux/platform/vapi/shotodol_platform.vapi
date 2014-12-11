@@ -39,6 +39,8 @@ namespace shotodol_platform {
 		public int read(extring*buf);
 		[CCode (cname="fileio_write", cheader_filename = "shotodol_platform.h")]
 		public int write(extring*buf);
+		[CCode (cname="close", cheader_filename = "shotodol_platform.h")]
+		public int close();
 		[CCode (cname="fileio_read_line", cheader_filename = "shotodol_platform.h")]
 		public int readLine(extring*buf);
 		[CCode (cname="fileio_getc", cheader_filename = "shotodol_platform.h")]
