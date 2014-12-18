@@ -193,6 +193,10 @@ Public projects
 
 There are some public projects based on shotodol. They are namely,
 
+- [Shotodol Net](https://github.com/kamanashisroy/shotodol_net)
+- [Shotodol Web](https://github.com/kamanashisroy/shotodol_web)
+- [Shotodol DB](https://github.com/kamanashisroy/shotodol_db)
+- [Shotodol Media](https://github.com/kamanashisroy/shotodol_media)
 - [Roopkotha](https://github.com/kamanashisroy/roopkotha)
 - [Onubodh](https://github.com/kamanashisroy/onubodh)
 
