@@ -9,25 +9,32 @@ public class shotodol.PipeStream : StreamDescriptor {
 	protected shotodol_platform.fileio pipeFD[2];
 	StandardOutputStream?pout;
 	StandardInputStream?pin;
-	protected int index;
 	public PipeStream() {
+		pout = null;
+		pin = null;
 	}
 	public int build() {
 		return shotodol_platform.fileio.pipe(pipeFD);
 	}
 	public override OutputStream getOutputStream() {
 		if(pout == null) {
-			pout = new StandardOutputStream();
-			pout.fd = pipeFD[index];
+			pout = new StandardOutputStream.fromFD(pipeFD[1]);
 		}
+#if SHOTODOL_FD_DEBUG
+		pout.dump();
+#endif
 		return pout;
 	}
 	public override InputStream getInputStream() {
 		if(pin == null) {
-			pin = new StandardInputStream();
-			pin.fd = pipeFD[index];
+			pin = new StandardInputStream.fromFD(pipeFD[0]);
 		}
 		return pin;
 	}
+#if SHOTODOL_FORK_DEBUG
+	public void dump() {
+		print("pipe 0:%d and pipe 1:%d\n", pipeFD[0], pipeFD[1]);
+	}
+#endif
 }
 /* @} */

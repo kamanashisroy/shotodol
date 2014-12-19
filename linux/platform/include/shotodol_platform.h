@@ -37,7 +37,8 @@
 #include <fcntl.h>
 #define fileio_stdout() ({dup(STDOUT_FILENO);})
 #define fileio_stdin() ({int _stdfd = dup(STDIN_FILENO);long flags = fcntl(_stdfd, F_GETFL);fcntl(_stdfd, F_SETFL, flags|O_NONBLOCK);_stdfd;})
-#define fileio_pipe(x) ({pipe(x);})
+//#define fileio_pipe(x) ({pipe(x);})
+#define fileio_pipe(x) ({pipe2(x,O_NONBLOCK | O_CLOEXEC);})
 #define platform_file_stream_unref(tdata,index,x) ({if(x)fclose(x);0;})
 
 #if 1

@@ -5,46 +5,55 @@ using shotodol.fork;
 /** \addtogroup console
  *  @{
  */
-internal abstract class JobSpindle : ConsoleSpindle {
+internal abstract class ForkableConsole : ConsoleSpindle {
 	ArrayList<ForkStream> children;
-	uint forkIndex;
+	ForkStream?x;
 	uint pipeCount;
 	internal bool isParent;
-	public JobSpindle() {
+	public ForkableConsole() {
 		base();
 		pipeCount = 0;
 		children = ArrayList<ForkStream>();
 		isParent = true;
 	}
-	~JobSpindle() {
+	~ForkableConsole() {
 	}
 	
 	internal int onFork_Before(extring*msg, extring*output) {
-		ForkStream child = new ForkStream();
-		if(child.onFork_Before() != 0) {
+		x = new ForkStream();
+		if(x.onFork_Before() != 0) {
 			return -1;
 		}
-		forkIndex = pipeCount;
+		uint i = pipeCount;
 		pipeCount++;
-		children.set(forkIndex,child);
+		children.set(i,x);
 		return 0;
 	}
 	internal int onFork_After_Parent(extring*msg, extring*output) {
-		ForkStream child = children[forkIndex];
-		child.onFork_After(false);
+		if(x == null)
+			return -1;
+		x.onFork_After(false);
+#if SHOTODOL_FORK_DEBUG
+		x.dump();
+#endif
 		print("Parent process is up\n");
+		x = null;
 		return 0;
 	}
 	internal int onFork_After_Child(extring*msg, extring*output) {
-		ForkStream child = children[forkIndex];
-		child.onFork_After(true);
-		setInputStream(child.getInputStream());
+		if(x == null)
+			return -1;
 		isParent = false;
+		x.onFork_After(true);
+		setInputStream(x.getInputStream());
+#if SHOTODOL_FORK_DEBUG
+		x.dump();
+#endif
 		print("Child process is up\n");
 		return 0;
 	}
-	internal OutputStream?getChildOutputStream(int x) {
-		ForkStream?child = children[x];
+	internal OutputStream?getChildOutputStream(int i) {
+		ForkStream?child = children[i];
 		if(child == null)
 			return null;
 		return child.getOutputStream();

@@ -9,7 +9,15 @@ public class shotodol.StandardOutputStream : OutputStream {
 	public StandardOutputStream() {
 		fd = shotodol_platform.fileio.stdout();
 	}
+	internal StandardOutputStream.fromFD(shotodol_platform.fileio gfd) {
+		fd = gfd;
+	}
 	
+#if SHOTODOL_FD_DEBUG
+	public void dump() {
+		print("Sandard output stream fd:%d\n", fd);
+	}
+#endif
 	public override int write(extring*buf) throws IOStreamError.OutputStreamError {
 		if(buf.is_zero_terminated()) {
 			//print(buf.to_string_magical());
@@ -21,6 +29,10 @@ public class shotodol.StandardOutputStream : OutputStream {
 			fd.write(&dlg);
 		}
 		return buf.length();
+	}
+
+	public override void close() throws IOStreamError.OutputStreamError {
+		fd.close();
 	}
 }
 /* @} */

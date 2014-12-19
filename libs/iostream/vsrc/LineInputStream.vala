@@ -5,27 +5,27 @@ using shotodol;
  *  @{
  */
 public class shotodol.LineInputStream : InputStream {
-	InputStream is;
+	InputStream downInputStream;
 	extring rbuf;
 	extring rmem;
 	public LineInputStream(InputStream down_stream, int bufferSize = 1024) {
-		is = down_stream;
+		downInputStream = down_stream;
 		rmem = extring();
 		rbuf = extring();
 		rmem.rebuild_in_heap(bufferSize);
 	}
 	public override int availableBytes() throws IOStreamError.InputStreamError {
-		return is.availableBytes();
+		return downInputStream.availableBytes();
 	}
 	public override int readChar(extring*buf, bool dry) throws IOStreamError.InputStreamError {
-		return is.readChar(buf, dry);
+		return downInputStream.readChar(buf, dry);
 	}
 	public override int read(extring*ln) throws IOStreamError.InputStreamError {
 		if(rbuf.is_empty()) {
 			rbuf.destroy();
 			rbuf = extring.copy_shallow(&rmem);
 			rmem.trim_to_length(0);
-			if(is.read(&rbuf) == 0) {
+			if(downInputStream.read(&rbuf) == 0) {
 				return 0;
 			}
 		}
@@ -61,7 +61,7 @@ public class shotodol.LineInputStream : InputStream {
 		return rewind();
 	}
 	public override void close() throws IOStreamError.InputStreamError {
-		is.close();
+		downInputStream.close();
 	}
 }
 /** @}*/

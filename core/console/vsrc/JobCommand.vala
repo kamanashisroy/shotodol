@@ -10,12 +10,14 @@ internal class shotodol.JobCommand : shotodol.M100Command {
 		CHILD,
 	}
 	ConsoleHistory sp;
+	extring NEWLINE;
 	public JobCommand(ConsoleHistory gSp) {
 		extring prefix = extring.set_static_string("jobs");
 		base(&prefix);
 		addOptionString("-x", M100Command.OptionType.INT, Options.CHILD, "Select a child process");
 		addOptionString("-act", M100Command.OptionType.TXT, Options.ACT, "Execute a command");
 		sp = gSp;
+		NEWLINE = extring.set_static_string("\r\n");
 	}
 
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
@@ -37,10 +39,10 @@ internal class shotodol.JobCommand : shotodol.M100Command {
 			if((arg = vals[Options.ACT]) == null) {
 				return 0;
 			}
-			extring ccmd = extring.stack(arg.fly().length()+4);
+			extring ccmd = extring.stack(arg.fly().length()+NEWLINE.length());
 			ccmd.concat(arg);
-			ccmd.concat_string("\r\n");
-			pad.write(&ccmd);
+			ccmd.concat(&NEWLINE);
+			//pad.write(&ccmd);
 			other.write(&ccmd);
 			return 0;
 		}

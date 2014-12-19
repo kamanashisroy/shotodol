@@ -10,10 +10,18 @@ public class shotodol.StandardInputStream : InputStream {
 	public StandardInputStream() {
 		fd = shotodol_platform.fileio.stdin();
 	}
+	internal StandardInputStream.fromFD(shotodol_platform.fileio gfd) {
+		fd = gfd;
+	}
 
 	~StandardInputStream() {
 	}
 
+#if SHOTODOL_FD_DEBUG
+	public void dump() {
+		print("Sandard output stream fd:%d\n", fd);
+	}
+#endif
 	public override int availableBytes() throws IOStreamError.InputStreamError {
 		return fd.availableBytes();
 	}
@@ -44,6 +52,9 @@ public class shotodol.StandardInputStream : InputStream {
 			throw new IOStreamError.InputStreamError.END_OF_DATA("File end");
 		}
 		return 0;
+	}
+	public override void close() throws IOStreamError.InputStreamError {
+		fd.close();
 	}
 }
 /* @} */

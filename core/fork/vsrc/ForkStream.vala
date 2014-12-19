@@ -12,13 +12,13 @@ public class shotodol.fork.ForkStream : PipeStream {
 		return build();
 	}
 	public int onFork_After(bool child = false) {
-		if(child) {
-			pipeFD[1].close();
-			index = 0;
-		} else {
-			pipeFD[0].close();
-			index = 1;
-		}
+		//if(child) {
+			//pipeFD[1].close();
+			//index = 0;
+		//} else {
+			//pipeFD[0].close();
+			//index = 1;
+		//}
 		return 0;
 	}
 }

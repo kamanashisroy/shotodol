@@ -65,6 +65,7 @@ public class shotodol.ConsoleModule : DynamicModule {
 		ConsoleHistory sp = new ConsoleHistory();
 		Plugin.register(&entry, new AnyInterfaceExtension(sp, this));
 		entry.rebuild_and_set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new PingCommand(), this));
 		Plugin.register(&entry, new M100Extension(new ConsoleCommand(sp), this));
 		Plugin.register(&entry, new M100Extension(new JobCommand(sp), this));
 		entry.rebuild_and_set_static_string("onFork/before");
