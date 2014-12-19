@@ -20,9 +20,6 @@ public class shotodol.PipeStream : StreamDescriptor {
 		if(pout == null) {
 			pout = new StandardOutputStream.fromFD(pipeFD[1]);
 		}
-#if SHOTODOL_FD_DEBUG
-		pout.dump();
-#endif
 		return pout;
 	}
 	public override InputStream getInputStream() {

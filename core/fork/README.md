@@ -17,6 +17,7 @@ Events
 Example
 ========
 
+#### Spawning a process
 The console module uses fork module to display the available process as jobs like in linux job command.
 
 ```
@@ -58,5 +59,34 @@ Executing:jobs
 <            jobs> -----------------------------------------------------------------
 1 Jobs
 <      Successful> -----------------------------------------------------------------
+```
+
+#### Spending command to child process
+
+The console module has jobs command to execute a command on the child. For example, `jobs -x 0 -act ping` will *ping* the child at 0. And if there is a child at position 0 then it will response a *pong*.
+
+```
+ping -x 0 -act ping
+Executing:ping -x 0 -act ping
+<            ping> -----------------------------------------------------------------
+pong
+<      Successful> -----------------------------------------------------------------
+
+jobs
+Executing:jobs
+<            jobs> -----------------------------------------------------------------
+1 Jobs(parent)
+<      Successful> -----------------------------------------------------------------
+
+jobs -x 0 -act jobs
+Executing:jobs -x 0 -act jobs
+<            jobs> -----------------------------------------------------------------
+<      Successful> -----------------------------------------------------------------
+
+Executing:jobs
+<            jobs> -----------------------------------------------------------------
+1 Jobs(child)
+<      Successful> -----------------------------------------------------------------
+
 ```
 
