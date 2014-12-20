@@ -2,7 +2,6 @@
 # This shakefile is parsed by shotodol make module 
 
 onLoad:
-	module -load core/script/dynalib.so
 	fileconf -i ./autoload/shotodol.conf
 	#module -load web/cgi/dynalib.so
 

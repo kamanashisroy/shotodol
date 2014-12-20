@@ -71,6 +71,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 - [propeller](libs/propeller/README.md)
 - [turbine](libs/turbine/README.md)
+- [fork](core/fork/README.md)
 
 ### Testing and benchmarking modules
 
@@ -85,7 +86,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 ### Scripting modules
 
-- [script](core/script/README.md)
+- [Shotodol Script](https://github.com/kamanashisroy/shotodol_script)
 - [shake](core/shake/README.md)
 
 ### Packeting modules
@@ -193,6 +194,7 @@ Public projects
 
 There are some public projects based on shotodol. They are namely,
 
+- [Shotodol Script](https://github.com/kamanashisroy/shotodol_script)
 - [Shotodol Net](https://github.com/kamanashisroy/shotodol_net)
 - [Shotodol Web](https://github.com/kamanashisroy/shotodol_web)
 - [Shotodol DB](https://github.com/kamanashisroy/shotodol_db)

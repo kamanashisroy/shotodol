@@ -10,9 +10,6 @@ include $(SHOTODOL_HOME)/libs/plugin/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/str_arms/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/make100/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/programming_instruction/staticlibs.mk
-ifneq ("$(LUA_LIB)", "n")
-include $(SHOTODOL_HOME)/linux/lua/staticlibs.mk
-endif
 OBJECTS+=$(VALA_HOME)/aroop/core/libaroop_core$(AROOP_VARIANT).a
 #
 #LIBS+=-lm

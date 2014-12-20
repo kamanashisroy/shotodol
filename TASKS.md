@@ -7,6 +7,7 @@ Roadmap
 - [x] Fill the README.md for the console module.
 - [x] Rename str to xtring.
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
+	- [x] Move lua scripting into separate shotodol_script package.
 
 #### Messaging
 - [x] Finish up the primary messaging code, named, pollen.
@@ -20,6 +21,7 @@ Roadmap
 - [x] Implement forking and associate different console with a pipe to the parent process.
 	- [x] Create jobs console command like in unix shell.
 	- [ ] Use fg,bg command to change or select target process.
+	- [ ] Use https://en.wikipedia.org/wiki/Cell_%28microprocessor%29#Distributed_computing
 - [ ] Remove all the locks, lower the atomic operations.
 
 #### Packaging

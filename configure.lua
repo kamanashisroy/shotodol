@@ -73,15 +73,7 @@ configLines["PROJECT_HOME"] = prompt("Project path " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
 local ahome = string.gsub(configLines["SHOTODOL_HOME"],"shotodol$","aroop")
 configLines["VALA_HOME"] = prompt("Aroop path " .. ahome .. " > ", ahome)
-if configLines["PLATFORM"] == "linux" then
-	configLines["LUA_LIB"] = prompt("enable lua library ?(50/5.1/n) > ", "50")
-else
-	configLines["LUA_LIB"] = "n"
-end
 configLines["VALAFLAGS+"] = ""
-if configLines["LUA_LIB"] ~= "n" then
-	configLines["VALAFLAGS+"] = configLines["VALAFLAGS+"] .. " -D LUA_LIB"
-end
 configLines["AROOP_VARIANT"] = "_static"
 configLines["CFLAGS+"] = ""
 if yes_no_to_bool(prompt_yes_no("enable debug (-ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG -DSHOTODOL_FORK_DEBUG -DSHOTODOL_FD_DEBUG) ?(y/n) > ")) then
