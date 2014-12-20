@@ -33,14 +33,6 @@ Roadmap
 - [x] Keep the modules in namespace like directory.
 - [ ] Add a homebrew package.(Is it feasible ?). Or we may write bricks/rocks packages.
 
-#### Language support
-- [ ] Integrate python.
-	- [ ] Study 'Battle of wesnoth' and see how it integrates python.
-- [x] Add support for module writing in lua. 
-	- [ ] Load lua library and load lua hooks by function. They can communicate with the program using message passing.
-	- [ ] Add a module function to load script modules.
-	- [ ] Load additional lua script with _source_ command and still keep the old definitions.
-
 #### Debugging
 
 - [ ] Fix the crash bug on exit.
