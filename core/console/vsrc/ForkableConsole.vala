@@ -45,7 +45,7 @@ internal abstract class ForkableConsole : ConsoleSpindle {
 			return -1;
 		isParent = false;
 		x.onFork_After(true);
-		connect(x.getInputStream());
+		pull(x.getInputStream());
 #if SHOTODOL_FORK_DEBUG
 		x.dump();
 #endif

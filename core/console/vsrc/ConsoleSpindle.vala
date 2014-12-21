@@ -6,7 +6,7 @@ using shotodol.fork;
  *  @{
  */
 internal abstract class ConsoleSpindle : Spindle {
-	class ConsoleStream : ActivePipeOutputStream {
+	class ConsoleStream : PullOutputStream {
 		unowned ConsoleSpindle?sp;
 		public ConsoleStream(InputStream x, ConsoleSpindle activator) {
 			base(x);
@@ -38,10 +38,10 @@ internal abstract class ConsoleSpindle : Spindle {
 	}
 	~ConsoleSpindle() {
 	}
-	public void connect(InputStream x) {
+	public void pull(InputStream x) {
 		lis.close();
 		lis = new LineInputStream(x);
-		cstrm.connect(lis);
+		cstrm.pull(lis);
 	}
 	public abstract void showHistory();
 	public abstract void addHistory(extring*cmd);

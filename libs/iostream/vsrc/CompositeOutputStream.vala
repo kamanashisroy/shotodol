@@ -50,7 +50,7 @@ public class shotodol.CompositeOutputStream : OutputStream {
 	public override void close() throws IOStreamError.OutputStreamError {
 		if(closed)return;
 		closed = true;
-		collection.destroy();
+		collection.destroy(); // XXX should we close each of them ??
 	}
 }
 
