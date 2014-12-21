@@ -15,7 +15,7 @@ public abstract class shotodol.CompositePullOutputStream : OutputStream {
 		sources.destroy();
 	}
 
-	public void connectInputStream(InputStream?given) {
+	public void pull(InputStream?given) {
 		if(closed)
 			return;
 		sources.add(given);
