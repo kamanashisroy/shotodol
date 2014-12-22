@@ -22,11 +22,16 @@ public abstract class shotodol.CompositePullOutputStream : OutputStream {
 	}
 
 	public int step() throws IOStreamError.OutputStreamError {
+		if(closed)
+			return 0;
 		sources.visit_each((x) => {
-			InputStream source = (InputStream)x;
+			unowned InputStream source = ((AroopPointer<InputStream>)x).getUnowned();
 			int available = source.availableBytes();
 			if(available <= 0)
 				return 0;
+#ifdef SHOTODOL_FD_DEBUG
+			print("There are data from worker threads\n");
+#endif
 			extring inp = extring();
 			inp.rebuild_in_heap(available+4);
 			source.read(&inp);
@@ -46,6 +51,4 @@ public abstract class shotodol.CompositePullOutputStream : OutputStream {
 		sources.destroy(); // XXX should we close each of them ??
 	}
 }
-
-
 /* @} */
