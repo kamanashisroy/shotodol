@@ -29,7 +29,7 @@ public abstract class shotodol.CompositePullOutputStream : OutputStream {
 			int available = source.availableBytes();
 			if(available <= 0)
 				return 0;
-#ifdef SHOTODOL_FD_DEBUG
+#if SHOTODOL_FD_DEBUG
 			print("There are data from worker threads\n");
 #endif
 			extring inp = extring();

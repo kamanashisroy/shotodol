@@ -11,12 +11,12 @@ public class shotodol.ShakeModule : DynamicModule {
 		base(&nm,&ver);
 	}
 	public override int init() {
-		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new ShakeCommand(), this));
-		extring test = extring.set_static_string("unittest");
-		Plugin.register(&test, new AnyInterfaceExtension(new ShakeTest(), this));
-		extring onLoad = extring.set_static_string("onLoad");
-		Plugin.register(&onLoad, new HookExtension(greetHook, this));
+		extring entry = extring.set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new ShakeCommand(), this));
+		entry.rebuild_and_set_static_string("unittest");
+		Plugin.register(&entry, new AnyInterfaceExtension(new ShakeTest(), this));
+		entry.rebuild_and_set_static_string("onLoad");
+		Plugin.register(&entry, new HookExtension(greetHook, this));
 		return 0;
 	}
 	int greetHook(extring*msg, extring*output) {

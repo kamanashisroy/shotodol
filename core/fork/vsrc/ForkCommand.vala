@@ -27,6 +27,8 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 			forkEntry.rebuild_and_set_static_string("onFork/after/parent");
 		}
 		Plugin.swarm(&forkEntry, msg, output); // after fork
+		forkEntry.rebuild_and_set_static_string("onFork/complete");
+		Plugin.swarm(&forkEntry, msg, output); // after fork
 		return 0;
 	}
 }

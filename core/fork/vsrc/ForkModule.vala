@@ -22,6 +22,9 @@ public class shotodol.fork.ForkModule : DynamicModule {
 		Plugin.register(&entry, new M100Extension(cmd, this));
 		entry.rebuild_and_set_static_string("fork");
 		Plugin.register(&entry, new HookExtension(cmd.forkHook, this));
+		entry.rebuild_and_set_static_string("onFork/complete");
+		//(new ShakeHook(&entry, this)).plug();
+		Plugin.register(&entry, new ShakeHook(&entry, this));
 		return 0;
 	}
 

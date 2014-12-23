@@ -12,12 +12,12 @@ public class shotodol.MainProgram {
 	static int loadDefaultModules(ModuleLoader loader) {
 		loader.loadCore("commands");
 		loader.loadCore("test");
+		loader.loadCore("shake");
 		loader.loadCore("fork");
 		loader.loadCore("console");
 		loader.loadCore("idle");
 		loader.loadCore("profiler");
 		loader.loadCore("fileconfig");
-		loader.loadCore("shake");
 		return 0;
 	}
 	static int onLoad() {
@@ -41,6 +41,8 @@ public class shotodol.MainProgram {
 		hook.rebuild_and_set_static_string("onReady");
 		Plugin.swarm(&hook, &memory, null);
 		hook.rebuild_and_set_static_string("onReadyAlter");
+		Plugin.swarm(&hook, &memory, null);
+		hook.rebuild_and_set_static_string("rehash");
 		Plugin.swarm(&hook, &memory, null);
 		return 0;
 	}

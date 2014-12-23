@@ -3,4 +3,5 @@ libs/iostream
 libs/watchdog
 libs/make100
 core/base
+core/shake
 OS_PLATFORM/platform_extra

@@ -16,11 +16,11 @@ core/base
 core/commands
 core/test
 core/fileconfig
+core/shake
 core/fork
 core/console
 core/idle
 core/profiler
-core/shake
 libs/turbine
 main/main
 apps/good_luck
