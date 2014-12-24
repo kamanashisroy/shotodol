@@ -16,6 +16,9 @@ public class shotodol.CompositePullSingleFeedStream : CompositePullOutputStream 
 	public override int write(extring*content) throws IOStreamError.OutputStreamError {
 		if(sink == null)
 			return content.length(); // should we shift the length data ??
+#if SHOTODOL_FD_DEBUG
+		print("Sinking data to browser\n");
+#endif
 		return sink.write(content);
 	}
 }
