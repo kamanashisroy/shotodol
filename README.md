@@ -15,6 +15,13 @@ The name _shotodol_ means hundred petals(literally) or the lotus flower. In our 
 
 [**Developer Tutorial**](docs/books/tutorial/README.md)
 
+Here is the shotodol component diagram showing interaction between plugins.
+
+![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5547388/059c37fa-8b83-11e4-85e4-011b8210a619.jpg)
+
+Here is the artistic representation of shotodol core modules.
+
+![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 Dependencies
 ============
 
