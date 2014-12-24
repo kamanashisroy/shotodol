@@ -45,3 +45,7 @@ Roadmap
 
 #### Decoupling
 - [ ] Move all the platfrom dependent code into named extensions(see roopkotha guicore).
+
+#### Tutorial
+- [ ] Write an elaborative tutorial.
+	- [ ] Move some of the contents of the main README.md file into tutorial.
