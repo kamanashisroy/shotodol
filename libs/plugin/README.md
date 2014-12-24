@@ -1,15 +1,16 @@
 Plugin
 =========
-Plugin lets you write ready to use named extensions. You put your extension in named list using register() function. Others can use that extension to do certain tasks.
+Plugin is a way to write ready to use named extensions. The idea is to advertise the extension in named list using register() function. Other components can use that extension to do certain tasks.
 
 Plugin techniques
 ==================
 [Pluginoid](pluginoid.dot)
 ![Pluginoid](dot_generated_pluginoid.svg)
-<img src="https://rawgit.com/kamanashisroy/shotodol/master/libs/plugin/dot_generated_pluginoid.svg"/>
 
 ### Extension point or plugin spaces
 Extension points or plugin spaces are the names to locate a service or extension. Each plugin _space_ is a string. See [service locator](http://en.wikipedia.org/wiki/Service_locator_pattern).
+
+![Advertising Extension point](../../docs/diagrams/advertising_extension_point.svg)
 
 ### Extension
 _Extension_ is a way to associate your facility to a plugin space. Suppose if you want to write a _command_ then you need to register an _extension_ in space named _'command'_ . All the extensions have an _act()_ method available for communication. 
@@ -17,11 +18,15 @@ _Extension_ is a way to associate your facility to a plugin space. Suppose if yo
 ### Interface
 _Interface_ in an _extension_ is an _object_ returned by getInterface() method. You can type-cast this _object_(Replicable) into something that meet your purpose. Once a _plugin_ registers an _interface_, it is mapped when _rehash_ is done. For example, the commands module loads all the commands under the name space "command" and makes them available for user. Notably, all the commands inherit M100Command class. This is an example of [design by contract](http://en.wikipedia.org/wiki/Design_by_contract). Interface here allows better performance than hooking technique. On the other hand, this kind of extensions implements the idea of [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection).
 
+![Interface accessing](../../docs/diagrams/extended_interface.svg)
+
 ### rehash
 Rehash is an event. This event is generated from [rehash command](../../core/commands/README.md#RehashCommand). It asks everyone to get the extensions from plugin name space and get the insterface for future use. Rehash is done normally after a module load or unload. (May be we need to do rehash when there is any change in plugin).
 
 ### Hooking
 You can write a [hook function](Hooking.md) for an event.
+
+![Calling/swarming the extended hook](../../docs/diagrams/swarming_extended_hook.svg)
 
 Composite techniques
 ======================
