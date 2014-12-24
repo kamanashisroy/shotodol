@@ -19,7 +19,7 @@ Here is the artistic representation of shotodol core modules.
 
 Here is the shotodol component diagram showing interaction between plugins.
 
-![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5547388/059c37fa-8b83-11e4-85e4-011b8210a619.jpg)
+![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5548616/ffe8add0-8b9f-11e4-9660-5e96311ea880.jpg)
 
 
 Dependencies
