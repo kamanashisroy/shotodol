@@ -15,15 +15,15 @@ The modules can communicate with each other. There are several ways to communica
 
 ### Shake script
 
-_shake_ script provides a way to perform a task on an event. For example, there is an event like, onload. So when shotodol loads itself, it performs the onload tasks. A module can eventually generate events of their own(<a href="apps/shakeeventexample/README.md">example yet to come</a>).
+_shake_ script provides a way to perform a task on an event. For example, there is an event like, onload. So when shotodol loads itself, it performs the onload tasks. A module can eventually generate events of their own([example yet to come](../../../apps/shakeeventexample/README.md)).
 
 ### Plugin/extensions
 
-You can write extensions and use them to communicate through them using interfaces. <a href="libs/plugin/README.md">Here is how.</a>
+You can write extensions and use them to communicate through them using interfaces. [Here is how](../../../libs/plugin/README.md).
 
 ### Message passing.
 
-The plugins/extensions allow you to write hooks for events. See <a href="libs/plugin/Hooking.md">hooking and message passing</a>.
+The plugins/extensions allow you to write hooks for events. See [hooking and message passing](../../../libs/plugin/Hooking.md).
 
 ![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 ![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5547388/059c37fa-8b83-11e4-85e4-011b8210a619.jpg)
@@ -37,68 +37,54 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 ### Basic modules
 
-- [module](libs/module/README.md)
-- [plugin](libs/plugin/README.md)
-- [make100](libs/make100/README.md)
+- [module](../../../libs/module/README.md)
+- [plugin](../../../libs/plugin/README.md)
+- [make100](../../../libs/make100/README.md)
 
 ### Configuration modules
 
-- [config](libs/config/README.md)
+- [config](../../../libs/config/README.md)
 
 ### Concurrency/process/thread management modules
 
-- [propeller](libs/propeller/README.md)
-- [turbine](libs/turbine/README.md)
-- [fork](core/fork/README.md)
+- [propeller](../../../libs/propeller/README.md)
+- [turbine](../../../libs/turbine/README.md)
+- [fork](../../../core/fork/README.md)
 
 ### Testing and benchmarking modules
 
-- [profiler](core/profiler/README.md)
-- [unittest](libs/unittest/README.md)
-- [benchmark](libs/benchmark/README.md)
-- [watchdog](libs/watchdog/README.md)
+- [profiler](../../../core/profiler/README.md)
+- [unittest](../../../libs/unittest/README.md)
+- [benchmark](../../../libs/benchmark/README.md)
+- [watchdog](../../../libs/watchdog/README.md)
 
 ### IO modules
 
-- [iostream](libs/iostream/README.md)
+- [iostream](../../../libs/iostream/README.md)
 
 ### Scripting modules
 
 - [Shotodol Script](https://github.com/kamanashisroy/shotodol_script)
-- [shake](core/shake/README.md)
+- [shake](../../../core/shake/README.md)
 
 ### Packeting modules
 
-- [bundle](libs/bundle/README.md)
+- [bundle](../../../libs/bundle/README.md)
 
 ### Unsorted modules
 
-- [str\_arms](libs/str_arms/README.md)
-- [iterator](libs/iterator/README.md)
+- [str\_arms](../../../libs/str_arms/README.md)
+- [iterator](../../../libs/iterator/README.md)
 
 ### Instrumentation modules
 
-- [profiler](core/profiler/README.md)
-- [watchdog](libs/watchdog/README.md)
+- [profiler](../../../core/profiler/README.md)
+- [watchdog](../../../libs/watchdog/README.md)
 
 User module
 ============
 
-User modules have the same potential as the builtin modules. But the point is, they are not part of the shotodol core and they are written on demand. <a href="libs/module/README.md">Here</a> is more about writing an user module.
-
-
-User interfacing with shotodol
-==============================
-
-### Interactive shell
-
-Shotodol by default(though not mandatory) comes with a console interface. You can put text commands to do certain tasks. It is called shake shell. You can put _help_ command to know more about the available commands.
-
-### Shake script
-
-Shotodol comes with a builtin parser for shake script. You can basically load prepared command blocks by these script files and execute them when needed.
-
-<a href="core/shake/README.md">More on Shake script</a>
+User modules have the same potential as the builtin modules. But the point is, they are not part of the shotodol core and they are written on demand. [Here](../../../libs/module/README.md) is more about writing an user module.
 
 
 

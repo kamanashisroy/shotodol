@@ -64,6 +64,20 @@ You can execute shotodol by running the shotodol.bin file.
 ```
  a/shotodol$ ./shotodol.bin
 ```
+User interfacing with shotodol
+==============================
+
+### Interactive shell
+
+Shotodol by default(though not mandatory) comes with a console interface. You can put text commands to do certain tasks. It is called shake shell. You can put _help_ command to know more about the available commands.
+
+### Shake script
+
+Shotodol comes with a builtin parser for shake script. You can basically load prepared command blocks by these script files and execute them when needed.
+
+
+[More on Shake script.](core/shake/README.md)
+
 
 Testing
 ========
