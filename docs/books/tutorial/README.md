@@ -4,12 +4,17 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 - Preparation
 	- [Getting the sources](getting.md)
 - Building block
+	- [Plugin](../../../libs/plugin/README.md)
 	- [Module](module.md)
 		- [Module interaction](module.md#module-interaction)
 		- [Builtin modules](module.md#builtin-modules)
 		- [User module](module.md#user-module)
 		- [Good luck module](../../../apps/good_luck/README.md)
-	- [Command](command.md)
+	- [Command](../../../core/command/README.md)
+- [Concurrency](concurrency.md)
+	- [Turbine](../../../libs/turbine/README.md)
+	- [Propeller](../../../libs/propeller/README.md)
+	- [Fork](../../../core/fork/README.md)
 - [Diagrams](docs/diagrams/README.md)
 - [Frequently asked questions](FAQ.md)
 
