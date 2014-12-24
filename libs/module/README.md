@@ -15,3 +15,5 @@ And there are two kinds of modules in terms of development and grouping.
 
 Please see the [_good_luck_](../../apps/good_luck/README.md) module for an example of user modules.
 
+There is more on modules in [tutorial pages](docs/books/tutorial/module.md).
+
