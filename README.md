@@ -13,6 +13,8 @@ The idea here is to provide you an environment to write your own service via mod
 
 The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
+[**Developer Tutorial**](docs/books/tutorial/README.md)
+
 Dependencies
 ============
 
