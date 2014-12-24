@@ -5,23 +5,23 @@ Shotodol
 
 This is an all in one **server environment** written in [aroop](https://github.com/kamanashisroy/aroop)(aka [Vala programming language](https://wiki.gnome.org/Projects/Vala) with aroop profile). The target of the project is to provide,
 
-- A [_module_](http://en.wikipedia.org/wiki/Module_%28programming%29) writing system to extend existing functionality.
-- An interface(plugin system) where the modules communicate.
-- An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate.
+- A [_module_](http://en.wikipedia.org/wiki/Module_%28programming%29) writing system to extend existing functionality. [Read more.](docs/books/tutorial/module.md)
+- An interface(plugin system) where the modules communicate. [Read more.](libs/plugin/README.md)
+- An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate. [Read more.](core/console/README.md)
 
-The idea here is to provide you an environment to write your own service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple. It minimises the required information [overhead](http://en.wikipedia.org/wiki/Information_overload) to write plugin/feature.
+The idea here is to provide you an environment to write your own service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple. It minimises the required information [overhead](http://en.wikipedia.org/wiki/Information_overload) to write [plugin/feature](http://miniim.blogspot.com/2014/09/plugin.html). There is a [**tutorial**](docs/books/tutorial/README.md) to support the development.
 
 The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
-[**Developer Tutorial**](docs/books/tutorial/README.md)
+Here is the artistic representation of shotodol core modules.
+
+![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 
 Here is the shotodol component diagram showing interaction between plugins.
 
 ![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5547388/059c37fa-8b83-11e4-85e4-011b8210a619.jpg)
 
-Here is the artistic representation of shotodol core modules.
 
-![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 Dependencies
 ============
 
