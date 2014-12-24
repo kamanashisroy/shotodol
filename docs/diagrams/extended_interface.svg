@@ -12,13 +12,14 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="165 100 430 275"
+   viewBox="165 100 800 300"
    id="svg4022"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
    width="100%"
    height="100%"
-   sodipodi:docname="extended_interface.svg">
+   sodipodi:docname="extended_interface.svg"
+   style="stroke:#000000">
   <metadata
      id="metadata4150">
     <rdf:RDF>
@@ -231,18 +232,17 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="-139.39793"
-     y="10.237464"
+     x="25.602066"
+     y="135.23746"
      id="text4386"
-     sodipodi:linespacing="125%"
-     transform="translate(165,100)"><tspan
+     sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4388"
-       style="stroke:#000000;font-style:normal;-inkscape-font-specification:Sans"
-       x="-139.39793"
-       y="10.237464" /></text>
+       style="font-style:normal;stroke:#000000;-inkscape-font-specification:Sans"
+       x="25.602066"
+       y="135.23746" /></text>
   <g
-     transform="translate(-437.92285,236.63604)"
+     transform="translate(-251.92285,311.63604)"
      id="g4000-4"
      style="stroke:#000000">
     <g
@@ -263,12 +263,12 @@ polygon {
            style="stroke:#000000"
            id="g3301-9-0-7-7">
           <polygon
-             points="590,235 585,240 375,240 380,235 "
+             points="585,240 375,240 380,235 590,235 "
              id="polygon4046-6-2-15-7-7"
              transform="translate(170.86059,-100.57799)"
              style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
           <polygon
-             points="590,365 585,370 585,240 590,235 "
+             points="585,370 585,240 590,235 590,365 "
              id="polygon4048-6-0-8-5-5"
              transform="translate(170.86059,-100.57799)"
              style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
@@ -336,32 +336,32 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="512.72308"
-     y="131.27692"
+     x="698.72308"
+     y="206.27692"
      id="text3369"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3371"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="512.72308"
-       y="131.27692">Plugin.register(</tspan><tspan
+       x="698.72308"
+       y="206.27692">Plugin.register(</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="512.72308"
-       y="156.27692"
+       x="698.72308"
+       y="231.27692"
        id="tspan3373">  extension_point</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="512.72308"
-       y="181.27692"
+       x="698.72308"
+       y="256.27692"
        id="tspan3375">  , a</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="512.72308"
-       y="206.27692"
+       x="698.72308"
+       y="281.27692"
        id="tspan3377">);</tspan></text>
   <g
-     transform="matrix(1.8518514,0,0,1.8518514,-1023.3874,-202.39392)"
+     transform="matrix(1.8518514,0,0,1.8518514,-837.3874,-127.39392)"
      id="g3357-4-8-0-0"
      style="stroke:#000000">
     <rect
@@ -381,12 +381,12 @@ polygon {
            style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
            transform="translate(170.86059,-100.57799)"
            id="polygon4046-6-2-15-5-3"
-           points="375,240 380,235 590,235 585,240 " />
+           points="380,235 590,235 585,240 375,240 " />
         <polygon
            style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
            transform="translate(170.86059,-100.57799)"
            id="polygon4048-6-0-8-4-0"
-           points="585,240 590,235 590,365 585,370 " />
+           points="590,235 590,365 585,370 585,240 " />
       </g>
       <g
          id="g4274-8-3-5-4-5-9"
@@ -417,7 +417,7 @@ polygon {
     </g>
   </g>
   <g
-     transform="matrix(-1,0,0,1,928.14028,126.10345)"
+     transform="matrix(-1,0,0,1,1114.1403,201.10345)"
      id="g3195-4-2-9"
      style="stroke:#000000">
     <rect
@@ -447,43 +447,43 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="7.5538397"
-     y="114.35384"
+     x="193.55383"
+     y="189.35385"
      id="text3663"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3665"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="114.35384">Plugin.acceptVisitor(</tspan><tspan
+       x="193.55383"
+       y="189.35385">Plugin.acceptVisitor(</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="139.35384"
+       x="193.55383"
+       y="214.35385"
        id="tspan3667"> extension_point</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="164.35384"
+       x="193.55383"
+       y="239.35385"
        id="tspan3671"> , (x)=&gt;(</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="189.35384"
+       x="193.55383"
+       y="264.35385"
        id="tspan3716">     var a = x.getInterface();</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="214.35384"
+       x="193.55383"
+       y="289.35385"
        id="tspan3718">     a.doSomething();</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="239.35384"
+       x="193.55383"
+       y="314.35385"
        id="tspan3720">    )</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
-       x="7.5538397"
-       y="264.35385"
+       x="193.55383"
+       y="339.35385"
        id="tspan3673">);</tspan></text>
 </svg>

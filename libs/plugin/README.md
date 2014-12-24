@@ -4,12 +4,11 @@ Plugin is a way to write ready to use named extensions. The idea is to advertise
 
 Plugin techniques
 ==================
-[Pluginoid](pluginoid.dot)
-![Pluginoid](dot_generated_pluginoid.svg)
 
 ### Extension point or plugin spaces
 Extension points or plugin spaces are the names to locate a service or extension. Each plugin _space_ is a string. See [service locator](http://en.wikipedia.org/wiki/Service_locator_pattern).
 
+![Advertising extension point](https://cloud.githubusercontent.com/assets/973414/5548487/d06aca28-8b9c-11e4-9e5c-705765102495.jpg)
 ![Advertising Extension point](../../docs/diagrams/advertising_extension_point.svg)
 
 ### Extension
@@ -18,6 +17,7 @@ _Extension_ is a way to associate your facility to a plugin space. Suppose if yo
 ### Interface
 _Interface_ in an _extension_ is an _object_ returned by getInterface() method. You can type-cast this _object_(Replicable) into something that meet your purpose. Once a _plugin_ registers an _interface_, it is mapped when _rehash_ is done. For example, the commands module loads all the commands under the name space "command" and makes them available for user. Notably, all the commands inherit M100Command class. This is an example of [design by contract](http://en.wikipedia.org/wiki/Design_by_contract). Interface here allows better performance than hooking technique. On the other hand, this kind of extensions implements the idea of [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection).
 
+![Interface accessing](https://cloud.githubusercontent.com/assets/973414/5548494/e4d9273e-8b9c-11e4-8dcc-53376deb06e5.jpg)
 ![Interface accessing](../../docs/diagrams/extended_interface.svg)
 
 ### rehash
@@ -26,7 +26,21 @@ Rehash is an event. This event is generated from [rehash command](../../core/com
 ### Hooking
 You can write a [hook function](Hooking.md) for an event.
 
+![Calling/swarming the extended hook](https://cloud.githubusercontent.com/assets/973414/5548496/f0aab186-8b9c-11e4-9f6c-fd8bc62043eb.jpg)
 ![Calling/swarming the extended hook](../../docs/diagrams/swarming_extended_hook.svg)
+
+
+
+### Cheat sheet
+
+
+[Pluginoid cheat sheet](pluginoid.dot)
+
+
+
+![Pluginoid cheat sheet](dot_generated_pluginoid.svg)
+
+
 
 Composite techniques
 ======================
