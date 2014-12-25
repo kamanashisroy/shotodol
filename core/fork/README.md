@@ -15,6 +15,8 @@ Events
 - onFork/after/parent
 - onFork/complete
 
+[component diagram](../../docs/diagrams/spawning_process.svg)
+
 Example
 ========
 
@@ -62,7 +64,7 @@ Executing:jobs
 <      Successful> -----------------------------------------------------------------
 ```
 
-#### Spending command to child process
+#### Sending command to child process
 
 The console module has jobs command to execute a command on the child. For example, `jobs -x 0 -act ping` will *ping* the child at 0. And if there is a child at position 0 then it will response a *pong*.
 
@@ -90,4 +92,6 @@ Executing:jobs
 <      Successful> -----------------------------------------------------------------
 
 ```
+
+
 
