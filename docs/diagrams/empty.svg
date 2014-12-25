@@ -35,6 +35,30 @@
      id="defs4148">
     <inkscape:path-effect
        effect="spiro"
+       id="path-effect4524"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4487"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4483"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4426"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4391"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect4356"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
        id="path-effect4365"
        is_visible="true" />
     <inkscape:path-effect
@@ -183,9 +207,9 @@
      inkscape:window-height="750"
      id="namedview4146"
      showgrid="false"
-     inkscape:zoom="0.75581392"
-     inkscape:cx="535.94484"
-     inkscape:cy="442.43078"
+     inkscape:zoom="1.5116279"
+     inkscape:cx="434.17278"
+     inkscape:cy="243.61598"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -544,98 +568,6 @@ polygon {
        x="172.48445"
        y="367.51556">empty 20  unit</tspan></text>
   <g
-     transform="translate(-186.97444,-178.69133)"
-     id="g3498-7"
-     style="stroke:#000000">
-    <g
-       style="stroke:#000000"
-       id="g3357-4-8"
-       transform="translate(0.93559348,156.23797)">
-      <rect
-         x="545.86053"
-         y="139.42201"
-         width="210"
-         height="130"
-         id="rect4044-5-4-2"
-         style="fill:#ffffff;stroke:#000000" />
-      <g
-         style="stroke:#000000"
-         id="g3309-9-3">
-        <g
-           style="stroke:#000000"
-           id="g3301-9-0">
-          <polygon
-             points="375,240 380,235 590,235 585,240 "
-             id="polygon4046-6-2-15"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-          <polygon
-             points="585,240 590,235 590,365 585,370 "
-             id="polygon4048-6-0-8"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-        </g>
-        <g
-           style="stroke:#000000"
-           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
-           id="g4274-8-3-5-4">
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="395"
-             y="130"
-             width="105"
-             height="40"
-             id="rect4090-5-5-8-8" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="138"
-             width="20"
-             height="8"
-             id="rect4092-1-9-4-9" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="154"
-             width="20"
-             height="8"
-             id="rect4094-3-4-9-7" />
-        </g>
-      </g>
-    </g>
-    <g
-       style="stroke:#000000"
-       id="g3266-1-1-6"
-       transform="matrix(-1,0,0,-1,1304.0195,562.88866)">
-      <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4961-6-9-5"
-         width="19.64669"
-         height="26.195587"
-         x="370.48044"
-         y="91.630898"
-         transform="translate(165,100)" />
-      <path
-         transform="translate(190.72782,179.52231)"
-         sodipodi:type="arc"
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="path4963-2-2-4-4"
-         sodipodi:cx="294.23257"
-         sodipodi:cy="27.077484"
-         sodipodi:rx="15.436685"
-         sodipodi:ry="14.968906"
-         d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 334.9293,106.59979 34.6156,0"
-         id="path3128-4-9-9"
-         inkscape:path-effect="#path-effect3130-3-4-1"
-         inkscape:original-d="m 334.9293,106.59979 c 8.03296,-0.72786 31.47324,-9.427072 34.6156,0"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
-    </g>
-  </g>
-  <g
      transform="translate(-191.32135,74.072284)"
      id="g3644-7"
      style="stroke:#000000">
@@ -655,186 +587,7 @@ polygon {
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
   <g
-     transform="translate(-584.7844,91.097578)"
-     id="g4000-4"
-     style="stroke:#000000">
-    <g
-       style="stroke:#000000"
-       id="g3357-4-8-2-7"
-       transform="translate(401.44351,-266.18357)">
-      <rect
-         x="545.86053"
-         y="139.42201"
-         width="210"
-         height="130"
-         id="rect4044-5-4-2-4-6"
-         style="fill:#ffffff;stroke:#000000" />
-      <g
-         style="stroke:#000000"
-         id="g3309-9-3-7-5">
-        <g
-           style="stroke:#000000"
-           id="g3301-9-0-7-7">
-          <polygon
-             points="380,235 590,235 585,240 375,240 "
-             id="polygon4046-6-2-15-7-7"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-          <polygon
-             points="590,235 590,365 585,370 585,240 "
-             id="polygon4048-6-0-8-5-5"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-        </g>
-        <g
-           style="stroke:#000000"
-           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
-           id="g4274-8-3-5-4-4-5">
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="395"
-             y="130"
-             width="105"
-             height="40"
-             id="rect4090-5-5-8-8-9-4" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="138"
-             width="20"
-             height="8"
-             id="rect4092-1-9-4-9-9-1" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="154"
-             width="20"
-             height="8"
-             id="rect4094-3-4-9-7-2-7" />
-        </g>
-      </g>
-    </g>
-    <g
-       style="stroke:#000000"
-       id="g3266-1-1-6-4-8"
-       transform="matrix(1,0,0,-1,402.03039,141.7902)">
-      <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4961-6-9-5-0-2"
-         width="19.64669"
-         height="26.195587"
-         x="370.48044"
-         y="91.630898"
-         transform="translate(165,100)" />
-      <path
-         transform="translate(190.72782,179.52231)"
-         sodipodi:type="arc"
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="path4963-2-2-4-4-5-4"
-         sodipodi:cx="294.23257"
-         sodipodi:cy="27.077484"
-         sodipodi:rx="15.436685"
-         sodipodi:ry="14.968906"
-         d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 334.9293,106.59979 34.6156,0"
-         id="path3128-4-9-9-6-4"
-         inkscape:path-effect="#path-effect3130-3-4-1-1-2"
-         inkscape:original-d="m 334.9293,106.59979 c 8.03296,-0.72786 31.47324,-9.427072 34.6156,0"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
-    </g>
-  </g>
-  <g
-     id="g5054">
-    <g
-       style="stroke:#000000"
-       id="g3357-4-8-0"
-       transform="translate(-181.0943,-330.11854)">
-      <rect
-         x="545.86053"
-         y="139.42201"
-         width="210"
-         height="130"
-         id="rect4044-5-4-2-2"
-         style="fill:#ffffff;stroke:#000000" />
-      <g
-         style="stroke:#000000"
-         id="g3309-9-3-8">
-        <g
-           style="stroke:#000000"
-           id="g3301-9-0-9">
-          <polygon
-             points="380,235 590,235 585,240 375,240 "
-             id="polygon4046-6-2-15-5"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-          <polygon
-             points="590,235 590,365 585,370 585,240 "
-             id="polygon4048-6-0-8-4"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-        </g>
-        <g
-           style="stroke:#000000"
-           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
-           id="g4274-8-3-5-4-5">
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="395"
-             y="130"
-             width="105"
-             height="40"
-             id="rect4090-5-5-8-8-7" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="138"
-             width="20"
-             height="8"
-             id="rect4092-1-9-4-9-9" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="154"
-             width="20"
-             height="8"
-             id="rect4094-3-4-9-7-0" />
-        </g>
-      </g>
-    </g>
-    <g
-       style="stroke:#000000"
-       id="g3195-4-2"
-       transform="translate(-182.02109,-173.33922)">
-      <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4959-8-0"
-         width="18.711134"
-         height="22.45336"
-         x="372.35156"
-         y="-64.607071"
-         transform="translate(165,100)" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 471.39488,18.84337 c 6.45307,-1.933349 13.60647,-1.424176 19.72065,1.403701 6.11417,2.827877 11.13441,7.949156 13.83992,14.118455 2.7055,6.1693 3.07206,13.331422 1.01053,19.744698 -2.06153,6.413275 -6.5327,12.020324 -12.32622,15.457636 -6.33271,3.757212 -14.18539,4.86083 -21.3084,2.99469"
-         id="path4999-4-0-0"
-         inkscape:path-effect="#path-effect5001-7-78-0"
-         inkscape:original-d="m 471.39488,18.84337 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 342.41375,-54.315959 29.93782,-0.935557"
-         id="path3124-7-0"
-         inkscape:path-effect="#path-effect3126-9-6"
-         inkscape:original-d="m 342.41375,-54.315959 c 9.64202,0.84018 29.55296,-0.807272 29.93782,-0.935557"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
-    </g>
-  </g>
-  <g
-     id="g5150">
+     id="g4358">
     <g
        style="stroke:#000000"
        id="g3357-4-8-0-0"
@@ -853,12 +606,12 @@ polygon {
            style="stroke:#000000"
            id="g3301-9-0-9-7">
           <polygon
-             points="380,235 590,235 585,240 375,240 "
+             points="585,240 375,240 380,235 590,235 "
              id="polygon4046-6-2-15-5-3"
              transform="translate(170.86059,-100.57799)"
              style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
           <polygon
-             points="590,235 590,365 585,370 585,240 "
+             points="585,370 585,240 590,235 590,365 "
              id="polygon4048-6-0-8-4-0"
              transform="translate(170.86059,-100.57799)"
              style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
@@ -891,156 +644,340 @@ polygon {
         </g>
       </g>
     </g>
-    <g
-       style="stroke:#000000"
-       id="g3195-4-2-9"
-       transform="matrix(-1,0,0,1,1124.9434,-323.74272)">
-      <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4959-8-0-7"
-         width="18.711134"
-         height="22.45336"
-         x="372.35156"
-         y="-64.607071"
-         transform="translate(165,100)" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 471.39488,18.84337 c 6.45307,-1.933349 13.60647,-1.424176 19.72065,1.403701 6.11417,2.827877 11.13441,7.949156 13.83992,14.118455 2.7055,6.1693 3.07206,13.331422 1.01053,19.744698 -2.06153,6.413275 -6.5327,12.020324 -12.32622,15.457636 -6.33271,3.757212 -14.18539,4.86083 -21.3084,2.99469"
-         id="path4999-4-0-0-3"
-         inkscape:path-effect="#path-effect5001-7-78-0-1"
-         inkscape:original-d="m 471.39488,18.84337 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 342.41375,-54.315959 29.93782,-0.935557"
-         id="path3124-7-0-7"
-         inkscape:path-effect="#path-effect3126-9-6-1"
-         inkscape:original-d="m 342.41375,-54.315959 c 9.64202,0.84018 29.55296,-0.807272 29.93782,-0.935557"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
-    </g>
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 653.54852,-304.89935 c -26.68583,0.16077 -49.34857,37.24947 -22.24488,50.72449 5.35928,2.66443 15.24699,2.14282 21.3084,2.99469"
+       inkscape:path-effect="#path-effect5001-7-78-0-1"
+       id="path4999-4-0-0-3"
+       d="m 653.54852,-304.89935 c -6.45307,-1.93335 -13.60647,-1.42418 -19.72065,1.4037 -6.11417,2.82788 -11.13441,7.94916 -13.83992,14.11846 -2.7055,6.1693 -3.07206,13.33142 -1.01053,19.74469 2.06153,6.41328 6.5327,12.02033 12.32622,15.45764 6.33271,3.75721 14.18539,4.86083 21.3084,2.99469"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 416.32272,-378.95411 36.01893,0"
+       inkscape:path-effect="#path-effect4356"
+       id="path4354"
+       d="m 416.32272,-378.95411 36.01893,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
   <g
-     id="g5262">
+     id="g4393">
     <g
        style="stroke:#000000"
-       id="g4000-4-8"
-       transform="translate(-152.02138,92.615386)">
+       id="g3357-4-8-0"
+       transform="translate(-181.0943,-330.11854)">
+      <rect
+         x="545.86053"
+         y="139.42201"
+         width="210"
+         height="130"
+         id="rect4044-5-4-2-2"
+         style="fill:#ffffff;stroke:#000000" />
       <g
-         transform="translate(401.44351,-266.18357)"
-         id="g3357-4-8-2-7-0"
-         style="stroke:#000000">
-        <rect
-           style="fill:#ffffff;stroke:#000000"
-           id="rect4044-5-4-2-4-6-1"
-           height="130"
-           width="210"
-           y="139.42201"
-           x="545.86053" />
+         style="stroke:#000000"
+         id="g3309-9-3-8">
         <g
-           id="g3309-9-3-7-5-7"
-           style="stroke:#000000">
-          <g
-             id="g3301-9-0-7-7-0"
-             style="stroke:#000000">
-            <polygon
-               style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
-               transform="translate(170.86059,-100.57799)"
-               id="polygon4046-6-2-15-7-7-2"
-               points="585,240 375,240 380,235 590,235 " />
-            <polygon
-               style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
-               transform="translate(170.86059,-100.57799)"
-               id="polygon4048-6-0-8-5-5-6"
-               points="585,370 585,240 590,235 590,365 " />
-          </g>
-          <g
-             id="g4274-8-3-5-4-4-5-0"
-             transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
-             style="stroke:#000000">
-            <rect
-               id="rect4090-5-5-8-8-9-4-1"
-               height="40"
-               width="105"
-               y="130"
-               x="395"
-               style="fill:#ffffff;stroke:#000000" />
-            <rect
-               id="rect4092-1-9-4-9-9-1-1"
-               height="8"
-               width="20"
-               y="138"
-               x="385"
-               style="fill:#ffffff;stroke:#000000" />
-            <rect
-               id="rect4094-3-4-9-7-2-7-0"
-               height="8"
-               width="20"
-               y="154"
-               x="385"
-               style="fill:#ffffff;stroke:#000000" />
-          </g>
+           style="stroke:#000000"
+           id="g3301-9-0-9">
+          <polygon
+             points="585,240 375,240 380,235 590,235 "
+             id="polygon4046-6-2-15-5"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+          <polygon
+             points="585,370 585,240 590,235 590,365 "
+             id="polygon4048-6-0-8-4"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+        </g>
+        <g
+           style="stroke:#000000"
+           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
+           id="g4274-8-3-5-4-5">
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="395"
+             y="130"
+             width="105"
+             height="40"
+             id="rect4090-5-5-8-8-7" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="138"
+             width="20"
+             height="8"
+             id="rect4092-1-9-4-9-9" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="154"
+             width="20"
+             height="8"
+             id="rect4094-3-4-9-7-0" />
         </g>
       </g>
-      <g
-         transform="matrix(1,0,0,-1,402.03039,141.7902)"
-         id="g3266-1-1-6-4-8-7"
-         style="stroke:#000000">
-        <rect
-           transform="translate(165,100)"
-           y="91.630898"
-           x="370.48044"
-           height="26.195587"
-           width="19.64669"
-           id="rect4961-6-9-5-0-2-1"
-           style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none" />
-        <path
-           d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z"
-           sodipodi:ry="14.968906"
-           sodipodi:rx="15.436685"
-           sodipodi:cy="27.077484"
-           sodipodi:cx="294.23257"
-           id="path4963-2-2-4-4-5-4-9"
-           style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-           sodipodi:type="arc"
-           transform="translate(190.72782,179.52231)" />
-        <path
-           transform="translate(165,100)"
-           inkscape:connector-curvature="0"
-           inkscape:original-d="m 334.9293,106.59979 c 8.03296,-0.72786 31.47324,-9.427072 34.6156,0"
-           inkscape:path-effect="#path-effect3130-3-4-1-1-2-1"
-           id="path3128-4-9-9-6-4-8"
-           d="m 334.9293,106.59979 34.6156,0"
-           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-      </g>
     </g>
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 289.37379,-154.49585 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
+       inkscape:path-effect="#path-effect5001-7-78-0"
+       id="path4999-4-0-0"
+       d="m 289.37379,-154.49585 c 6.45307,-1.93335 13.60647,-1.42418 19.72065,1.4037 6.11417,2.82788 11.13441,7.94916 13.83992,14.11846 2.7055,6.1693 3.07206,13.33142 1.01053,19.74469 -2.06153,6.41328 -6.5327,12.02033 -12.32622,15.45764 -6.33271,3.75721 -14.18539,4.86083 -21.3084,2.99469"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 159.51241,-228.79726 39.76116,0"
+       inkscape:path-effect="#path-effect4391"
+       id="path4389"
+       d="m 159.51241,-228.79726 39.76116,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+  <g
+     id="g4428">
     <g
        style="stroke:#000000"
-       id="g3195-4-4"
-       transform="matrix(-1,0,0,1,1553.2827,-17.185366)">
+       id="g3357-4-8-2-7"
+       transform="translate(-183.34089,-175.08599)">
       <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4959-8-9"
-         width="18.711134"
-         height="22.45336"
-         x="372.35156"
-         y="-64.607071"
-         transform="translate(165,100)" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 471.39488,18.84337 c 6.45307,-1.933349 13.60647,-1.424176 19.72065,1.403701 6.11417,2.827877 11.13441,7.949156 13.83992,14.118455 2.7055,6.1693 3.07206,13.331422 1.01053,19.744698 -2.06153,6.413275 -6.5327,12.020324 -12.32622,15.457636 -6.33271,3.757212 -14.18539,4.86083 -21.3084,2.99469"
-         id="path4999-4-0-4"
-         inkscape:path-effect="#path-effect5001-7-78-9"
-         inkscape:original-d="m 471.39488,18.84337 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 342.41375,-54.315959 29.93782,-0.935557"
-         id="path3124-7-07"
-         inkscape:path-effect="#path-effect3126-9-4"
-         inkscape:original-d="m 342.41375,-54.315959 c 9.64202,0.84018 29.55296,-0.807272 29.93782,-0.935557"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
+         x="545.86053"
+         y="139.42201"
+         width="210"
+         height="130"
+         id="rect4044-5-4-2-4-6"
+         style="fill:#ffffff;stroke:#000000" />
+      <g
+         style="stroke:#000000"
+         id="g3309-9-3-7-5">
+        <g
+           style="stroke:#000000"
+           id="g3301-9-0-7-7">
+          <polygon
+             points="585,240 375,240 380,235 590,235 "
+             id="polygon4046-6-2-15-7-7"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+          <polygon
+             points="585,370 585,240 590,235 590,365 "
+             id="polygon4048-6-0-8-5-5"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+        </g>
+        <g
+           style="stroke:#000000"
+           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
+           id="g4274-8-3-5-4-4-5">
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="395"
+             y="130"
+             width="105"
+             height="40"
+             id="rect4090-5-5-8-8-9-4" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="138"
+             width="20"
+             height="8"
+             id="rect4092-1-9-4-9-9-1" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="154"
+             width="20"
+             height="8"
+             id="rect4094-3-4-9-7-2-7" />
+        </g>
+      </g>
     </g>
+    <path
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z"
+       sodipodi:ry="14.968906"
+       sodipodi:rx="15.436685"
+       sodipodi:cy="27.077484"
+       sodipodi:cx="294.23257"
+       id="path4963-2-2-4-4-5-4"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="matrix(1,0,0,-1,7.97381,53.36547)" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 152.49574,-73.962636 44.90672,0"
+       inkscape:path-effect="#path-effect4426"
+       id="path4424"
+       d="m 152.49574,-73.962636 44.90672,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+  <g
+     id="g4489">
+    <g
+       style="stroke:#000000"
+       id="g3357-4-8-2-7-0"
+       transform="translate(249.42213,-173.56818)">
+      <rect
+         x="545.86053"
+         y="139.42201"
+         width="210"
+         height="130"
+         id="rect4044-5-4-2-4-6-1"
+         style="fill:#ffffff;stroke:#000000" />
+      <g
+         style="stroke:#000000"
+         id="g3309-9-3-7-5-7">
+        <g
+           style="stroke:#000000"
+           id="g3301-9-0-7-7-0">
+          <polygon
+             points="585,240 375,240 380,235 590,235 "
+             id="polygon4046-6-2-15-7-7-2"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+          <polygon
+             points="585,370 585,240 590,235 590,365 "
+             id="polygon4048-6-0-8-5-5-6"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+        </g>
+        <g
+           style="stroke:#000000"
+           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
+           id="g4274-8-3-5-4-4-5-0">
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="395"
+             y="130"
+             width="105"
+             height="40"
+             id="rect4090-5-5-8-8-9-4-1" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="138"
+             width="20"
+             height="8"
+             id="rect4092-1-9-4-9-9-1-1" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="154"
+             width="20"
+             height="8"
+             id="rect4094-3-4-9-7-2-7-0" />
+        </g>
+      </g>
+    </g>
+    <path
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z"
+       sodipodi:ry="14.968906"
+       sodipodi:rx="15.436685"
+       sodipodi:cy="27.077484"
+       sodipodi:cx="294.23257"
+       id="path4963-2-2-4-4-5-4-9"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="matrix(1,0,0,-1,440.73683,54.88328)" />
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 1081.8878,1.658004 c -26.6858,0.16077 -49.3486,37.24947 -22.2449,50.72449 5.3593,2.66443 15.247,2.14282 21.3084,2.99469"
+       inkscape:path-effect="#path-effect5001-7-78-9"
+       id="path4999-4-0-4"
+       d="m 1081.8878,1.658004 c -6.4531,-1.93335455 -13.6065,-1.42418501 -19.7207,1.4036899 -6.1141,2.8278748 -11.1344,7.9491531 -13.8399,14.1184541 -2.7055,6.169301 -3.0721,13.331425 -1.0105,19.744704 2.0615,6.413278 6.5327,12.020329 12.3262,15.457642 6.3327,3.757212 14.1854,4.86083 21.3084,2.99469"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 585.65847,-71.155966 44.90672,0"
+       inkscape:path-effect="#path-effect4483"
+       id="path4481"
+       d="m 585.65847,-71.155966 44.90672,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 843.87211,-72.091523 37.42227,0"
+       inkscape:path-effect="#path-effect4487"
+       id="path4485"
+       d="m 843.87211,-72.091523 37.42227,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+  <g
+     id="g4526">
+    <g
+       style="stroke:#000000"
+       id="g3357-4-8"
+       transform="translate(-186.03885,-22.45336)">
+      <rect
+         x="545.86053"
+         y="139.42201"
+         width="210"
+         height="130"
+         id="rect4044-5-4-2"
+         style="fill:#ffffff;stroke:#000000" />
+      <g
+         style="stroke:#000000"
+         id="g3309-9-3">
+        <g
+           style="stroke:#000000"
+           id="g3301-9-0">
+          <polygon
+             points="590,235 585,240 375,240 380,235 "
+             id="polygon4046-6-2-15"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+          <polygon
+             points="590,365 585,370 585,240 590,235 "
+             id="polygon4048-6-0-8"
+             transform="translate(170.86059,-100.57799)"
+             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
+        </g>
+        <g
+           style="stroke:#000000"
+           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
+           id="g4274-8-3-5-4">
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="395"
+             y="130"
+             width="105"
+             height="40"
+             id="rect4090-5-5-8-8" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="138"
+             width="20"
+             height="8"
+             id="rect4092-1-9-4-9" />
+          <rect
+             style="fill:#ffffff;stroke:#000000"
+             x="385"
+             y="154"
+             width="20"
+             height="8"
+             id="rect4094-3-4-9-7" />
+        </g>
+      </g>
+    </g>
+    <path
+       d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z"
+       sodipodi:ry="14.968906"
+       sodipodi:rx="15.436685"
+       sodipodi:cy="27.077484"
+       sodipodi:cx="294.23257"
+       id="path4963-2-2-4-4"
+       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="matrix(-1,0,0,-1,926.31728,204.67502)" />
+    <path
+       transform="translate(165,100)"
+       inkscape:connector-curvature="0"
+       inkscape:original-d="m 409.49231,78.523077 41.67692,-0.661539"
+       inkscape:path-effect="#path-effect4524"
+       id="path4522"
+       d="m 409.49231,78.523077 41.67692,-0.661539"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
 </svg>

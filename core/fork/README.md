@@ -13,6 +13,7 @@ Events
 - onFork/error
 - onFork/after/child
 - onFork/after/parent
+- onFork/complete
 
 Example
 ========
