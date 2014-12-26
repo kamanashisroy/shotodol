@@ -16,6 +16,7 @@ Events
 - onFork/complete
 
 [component diagram](../../docs/diagrams/spawning_process.svg)
+![component diagram](../../docs/diagrams/spawning_process.svg)
 
 Example
 ========
@@ -93,5 +94,10 @@ Executing:jobs
 
 ```
 
+Interprocess communication
+==========================
 
+The processes can communicate with [ForkStream](vsrc/ForkStream.vala). The *ForkStream* must be initiated with onFork_Before() and fixed up with onFork_After() .
+
+The [ForkableConsole](../console/vsrc/ForkableConsole.vala) uses *ForkStream* for interprocess communication.
 
