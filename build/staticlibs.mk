@@ -6,6 +6,7 @@ include $(SHOTODOL_HOME)/libs/config/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/bundle/staticlibs.mk
 include $(SHOTODOL_HOME)/$(PLATFORM)/platform_extra/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/iostream/staticlibs.mk
+include $(SHOTODOL_HOME)/libs/activeio/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/plugin/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/str_arms/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/make100/staticlibs.mk
