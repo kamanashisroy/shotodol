@@ -5,9 +5,13 @@ using shotodol;
  *  @{
  */
 internal class shotodol.fork.ForkCommand : shotodol.M100Command {
+	enum Options {
+		TARGET = 1,
+	}
 	public ForkCommand() {
 		extring prefix = extring.set_static_string("fork");
 		base(&prefix);
+		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "Target of the fork");
 	}
 
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
@@ -16,6 +20,11 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 	}
 
 	internal int forkHook(extring*msg, extring*output) {
+		ArrayList<xtring> vals = ArrayList<xtring>();
+		if(parseOptions(cmdstr, &vals) != 0) {
+			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
+		}
+		xtring? arg;
 		extring forkEntry = extring.set_static_string("onFork/before");
 		Plugin.swarm(&forkEntry, msg, output); // before fork
 		int pid = shotodol_platform.ProcessControl.fork();
