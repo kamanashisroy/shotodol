@@ -61,6 +61,17 @@ internal abstract class ForkableConsole : ConsoleSpindle {
 	internal uint getChildCount() {
 		return pipeCount;
 	}
+	internal int onQuitHook(extring*msg, extring*output) {
+		int i = 0;
+		for(; i < pipeCount; i++) {
+			extring cmd = extring.set_static_string("quit\r\n\r\n");
+			OutputStream?other = getChildOutputStream(i);
+			if(other == null) continue;
+			other.write(&cmd);
+		}
+		return 0;
+	}
+
 }
 
 

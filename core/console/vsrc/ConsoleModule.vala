@@ -24,19 +24,8 @@ public class shotodol.ConsoleModule : DynamicModule {
 		Plugin.register(&entry, new AnyInterfaceExtension(new ConsoleTest(), this));
 		entry.rebuild_and_set_static_string("onLoad");
 		Plugin.register(&entry, new HookExtension(onLoadHook, this));
-#if false
-		entry.rebuild_and_set_static_string("onQuit");
-		Plugin.register(&entry, new HookExtension((onQuitHook), this));
-#endif
 		return 0;
 	}
-
-#if false
-	int onQuitHook(extring*msg, extring*output) {
-		// Do we need this ?
-		return 0;
-	}
-#endif
 
 	int onLoadHook(extring*msg, extring*output) {
 		bool hasConsole = true;
@@ -74,6 +63,8 @@ public class shotodol.ConsoleModule : DynamicModule {
 		Plugin.register(&entry, new HookExtension(sp.onFork_After_Parent, this));
 		entry.rebuild_and_set_static_string("onFork/after/child");
 		Plugin.register(&entry, new HookExtension(sp.onFork_After_Child, this));
+		entry.rebuild_and_set_static_string("onQuit/soft");
+		Plugin.register(&entry, new HookExtension(sp.onQuitHook, this));
 		return 0;
 	}
 
