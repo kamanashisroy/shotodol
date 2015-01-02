@@ -11,8 +11,8 @@ public class shotodol.IdleModule : DynamicModule {
 		base(&nm,&ver);
 	}
 	public override int init() {
-		extring spindle = extring.set_static_string("MainSpindle");
-		IdleCommand.IdleSpindle sp = new IdleCommand.IdleSpindle();
+		extring spindle = extring.set_static_string("MainFiber");
+		IdleCommand.IdleFiber sp = new IdleCommand.IdleFiber();
 		Plugin.register(&spindle, new AnyInterfaceExtension(sp, this));
 		extring command = extring.set_static_string("command");
 		Plugin.register(&command, new M100Extension(new IdleCommand(sp), this));

@@ -14,7 +14,7 @@ public errordomain TurbineError {
 	PLATFORM_THREAD_FAILED,
 }
 
-public class shotodol.Turbine : Propeller {
+public class shotodol.Turbine : CompositeFiber {
 	shotodol_platform.PlatformThread pt;
 	public Turbine() {
 		base();
@@ -26,11 +26,11 @@ public class shotodol.Turbine : Propeller {
 			throw new TurbineError.PLATFORM_THREAD_FAILED("I cannot say more");
 		}
 	}
-	public int gearup(Spindle sp) {
+	public int gearup(Fiber sp) {
 		sps.add(sp);
 		return 0;
 	}
-	public int geardown(Spindle sp) {
+	public int geardown(Fiber sp) {
 		print("BUG: cannot remove the spindle\n");
 		//sps.remove(sp);
 		return -1;

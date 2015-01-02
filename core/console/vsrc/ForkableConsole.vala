@@ -5,7 +5,7 @@ using shotodol.fork;
 /** \addtogroup console
  *  @{
  */
-internal abstract class ForkableConsole : ConsoleSpindle {
+internal abstract class ForkableConsole : ConsoleFiber {
 	ArrayList<ForkStream> children;
 	ForkStream?x;
 	uint pipeCount;

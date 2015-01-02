@@ -1,4 +1,4 @@
 OS_PLATFORM/platform
-libs/propeller
+libs/fiber
 libs/iostream
 libs/module

@@ -4,15 +4,15 @@ using shotodol;
 /** \addtogroup activeio
  *  @{
  */
-public class shotodol.activeio.PullFeedSpindle : Spindle {
+public class shotodol.activeio.PullFeedFiber : Fiber {
 	PullFeedStream?pfs;
-	public class PullFeedSpindle(InputStream?source, OutputStream?down) {
+	public class PullFeedFiber(InputStream?source, OutputStream?down) {
 		pfs = new PullFeedStream(source, down);
 	}
 	public void feed(OutputStream down) {
 		pfs.feed(down);
 	}
-	public override int start(Spindle?plr) {
+	public override int start(Fiber?plr) {
 		//print("Started console stepping ..\n");
 		
 		return 0;

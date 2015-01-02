@@ -50,7 +50,7 @@ public class shotodol.ConsoleModule : DynamicModule {
 		if(!hasConsole) return 0;
 
 		print("Loading console spindle\n");
-		extring entry = extring.set_static_string("MainSpindle");
+		extring entry = extring.set_static_string("MainFiber");
 		ConsoleHistory sp = new ConsoleHistory();
 		Plugin.register(&entry, new AnyInterfaceExtension(sp, this));
 		entry.rebuild_and_set_static_string("command");

@@ -5,10 +5,10 @@ using shotodol.fork;
 /** \addtogroup console
  *  @{
  */
-internal abstract class ConsoleSpindle : Spindle {
+internal abstract class ConsoleFiber : Fiber {
 	class ConsoleStream : PullOutputStream {
-		unowned ConsoleSpindle?sp;
-		public ConsoleStream(InputStream x, ConsoleSpindle activator) {
+		unowned ConsoleFiber?sp;
+		public ConsoleStream(InputStream x, ConsoleFiber activator) {
 			base(x);
 			sp = activator;
 		}
@@ -30,13 +30,13 @@ internal abstract class ConsoleSpindle : Spindle {
 	protected OutputStream pad;
 	ConsoleStream cstrm;
 	int countDown;
-	public ConsoleSpindle() {
+	public ConsoleFiber() {
 		lis = new LineInputStream(new StandardInputStream());
 		pad = new StandardOutputStream();
 		cstrm = new ConsoleStream(lis, this);
 		countDown = 0;
 	}
-	~ConsoleSpindle() {
+	~ConsoleFiber() {
 	}
 	public void pull(InputStream x) {
 		lis.close();
@@ -45,7 +45,7 @@ internal abstract class ConsoleSpindle : Spindle {
 	}
 	public abstract void showHistory();
 	public abstract void addHistory(extring*cmd);
-	public override int start(Spindle?plr) {
+	public override int start(Fiber?plr) {
 		//print("Started console stepping ..\n");
 		
 		return 0;

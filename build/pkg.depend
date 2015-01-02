@@ -8,7 +8,7 @@ libs/config
 libs/iterator
 OS_PLATFORM/platform_extra
 OS_PLATFORM/platform_fileutils
-libs/propeller
+libs/fiber
 libs/activeio
 libs/bundle
 libs/make100

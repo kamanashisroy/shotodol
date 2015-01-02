@@ -10,9 +10,9 @@ using shotodol;
 /** \addtogroup activeio
  *  @{
  */
-public class shotodol.activeio.CompositePullSingleFeedSpindle : Spindle {
+public class shotodol.activeio.CompositePullSingleFeedFiber : Fiber {
 	CompositePullSingleFeedStream?pfs;
-	public class CompositePullSingleFeedSpindle() {
+	public class CompositePullSingleFeedFiber() {
 		pfs = new CompositePullSingleFeedStream();
 	}
 	public void feed(OutputStream down) {
@@ -21,7 +21,7 @@ public class shotodol.activeio.CompositePullSingleFeedSpindle : Spindle {
 	public void pull(InputStream source) {
 		pfs.pull(source);
 	}
-	public override int start(Spindle?plr) {
+	public override int start(Fiber?plr) {
 		//print("Started console stepping ..\n");
 		
 		return 0;

@@ -11,14 +11,14 @@ using shotodol;
  */
 
 internal class IdleCommand : M100Command {
-	internal class IdleSpindle : Spindle {
+	internal class IdleFiber : Fiber {
 		bool on;
-		public IdleSpindle() {
+		public IdleFiber() {
 			on = true;
 		}
-		~IdleSpindle() {
+		~IdleFiber() {
 		}
-		public override int start(Spindle?plr) {
+		public override int start(Fiber?plr) {
 			print("Started idle stepping ..\n");
 			return 0;
 		}
@@ -39,12 +39,12 @@ internal class IdleCommand : M100Command {
 		}
 	}
 
-	IdleSpindle sp;
+	IdleFiber sp;
 	enum Options {
 		IDLE_ON = 1,
 		IDLE_OFF,
 	}
-	public IdleCommand(IdleSpindle gSp) {
+	public IdleCommand(IdleFiber gSp) {
 		extring prefix = extring.set_static_string("idle");
 		base(&prefix);
 		sp = gSp;

@@ -1,5 +1,5 @@
 OS_PLATFORM/platform
-libs/propeller
+libs/fiber
 libs/module
 libs/plugin
 libs/watchdog

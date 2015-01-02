@@ -13,7 +13,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 	- [Command](../../../core/command/README.md)
 - [Concurrency](concurrency.md)
 	- [Turbine](../../../libs/turbine/README.md)
-	- [Propeller](../../../libs/propeller/README.md)
+	- [Fiber](../../../libs/fiber/README.md)
 	- [Fork](../../../core/fork/README.md)
 - [Diagrams](docs/diagrams/README.md)
 - [Frequently asked questions](FAQ.md)
