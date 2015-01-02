@@ -66,7 +66,13 @@ public abstract class shotodol.Fiber16x : Fiber {
 	protected override int step() {
 		int i = 0;
 		for(i=0;i<Fiber16xConfig.MAX_FIBERS;i++) {
-			if(x[i] != null && x[i].step() != 0) {
+			if(x[i] == null)
+				continue;
+			if(!x[i].started) {
+				x[i].start(this);
+				x[i].started = true;
+			}
+			if(x[i].step() != 0) {
 				x[i] = null;
 			}
 		}

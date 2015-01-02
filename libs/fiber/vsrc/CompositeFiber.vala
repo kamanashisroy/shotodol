@@ -80,6 +80,10 @@ public abstract class shotodol.CompositeFiber : Fiber {
 	protected override int step() {
 		sps.visit_each((data) => {
 			unowned Fiber sp = ((AroopPointer<Fiber>)data).getUnowned();
+			if(!sp.started) {
+				sp.start(this);
+				sp.started = true;
+			}
 			if(sp.step() != 0) {
 				data.unpin(); // delete this process from list
 			}
