@@ -15,6 +15,14 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 	}
 
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
+		ConfigEngine?cfg = null;
+		extring entry = extring.set_static_string("config/server");
+		Plugin.acceptVisitor(&entry, (x) => {
+			cfg = (ConfigEngine)x.getInterface(null);
+		});
+		if(cfg == null) {
+			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Not ready");
+		}
 		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
@@ -25,14 +33,6 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 		}
 		FileInputStream fis = new FileInputStream.from_file(infile);
 		LineInputStream lis = new LineInputStream(fis);
-		ConfigEngine?cfg = null;
-		extring entry = extring.set_static_string("config/server");
-		Plugin.acceptVisitor(&entry, (x) => {
-			cfg = (ConfigEngine)x.getInterface(null);
-		});
-		if(cfg == null) {
-			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Not ready");
-		}
 		do {
 			extring configLine = extring.stack(128);
 			try {
