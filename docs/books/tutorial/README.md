@@ -23,4 +23,5 @@ Introduction
 
 This tutorial complements the existing [README](../../../README.md) document. See [more](../../../README.md#shotodol).
 
+Note, to read this document offline please install [grip](http://github.com/joeyespo/grip).
 

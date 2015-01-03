@@ -26,7 +26,9 @@ You can write extensions and use them to communicate through them using interfac
 The plugins/extensions allow you to write hooks for events. See [hooking and message passing](../../../libs/plugin/Hooking.md).
 
 ![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
+![shotodol_architecture](../../diagrams/shotodol_module_plugin_command_shell.svg)
 ![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5547388/059c37fa-8b83-11e4-85e4-011b8210a619.jpg)
+![shotodol_module_component_command_shell](../../diagrams/shotodol_module_component_command_shell.svg)
 
 In the diagram above, _Quit_, _Module_, _Plugin_, _Help_, _Rehash_ are registered as commands in _plugin_ system. _Command server_ makes them available for use as instructions in _command/server_ extension point. And _Console module_(interactive shell) uses the _command server_ to access the commands.
 
