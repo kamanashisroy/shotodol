@@ -1,0 +1,4 @@
+PADEL_SPINNING_WHEEL_CSOURCES=$(wildcard $(SHOTODOL_HOME)/libs/spinningwheel/vsrc/*.c)
+PADEL_SPINNING_WHEEL_VSOURCE_BASE=$(basename $(notdir $(PADEL_SPINNING_WHEEL_CSOURCES)))
+OBJECTS+=$(addprefix $(OBJDIR)/, $(addsuffix .o,$(PADEL_SPINNING_WHEEL_VSOURCE_BASE)))
+

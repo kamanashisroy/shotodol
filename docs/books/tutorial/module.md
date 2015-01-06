@@ -50,7 +50,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 ### Concurrency/process/thread management modules
 
 - [fiber](../../../libs/fiber/README.md)
-- [turbine](../../../libs/turbine/README.md)
+- [spinningwheel](../../../libs/spinningwheel/README.md)
 - [fork](../../../core/fork/README.md)
 
 ### Testing and benchmarking modules

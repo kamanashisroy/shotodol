@@ -3,27 +3,27 @@ using shotodol;
 
 /**
  * \ingroup library
- * \defgroup turbine Individual thread(turbine)
+ * \defgroup spinningwheel Individual thread(SpinningWheel)
  * [Cohesion : Functional]
  */
 
-/** \addtogroup turbine
+/** \addtogroup spinningwheel
  *  @{
  */
-public errordomain TurbineError {
+public errordomain SpinningWheelError {
 	PLATFORM_THREAD_FAILED,
 }
 
-public class shotodol.Turbine : CompositeFiber {
+public class shotodol.SpinningWheel : CompositeFiber {
 	shotodol_platform.PlatformThread pt;
-	public Turbine() {
+	public SpinningWheel() {
 		base();
 		pt = shotodol_platform.PlatformThread();
 	}
-	public void startup() throws TurbineError {
+	public void startup() throws SpinningWheelError {
 		int ecode = pt.start(() => {print("We are going\n");start(null);return 0;});
 		if(ecode != 0) {
-			throw new TurbineError.PLATFORM_THREAD_FAILED("I cannot say more");
+			throw new SpinningWheelError.PLATFORM_THREAD_FAILED("I cannot say more");
 		}
 	}
 	public int gearup(Fiber sp) {

@@ -22,6 +22,6 @@ core/fork
 core/console
 core/idle
 core/profiler
-libs/turbine
+libs/spinningwheel
 main/main
 apps/good_luck

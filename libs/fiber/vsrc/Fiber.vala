@@ -5,7 +5,7 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.Fiber : Replicable {
-	public bool started;
+	internal bool started;
 	public Fiber() {
 		started = false;
 	}
