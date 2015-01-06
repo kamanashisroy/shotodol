@@ -10,7 +10,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 		- [Builtin modules](module.md#builtin-modules)
 		- [User module](module.md#user-module)
 		- [Good luck module](../../../apps/good_luck/README.md)
-	- [Command](../../../core/command/README.md)
+	- [Command](../../../core/commands/README.md)
 - [Concurrency](concurrency.md)
 	- [SpinningWheel](../../../libs/spinningwheel/README.md)
 	- [Fiber](../../../libs/fiber/README.md)

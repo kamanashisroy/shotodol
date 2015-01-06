@@ -10,3 +10,8 @@ Module command lets you load a dynamic module and also unloading it. Write `help
 RehashCommand
 =============
 Rehash command lets the rehash extensions dispatch in a swarm.
+
+Diagram
+========
+
+![Command hierarchy](../../docs/diagrams/command_hierarchy.svg)
