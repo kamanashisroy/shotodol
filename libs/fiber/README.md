@@ -64,6 +64,7 @@ Diagrams
 =========
 
 ![Fiber class diagram](../../docs/diagrams/fiber_class_diagram.svg)
+![Fiber hierarchy](../../docs/diagrams/fiber_hierarchy.svg)
 
 TODO
 ======
