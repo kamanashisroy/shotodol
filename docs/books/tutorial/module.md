@@ -42,6 +42,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 - [module](../../../libs/module/README.md)
 - [plugin](../../../libs/plugin/README.md)
 - [make100](../../../libs/make100/README.md)
+- [Command](../../../core/commands/README.md)
 
 ### Configuration modules
 

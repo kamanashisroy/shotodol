@@ -27,7 +27,12 @@ Rehash is an event. This event is generated from [rehash command](../../core/com
 You can write a [hook function](Hooking.md) for an event.
 
 ![Calling/swarming the extended hook](https://cloud.githubusercontent.com/assets/973414/5548496/f0aab186-8b9c-11e4-9f6c-fd8bc62043eb.jpg)
+
+
 ![Calling/swarming the extended hook](../../docs/diagrams/swarming_extended_hook.svg)
+
+
+![Plugin Class Diagram](../../docs/diagrams/plugin_class_diagram.svg)
 
 
 
