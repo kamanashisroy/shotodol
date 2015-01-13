@@ -704,29 +704,72 @@ polygon {
      inkscape:path-effect="#path-effect3802"
      inkscape:original-d="M 994.2312,783.53309 681.75526,1122.2046"
      inkscape:connector-curvature="0" />
-  <g
-     id="g3425">
-    <path
-       inkscape:connector-curvature="0"
-       id="rect4001"
-       d="m 313.72582,1213.2058 c 313.93882,0 627.87764,0 941.81648,0 0,-331.4773 0,-662.95449 0,-994.43168 -313.93884,0 -627.87766,0 -941.81648,0 0,331.47719 0,662.95438 0,994.43168 z"
-       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:2.10351896;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none" />
-    <path
-       inkscape:connector-curvature="0"
-       id="rect4773"
-       d="m 311.78105,217.87202 c 149.60417,0 299.20833,0 448.8125,0 0,-14.8854 0,-29.7708 0,-44.6563 -149.60417,0 -299.20833,0 -448.8125,0 0,14.8855 0,29.7709 0,44.6563 z"
-       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none" />
-    <text
-       sodipodi:linespacing="125%"
-       id="text3434-4-7"
-       y="203.20178"
+  <path
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1.52289844;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     d="m 313.72582,1213.2058 c 164.54855,0 329.09709,0 493.64566,0 0,-331.4773 0,-662.95449 0,-994.43168 -164.54857,0 -329.09711,0 -493.64566,0 0,331.47719 0,662.95438 0,994.43168 z"
+     id="rect4001"
+     inkscape:connector-curvature="0" />
+  <path
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     d="m 311.78105,217.87202 c 149.60417,0 299.20833,0 448.8125,0 0,-14.8854 0,-29.7708 0,-44.6563 -149.60417,0 -299.20833,0 -448.8125,0 0,14.8855 0,29.7709 0,44.6563 z"
+     id="rect4773"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="331.9115"
+     y="203.20178"
+     id="text3434-4-7"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3436-0-5"
+       style="stroke:#000000"
        x="331.9115"
-       style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       xml:space="preserve"><tspan
-         y="203.20178"
-         x="331.9115"
-         style="stroke:#000000"
-         id="tspan3436-0-5"
-         sodipodi:role="line">shotodol</tspan></text>
-  </g>
+       y="203.20178">shotodol</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="573.85889"
+     y="201.3945"
+     id="text9711"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan9713"
+       style="stroke:#000000"
+       x="573.85889"
+       y="201.3945">[core/command]</tspan></text>
+  <path
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1.53391421;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     d="m 836.14212,1213.4422 c 166.93768,0 333.87528,0 500.81298,0 0,-331.47728 0,-662.95447 0,-994.43166 -166.9377,0 -333.8753,0 -500.81298,0 0,331.47719 0,662.95438 0,994.43166 z"
+     id="rect4001-1"
+     inkscape:connector-curvature="0" />
+  <path
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     d="m 834.19735,218.10844 c 149.60417,0 299.20835,0 448.81255,0 0,-14.8854 0,-29.7708 0,-44.6563 -149.6042,0 -299.20838,0 -448.81255,0 0,14.8855 0,29.7709 0,44.6563 z"
+     id="rect4773-3"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="854.32782"
+     y="203.4382"
+     id="text3434-4-7-4"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3436-0-5-2"
+       style="stroke:#000000"
+       x="854.32782"
+       y="203.4382">shotodol</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="1086.777"
+     y="202.77159"
+     id="text9711-9"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan9713-2"
+       style="stroke:#000000"
+       x="1086.777"
+       y="202.77159">[libs/make100]</tspan></text>
 </svg>
