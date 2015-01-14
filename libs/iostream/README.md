@@ -10,3 +10,8 @@ The idea of stream is influenced by java.io JSR. But there is also PullOutputStr
 New Streams
 ============
 There are whole new idea like, PullFeedStream for implementation of agent based concurrency.
+
+Architecture
+============
+
+![iostream class diagram](../../docs/diagrams/shotodol_iostream.svg)
