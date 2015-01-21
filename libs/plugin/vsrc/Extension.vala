@@ -21,7 +21,12 @@ public class shotodol.Extension : Replicable {
 		extring dlg = extring.stack(128);
 		extring name = extring();
 		src.getNameAs(&name);
-		dlg.printf("\t[%s]\t\t", name.to_string());
+		dlg.concat_char('\t');
+		dlg.concat_char('[');
+		dlg.concat(&name);
+		dlg.concat_char(']');
+		dlg.concat_char('\t');
+		dlg.concat_char('\t');
 		pad.write(&dlg);
 		return 0;
 	}
