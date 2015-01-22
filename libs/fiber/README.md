@@ -5,7 +5,7 @@ Concurrency is achieved in shotodol using _SpinningWheel_, _CompositeFiber_ and 
 
 [CompositeFiber](vsrc/propeller.vala) is a thread. It is collection of spindles. And it executes the _step()_ method of registered [Fibers](vsrc/spindle.vala) one by one. If _step()_ returns nonzero then it is oust from the execution line. 
 
-[SpinningWheel](../turbine/vsrc/SpinningWheel.vala) is a _CompositeFiber_ that integrates the platform thread library. An application may contain only main thread which can perform _CompositeFiber_ without the need of _SpinningWheel_ . Otherwise if it contains multiple threads, it will need _SpinningWheel_ to create them. 
+[SpinningWheel](../spinningwheel/vsrc/SpinningWheel.vala) is a _CompositeFiber_ that integrates the platform thread library. An application may contain only main thread which can perform _CompositeFiber_ without the need of _SpinningWheel_ . Otherwise if it contains multiple threads, it will need _SpinningWheel_ to create them. 
 
 ### Call flow
 
