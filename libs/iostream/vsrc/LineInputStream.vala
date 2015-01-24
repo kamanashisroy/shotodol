@@ -8,11 +8,16 @@ public class shotodol.LineInputStream : InputStream {
 	InputStream downInputStream;
 	extring rbuf;
 	extring rmem;
-	public LineInputStream(InputStream down_stream, int bufferSize = 1024) {
-		downInputStream = down_stream;
+	bool skipBlankLine;
+	public LineInputStream.full(bool givenSkipBlankLine = true, int bufferSize = 1024, InputStream givenDownStream) {
+		downInputStream = givenDownStream;
 		rmem = extring();
 		rbuf = extring();
 		rmem.rebuild_in_heap(bufferSize);
+		skipBlankLine = givenSkipBlankLine;
+	}
+	public LineInputStream(InputStream givenDownStream) {
+		LineInputStream.full(true, 1024, givenDownStream);
 	}
 	public override int availableBytes() throws IOStreamError.InputStreamError {
 		return downInputStream.availableBytes();
@@ -34,22 +39,33 @@ public class shotodol.LineInputStream : InputStream {
 		int retlen = 0;
 		for(i=0;i<rbuf.length();i++) {
 			if(rbuf.char_at(i) == '\n') {
-				if(i - ln_start == 0) {
-					// skip blank line
-					ln_start++;
-					continue;
+				if(i - ln_start <= 1) {
+					if((i - ln_start == 0) || rbuf.char_at(ln_start) == '\r') {
+						// skip blank line
+						if(skipBlankLine) {
+							ln_start = i+1;
+						}
+						continue;
+					}
 				}
+				int prelen = ln.length();
+				int lnlen = i-ln_start;
+				rbuf.shift(ln_start);
 				ln.concat(&rbuf);
-				ln.trim_to_length(i);
+				ln.trim_to_length(prelen + lnlen);
 				retlen = i - ln_start;
-				if(ln_start != 0) {
-					ln.shift(ln_start);
-				}
-				ln_start = i+1;
+				rbuf.shift(lnlen+1);
+				ln_start = 0;
 				break;
 			}
 		}
 		rbuf.shift(ln_start);
+#if true
+		ln.zero_terminate();
+		print("ln[%s]\n", ln.to_string());
+		rbuf.zero_terminate();
+		print("rbuf[%s]\n", rbuf.to_string());
+#endif
 		if(retlen == 0) {
 			rmem.concat(&rbuf); // memory move
 			rbuf.trim_to_length(0);
