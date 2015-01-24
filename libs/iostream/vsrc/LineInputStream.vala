@@ -60,7 +60,7 @@ public class shotodol.LineInputStream : InputStream {
 			}
 		}
 		rbuf.shift(ln_start);
-#if true
+#if false
 		ln.zero_terminate();
 		print("ln[%s]\n", ln.to_string());
 		rbuf.zero_terminate();
