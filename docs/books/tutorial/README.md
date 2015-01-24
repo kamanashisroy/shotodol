@@ -3,6 +3,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 - [Introduction](#introduction)
 - Preparation
 	- [Getting the sources](getting.md)
+	- [Understanding diagrams](../../diagrams/README.md)
 - Building block
 	- [Plugin](../../../libs/plugin/README.md)
 	- [Module](module.md)
