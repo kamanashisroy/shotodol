@@ -38,14 +38,14 @@ public class shotodol.LineAlign<G> : Replicable {
 		return sense;
 	}
 
-	public static int next_token_delimitered(extring*src, extring*next, extring*delim) {
+	public static int next_token_delimitered(extring*src, extring*next, extring*delim, extring*wordDivider = null) {
 		uint i = 0;
 		int token_start = -1;
 		int trim_at = -1;
 		int len = src.length();
 		for(i = 0; i < len; i++) {
 			uchar x = src.char_at(i);
-			if(x == ' ' || x == '\r' || x == '\n') {
+			if((wordDivider == null && (x == ' ' || x == '\r' || x == '\n')) || wordDivider.contains_char(x)) {
 				if(token_start == -1) {
 					continue;
 				}
@@ -76,7 +76,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	}
 
 
-	public static int next_token_delimitered_sliteral(extring*src, extring*next, extring*delim) {
+	public static int next_token_delimitered_sliteral(extring*src, extring*next, extring*delim, extring*wordDivider = null) {
 		uint i = 0;
 		int token_start = -1;
 		int trim_at = -1;
@@ -85,7 +85,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		for(i = 0; i < len; i++) {
 			uchar x = src.char_at(i);
 			bool isQuote = (x == '\"');
-			if((stringLiteral && isQuote) || ( !stringLiteral && ( x == ' ' || x == '\r' || x == '\n' || isQuote) ) ) {
+			if((stringLiteral && isQuote) || ( !stringLiteral && ((wordDivider == null && (x == ' ' || x == '\r' || x == '\n' || isQuote)) || wordDivider.contains_char(x)) ) ) {
 				if(token_start == -1) {
 					if(isQuote) {
 						stringLiteral = true;
