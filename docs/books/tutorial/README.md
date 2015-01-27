@@ -16,7 +16,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 	- [SpinningWheel](../../../libs/spinningwheel/README.md)
 	- [Fiber](../../../libs/fiber/README.md)
 	- [Fork](../../../core/fork/README.md)
-- [Diagrams](docs/diagrams/README.md)
+- [Diagrams](../../../docs/diagrams/README.md)
 - [Frequently asked questions](FAQ.md)
 
 Introduction

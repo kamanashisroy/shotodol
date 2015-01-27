@@ -16,6 +16,13 @@ The above diagram shows the relation between differnt [fiber](../../libs/fiber)s
 
 Components here represent modules. It may also indicate any [M100Command](../../libs/make100) interface. 
 
+
+The lollipop in the component diagram below is the plugin extension point.
+
+![plugin hub](extended_interface.svg)
+
+The half circular hub drawn above is the traversals of the extensions, ie, this is the place where the extensions are plugged.
+
 ![command console](shotodol_module_component_command_shell.svg)
 The above diagram shows the available [commands](../../core/commands) and user [interaction](../../core/console).
 ![spawning process](spawning_process.svg)
