@@ -31,6 +31,7 @@ You can write a [hook function](Hooking.md) for an event.
 
 ![Calling/swarming the extended hook](../../docs/diagrams/swarming_extended_hook.svg)
 
+### Class diagram
 
 ![Plugin Class Diagram](../../docs/diagrams/plugin_class_diagram.svg)
 
