@@ -69,7 +69,7 @@ local phome = "";
 if haslfs then
 	phome = lfs.currentdir()
 end
-configLines["PROJECT_HOME"] = prompt("Project path " .. phome .. " > " , phome)
+configLines["PROJECT_HOME"] = prompt("Project path or current/working directory " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
 local ahome = string.gsub(configLines["SHOTODOL_HOME"],"shotodol$","aroop")
 configLines["VALA_HOME"] = prompt("Aroop path " .. ahome .. " > ", ahome)

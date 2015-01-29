@@ -9,7 +9,7 @@ This is an all in one **server environment** written in [aroop](https://github.c
 - An interface(plugin system) where the modules communicate. [Read more.](libs/plugin/README.md)
 - An [interface](http://en.wikipedia.org/wiki/Shell_%28computing%29) where the user can communicate. [Read more.](core/console/README.md)
 
-The idea here is to provide you an environment to write your own service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple. It minimises the required information [overhead](http://en.wikipedia.org/wiki/Information_overload) to write [plugin/feature](http://miniim.blogspot.com/2014/09/plugin.html). There is a [**tutorial**](docs/books/tutorial/README.md) to support the development.
+The idea here is to provide an environment to write a service via modules. There are some modules available in seperate projects based on shotodol. But the shotodol itself is kept small and simple. It minimises the required information [overhead](http://en.wikipedia.org/wiki/Information_overload) to write [plugin/feature](http://miniim.blogspot.com/2014/09/plugin.html). There is a [**tutorial**](docs/books/tutorial/README.md) to support the development.
 
 The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
@@ -22,88 +22,40 @@ Here is the shotodol component diagram showing interaction between plugins.
 ![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5548616/ffe8add0-8b9f-11e4-9660-5e96311ea880.jpg)
 
 
-Dependencies
+Preparation
 ============
 
-You need to get the following project sources,
+- [Getting the sources](getting.md)
+- [Building](building.md)
 
-- [aroop](https://github.com/kamanashisroy/aroop)
-
-
-How to configure
-===============
-
-You need to build the aroop first. Please see the readme in aroop to build it.
-
-To build shotodol, you need to configure and generate the makefiles. To do that you need [lua](http://www.lua.org/). And if you have filesystems module in lua then it will be easy. You need to execute the configure.lua script, like the following,
-
-```
- a/shotodol$ lua configure.lua
-```
-
-And you will get the output like the following,
-
-```
-Project path /a/shotodol > 
-Aroop path /a/aroop > 
-enable bluetooth ?(y/n) > n
-enable debug (ggdb3) ?(y/n) > y
-```
-
-Building shotodol
-=================
-
-Now, after you have the _Makefile_ in the shotodol directory you are ready to [_build_](http://en.wikipedia.org/wiki/Software_build). You can easily build it like,
-
-```
- a/shotodol$ make
- a/shotodol$ ls
-	shotodol.bin
-```
-
-The above command will create shotodol.bin as an executable binary. It reads the _autoload/shotodol.ske_ (_shake_ script file) for loading required plugins and execute other command blocks. 
-
-Running
-========
-
-You can execute shotodol by running the shotodol.bin file.
-
-```
- a/shotodol$ ./shotodol.bin
-```
 User interfacing with shotodol
 ==============================
 
 ### Interactive shell
 
-Shotodol by default(though not mandatory) comes with a console interface. You can put text commands to do certain tasks. It is called shake shell. You can put _help_ command to know more about the available commands.
+Shotodol by default(though not mandatory) comes with a console interface. User can put text commands to do certain tasks. It is called _shake_ shell. User can put _help_ command to know more about the available commands.
 
 ### Shake script
 
-Shotodol comes with a builtin parser for shake script. You can basically load prepared command blocks by these script files and execute them when needed.
-
+Shotodol comes with a builtin parser for shake script. It contains the shell commands discussed above listed under a rule. It is inspired by _Makefile_ rules. It basically loads prepared command blocks by these script files and execute them when needed.
 
 [More on Shake script.](core/shake/README.md)
 
 
-Testing
-========
-
-There are some test cases in _'tests'_ directory. You can, for example, change directory to tests/core/profiler/server and _make_ to test the _profiler_.
-
 Growing
 ========
 
-Shotodol is meant to be grown by you. You can grow it by adding new <a href="libs/module/README.md">modules</a>. You can write user modules and add features. Basically they are done by writting extensions for _command_ space and other event spaces. The builtin modules are there as examples.
+Shotodol is meant to be grown by the developers. It is possible to grow it by adding new <a href="libs/module/README.md">modules</a>. The modules generate plugins and interfaces to work togather. The builtin modules are there as examples.
 
-Design Patterns
-================
-- [Design patterns](docs/Design_Patterns.md)
+- [more on modules](docs/books/tutorial/module.md)
+- [Design patterns](docs/books/tutorial/design_patterns.md)
 - [Diagrams](docs/diagrams/README.md)
 
 Debugging
 ==========
-- [Debugging](docs/debugging.md)
+
+- [Debugging](docs/books/tutorial/debugging.md)
+- Testing There are some test cases in _'tests'_ directory. User can , for example, change directory to tests/core/profiler/server and _make_ to test the _profiler_.
 
 Tasks
 ======
