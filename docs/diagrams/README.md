@@ -23,7 +23,7 @@ The lollipop in the component diagram below is the plugin extension point.
 
 The half circular hub drawn above is the traversals of the extensions, ie, this is the place where the extensions are plugged.
 
-![command console](shotodol_module_component_command_shell.svg)
+![command console](shotodol_module_component_command_shell_full.svg)
 The above diagram shows the available [commands](../../core/commands) and user [interaction](../../core/console).
 ![spawning process](spawning_process.svg)
 The above diagram shows the method of [spawning child process](../../core/fork).
