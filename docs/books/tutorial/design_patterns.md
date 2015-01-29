@@ -3,7 +3,12 @@ Shotodol programming and design patterns
 
 #### Encapsulation
 
-[Modules](../../../libs/module/README.md) provide encapsulation in shotodol. You can hide your inner workings in modules and still be able to advertise your extensions registering as [plugins](../../../libs/plugin/README.md).
+[Modules](../../../libs/module/README.md) provide encapsulation in shotodol. You can hide your inner workings in modules and still be able to advertise your extensions registering as [plugins](../../../libs/plugin/README.md). 
+
+In the following diagram the _iostream_ encapsulates the input output constructs of shotodol.
+
+![iostream](../../../docs/diagrams/shotodol_iostream.svg)
+
 
 #### Composite Pattern
 
@@ -22,14 +27,14 @@ The following diagram displays the composition of fibers.
 
 #### Inheritance
 
-The [bundler](../../../libs/bundler/) has an inheritance pattern.
+The [bundler](../../../libs/bundle/) has an inheritance pattern.
 
 
 #### Design by contract
 
 The interface extensions are examples of [design by contract](http://en.wikipedia.org/wiki/Design_by_contract).
 
-![Interface accessing](../../docs/diagrams/extended_interface.svg)
+![Interface accessing](../../../docs/diagrams/extended_interface.svg)
 
 #### Readings
 

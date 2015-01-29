@@ -11,17 +11,18 @@ Roadmap
 
 #### Messaging
 - [x] Finish up the primary messaging code, named, pollen.
-	-[x] Rename it to Bag.
+	- [x] Rename it to Bag.
+	- [ ] Write detailed documentation for _Bag_ and _Bundler_.
 - [x] Implement infix/prefix bundlers.
 
 
 #### Concurrency
-- [ ] Implement green threads/coroutine. Spindle.longRun() instread of Spindle.step() may reduce the setup execution cost in each call.
+- [ ] Implement green threads/coroutine. Fiber.longRun() instread of Fiber.step() may reduce the setup execution cost in each call.
 	- [ ] Use generators.
 - [x] Implement forking and associate different console with a pipe to the parent process.
 	- [x] Create jobs console command like in unix shell.
 	- [ ] Use fg,bg command to change or select target process.
-	- [ ] Use https://en.wikipedia.org/wiki/Cell_%28microprocessor%29#Distributed_computing
+	- [x] Use https://en.wikipedia.org/wiki/Cell_%28microprocessor%29#Distributed_computing
 - [ ] Remove all the locks, lower the atomic operations.
 
 #### Packaging
@@ -47,5 +48,5 @@ Roadmap
 - [ ] Move all the platfrom dependent code into named extensions(see roopkotha guicore).
 
 #### Tutorial
-- [ ] Write an elaborative tutorial.
-	- [ ] Move some of the contents of the main README.md file into tutorial.
+- [x] Write an elaborative tutorial.
+	- [x] Move some of the contents of the main README.md file into tutorial.
