@@ -24,6 +24,13 @@ The following diagram displays the composition of fibers.
 
 The [bundler](../../../libs/bundler/) has an inheritance pattern.
 
+
+#### Design by contract
+
+The interface extensions are examples of [design by contract](http://en.wikipedia.org/wiki/Design_by_contract).
+
+![Interface accessing](../../docs/diagrams/extended_interface.svg)
+
 #### Readings
 
 - [Plugin Oriented programming](http://miniim.blogspot.com/2014/09/plugin.html)
