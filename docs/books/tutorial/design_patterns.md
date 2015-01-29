@@ -9,6 +9,17 @@ Shotodol programming and design patterns
 
 Writing extensions in a plugin space is an example of composite pattern. See [extensions](../../../libs/plugin/README.md#extension).
 
+
+The following diagram displays the composition of commands under _command/server_ .
+
+![Composite class diagram for commands](../../../docs/diagrams/composite_class_diagram_for_commands.svg)
+
+
+The following diagram displays the composition of fibers.
+
+![Composite class diagram for fibers](../../../docs/diagrams/composite_class_diagram_for_fibers.svg)
+
+
 #### Inheritance
 
 The [bundler](../../../libs/bundler/) has an inheritance pattern.
