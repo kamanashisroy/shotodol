@@ -1,10 +1,13 @@
 Module
 =========
 
+![module component](../../diagrams/module_component.svg)
+
+
 Most of the code done in shotodol are in modules, simply to achieve **[robustness](http://en.wikipedia.org/wiki/Structural_robustness)** by **[separation of concern](http://en.wikipedia.org/wiki/Separation_of_concerns)**. A module is a [group of code](http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29) that provides a functional support to the shotodol environment. You can say the following things about shotodol modules,
 
-- Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, you can write modules in apps/good\_luck or core/commands directory. 
-- You may choose to load a module dinamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
+- _Encapsulation_: Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, you can write modules in apps/good\_luck or core/commands directory. 
+- _Loading/unloading_: User may choose to load a module dinamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
 
 Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29) and low [coupling](http://en.wikipedia.org/wiki/Coupling_%28computer_science%29).
 

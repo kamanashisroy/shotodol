@@ -4,7 +4,6 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 - Preparation
 	- [Getting the sources](getting.md)
 	- [Building](building.md)
-	- [Understanding diagrams](../../diagrams/README.md)
 - Building block
 	- [Plugin](../../../libs/plugin/README.md)
 	- [Module](module.md)
@@ -14,6 +13,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 		- [Good luck module](../../../apps/good_luck/README.md)
 	- [Command](../../../core/commands/README.md)
 	- [Design Patterns](design_patterns.md)
+	- [Understanding diagrams](../../diagrams/README.md)
 - [Concurrency](concurrency.md)
 	- [SpinningWheel](../../../libs/spinningwheel/README.md)
 	- [Fiber](../../../libs/fiber/README.md)

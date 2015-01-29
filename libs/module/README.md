@@ -1,6 +1,9 @@
 Module
 =========
 
+![module component](../../docs/diagrams/module_component.svg)
+
+
 Modules are the basic building block of the shotodol project. There are two kinds of modules in terms of loading point.
 
 1. Static module : Static modules are linked statically to shotodol.bin (binary).

@@ -82,10 +82,10 @@ Readings
 - [Unix philosophy](http://en.wikipedia.org/wiki/Unix_philosophy)
 - [Inversion of control](http://en.wikipedia.org/wiki/Inversion_of_control)
 - [The idea of Plugin](http://miniim.blogspot.com/2014/09/plugin.html)
+- [Architecture of opensource applications](http://aosabook.org/en/index.html)
+- [Simple English](http://simple.wikipedia.org/wiki/Wikipedia:How_to_write_Simple_English_pages)
 
 Documentation
 ===============
-- [Simple English](http://simple.wikipedia.org/wiki/Wikipedia:How_to_write_Simple_English_pages)
-- [Architecture of opensource applications](http://aosabook.org/en/index.html)
 - [Shotodol tutorial](docs/books/tutorial/README.md)
 
