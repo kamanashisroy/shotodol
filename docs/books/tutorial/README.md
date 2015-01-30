@@ -5,6 +5,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 	- [Getting the sources](getting.md)
 	- [Building](building.md)
 - Building block
+	- [Analogies](analogies.md)
 	- [Plugin](../../../libs/plugin/README.md)
 	- [Module](module.md)
 		- [Module interaction](module.md#module-interaction)

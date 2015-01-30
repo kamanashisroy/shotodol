@@ -13,6 +13,15 @@ The idea here is to provide an environment to write a service via modules. There
 
 The name _shotodol_ means hundred petals(literally) or the lotus flower. In our project the petals are analogical to modules and the flower itself is analogical to the shotodol environment which holds them(modules) together. [see name shotodol](docs/name_shotodol.md)  
 
+In functional mathematics we define a function f(x,y,z) to be a relation between the domains of x,y and z and the range of f(x,y,z). Here shotodol can be defined like the following,
+
+> shotodol = f(x,y,z, ...) where x,y and z are the extension points.
+
+These extension points can be defined by plugins.
+
+Visualizing shotodol 
+=====================
+
 Here is the artistic representation of shotodol core modules.
 
 ![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
