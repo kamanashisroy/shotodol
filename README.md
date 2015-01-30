@@ -30,8 +30,8 @@ The above diagram can be reduced to following mathematical function form,
 
 - command is element of {quit,module,plugin,help,rehash}
 - commandServer(command) is a function of command
-- console(commandServer) function of commandServer 
-- shotodol = f(console ..)
+- console(commandServer) is a function of commandServer 
+- shotodol = f(console, ..)
 
 Here is the shotodol component diagram showing interaction between plugins.
 
