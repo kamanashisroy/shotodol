@@ -37,7 +37,7 @@ Preparation
 - [Getting the sources](getting.md)
 - [Building](building.md)
 
-User interfacing with shotodol
+User interaction with shotodol
 ==============================
 
 ### Interactive shell
@@ -50,6 +50,9 @@ Shotodol comes with a builtin parser for shake script. It contains the shell com
 
 [More on Shake script.](core/shake/README.md)
 
+### Config files
+
+FILLME
 
 Growing
 ========
