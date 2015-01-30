@@ -26,10 +26,16 @@ Here is the artistic representation of shotodol core modules.
 
 ![shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 
+The above diagram can be reduced to following mathematical function form,
+
+- command is element of {quit,module,plugin,help,rehash}
+- commandServer(command) is a function of command
+- console(commandServer) function of commandServer 
+- shotodol = f(console ..)
+
 Here is the shotodol component diagram showing interaction between plugins.
 
-![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5548616/ffe8add0-8b9f-11e4-9660-5e96311ea880.jpg)
-
+![shotodol_module_component_command_shell](https://cloud.githubusercontent.com/assets/973414/5972668/ac8fc66e-a887-11e4-835e-d22b2d998ffd.jpg)
 
 Preparation
 ============
