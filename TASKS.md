@@ -13,6 +13,7 @@ Roadmap
 - [x] Finish up the primary messaging code, named, pollen.
 	- [x] Rename it to Bag.
 	- [ ] Write detailed documentation for _Bag_ and _Bundler_.
+	- [ ] write Replicable.bundle(Bag) or Replicate.update(Bag);
 - [x] Implement infix/prefix bundlers.
 
 

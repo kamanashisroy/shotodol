@@ -41,7 +41,7 @@ Preparation
 ============
 
 - [Getting the sources](getting.md)
-- [Building](building.md)
+- [Building](docs/books/tutorial/building.md)
 
 User interaction with shotodol
 ==============================
