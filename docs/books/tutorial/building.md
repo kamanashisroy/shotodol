@@ -19,12 +19,18 @@ After lua is installed it is needed to execute the configure.lua script, like th
 And it will prompt like the following,
 
 ```
-Project path /a/shotodol > 
-Aroop path /a/aroop > 
+Current/working directory: /given/shotodol > 
+Aroop path: /given/aroop > 
 enable debug (ggdb3) ?(y/n) > y
 ```
 
-In the above promts the *project-path* is the current directory. And the aroop-path is the aroop source directory. And `y` is the input from the user. It says to enable debug.
+In the above promts the *Current/working* directory is the absolute path of the current directory. And the aroop-path is the absolute path to aroop source directory. And `y` is the input from the user. It says to enable debug.
+
+Note if the path is different than the '/given/shotodol' then the user needs to put the absolute path of the current directory. 
+
+```
+Project path /given/shotodol > /different/shotodol
+```
 
 After configuration there will be a _Makefile_ in the current directory. All the build instructions will be there. The variables for build will be in the build/.config.mk file.
 

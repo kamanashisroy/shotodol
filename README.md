@@ -40,7 +40,7 @@ Here is the shotodol component diagram showing interaction between plugins.
 Preparation
 ============
 
-- [Getting the sources](getting.md)
+- [Getting the sources](docs/books/tutorial/getting.md)
 - [Building](docs/books/tutorial/building.md)
 
 User interaction with shotodol

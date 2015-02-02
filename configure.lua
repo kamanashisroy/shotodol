@@ -69,10 +69,10 @@ local phome = "";
 if haslfs then
 	phome = lfs.currentdir()
 end
-configLines["PROJECT_HOME"] = prompt("Current/working directory " .. phome .. " > " , phome)
+configLines["PROJECT_HOME"] = prompt("Current/working path: " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
 local ahome = string.gsub(configLines["SHOTODOL_HOME"],"shotodol$","aroop")
-configLines["VALA_HOME"] = prompt("Aroop path " .. ahome .. " > ", ahome)
+configLines["VALA_HOME"] = prompt("Aroop source path: " .. ahome .. " > ", ahome)
 configLines["VALAFLAGS+"] = ""
 configLines["AROOP_VARIANT"] = "_static"
 configLines["CFLAGS+"] = ""
