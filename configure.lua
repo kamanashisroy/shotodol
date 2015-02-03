@@ -71,8 +71,9 @@ if haslfs then
 end
 configLines["PROJECT_HOME"] = prompt("Current/working path: " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
-local ahome = string.gsub(configLines["SHOTODOL_HOME"],"shotodol$","aroop")
-configLines["VALA_HOME"] = prompt("Aroop source path: " .. ahome .. " > ", ahome)
+local ahome = "aroopc"
+-- configLines["VALA_HOME"] = prompt("Aroop source path: " .. ahome .. " > ", ahome)
+configLines["AROOPC"] = prompt("aroopc : " .. ahome .. " > ", ahome)
 configLines["VALAFLAGS+"] = ""
 configLines["AROOP_VARIANT"] = "_static"
 configLines["CFLAGS+"] = ""
