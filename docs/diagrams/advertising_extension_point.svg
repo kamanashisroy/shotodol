@@ -27,7 +27,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -364,4 +364,17 @@ polygon {
        style="font-size:20px;stroke:#000000"
        x="185.55385"
        y="203.70769">Extension point</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="205.07693"
+     y="91.0923"
+     id="text9198"
+     sodipodi:linespacing="125%"
+     transform="translate(165,100)"><tspan
+       sodipodi:role="line"
+       id="tspan9200"
+       style="stroke:#000000"
+       x="205.07693"
+       y="91.0923">&lt;extension&gt;</tspan></text>
 </svg>

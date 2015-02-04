@@ -214,7 +214,7 @@
      showgrid="false"
      inkscape:zoom="1.0688823"
      inkscape:cx="285.71401"
-     inkscape:cy="351.04717"
+     inkscape:cy="235.83736"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -336,28 +336,28 @@ polygon {
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
      x="698.72308"
-     y="418.27692"
+     y="444.27692"
      id="text3369"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan3371"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
        x="698.72308"
-       y="418.27692">Plugin.register(</tspan><tspan
+       y="444.27692">Plugin.register(</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
        x="698.72308"
-       y="443.27692"
+       y="469.27692"
        id="tspan3373">  extension_point</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
        x="698.72308"
-       y="468.27692"
-       id="tspan3375">  , a</tspan><tspan
+       y="494.27692"
+       id="tspan3375">  , new AnInterface()</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
        x="698.72308"
-       y="493.27692"
+       y="519.27692"
        id="tspan3377">);</tspan></text>
   <text
      xml:space="preserve"
@@ -385,21 +385,26 @@ polygon {
        style="font-size:20px;stroke:#000000"
        x="193.55383"
        y="476.35388"
-       id="tspan3716">     var a = x.getInterface();</tspan><tspan
+       id="tspan3716">     Interface?a = </tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
        x="193.55383"
        y="501.35388"
-       id="tspan3718">     a.doSomething();</tspan><tspan
+       id="tspan4791">        (Interface)x.getInterface();</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
        x="193.55383"
        y="526.35388"
-       id="tspan3720">    )</tspan><tspan
+       id="tspan3718">     a.doSomething();</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
        x="193.55383"
        y="551.35388"
+       id="tspan3720">    )</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;stroke:#000000"
+       x="193.55383"
+       y="576.35388"
        id="tspan3673">);</tspan></text>
   <g
      id="g3934"
@@ -508,7 +513,7 @@ polygon {
          x="497.61365"
          style="stroke:#000000"
          id="tspan5977-7"
-         sodipodi:role="line">+ virtual something()</tspan></text>
+         sodipodi:role="line">+ virtual doSomething()</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5975-9-1"
@@ -537,4 +542,29 @@ polygon {
        d="m 629.03612,396.82196 0,-117.88015"
        style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
   </g>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="314.36459"
+     y="367.04639"
+     id="text11100"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan11102"
+       style="stroke:#000000"
+       x="314.36459"
+       y="367.04639">&lt;user&gt;</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="548.23621"
+     y="315.69534"
+     id="text11104"
+     sodipodi:linespacing="125%"
+     transform="translate(165,100)"><tspan
+       sodipodi:role="line"
+       id="tspan11106"
+       style="stroke:#000000"
+       x="548.23621"
+       y="315.69534">&lt;extension&gt;</tspan></text>
 </svg>
