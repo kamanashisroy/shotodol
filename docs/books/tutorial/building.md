@@ -20,11 +20,11 @@ And it will prompt like the following,
 
 ```
 Current/working directory: /given/shotodol > 
-Aroop path: /given/aroop > 
+Aroopc path: /given/aroopc > 
 enable debug (ggdb3) ?(y/n) > y
 ```
 
-In the above promts the *Current/working* directory is the absolute path of the current directory. And the aroop-path is the absolute path to aroop source directory. And `y` is the input from the user. It says to enable debug.
+In the above promts the *Current/working* directory is the absolute path of the current directory. And the aroopc-path is the absolute path to aroopc binary. And `y` is the input from the user. It says to enable debug.
 
 Note if the path is different than the '/given/shotodol' then the user needs to put the absolute path of the current directory. 
 
