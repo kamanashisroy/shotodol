@@ -11,9 +11,9 @@ OBJECT_AR=static_objects.a
 TARGETS=$(PLUGIN) $(OBJECT_AR)
 
 #INCLUDES+=-I$(VALA_HOME)/aroop/core -I$(VALA_HOME)/aroop/core/aroop
-INCLUDES+=-I`$(AROOPC) --show-c-includedir`
+INCLUDES+=-I$(shell $(AROOPC) --show-c-includedir)
 #LIBS+=-L$(VALA_HOME)/aroop/core/ -laroop_core_static
-LIBS+=-L`$(AROOPC) --show-c-libdir` -laroop_core_static
+LIBS+=-L$(shell $(AROOPC) --show-c-libdir) -laroop_core_static
 include $(SHOTODOL_HOME)/build/platform.mk
 include $(SHOTODOL_HOME)/build/pkg.mk
 include $(SHOTODOL_HOME)/build/includes.mk

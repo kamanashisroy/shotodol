@@ -2,11 +2,11 @@
 #include "aroop/core/xtring.h"
 #include "shotodol_platform_fileutils.h"
 
-static aroop_bool shotodol_dir_next (aroop_cl_shotodol_shotodol_default_iterator* self_data) {
+static aroop_bool shotodol_dir_next (aroop_cl_shotodol_default_iterator* self_data) {
 	return 0;
 }
 
-static aroop_none* shotodol_dir_get (aroop_cl_shotodol_shotodol_default_iterator* self_data, void ** result) {
+static aroop_none* shotodol_dir_get (aroop_cl_shotodol_default_iterator* self_data, void ** result) {
 	shotodol_dir_t*x = (self_data+1);
 	x--;
 	//readdir_r(x->dir, x->entry, result);
