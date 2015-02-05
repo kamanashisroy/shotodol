@@ -58,3 +58,13 @@ Here is the [dot diagram](GoodLuck.dot).
 
 I hope this _good\_luck_ module reveals a lot of shotodol basics.
 
+Good Luck Command
+=================
+
+The [GoodLuckCommand](vsrc/GoodLuckCommand.vala) extends [M100Command](../../libs/make100/vsrc/M100Command.vala) and the command is advertised by GoodLuckModule.
+
+The following diagrams shows the relation among good luck module and other modules.
+
+
+![Good Luck Command](../../docs/diagrams/goodluck_command.svg)
+

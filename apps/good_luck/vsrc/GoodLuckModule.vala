@@ -16,8 +16,10 @@ public class shotodol.GoodLuckModule : DynamicModule {
 		base(&nm,&ver);
 	}
 	public override int init() {
-		extring entry = extring.set_static_string("onQuit");
+		extring entry = extring.set_static_string("onQuit/soft");
 		Plugin.register(&entry, new HookExtension(onQuitHook, this));
+		entry.rebuild_and_set_static_string("command");
+		Plugin.register(&entry, new M100Extension(new GoodLuckCommand(), this));
 		return 0;
 	}
 	int onQuitHook(extring*msg, extring*output) {
