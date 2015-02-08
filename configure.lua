@@ -74,10 +74,10 @@ configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
 local ahome = os.getenv("AROOPC")
 if ahome == nil then
 	-- ahome = system.os('pkg-config --list aroopc')
-	ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.1.0", true)
+	-- ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.1.0", true)
 	if ahome == nil  then
-	ahome = "/usr/bin/aroopc"
-	endif
+		ahome = "/usr/bin/aroopc"
+	end
 end
 -- configLines["VALA_HOME"] = prompt("Aroop source path: " .. ahome .. " > ", ahome)
 configLines["AROOPC"] = prompt("aroopc : " .. ahome .. " > ", ahome)
