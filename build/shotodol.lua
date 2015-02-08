@@ -1,5 +1,17 @@
 local shotodol = {}
 
+function shotodol.capture(cmd, raw)
+  local f = assert(io.popen(cmd, 'r'))
+  local s = assert(f:read('*a'))
+  f:close()
+  if raw then return s end
+  s = string.gsub(s, '^%s+', '')
+  s = string.gsub(s, '%s+$', '')
+  s = string.gsub(s, '[\n\r]+', ' ')
+  return s
+end
+
+
 function shotodol.trim1(s)
   return (s:gsub("^%s*(.-)%s*$", "%1"))
 end

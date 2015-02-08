@@ -32,6 +32,15 @@ Note if the path is different than the '/given/shotodol' then the user needs to 
 Project path /given/shotodol > /different/shotodol
 ```
 
+The `AROOPC` can be set automatically in lua configuration if it is available in the environment variable.
+
+```
+ a/shotodol$ export AROOPC=/my/path/to/bin/aroopc
+ a/shotodol$ lua configure.lua
+Current/working directory: /given/shotodol > 
+Aroopc path: /my/path/to/bin/aroopc > 
+```
+
 After configuration there will be a _Makefile_ in the current directory. All the build instructions will be there. The variables for build will be in the build/.config.mk file.
 
 Building shotodol

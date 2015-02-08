@@ -71,7 +71,14 @@ if haslfs then
 end
 configLines["PROJECT_HOME"] = prompt("Current/working path: " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
-local ahome = "aroopc"
+local ahome = os.getenv("AROOPC")
+if ahome == nil then
+	-- ahome = system.os('pkg-config --list aroopc')
+	ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.1.0", true)
+	if ahome == nil  then
+	ahome = "/usr/bin/aroopc"
+	endif
+end
 -- configLines["VALA_HOME"] = prompt("Aroop source path: " .. ahome .. " > ", ahome)
 configLines["AROOPC"] = prompt("aroopc : " .. ahome .. " > ", ahome)
 configLines["VALAFLAGS+"] = ""
