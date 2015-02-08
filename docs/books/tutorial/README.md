@@ -5,7 +5,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 	- [Getting the sources](getting.md)
 	- [Building](building.md)
 - basic
-	- [core api](https://github.com/kamanashisroy/aroop/blob/master/aroop/vapi/README.md)
+	- [xtring](xtring.md)
 - Building block
 	- [Analogies](analogies.md)
 	- [Plugin](../../../libs/plugin/README.md)
