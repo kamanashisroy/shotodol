@@ -71,10 +71,14 @@ if haslfs then
 end
 configLines["PROJECT_HOME"] = prompt("Current/working path: " .. phome .. " > " , phome)
 configLines["SHOTODOL_HOME"] = configLines["PROJECT_HOME"]
+local shotodol = dofile(configLines["SHOTODOL_HOME"] .. "/build/shotodol.lua")
 local ahome = os.getenv("AROOPC")
 if ahome == nil then
 	-- ahome = system.os('pkg-config --list aroopc')
-	-- ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.1.0", true)
+	ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.1.0", false)
+	if ahome == "" then
+		ahome = "/usr/bin/aroopc"
+	end
 	if ahome == nil  then
 		ahome = "/usr/bin/aroopc"
 	end
@@ -117,5 +121,4 @@ for x in pairs(configLines) do
 end
 assert(conf:close())
 
-local shotodol = dofile(configLines["SHOTODOL_HOME"] .. "/build/shotodol.lua")
 shotodol.genmake(configLines["PROJECT_HOME"])
