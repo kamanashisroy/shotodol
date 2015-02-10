@@ -10,7 +10,8 @@ Roadmap
 	- [x] Move lua scripting into separate shotodol_script package.
 
 #### Command
-- [ ] Wite a quiet command server in "command/server" space.
+- [ ] Write a quiet command server in "command/server" space.
+- [ ] Write support for command description.
 
 #### Messaging
 - [x] Finish up the primary messaging code, named, pollen.

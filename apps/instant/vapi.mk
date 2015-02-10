@@ -1,0 +1,2 @@
+
+LIBRARY_NAME=shotodol_instant
