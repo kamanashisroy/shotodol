@@ -37,7 +37,7 @@ Roadmap
 	- [ ] Apply sort of stability index like [this](http://www.nodejs.org/api/documentation.html).
 	- [ ] Implement major,minor,patch,release versioning.
 - [x] Keep the modules in namespace like directory.
-- [ ] Add a homebrew package.(Is it feasible ?). Or we may write bricks/rocks packages.
+- [x] Add a homebrew package.(Is it feasible ?). Or we may write bricks/rocks packages. We added 'instant' package for modules.
 
 #### Debugging
 

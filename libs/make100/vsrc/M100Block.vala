@@ -5,7 +5,7 @@ using shotodol;
  *  @{
  */
 internal class M100Block: Searchable {
-	xtring name;
+	internal xtring name;
 	xtring upper;
 	ArrayList<xtring> cmds;
 	ArrayList<M100Block> blocks;
@@ -26,6 +26,12 @@ internal class M100Block: Searchable {
 		blocks.destroy();
 		cmds.destroy();
 	}
+
+#if false
+	internal void getNameAs(extring*outName) {
+		outName.rebuild_and_copy_on_demand(outName); // is it costly ?
+	}
+#endif
 
 	internal int addBlock(M100Block bl, int lineno) {
 		blocks[lineno] = bl;

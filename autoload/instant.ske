@@ -1,0 +1,7 @@
+
+shotodol_web:
+	set -var homepage -val "http://192.168.0.1"
+	set -var url -val "http://192.168.0.1"
+	set -var sha1 -val "abcdef"
+	echo "wget" $(url)
+

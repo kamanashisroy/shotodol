@@ -111,7 +111,7 @@ public class shotodol.ModuleLoader : Replicable {
 	public int unloadModuleByName(extring*givenModuleName, OutputStream?pad = null) {
 		print("Unloading module %s\n", givenModuleName.to_string());
 		int pruneFlag = 1<<1;
-		aroop.Iterator<AroopPointer<Module>>it = aroop.Iterator<AroopPointer<Module>>.EMPTY();
+		aroop.Iterator<AroopPointer<Module>>it = aroop.Iterator<AroopPointer<Module>>();
 		moduleStack.iterator_hacked(&it);
 		while(it.next()) {
 			xtring?moduleName = null;

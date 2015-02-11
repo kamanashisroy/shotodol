@@ -86,6 +86,19 @@ public abstract class shotodol.M100Parser: Replicable {
 		ret.pin();
 		return ret;
 	}
+
+	public void listBlocks(OutputStream pad, extring*delim) {
+		Iterator<M100Block> bit = Iterator<M100Block>();
+		funcs.iterator(&bit);
+		while(bit.next()) {
+			M100Block block = bit.get();
+			//extring blockName = extring();
+			//block.getNameAs(&blockName);
+			//pad.write(&blockName);
+			pad.write(block.name);
+			pad.write(delim);
+		}
+	}
 	
 	M100Block?current_function;	
 	M100Block?current_scope;

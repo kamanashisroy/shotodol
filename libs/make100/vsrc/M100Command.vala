@@ -123,7 +123,7 @@ public abstract class shotodol.M100Command : Replicable {
 			default:
 			{
 				pad.write(&x);
-				Iterator<M100CommandOption> it = Iterator<M100CommandOption>(&options, Replica_flags.ALL, 0, 0);
+				Iterator<M100CommandOption> it = Iterator<M100CommandOption>.forFactory(&options, Replica_flags.ALL, 0, 0);
 				while(it.next()) {
 					M100CommandOption? opt = it.get();
 					opt.desc(pad);

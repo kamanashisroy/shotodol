@@ -18,7 +18,7 @@ internal class shotodol.HelpCommand : M100Command {
 			//token.zero_terminate();
 			if(token.is_empty()) {
 				if(i == 1) {
-					CommandModule.server.cmds.list(pad);
+					CommandModule.server.cmds.listCommands(pad);
 				}
 				break;
 			}

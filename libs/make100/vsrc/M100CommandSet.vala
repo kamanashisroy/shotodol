@@ -23,11 +23,14 @@ public class shotodol.M100CommandSet: Replicable {
 		vars.destroy();
 	}
 
-	public int list(OutputStream pad) {		
+	public int listCommands(OutputStream pad, extring*delim = null) {		
 		Plugin.acceptVisitor(&command, (x) => {
 			M100Command?cmd = (M100Command)x.getInterface(null);
-			if(cmd != null)
+			if(cmd != null) {
 				cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
+				if(delim != null)
+					pad.write(delim.to_string());
+			}
 		});
 		return 0;
 	}
@@ -75,7 +78,8 @@ public class shotodol.M100CommandSet: Replicable {
 			// show menu ..
 			extring dlg = extring.set_static_string("Command not found. Please try one of the following..\n");
 			pad.write(&dlg);
-			list(pad);
+			//extring delim = extring.set_static_string(" ");
+			listCommands(pad);
 			return -1;
 		}
 		int ret = 0;

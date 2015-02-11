@@ -68,7 +68,7 @@ public class shotodol.CompositeExtension : Extension {
 	public int unregisterModule(Module mod, OutputStream?pad) {
 		int pruneFlag = 1<<1;
 		//aroop.Iterator<AroopPointer<Extension>>it = aroop.Iterator<AroopPointer<Extension>>.EMPTY();
-		aroop.Iterator<AroopHashTablePointer<xtring,Extension>>it = aroop.Iterator<AroopHashTablePointer<xtring,Extension>>.EMPTY();
+		aroop.Iterator<AroopHashTablePointer<xtring,Extension>>it = aroop.Iterator<AroopHashTablePointer<xtring,Extension>>();
 		buildIterator(&it);
 		while(it.next()) {
 			unowned AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
@@ -159,7 +159,7 @@ public class shotodol.CompositeExtension : Extension {
 		extring dlg = extring.stack(128);
 		dlg.printf("There are %d extensions registered\n", count());
 		pad.write(&dlg);
-		aroop.Iterator<AroopHashTablePointer<xtring,Extension>>it = aroop.Iterator<AroopHashTablePointer<xtring,Extension>>.EMPTY();
+		aroop.Iterator<AroopHashTablePointer<xtring,Extension>>it = aroop.Iterator<AroopHashTablePointer<xtring,Extension>>();
 		buildIterator(&it);
 		while(it.next()) {
 			unowned AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
