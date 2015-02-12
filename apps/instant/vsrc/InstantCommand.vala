@@ -7,7 +7,7 @@ using shotodol;
 
 internal class shotodol.InstantCommand : M100Command {
 	M100Script? script;
-	M100CommandSet?cmds;
+	internal M100CommandSet?cmds;
 	//shotodol.M100Variable vars;
 	enum Options {
 		LIST = 1,

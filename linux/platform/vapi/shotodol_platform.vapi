@@ -135,5 +135,10 @@ namespace shotodol_platform {
 		[CCode (cname = "muntrace")]
 		public static void stop();
 	}
+	[CCode (cname = "void", cheader_filename = "stdlib.h")]
+	public class Execute {
+		[CCode (cname = "system")]
+		public static void system(string cmd);
+	}
 }
 /* @} */
