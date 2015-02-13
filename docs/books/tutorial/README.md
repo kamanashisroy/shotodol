@@ -16,6 +16,8 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 		- [Good luck module](../../../apps/good_luck/README.md)
 	- [Command](../../../core/commands/README.md)
 	- [Design Patterns](design_patterns.md)
+- Methodologies
+	- [Readme driven development](rdd.md)
 	- [Diagram driven development](ddd.md)
 		- [Understanding diagrams](../../diagrams/README.md)
 - [Concurrency](concurrency.md)
@@ -23,6 +25,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 	- [Fiber](../../../libs/fiber/README.md)
 	- [Fork](../../../core/fork/README.md)
 - [Debugging](debugging.md)
+- [Documentation](doc.md)
 - [Frequently asked questions](FAQ.md)
 
 Introduction
