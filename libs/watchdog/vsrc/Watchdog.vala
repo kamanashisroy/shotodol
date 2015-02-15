@@ -104,7 +104,7 @@ public class shotodol.Watchdog : Replicable {
 		watch = null;
 		return 0;
 	}
-	public int dump(OutputStream outs, extring*sourcefile, int lineno, int level, int severity) {
+	public int dump(OutputStream outs, extring*sourcefile, int lineno, int level, int severity, int id) {
 		int i = 0;
 		for(;i < numberOfOnMemoryLogs;i++) {
 			int pos = i+rotator;
@@ -121,6 +121,9 @@ public class shotodol.Watchdog : Replicable {
 					continue;
 				}
 				if(severity != -1 && severity != x.severity) {
+					continue;
+				}
+				if(id != -1 && id != x.id) {
 					continue;
 				}
 				x.serialize(outs);
