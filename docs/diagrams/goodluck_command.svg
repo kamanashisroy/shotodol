@@ -28,7 +28,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -286,6 +286,10 @@
        effect="spiro"
        id="path-effect20072-58"
        is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect3130-3-4-1-1-2-0-0-3"
+       is_visible="true" />
   </defs>
   <sodipodi:namedview
      pagecolor="#ffffff"
@@ -300,8 +304,8 @@
      inkscape:window-height="750"
      id="namedview4146"
      showgrid="false"
-     inkscape:zoom="0.35355339"
-     inkscape:cx="424.1933"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="813.13304"
      inkscape:cy="262.52747"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -568,26 +572,26 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="483"
+     x="463"
      y="178"
      id="text14185"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan14187"
        style="stroke:#000000"
-       x="483"
+       x="463"
        y="178">1. command/server</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="484"
+     x="464"
      y="203"
      id="text14189"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan14191"
        style="stroke:#000000"
-       x="484"
+       x="464"
        y="203">2. command</tspan></text>
   <text
      xml:space="preserve"
@@ -781,19 +785,19 @@ polygon {
        id="tspan16793-7"
        style="stroke:#000000"
        x="966.25714"
-       y="618.94049">3</tspan></text>
+       y="618.94049">4</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="483"
+     x="463"
      y="230"
      id="text16858"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan16860"
        style="stroke:#000000"
-       x="483"
-       y="230">3. onQuit/soft</tspan></text>
+       x="463"
+       y="230">3. goodluck/before</tspan></text>
   <path
      style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
      d="m 790.26912,470.90455 -41.01219,0"
@@ -993,4 +997,90 @@ polygon {
        style="stroke:#000000"
        x="279.1106"
        y="294.32172">User</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="1060.0059"
+     y="415.19141"
+     id="text3369"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="1060.0059"
+       y="415.19141"
+       id="tspan8456">GoodLuckCommand iface = GoodLuckCommand();</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="1060.0059"
+       y="440.19141"
+       id="tspan8462">extring extension_point = extring.set_static_string(&quot;command&quot;);</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="1060.0059"
+       y="465.19141"
+       id="tspan8458">Plugin.register(</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="1060.0059"
+       y="490.19141"
+       id="tspan3373">  &amp;extension_point</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="1060.0059"
+       y="515.19141"
+       id="tspan3375">  , new M100Extension(iface)</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="1060.0059"
+       y="540.19141"
+       id="tspan3377">);</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="463.86752"
+     y="259.5134"
+     id="text16858-1"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan16860-4"
+       style="stroke:#000000"
+       x="463.86752"
+       y="259.5134">3. goodluck/after</tspan></text>
+  <rect
+     style="opacity:0.98999999;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     id="rect4961-6-9-5-0-2-0-1"
+     width="19.64669"
+     height="26.195587"
+     x="1022.3745"
+     y="-572.54248"
+     transform="scale(1,-1)" />
+  <path
+     transform="matrix(1,0,0,-1,677.62188,584.65108)"
+     sodipodi:type="arc"
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     id="path4963-2-2-4-4-5-4-4-0"
+     sodipodi:cx="294.23257"
+     sodipodi:cy="27.077484"
+     sodipodi:rx="15.436685"
+     sodipodi:ry="14.968906"
+     d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 986.82336,557.5736 34.61564,0"
+     id="path3128-4-9-9-6-4-9-2"
+     inkscape:path-effect="#path-effect3130-3-4-1-1-2-0-0-3"
+     inkscape:original-d="m 986.82336,557.5736 c 8.03296,0.72786 31.47324,9.42707 34.61564,0"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="966.47662"
+     y="564.5141"
+     id="text16791-7-8"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan16793-7-35"
+       style="stroke:#000000"
+       x="966.47662"
+       y="564.5141">3</tspan></text>
 </svg>

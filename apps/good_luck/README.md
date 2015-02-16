@@ -1,62 +1,122 @@
 Good Luck Module
 =================
 
-'Good luck' module is simple module to demonostrate module writing. Note that there are kinds of modules, while this module is dynamic. If you want to write a module like this, you need to create a directory in apps (favorablly).
+'Good luck' module is simple module to demonostrate module writing. Note that there are kinds of modules, while this module is dynamic. This module acts as the skeleton module too.
 
 ```
- a/shotodol$ mkdir apps/good_luck
+ a/shotodol$ ls apps/good_luck
 ```
 
-Now you need to create the following files there.
+Creating a custom module
+=========================
 
-- [pkg.depend](pkg.depend) : This file identifies the needed modules.
-- [includes.mk](includes.mk) : This file shows the include path.
-- [vapi.mk](vapi.mk) : This is for compilation.
-
-You may follow the files for _good\_luck_ to write your own module files.
-
-Now you need to add the vala source files. Vala sources are kept in _vsrc_ directory. 
+It may be convenient to copy this module in `apps`(favorablly) directory in different name and start changing.
 
 ```
- a/shotodol$ mkdir apps/good_luck/vsrc
+ a/shotodol$ cp -rf apps/good_luck apps/hello_world
 ```
 
-The [GoodLuckModule.vala](vsrc/GoodLuckModule.vala) defines the GoodLuckModule class. Please refer to [Hooking](../../libs/plugin/Hooking.md) to understand the source.
+Now the apps/hello_world directory contains all the files needed for a module.
 
 ```
- a/shotodol$ vim apps/good_luck/vsrc/GoodLuckModule.vala
+ a/shotodol$ ls apps/hello_world
+dynalib.so  GoodLuck.dot  include  includes.mk  pkg.depend  README.md  static_objects.a  vapi  vapi.mk  vsrc
 ```
 
-After you are done with the code, you need to add the module in [build/pkg.depend](../../build/pkg.depend) file and reconfigure and compile.
+Each module must contain the following files.
+
+- [pkg.depend](pkg.depend) : This file identifies the modules it depends on.
+- [includes.mk](includes.mk) : This file shows the include path. This file does not need to be changed often.
+- [vapi.mk](vapi.mk) : It is Makefile to compile vala sources. It contains the library name of the new module. It may be renamed from `shotodol\_good\_luck` to `shotodol\_hello\_world`.
+
+After compilation the module generates the following files,
+
+- dynalib.so : This is the dynamic shared library binary. It is the compiled output. It can be loaded in shotodol by `module -l apps/hello\_world/dynalib.so` command.
+- static_object.a : This is the static library binary. It is also a compiled output. It can be statically linked to shotodol, which can be done editing the `build/staticlibs.mk` file.
+- include : This directory contains the generated C headers. These headers can be included by the dependent modules while compilation.
+- vapi : This directory contains the generated Vala headers. These headers can be included by the dependent modules while compilation.
+
+The generated files are not the primary concern while writing a new module. 
+
+#### Vala files
+
+Each module may contain vala sources in `vsrc` directory.
 
 ```
- a/shotodol$ echo apps/good_luck >> build/pkg.depend
+ a/shotodol$ ls apps/hello_world/vsrc
+GoodLuckCommand.c  GoodLuckCommand.vala  GoodLuckModule.c  GoodLuckModule.vala
+```
+
+The `GoodLuckCommand.c` and `GoodLuckModule.c` are the compiled output. These files are again not the concern while writing a new module.
+
+#### GoodLuckModule.vala
+
+The [GoodLuckModule.vala](vsrc/GoodLuckModule.vala) defines the GoodLuckModule class. GoodLuckModule extends the DynamicModule and overrides `init` and `deinit` methods.
+
+- init() method : It is called when the module is loaded in shotodol. It registers hooks or other extensions in shotodol plugin system. Please refer to [Hooking](../../libs/plugin/Hooking.md) to understand the source.
+- deinit() method : It is called when the module is unloaded.
+- get_module_instance() method : It is the entrypoint of a dynamic library. It is almost the same for all the modules. 
+ 
+
+```
+ a/shotodol$ gedit apps/hello_world/vsrc/GoodLuckModule.vala
+```
+
+After the code is edited, the module needs to be specified in [build/pkg.depend](../../build/pkg.depend) file and shotodol needs to be reconfigured and compiled.
+
+```
+ a/shotodol$ echo apps/hello_world >> build/pkg.depend
  a/shotodol$ lua configure.lua
  a/shotodol$ make
- a/shotodol$ ls apps/good_luck
-	dynalib.so pkg.depend includes.mk vapi.mk vsrc/ vapi/ include/
 ```
 
-The _dynalib.so_ contains the program definitions. You need to load this file using the _module_ command. After running/executing the ./shotodol.bin file, you will be prompted for your commands. Write _'module -load apps/good\_luck/dynalib.so'_ to load the module for execution(see [commands](../../core/commands/README.md)). The module will eventually be ready for use. 
+After running/executing the ./shotodol.bin file, it will prompt for commands. And writing _'module -load apps/hello\_world/dynalib.so'_ will load the module [commands](../../core/commands/README.md). The module will eventually be ready for use. 
 
 ```
  a/shotodol$ ./shotodol.bin
-	module -load apps/good_luck/dynalib.so
+	module -load apps/hello_world/dynalib.so
 ```
 
-Now when you quit the application by writing _quit_ command, it will say you 'Good Luck'.
+Note that the `rehash` command will make the goodluck command available for execution.
 
 ```
- a/shotodol$ ./shotodol.bin
-	module -load apps/good_luck/dynalib.so
-	quit
-	Good Luck
+Loading console spindle
+Started idle stepping ..
+Started idle stepping ..
+rehash   
+Executing:rehash
+<          rehash> -----------------------------------------------------------------
+<      Successful> -----------------------------------------------------------------
+
+module -load apps/good_luck/dynalib.so
+Executing:module -load apps/good_luck/dynalib.so
+<          module> -----------------------------------------------------------------
+<      Successful> -----------------------------------------------------------------
+
+rehash
+Executing:rehash
+<          rehash> -----------------------------------------------------------------
+<      Successful> -----------------------------------------------------------------
+
+help goodluck
+Executing:help goodluck
+<            help> -----------------------------------------------------------------
+goodluck
+	     -name		    <text>	Your name
+<      Successful> -----------------------------------------------------------------
+
+goodluck -name shotodol
+Executing:goodluck -name shotodol
+<        goodluck> -----------------------------------------------------------------
+Before hook ~~~~ 
+Good luck shotodol
+Have nice time with shotodol.
+After hook ~~~~ 
+<      Successful> -----------------------------------------------------------------
 ```
 
-![good_luck_module](https://cloud.githubusercontent.com/assets/973414/3932083/3024c45a-2464-11e4-8832-506e935eca7b.jpg)
-Here is the [dot diagram](GoodLuck.dot).
 
-I hope this _good\_luck_ module reveals a lot of shotodol basics.
+This _good\_luck_ module reveals a lot of shotodol basics.
 
 Good Luck Command
 =================

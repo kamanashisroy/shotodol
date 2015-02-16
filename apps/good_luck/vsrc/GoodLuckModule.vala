@@ -15,15 +15,24 @@ public class shotodol.GoodLuckModule : DynamicModule {
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);
 	}
-	public override int init() {
-		extring entry = extring.set_static_string("onQuit/soft");
-		Plugin.register(&entry, new HookExtension(onQuitHook, this));
-		entry.rebuild_and_set_static_string("command");
-		Plugin.register(&entry, new M100Extension(new GoodLuckCommand(), this));
+	public override int init() { // override the abstract method defined in Module class.
+		extring entry = extring.set_static_string("goodluck/before"); // declare embedded Xtring that refer to "goodluck/before".
+		Plugin.register(&entry, new HookExtension(onGoodLuckBefore, this)); // register onGoodLuckBefore at "goodluck/before" plugin space.
+		entry.rebuild_and_set_static_string("goodluck/after"); // now entry refers to "goodluck/after".
+		Plugin.register(&entry, new HookExtension(onGoodLuckAfter, this)); // register onGoodLuckAfter at "goodluck/after" plugin space.
+		entry.rebuild_and_set_static_string("command"); // now entry refers to "command".
+		Plugin.register(&entry, new M100Extension(new GoodLuckCommand(), this)); // register GoodLuckCommand instance as command.
 		return 0;
 	}
-	int onQuitHook(extring*msg, extring*output) {
-		output.rebuild_and_set_static_string("Good Luck\n");
+	int onGoodLuckBefore(
+			extring*msg, // messaged parameter passed by caller
+			extring*output // the response 
+		) { // This is called after the goodluck command execution
+		output.rebuild_and_set_static_string("Before hook ~~~~ \n"); // says "Before hook ~~~~ \n" as response
+		return 0;
+	}
+	int onGoodLuckAfter(extring*msg, extring*output) { // This is called after the goodluck command execution
+		output.rebuild_and_set_static_string("After hook ~~~~ \n"); // says "After hook ~~~~ \n" as response
 		return 0;
 	}
 	public override int deinit() {
