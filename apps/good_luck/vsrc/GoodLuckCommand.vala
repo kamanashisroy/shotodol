@@ -21,6 +21,7 @@ internal class shotodol.GoodLuckCommand : M100Command {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		extring response = extring();
+		response.rebuild_in_heap(512);
 
 		// calling the "goodluck/before" hook
 		extring entry = extring.set_static_string("goodluck/before"); // declare embedded Xtring that refer to "goodluck/before".
@@ -39,10 +40,10 @@ internal class shotodol.GoodLuckCommand : M100Command {
 		pad.write(&bfr);
 
 
-		response.destroy(); // cleanup
+		response.trim_to_length(0); // cleanup
 		// calling the "goodluck/after" hook
 		entry.rebuild_and_set_static_string("goodluck/after"); // refer to "goodluck/after".
-		PluginManager.swarm(&entry, null, &response); // call all the "goodluck/after" hooks
+		PluginManager.swarm(&entry, vals[Options.NAME], &response); // call all the "goodluck/after" hooks
 		pad.write(&response); // print out the response of the "goodluck/after" hook
 		return 0;
 	}

@@ -20,6 +20,7 @@ public class shotodol.GoodLuckModule : DynamicModule {
 		PluginManager.register(&entry, new HookExtension(onGoodLuckBefore, this)); // register onGoodLuckBefore at "goodluck/before" plugin space.
 		entry.rebuild_and_set_static_string("goodluck/after"); // now entry refers to "goodluck/after".
 		PluginManager.register(&entry, new HookExtension(onGoodLuckAfter, this)); // register onGoodLuckAfter at "goodluck/after" plugin space.
+		PluginManager.register(&entry, new HookExtension(onGoodLuckAfter2, this)); // second callback
 		entry.rebuild_and_set_static_string("command"); // now entry refers to "command".
 		PluginManager.register(&entry, new M100Extension(new GoodLuckCommand(), this)); // register GoodLuckCommand instance as command.
 		return 0;
@@ -28,11 +29,21 @@ public class shotodol.GoodLuckModule : DynamicModule {
 			extring*msg, // messaged parameter passed by caller
 			extring*output // the response 
 		) { // This is called after the goodluck command execution
-		output.rebuild_and_set_static_string("Before hook ~~~~ \n"); // says "Before hook ~~~~ \n" as response
+		output.concat_string("Hello ~~~~ \n"); // says "Hello ~~~~ \n" as response
 		return 0;
 	}
 	int onGoodLuckAfter(extring*msg, extring*output) { // This is called after the goodluck command execution
-		output.rebuild_and_set_static_string("After hook ~~~~ \n"); // says "After hook ~~~~ \n" as response
+		if(output == null) // sanity check
+			return 0;
+		
+		if(output != null) {
+			output.concat(msg); // concat the given message
+		}
+		output.concat_string(" see you ~~~~ \n"); // says "See you ~~~~ \n" as response
+		return 0;
+	}
+	int onGoodLuckAfter2(extring*msg, extring*output) { // This is called after the goodluck command execution
+		output.concat_string(" ~~~ again\n"); // says " ~~~~ again \n" as response
 		return 0;
 	}
 	public override int deinit() {
