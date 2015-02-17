@@ -47,7 +47,7 @@ Roadmap
 - [ ] Write profiler checking command.
 - [ ] Profile memory move/copy events(with the memory size). It can be done in for example extring.copy_on_demand implementations.
 	- [ ] See zero copy memory management in gstreamer.
-- [x] Add tagging support in watchdog log. (This is done using -id parameter)
+- [x] Add tagging support in watchdog log. (This is done using -tag parameter)
 - [ ] Rename Watchdog.WatchdogSeverity to Watchdog.Severity .
 - [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
 

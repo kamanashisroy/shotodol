@@ -10,8 +10,8 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		FILENAME,
 		LINENO,
 		SEVERITY,
+		TAG,
 		NAME,
-		ID,
 	}
 	
 	Watchdog ?wd;
@@ -25,7 +25,8 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		addOptionString("-fn", M100Command.OptionType.TXT, Options.FILENAME, "Show the log for only the given filename.");
 		addOptionString("-ln", M100Command.OptionType.INT, Options.LINENO, "Show the log for only the given line number.");
 		addOptionString("-s", M100Command.OptionType.INT, Options.SEVERITY, "Show the log for given severity value.");
-		addOptionString("-id", M100Command.OptionType.INT, Options.ID, "Show the log for only the given ID number.");
+		// Possible BUG, if we use -id in place of -tag then it does not work
+		addOptionString("-tag", M100Command.OptionType.INT, Options.TAG, "Show the log for only the given TAG number.");
 		addOptionString("-n", M100Command.OptionType.TXT, Options.NAME, "Name a watch settings, like \n watchdog -fn main.c -n main \n watchdog -n main");
 	}
 
@@ -39,8 +40,8 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		extring*sourcefile = null;
 		int lineno = -1;
 		int logLevel = 3;
-		int severity = -1; // show any id
-		int id = -1; // show any id
+		int severity = -1; // show any type
+		int tag = -1; // show any tag
 		
 		ArrayList<xtring> vals = ArrayList<xtring>();
 		if(parseOptions(cmdstr, &vals) != 0) {
@@ -52,7 +53,7 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 		if((arg = vals[Options.LINENO]) != null) {lineno = arg.fly().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.LEVEL]) != null) {logLevel = arg.fly().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.SEVERITY]) != null) {severity = arg.fly().to_int();newNamedCmd = true;} 
-		if((arg = vals[Options.ID]) != null) {id = arg.fly().to_int();newNamedCmd = true;} 
+		if((arg = vals[Options.TAG]) != null) {tag = arg.fly().to_int();newNamedCmd = true;} 
 		if((arg = vals[Options.NAME]) != null) {
 			xtring nm = arg; 
 			if(newNamedCmd) {
@@ -65,7 +66,7 @@ internal class shotodol.WatchdogCommand : shotodol.M100Command {
 				}
 			}
 		} 
-		wd.dump(pad, sourcefile, lineno, logLevel, severity, id);
+		wd.dump(pad, sourcefile, lineno, logLevel, severity, tag);
 		return 0;
 	}
 }

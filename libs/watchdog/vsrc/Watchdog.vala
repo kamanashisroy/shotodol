@@ -17,12 +17,12 @@ internal class shotodol.WatchdogEntry : Replicable {
 	internal int level;
 	internal Watchdog.WatchdogSeverity severity;
 	internal int subtype;
-	internal int id;
+	internal int tag;
 	xtring msg;
-	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, extring*gmsg, Factory<xtring>*xtringBuilder) {
-		build(gsourcefile, glineno, glevel, gseverity, gsubtype, gid, gmsg, xtringBuilder);
+	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gtag, extring*gmsg, Factory<xtring>*xtringBuilder) {
+		build(gsourcefile, glineno, glevel, gseverity, gsubtype, gtag, gmsg, xtringBuilder);
 	}
-	internal void build(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gid, extring*gmsg, Factory<xtring>*xtringBuilder) {
+	internal void build(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gtag, extring*gmsg, Factory<xtring>*xtringBuilder) {
 		//extring sf = extring.stack(64);
 		//sf.concat_string(gsourcefile);
 		sourcefile = new xtring.copy_string(gsourcefile);
@@ -31,7 +31,7 @@ internal class shotodol.WatchdogEntry : Replicable {
 		level = glevel;
 		severity = gseverity;
 		subtype = gsubtype;
-		id = gid;
+		tag = gtag;
 		msg = new xtring.copy_content(gmsg.to_string(), gmsg.length()+2, xtringBuilder);
 		// trim new line
 		if(msg.fly().length() >= 1 && msg.fly().char_at(msg.fly().length()-1) == '\n') {
@@ -46,7 +46,7 @@ internal class shotodol.WatchdogEntry : Replicable {
 
 	internal void serialize(OutputStream strm) {
 		extring fullmsg = extring.stack(msg.fly().length()+128);
-		fullmsg.printf("[%20.10s %-5d][%s] %s\n", sourcefile.fly().to_string(), lineno, severity.to_string(severity), msg.fly().to_string());
+		fullmsg.printf("[%20.10s %-5d][%s][%d] %s\n", sourcefile.fly().to_string(), lineno, severity.to_string(severity), tag, msg.fly().to_string());
 		strm.write(&fullmsg);
 	}
 }
@@ -104,7 +104,7 @@ public class shotodol.Watchdog : Replicable {
 		watch = null;
 		return 0;
 	}
-	public int dump(OutputStream outs, extring*sourcefile, int lineno, int level, int severity, int id) {
+	public int dump(OutputStream outs, extring*sourcefile, int lineno, int level, int severity, int tag) {
 		int i = 0;
 		for(;i < numberOfOnMemoryLogs;i++) {
 			int pos = i+rotator;
@@ -123,7 +123,7 @@ public class shotodol.Watchdog : Replicable {
 				if(severity != -1 && severity != x.severity) {
 					continue;
 				}
-				if(id != -1 && id != x.id) {
+				if(tag != -1 && tag != x.tag) {
 					continue;
 				}
 				x.serialize(outs);
@@ -141,25 +141,25 @@ public class shotodol.Watchdog : Replicable {
 		buf.concat(varval);
 		return 0;
 	}
-	public static int watchvar(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, extring*varname, extring*varval) {
+	public static int watchvar(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int tag, extring*varname, extring*varval) {
 		extring buf = extring.stack(128);
 		watchvar_helper(&buf, varname, varval);
-		watchit(sourcefile, lineno, level, severity, subtype, id, &buf);
+		watchit(sourcefile, lineno, level, severity, subtype, tag, &buf);
 		return 0;
 	}
-	public static int watchit(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, extring*msg) {
+	public static int watchit(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int tag, extring*msg) {
 		if(watch == null || watch.logLevel < level) return 0;
 		
 		//WatchdogEntry x = new WatchdogEntry();
 		WatchdogEntry x = watch.entryFactory.alloc_full();
-		x.build(sourcefile, lineno, level, severity, subtype, id, msg, &watch.xtringFactory);
+		x.build(sourcefile, lineno, level, severity, subtype, tag, msg, &watch.xtringFactory);
 		if(watch.pad != null) x.serialize(watch.pad);
 		if(watch.numberOfOnMemoryLogs == 0) return 0;
 		watch.logs.set(watch.rotator, x);
 		watch.rotator = (watch.rotator+1)%watch.numberOfOnMemoryLogs;
 		return 0;
 	}
-	public static int watchit_string(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int id, string data) {
+	public static int watchit_string(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int tag, string data) {
 		extring msg = extring.set_string(data);
 		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &msg);
 		return 0;
