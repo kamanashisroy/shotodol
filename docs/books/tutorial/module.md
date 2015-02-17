@@ -81,11 +81,16 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 - [str\_arms](../../../libs/str_arms/README.md)
 - [iterator](../../../libs/iterator/README.md)
+- [alias](../../../apps/alias/README.md)
 
 ### Instrumentation modules
 
 - [profiler](../../../core/profiler/README.md)
 - [watchdog](../../../libs/watchdog/README.md)
+
+### Packaging modules
+
+- [instant](../../../apps/instant/README.md)
 
 User module
 ============

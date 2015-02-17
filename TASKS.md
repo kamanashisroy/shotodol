@@ -13,6 +13,7 @@ Roadmap
 #### Command
 - [ ] Write a quiet command server in "command/server" space.
 - [ ] Write support for command description.
+- [x] Write an alias command such as it can create alias for some command. For example, `alias wa55 watchdog -l 100 -tag 55 ` will create a command alias named `zwa55` which will call `watchdog -l 100 -tag 55 ` in the background.
 
 #### Messaging
 - [x] Finish up the primary messaging code, named, pollen.

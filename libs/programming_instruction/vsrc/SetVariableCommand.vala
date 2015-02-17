@@ -21,17 +21,17 @@ internal class shotodol.SetVariableCommand : M100Command {
 		if(parseOptions(cmdstr, &vals) != 0) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		xtring? var = null;
-		if((var = vals[Options.VAR]) == null) {
+		xtring? vname = null;
+		if((vname = vals[Options.VAR]) == null) {
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}
 		xtring?val = null;
 		if((val = vals[Options.VAL]) == null) {
-			cmds.vars.set(var, null);
+			cmds.vars.set(vname, null);
 		} else {
 			M100Variable mval = new M100Variable();
 			mval.set(val);
-			cmds.vars.set(var, mval);
+			cmds.vars.set(vname, mval);
 		}
 		return 0;
 	}

@@ -4,6 +4,7 @@
 onLoad:
 	fileconf -i ./autoload/shotodol.conf
 	module -load apps/instant/dynalib.so
+	module -load apps/alias/dynalib.so
 	#module -load web/cgi/dynalib.so
 
 onFork_complete:

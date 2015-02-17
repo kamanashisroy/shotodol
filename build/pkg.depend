@@ -24,5 +24,6 @@ core/idle
 core/profiler
 libs/spinningwheel
 main/main
-apps/good_luck
+apps/alias
 apps/instant
+apps/good_luck
