@@ -17,7 +17,7 @@ public class shotodol.MainTurbine : shotodol.Fiber16x {
 			return 0;
 		}
 		extring mains = extring.set_static_string("MainFiber");
-		Plugin.acceptVisitor(&mains, (x) => {
+		PluginManager.acceptVisitor(&mains, (x) => {
 			Fiber?a = (Fiber)x.getInterface(null);
 			if(a != null) {
 				append(a);

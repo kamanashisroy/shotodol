@@ -293,7 +293,7 @@
      id="namedview4146"
      showgrid="false"
      inkscape:zoom="0.75581396"
-     inkscape:cx="1062.8267"
+     inkscape:cx="326.22714"
      inkscape:cy="552.33404"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -356,14 +356,14 @@ polygon {
        sodipodi:linespacing="125%"
        id="text5950-83"
        y="171.8239"
-       x="549.10663"
+       x="499.10663"
        style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
        xml:space="preserve"><tspan
          y="171.8239"
-         x="549.10663"
+         x="499.10663"
          style="stroke:#000000"
          id="tspan5952-5"
-         sodipodi:role="line">Plugin</tspan></text>
+         sodipodi:role="line">PluginManager</tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text5975-9"

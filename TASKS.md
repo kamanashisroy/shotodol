@@ -58,3 +58,6 @@ Roadmap
 - [x] Write an elaborative tutorial.
 	- [x] Move some of the contents of the main README.md file into tutorial.
 - [ ] Write skeleton readme for Command, Module, Gateway, Hook etc ..
+	- [x] Write skeleton for Module.
+	- [x] Write skeleton for Command.
+	- [x] Write skeleton for Hook.

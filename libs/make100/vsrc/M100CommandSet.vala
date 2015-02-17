@@ -24,7 +24,7 @@ public class shotodol.M100CommandSet: Replicable {
 	}
 
 	public int listCommands(OutputStream pad, extring*delim = null) {		
-		Plugin.acceptVisitor(&command, (x) => {
+		PluginManager.acceptVisitor(&command, (x) => {
 			M100Command?cmd = (M100Command)x.getInterface(null);
 			if(cmd != null) {
 				cmd.desc(M100Command.CommandDescType.COMMAND_DESC_TITLE, pad);
@@ -43,7 +43,7 @@ public class shotodol.M100CommandSet: Replicable {
 		extring gprfx = extring();
 		gcmd.getPrefixAs(&gprfx);
 		be.memorize_estr(&gprfx, gcmd);
-		Plugin.acceptVisitor(namesp, (x) => {
+		PluginManager.acceptVisitor(namesp, (x) => {
 			M100Command?cmd = (M100Command)x.getInterface(null);
 			if(cmd != null) {
 				extring prfx = extring();
@@ -52,7 +52,7 @@ public class shotodol.M100CommandSet: Replicable {
 			}
 		});
 		extring command_programming = extring.set_static_string("command/programming");
-		Plugin.acceptVisitor(&command_programming, (x) => {
+		PluginManager.acceptVisitor(&command_programming, (x) => {
 			M100Command?cmd = (M100Command)x.getInterface(null);
 			if(cmd != null) {
 				extring prfx = extring();

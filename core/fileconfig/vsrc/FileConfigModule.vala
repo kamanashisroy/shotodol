@@ -19,11 +19,11 @@ public class FileConfigModule : DynamicModule {
 
 	public override int init() {
 		extring entry = extring.set_static_string("config/server");
-		Plugin.register(&entry, new ConfigExtension(this));
+		PluginManager.register(&entry, new ConfigExtension(this));
 		entry.rebuild_and_set_static_string("command");
-		Plugin.register(&entry, new M100Extension(new FileConfigCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new FileConfigCommand(), this));
 		entry.rebuild_and_set_static_string("unittest");
-		Plugin.register(&entry, new AnyInterfaceExtension(new FileConfigTest(), this));
+		PluginManager.register(&entry, new AnyInterfaceExtension(new FileConfigTest(), this));
 		return 0;
 	}
 

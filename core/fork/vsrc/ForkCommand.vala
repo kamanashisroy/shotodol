@@ -27,7 +27,7 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 
 	internal int forkHook(extring*msg, extring*output) {
 		extring forkEntry = extring.set_static_string("onFork/before");
-		Plugin.swarm(&forkEntry, msg, output); // before fork
+		PluginManager.swarm(&forkEntry, msg, output); // before fork
 		int pid = shotodol_platform.ProcessControl.fork();
 		if(pid < 0) { // fork error
 			forkEntry.rebuild_and_set_static_string("onFork/error");
@@ -36,9 +36,9 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 		} else { // parent process
 			forkEntry.rebuild_and_set_static_string("onFork/after/parent");
 		}
-		Plugin.swarm(&forkEntry, msg, output); // after fork
+		PluginManager.swarm(&forkEntry, msg, output); // after fork
 		forkEntry.rebuild_and_set_static_string("onFork/complete");
-		Plugin.swarm(&forkEntry, msg, output); // after fork
+		PluginManager.swarm(&forkEntry, msg, output); // after fork
 		return 0;
 	}
 }

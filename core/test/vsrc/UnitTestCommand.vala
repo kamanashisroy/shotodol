@@ -47,7 +47,7 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 		xtring?tgt = vals[Options.TARGET];
 		bool hit = false;
 		extring unittest = extring.set_static_string("unittest");
-		Plugin.acceptVisitor(&unittest, (x) => {
+		PluginManager.acceptVisitor(&unittest, (x) => {
 			UnitTest?test = (UnitTest)x.getInterface(null);
 			if(test != null) {
 				bool ret = actHelper(test, tgt, lst, pad);

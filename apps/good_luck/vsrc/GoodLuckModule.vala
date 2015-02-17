@@ -17,11 +17,11 @@ public class shotodol.GoodLuckModule : DynamicModule {
 	}
 	public override int init() { // override the abstract method defined in Module class.
 		extring entry = extring.set_static_string("goodluck/before"); // declare embedded Xtring that refer to "goodluck/before".
-		Plugin.register(&entry, new HookExtension(onGoodLuckBefore, this)); // register onGoodLuckBefore at "goodluck/before" plugin space.
+		PluginManager.register(&entry, new HookExtension(onGoodLuckBefore, this)); // register onGoodLuckBefore at "goodluck/before" plugin space.
 		entry.rebuild_and_set_static_string("goodluck/after"); // now entry refers to "goodluck/after".
-		Plugin.register(&entry, new HookExtension(onGoodLuckAfter, this)); // register onGoodLuckAfter at "goodluck/after" plugin space.
+		PluginManager.register(&entry, new HookExtension(onGoodLuckAfter, this)); // register onGoodLuckAfter at "goodluck/after" plugin space.
 		entry.rebuild_and_set_static_string("command"); // now entry refers to "command".
-		Plugin.register(&entry, new M100Extension(new GoodLuckCommand(), this)); // register GoodLuckCommand instance as command.
+		PluginManager.register(&entry, new M100Extension(new GoodLuckCommand(), this)); // register GoodLuckCommand instance as command.
 		return 0;
 	}
 	int onGoodLuckBefore(

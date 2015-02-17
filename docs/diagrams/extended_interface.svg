@@ -12,7 +12,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="165 100 750 500"
+   viewBox="165 100 900 500"
    id="svg4022"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
@@ -34,6 +34,10 @@
   </metadata>
   <defs
      id="defs4148">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect12371"
+       is_visible="true" />
     <inkscape:path-effect
        effect="spiro"
        id="path-effect15481"
@@ -212,8 +216,8 @@
      inkscape:window-height="750"
      id="namedview4146"
      showgrid="false"
-     inkscape:zoom="1.0688823"
-     inkscape:cx="285.71401"
+     inkscape:zoom="0.53444113"
+     inkscape:cx="795.0946"
      inkscape:cy="235.83736"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -261,104 +265,6 @@ polygon {
        style="font-style:normal;stroke:#000000;-inkscape-font-specification:Sans"
        x="25.602066"
        y="347.23743" /></text>
-  <g
-     id="g3946"
-     style="fill:none;stroke:#000000"
-     transform="translate(0,212)">
-    <rect
-       style="fill:none;stroke:#000000"
-       id="rect4044-5-4-2-4-6"
-       height="130"
-       width="210"
-       y="184.87448"
-       x="695.38116" />
-    <g
-       transform="translate(149.52066,45.45247)"
-       style="fill:none;stroke:#000000"
-       id="g3301-9-0-7-7">
-      <polygon
-         points="375,240 380,235 590,235 585,240 "
-         id="polygon4046-6-2-15-7-7"
-         transform="translate(170.86059,-100.57799)"
-         style="fill:none;stroke:#000000;stroke-miterlimit:1" />
-      <polygon
-         points="585,240 590,235 590,365 585,370 "
-         id="polygon4048-6-0-8-5-5"
-         transform="translate(170.86059,-100.57799)"
-         style="fill:none;stroke:#000000;stroke-miterlimit:1" />
-    </g>
-    <g
-       style="fill:none;stroke:#000000"
-       transform="matrix(0.4,0,0,0.4,698.05299,140.80702)"
-       id="g4274-8-3-5-4-4-5">
-      <rect
-         style="fill:none;stroke:#000000"
-         x="395"
-         y="130"
-         width="105"
-         height="40"
-         id="rect4090-5-5-8-8-9-4" />
-      <rect
-         style="fill:none;stroke:#000000"
-         x="385"
-         y="138"
-         width="20"
-         height="8"
-         id="rect4092-1-9-4-9-9-1" />
-      <rect
-         style="fill:none;stroke:#000000"
-         x="385"
-         y="154"
-         width="20"
-         height="8"
-         id="rect4094-3-4-9-7-2-7" />
-    </g>
-    <path
-       d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z"
-       sodipodi:ry="14.968906"
-       sodipodi:rx="15.436685"
-       sodipodi:cy="27.077484"
-       sodipodi:cx="294.23257"
-       id="path4963-2-2-4-4-5-4"
-       style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-       sodipodi:type="arc"
-       transform="matrix(1,0,0,-1,340.83536,273.90393)" />
-    <path
-       transform="translate(165,100)"
-       inkscape:connector-curvature="0"
-       inkscape:original-d="m 484.61837,147.50426 44.90673,0"
-       inkscape:path-effect="#path-effect3932"
-       id="path3930"
-       d="m 484.61837,147.50426 44.90673,0"
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-  </g>
-  <text
-     xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="698.72308"
-     y="444.27692"
-     id="text3369"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3371"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="698.72308"
-       y="444.27692">Plugin.register(</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="698.72308"
-       y="469.27692"
-       id="tspan3373">  extension_point</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="698.72308"
-       y="494.27692"
-       id="tspan3375">  , new AnInterface()</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="698.72308"
-       y="519.27692"
-       id="tspan3377">);</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
@@ -370,7 +276,7 @@ polygon {
        id="tspan3665"
        style="font-size:20px;stroke:#000000"
        x="193.55383"
-       y="401.35388">Plugin.acceptVisitor(</tspan><tspan
+       y="401.35388">PluginManager.acceptVisitor(</tspan><tspan
        sodipodi:role="line"
        style="font-size:20px;stroke:#000000"
        x="193.55383"
@@ -406,76 +312,65 @@ polygon {
        x="193.55383"
        y="576.35388"
        id="tspan3673">);</tspan></text>
+  <rect
+     x="173.46519"
+     y="342.79492"
+     width="388.88879"
+     height="240.74068"
+     id="rect4044-5-4-2-2-2"
+     style="fill:none;stroke:#000000;stroke-width:1.85185134" />
   <g
-     id="g3934"
-     style="stroke:#000000"
-     transform="translate(0,212)">
+     id="g3301-9-0-9-7"
+     style="fill:none;stroke:#000000"
+     transform="matrix(1.8518514,0,0,1.8518514,-837.3874,84.60608)">
+    <polygon
+       style="fill:none;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4046-6-2-15-5-3"
+       points="375,240 380,235 590,235 585,240 " />
+    <polygon
+       style="fill:none;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4048-6-0-8-4-0"
+       points="585,240 590,235 590,365 585,370 " />
+  </g>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 690.74542,431.94682 c -6.45307,-1.93335 -13.60647,-1.42418 -19.72065,1.4037 -6.11417,2.82788 -11.13441,7.94916 -13.83992,14.11846 -2.7055,6.1693 -3.07206,13.33142 -1.01053,19.74469 2.06153,6.41328 6.5327,12.02033 12.32622,15.45764 6.33271,3.75721 14.18539,4.86083 21.3084,2.99469"
+     id="path4999-4-0-0-3"
+     inkscape:path-effect="#path-effect5001-7-78-0-1-6"
+     inkscape:original-d="m 690.74542,431.94682 c -26.68583,0.16077 -49.34857,37.24947 -22.24488,50.72449 5.35928,2.66443 15.24699,2.14282 21.3084,2.99469"
+     inkscape:connector-curvature="0" />
+  <g
+     id="g4274-8-3-5-4-4-5-5"
+     transform="matrix(0.4,0,0,0.4,342.58464,307.23075)"
+     style="stroke:#000000">
     <rect
-       style="fill:none;stroke:#000000;stroke-width:1.85185134"
-       id="rect4044-5-4-2-2-2"
-       height="240.74068"
-       width="388.88879"
-       y="130.79492"
-       x="173.46519" />
-    <g
-       transform="matrix(1.8518514,0,0,1.8518514,-837.3874,-127.39392)"
-       style="fill:none;stroke:#000000"
-       id="g3301-9-0-9-7">
-      <polygon
-         points="375,240 380,235 590,235 585,240 "
-         id="polygon4046-6-2-15-5-3"
-         transform="translate(170.86059,-100.57799)"
-         style="fill:none;stroke:#000000;stroke-miterlimit:1" />
-      <polygon
-         points="585,240 590,235 590,365 585,370 "
-         id="polygon4048-6-0-8-4-0"
-         transform="translate(170.86059,-100.57799)"
-         style="fill:none;stroke:#000000;stroke-miterlimit:1" />
-    </g>
-    <path
-       inkscape:connector-curvature="0"
-       inkscape:original-d="m 642.74542,219.94682 c -26.68583,0.16077 -49.34857,37.24947 -22.24488,50.72449 5.35928,2.66443 15.24699,2.14282 21.3084,2.99469"
-       inkscape:path-effect="#path-effect5001-7-78-0-1-6"
-       id="path4999-4-0-0-3"
-       d="m 642.74542,219.94682 c -6.45307,-1.93335 -13.60647,-1.42418 -19.72065,1.4037 -6.11417,2.82788 -11.13441,7.94916 -13.83992,14.11846 -2.7055,6.1693 -3.07206,13.33142 -1.01053,19.74469 2.06153,6.41328 6.5327,12.02033 12.32622,15.45764 6.33271,3.75721 14.18539,4.86083 21.3084,2.99469"
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
-    <g
-       style="stroke:#000000"
-       transform="matrix(0.4,0,0,0.4,342.58464,95.230755)"
-       id="g4274-8-3-5-4-4-5-5">
-      <rect
-         style="fill:#ffffff;stroke:#000000"
-         x="395"
-         y="130"
-         width="105"
-         height="40"
-         id="rect4090-5-5-8-8-9-4-4" />
-      <rect
-         style="fill:#ffffff;stroke:#000000"
-         x="385"
-         y="138"
-         width="20"
-         height="8"
-         id="rect4092-1-9-4-9-9-1-1" />
-      <rect
-         style="fill:#ffffff;stroke:#000000"
-         x="385"
-         y="154"
-         width="20"
-         height="8"
-         id="rect4094-3-4-9-7-2-7-2" />
-    </g>
-    <path
-       transform="translate(165,100)"
-       inkscape:connector-curvature="0"
-       inkscape:original-d="m 397.6116,148.43981 44.90672,-0.93555"
-       inkscape:path-effect="#path-effect3928"
-       id="path3926"
-       d="m 397.6116,148.43981 44.90672,-0.93555"
-       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       id="rect4090-5-5-8-8-9-4-4"
+       height="40"
+       width="105"
+       y="130"
+       x="395"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4092-1-9-4-9-9-1-1"
+       height="8"
+       width="20"
+       y="138"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4094-3-4-9-7-2-7-2"
+       height="8"
+       width="20"
+       y="154"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
   </g>
   <g
-     id="g20018">
+     id="g20018"
+     style="stroke:#000000"
+     transform="translate(56,0)">
     <rect
        y="155.24071"
        x="481.45007"
@@ -528,12 +423,14 @@ polygon {
          sodipodi:role="line">+ virtual somethingElse()</tspan></text>
   </g>
   <g
-     id="g20028">
+     id="g20028"
+     style="stroke:#000000"
+     transform="translate(56,0)">
     <polygon
        transform="matrix(0,-4,-4,0,1228.7874,1555.8366)"
        id="polygon4130-3-6-3"
        style="fill:#000000;stroke:none"
-       points="290,152.5 285,150 290,147.5 " />
+       points="290,147.5 290,152.5 285,150 " />
     <path
        inkscape:connector-curvature="0"
        inkscape:original-d="m 629.03612,396.82196 0,-117.88015"
@@ -554,17 +451,142 @@ polygon {
        style="stroke:#000000"
        x="314.36459"
        y="367.04639">&lt;user&gt;</tspan></text>
+  <rect
+     x="795.49365"
+     y="382.48972"
+     width="252.42645"
+     height="162.27229"
+     id="rect4044-5-4-2-4-6"
+     style="fill:none;stroke:#000000;stroke-width:1.22492158" />
+  <g
+     id="g3301-9-0-7-7"
+     style="fill:none;stroke:#000000"
+     transform="matrix(1.2020307,0,0,1.2482485,139.35254,208.45641)">
+    <polygon
+       style="fill:none;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4046-6-2-15-7-7"
+       points="375,240 380,235 590,235 585,240 " />
+    <polygon
+       style="fill:none;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4048-6-0-8-5-5"
+       points="585,240 590,235 590,365 585,370 " />
+  </g>
+  <g
+     id="g4274-8-3-5-4-4-5"
+     transform="matrix(0.4,0,0,0.4,838.05299,336.80702)"
+     style="fill:none;stroke:#000000">
+    <rect
+       id="rect4090-5-5-8-8-9-4"
+       height="40"
+       width="105"
+       y="130"
+       x="395"
+       style="fill:none;stroke:#000000" />
+    <rect
+       id="rect4092-1-9-4-9-9-1"
+       height="8"
+       width="20"
+       y="138"
+       x="385"
+       style="fill:none;stroke:#000000" />
+    <rect
+       id="rect4094-3-4-9-7-2-7"
+       height="8"
+       width="20"
+       y="154"
+       x="385"
+       style="fill:none;stroke:#000000" />
+  </g>
+  <path
+     transform="matrix(1,0,0,-1,388.83536,485.90393)"
+     sodipodi:type="arc"
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     id="path4963-2-2-4-4-5-4"
+     sodipodi:cx="294.23257"
+     sodipodi:cy="27.077484"
+     sodipodi:rx="15.436685"
+     sodipodi:ry="14.968906"
+     d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.4716233px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 697.61837,459.50426 97.25339,0"
+     id="path3930"
+     inkscape:path-effect="#path-effect3932"
+     inkscape:original-d="m 697.61837,459.50426 97.25339,0"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="818.72308"
+     y="432.27692"
+     id="text3369"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3371"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="818.72308"
+       y="432.27692">PluginManager</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="818.72308"
+       y="457.27692"
+       id="tspan8940">  .register(</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="818.72308"
+       y="482.27692"
+       id="tspan3373">    extension_point</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="818.72308"
+       y="507.27692"
+       id="tspan3375">    , new AnInterface()</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="818.72308"
+       y="532.27692"
+       id="tspan3377">);</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="548.23621"
-     y="315.69534"
+     x="833.23621"
+     y="403.69534"
      id="text11104"
-     sodipodi:linespacing="125%"
-     transform="translate(165,100)"><tspan
+     sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan11106"
        style="stroke:#000000"
-       x="548.23621"
-       y="315.69534">&lt;extension&gt;</tspan></text>
+       x="833.23621"
+       y="403.69534">&lt;extension&gt;</tspan></text>
+  <path
+     style="fill:#001bff;fill-opacity:0.30980392;stroke:#000000;stroke-width:1.36461449;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     d="m 612.43478,539.14031 c 46.18007,0 92.36013,0 138.5402,0 0,-37.9115 0,-75.823 0,-113.7345 -46.18007,0 -92.36013,0 -138.5402,0 0,37.9115 0,75.823 0,113.7345 z"
+     id="rect7151"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="682.24854"
+     y="506.03754"
+     id="text7155"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       style="text-align:center;text-anchor:middle;stroke:#000000"
+       x="682.24854"
+       y="506.03754"
+       id="tspan7163">Plugin</tspan><tspan
+       sodipodi:role="line"
+       style="text-align:center;text-anchor:middle;stroke:#000000"
+       x="682.24854"
+       y="531.03754"
+       id="tspan7167">Abstraction</tspan></text>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 654.53848,460.41538 -92.61539,0"
+     id="path12369"
+     inkscape:path-effect="#path-effect12371"
+     inkscape:original-d="m 654.53848,460.41538 -92.61539,0"
+     inkscape:connector-curvature="0" />
 </svg>

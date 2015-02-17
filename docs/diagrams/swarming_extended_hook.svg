@@ -12,7 +12,7 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   viewBox="165 100 600 275"
+   viewBox="165 100 800 275"
    id="svg4022"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
@@ -34,6 +34,14 @@
   </metadata>
   <defs
      id="defs4148">
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect7149"
+       is_visible="true" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect7128"
+       is_visible="true" />
     <inkscape:path-effect
        effect="spiro"
        id="path-effect20072"
@@ -200,9 +208,9 @@
      inkscape:window-height="750"
      id="namedview4146"
      showgrid="false"
-     inkscape:zoom="0.75581395"
-     inkscape:cx="253.36925"
-     inkscape:cy="176.42572"
+     inkscape:zoom="1.0688823"
+     inkscape:cx="359.05166"
+     inkscape:cy="83.970162"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -240,297 +248,264 @@ polygon {
   <text
      xml:space="preserve"
      style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="25.602066"
-     y="170.23746"
+     x="129.60208"
+     y="154.23746"
      id="text4386"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan4388"
        style="font-style:normal;stroke:#000000;-inkscape-font-specification:Sans"
-       x="25.602066"
-       y="170.23746" /></text>
-  <g
-     transform="translate(-421.92285,358.63604)"
-     id="g4000-4"
-     style="stroke:#000000">
-    <g
-       style="stroke:#000000"
-       id="g3357-4-8-2-7"
-       transform="translate(401.44351,-266.18357)">
-      <rect
-         x="545.86053"
-         y="139.42201"
-         width="210"
-         height="130"
-         id="rect4044-5-4-2-4-6"
-         style="fill:#ffffff;stroke:#000000" />
-      <g
-         style="stroke:#000000"
-         id="g3309-9-3-7-5">
-        <g
-           style="stroke:#000000"
-           id="g3301-9-0-7-7">
-          <polygon
-             points="380,235 590,235 585,240 375,240 "
-             id="polygon4046-6-2-15-7-7"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-          <polygon
-             points="590,235 590,365 585,370 585,240 "
-             id="polygon4048-6-0-8-5-5"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-        </g>
-        <g
-           style="stroke:#000000"
-           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
-           id="g4274-8-3-5-4-4-5">
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="395"
-             y="130"
-             width="105"
-             height="40"
-             id="rect4090-5-5-8-8-9-4" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="138"
-             width="20"
-             height="8"
-             id="rect4092-1-9-4-9-9-1" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="154"
-             width="20"
-             height="8"
-             id="rect4094-3-4-9-7-2-7" />
-        </g>
-      </g>
-    </g>
-    <g
-       style="stroke:#000000"
-       id="g3266-1-1-6-4-8"
-       transform="matrix(1,0,0,-1,402.03039,141.7902)">
-      <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4961-6-9-5-0-2"
-         width="19.64669"
-         height="26.195587"
-         x="370.48044"
-         y="91.630898"
-         transform="translate(165,100)" />
-      <path
-         transform="translate(190.72782,179.52231)"
-         sodipodi:type="arc"
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="path4963-2-2-4-4-5-4"
-         sodipodi:cx="294.23257"
-         sodipodi:cy="27.077484"
-         sodipodi:rx="15.436685"
-         sodipodi:ry="14.968906"
-         d="m 309.66926,27.077484 c 0,8.267099 -6.91124,14.968907 -15.43669,14.968907 -8.52544,0 -15.43668,-6.701808 -15.43668,-14.968907 0,-8.267099 6.91124,-14.968906 15.43668,-14.968906 8.52545,0 15.43669,6.701807 15.43669,14.968906 z" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 334.9293,106.59979 34.6156,0"
-         id="path3128-4-9-9-6-4"
-         inkscape:path-effect="#path-effect3130-3-4-1-1-2"
-         inkscape:original-d="m 334.9293,106.59979 c 8.03296,-0.72786 31.47324,-9.427072 34.6156,0"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
-    </g>
-  </g>
-  <text
-     xml:space="preserve"
-     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="540.72308"
-     y="279.27692"
-     id="text3369"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3371"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="540.72308"
-       y="279.27692">Plugin.register(</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="540.72308"
-       y="304.27692"
-       id="tspan3373">  extension_point</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="540.72308"
-       y="329.27692"
-       id="tspan3375">  , callback</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
-       x="540.72308"
-       y="354.27692"
-       id="tspan3377">);</tspan></text>
-  <g
-     transform="translate(-180.80312,571.84617)"
-     id="g5150"
-     style="stroke:#000000">
-    <g
-       style="stroke:#000000"
-       id="g3357-4-8-0-0"
-       transform="translate(-179.43356,-479.19896)">
-      <rect
-         x="545.86053"
-         y="139.42201"
-         width="210"
-         height="130"
-         id="rect4044-5-4-2-2-2"
-         style="fill:#ffffff;stroke:#000000" />
-      <g
-         style="stroke:#000000"
-         id="g3309-9-3-8-5">
-        <g
-           style="stroke:#000000"
-           id="g3301-9-0-9-7">
-          <polygon
-             points="585,240 375,240 380,235 590,235 "
-             id="polygon4046-6-2-15-5-3"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-          <polygon
-             points="585,370 585,240 590,235 590,365 "
-             id="polygon4048-6-0-8-4-0"
-             transform="translate(170.86059,-100.57799)"
-             style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1" />
-        </g>
-        <g
-           style="stroke:#000000"
-           transform="matrix(0.4,0,0,0.4,548.53233,95.354547)"
-           id="g4274-8-3-5-4-5-9">
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="395"
-             y="130"
-             width="105"
-             height="40"
-             id="rect4090-5-5-8-8-7-5" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="138"
-             width="20"
-             height="8"
-             id="rect4092-1-9-4-9-9-10" />
-          <rect
-             style="fill:#ffffff;stroke:#000000"
-             x="385"
-             y="154"
-             width="20"
-             height="8"
-             id="rect4094-3-4-9-7-0-6" />
-        </g>
-      </g>
-    </g>
-    <g
-       style="stroke:#000000"
-       id="g3195-4-2-9"
-       transform="matrix(-1,0,0,1,1124.9434,-323.74272)">
-      <rect
-         style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
-         id="rect4959-8-0-7"
-         width="18.711134"
-         height="22.45336"
-         x="372.35156"
-         y="-64.607071"
-         transform="translate(165,100)" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 471.39488,18.84337 c 6.45307,-1.933349 13.60647,-1.424176 19.72065,1.403701 6.11417,2.827877 11.13441,7.949156 13.83992,14.118455 2.7055,6.1693 3.07206,13.331422 1.01053,19.744698 -2.06153,6.413275 -6.5327,12.020324 -12.32622,15.457636 -6.33271,3.757212 -14.18539,4.86083 -21.3084,2.99469"
-         id="path4999-4-0-0-3"
-         inkscape:path-effect="#path-effect5001-7-78-0-1-6"
-         inkscape:original-d="m 471.39488,18.84337 c 26.68583,0.16077 49.34857,37.24947 22.24488,50.72449 -5.35928,2.66443 -15.24699,2.14282 -21.3084,2.99469"
-         inkscape:connector-curvature="0" />
-      <path
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-         d="m 342.41375,-54.315959 29.93782,-0.935557"
-         id="path3124-7-0-7"
-         inkscape:path-effect="#path-effect3126-9-6-1-3"
-         inkscape:original-d="m 342.41375,-54.315959 c 9.64202,0.84018 29.55296,-0.807272 29.93782,-0.935557"
-         inkscape:connector-curvature="0"
-         transform="translate(165,100)" />
-    </g>
-  </g>
+       x="129.60208"
+       y="154.23746" /></text>
+  <path
+     transform="matrix(1,0,0,-1,274.83536,304.90393)"
+     sodipodi:type="arc"
+     style="opacity:0.98999999;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     id="path4963-2-2-4-4-5-4"
+     sodipodi:cx="294.23257"
+     sodipodi:cy="27.077484"
+     sodipodi:rx="15.436685"
+     sodipodi:ry="14.968906"
+     d="m 309.66926,27.077484 a 15.436685,14.968906 0 1 1 -30.87337,0 15.436685,14.968906 0 1 1 30.87337,0 z" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 576.7454,250.94682 c -6.45307,-1.93335 -13.60647,-1.42418 -19.72065,1.4037 -6.11417,2.82788 -11.13441,7.94916 -13.83992,14.11846 -2.7055,6.1693 -3.07206,13.33142 -1.01053,19.74469 2.06153,6.41328 6.5327,12.02033 12.32622,15.45764 6.33271,3.75721 14.18539,4.86083 21.3084,2.99469"
+     id="path4999-4-0-0-3"
+     inkscape:path-effect="#path-effect5001-7-78-0-1-6"
+     inkscape:original-d="m 576.7454,250.94682 c -26.68583,0.16077 -49.34857,37.24947 -22.24488,50.72449 5.35928,2.66443 15.24699,2.14282 21.3084,2.99469"
+     inkscape:connector-curvature="0" />
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="194.23077"
-     y="277.55383"
-     id="text3663"
-     sodipodi:linespacing="125%"><tspan
-       sodipodi:role="line"
-       id="tspan3665"
-       style="font-size:20px;stroke:#000000"
-       x="194.23077"
-       y="277.55383">Plugin.swarm(</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;stroke:#000000"
-       x="194.23077"
-       y="302.55383"
-       id="tspan3667"> extension_point</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;stroke:#000000"
-       x="194.23077"
-       y="327.55383"
-       id="tspan3669"> , inarg</tspan><tspan
-       sodipodi:role="line"
-       style="font-size:20px;stroke:#000000"
-       x="194.23077"
-       y="352.55383"
-       id="tspan3673"> , outarg );</tspan></text>
-  <text
-     xml:space="preserve"
-     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="259.56207"
-     y="152.94835"
+     x="363.56207"
+     y="136.94835"
      id="text5975-9"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan5977-7"
        style="stroke:#000000"
-       x="259.56207"
-       y="152.94835">callback(extring*inmsg, extring*outmsg)</tspan></text>
+       x="363.56207"
+       y="136.94835">callback(extring*inmsg, extring*outmsg)</tspan></text>
   <polygon
-     points="285,150 290,147.5 290,152.5 "
+     points="290,152.5 285,150 290,147.5 "
      style="fill:#000000;stroke:none"
      id="polygon4130-3-6-3"
-     transform="matrix(0,-4,-4,0,1064.4154,1403.2359)" />
+     transform="matrix(0,-4,-4,0,1168.4154,1387.2359)" />
   <path
      style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-     d="m 299.01539,144.01538 0,-82.030766"
+     d="m 568.01539,228.01538 0,-82.03077"
      id="path20070"
      inkscape:path-effect="#path-effect20072"
-     inkscape:original-d="m 299.01539,144.01538 0,-82.030766"
-     inkscape:connector-curvature="0"
-     transform="translate(165,100)" />
+     inkscape:original-d="m 568.01539,228.01538 0,-82.03077"
+     inkscape:connector-curvature="0" />
+  <rect
+     x="213.62387"
+     y="216.06923"
+     width="268.88174"
+     height="130"
+     id="rect4044-5-4-2-2-2"
+     style="fill:#ffffff;stroke:#000000;stroke-width:1.13154292" />
+  <g
+     id="g3301-9-0-9-7"
+     style="stroke:#000000"
+     transform="matrix(1.2803893,0,0,1,-485.29011,76.64721)">
+    <polygon
+       style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4046-6-2-15-5-3"
+       points="590,235 585,240 375,240 380,235 " />
+    <polygon
+       style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4048-6-0-8-4-0"
+       points="590,365 585,370 585,240 590,235 " />
+  </g>
+  <g
+     id="g4274-8-3-5-4-5-9"
+     transform="matrix(0.4,0,0,0.4,270.29565,172.00176)"
+     style="stroke:#000000">
+    <rect
+       id="rect4090-5-5-8-8-7-5"
+       height="40"
+       width="105"
+       y="130"
+       x="395"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4092-1-9-4-9-9-10"
+       height="8"
+       width="20"
+       y="138"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4094-3-4-9-7-0-6"
+       height="8"
+       width="20"
+       y="154"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+  </g>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="198.60001"
-     y="251.33846"
+     x="222.23077"
+     y="261.55383"
+     id="text3663"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3665"
+       style="font-size:20px;stroke:#000000"
+       x="222.23077"
+       y="261.55383">PluginManager.swarm(</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;stroke:#000000"
+       x="222.23077"
+       y="286.55383"
+       id="tspan3667"> extension_point</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;stroke:#000000"
+       x="222.23077"
+       y="311.55383"
+       id="tspan3669"> , inarg</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;stroke:#000000"
+       x="222.23077"
+       y="336.55383"
+       id="tspan3673"> , outarg );</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="304.60001"
+     y="235.33846"
      id="text9204"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan9206"
        style="stroke:#000000"
-       x="198.60001"
-       y="251.33846">&lt;user&gt;</tspan></text>
+       x="304.60001"
+       y="235.33846">&lt;user&gt;</tspan></text>
+  <rect
+     x="649.38116"
+     y="215.87448"
+     width="258.85803"
+     height="130"
+     id="rect4044-5-4-2-4-6"
+     style="fill:#ffffff;stroke:#000000;stroke-width:1.11025107" />
+  <g
+     id="g3301-9-0-7-7"
+     style="stroke:#000000"
+     transform="matrix(1.2326573,0,0,1,-23.47778,76.45247)">
+    <polygon
+       style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4046-6-2-15-7-7"
+       points="585,240 375,240 380,235 590,235 " />
+    <polygon
+       style="fill:#ffffff;stroke:#000000;stroke-miterlimit:1"
+       transform="translate(170.86059,-100.57799)"
+       id="polygon4048-6-0-8-5-5"
+       points="585,370 585,240 590,235 590,365 " />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="664.72308"
+     y="263.27692"
+     id="text3369"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       id="tspan3371"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="664.72308"
+       y="263.27692">PluginManager.register(</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="664.72308"
+       y="288.27692"
+       id="tspan3373">  extension_point</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="664.72308"
+       y="313.27692"
+       id="tspan3375">  , callback</tspan><tspan
+       sodipodi:role="line"
+       style="font-size:20px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;stroke:#000000;font-family:Sans;-inkscape-font-specification:Sans"
+       x="664.72308"
+       y="338.27692"
+       id="tspan3377">);</tspan></text>
   <text
      xml:space="preserve"
      style="font-size:20px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="538.41541"
-     y="252.66156"
+     x="702.41541"
+     y="236.66156"
      id="text9208"
      sodipodi:linespacing="125%"><tspan
        sodipodi:role="line"
        id="tspan9210"
        style="stroke:#000000"
-       x="538.41541"
-       y="252.66156">&lt;extension&gt;</tspan></text>
+       x="702.41541"
+       y="236.66156">&lt;extension&gt;</tspan></text>
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.16899657px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 484.18107,278.29231 56.0497,0"
+     id="path7126"
+     inkscape:path-effect="#path-effect7128"
+     inkscape:original-d="m 484.18107,278.29231 56.0497,0"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:1.21060729px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 583.89231,278.95385 65.9281,0"
+     id="path7147"
+     inkscape:path-effect="#path-effect7149"
+     inkscape:original-d="m 583.89231,278.95385 65.9281,0"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#001bff;fill-opacity:0.30980392;stroke:#000000;stroke-width:1.36461449;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:0;stroke-opacity:1;stroke-dasharray:none"
+     d="m 498.7871,355.672 c 46.18007,0 92.36013,0 138.5402,0 0,-37.9115 0,-75.823 0,-113.7345 -46.18007,0 -92.36013,0 -138.5402,0 0,37.9115 0,75.823 0,113.7345 z"
+     id="rect7151"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-size:20px;font-style:normal;font-weight:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="568.60089"
+     y="322.56921"
+     id="text7155"
+     sodipodi:linespacing="125%"><tspan
+       sodipodi:role="line"
+       style="text-align:center;text-anchor:middle;stroke:#000000"
+       x="568.60089"
+       y="322.56921"
+       id="tspan7163">Plugin</tspan><tspan
+       sodipodi:role="line"
+       style="text-align:center;text-anchor:middle;stroke:#000000"
+       x="568.60089"
+       y="347.56921"
+       id="tspan7167">Abstraction</tspan></text>
+  <g
+     id="g4274-8-3-5-4-5-9-7"
+     transform="matrix(0.4,0,0,0.4,695.72242,170.82874)"
+     style="stroke:#000000">
+    <rect
+       id="rect4090-5-5-8-8-7-5-9"
+       height="40"
+       width="105"
+       y="130"
+       x="395"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4092-1-9-4-9-9-10-2"
+       height="8"
+       width="20"
+       y="138"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+    <rect
+       id="rect4094-3-4-9-7-0-6-9"
+       height="8"
+       width="20"
+       y="154"
+       x="385"
+       style="fill:#ffffff;stroke:#000000" />
+  </g>
 </svg>

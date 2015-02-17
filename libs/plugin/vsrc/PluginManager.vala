@@ -11,9 +11,9 @@ using shotodol;
  *  @{
  */
 public delegate void shotodol.ExtensionVisitor(Extension e);
-public class shotodol.Plugin : Module {
+public class shotodol.PluginManager : Module {
 	static CompositeExtension?x;
-	public Plugin() {
+	public PluginManager() {
 		extring nm = extring.set_string(core.sourceModuleName());
 		extring ver = extring.set_static_string("0.0.0");
 		base(&nm,&ver);

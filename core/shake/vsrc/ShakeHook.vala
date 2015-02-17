@@ -20,7 +20,7 @@ public class shotodol.ShakeHook : HookExtension {
 		}
 	}
 	public int plug() {
-		Plugin.register(&extensionPoint, this);
+		PluginManager.register(&extensionPoint, this);
 		return 0;
 	}
 	int onEvent(extring*msg, extring*output) {

@@ -26,20 +26,20 @@ public class shotodol.CommandModule: DynamicModule {
 	public override int init() {
 		server = this;
 		extring entry = extring.set_static_string("command");
-		Plugin.register(&entry, new M100Extension(new QuitCommand(), this));
-		Plugin.register(&entry, new M100Extension(new HelpCommand(), this));
-		Plugin.register(&entry, new M100Extension(new ModuleCommand(), this));
-		Plugin.register(&entry, new M100Extension(new PluginCommand(), this));
-		Plugin.register(&entry, new M100Extension(new RehashCommand(), this));
-		Plugin.register(&entry, new M100Extension(new MemoryTraceCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new QuitCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new HelpCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new ModuleCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new PluginCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new RehashCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new MemoryTraceCommand(), this));
 		entry.rebuild_and_set_static_string("onLoad");
-		Plugin.register(&entry, new HookExtension(rehashHook, this));
+		PluginManager.register(&entry, new HookExtension(rehashHook, this));
 		entry.rebuild_and_set_static_string("rehash");
-		Plugin.register(&entry, new HookExtension(rehashHook, this));
+		PluginManager.register(&entry, new HookExtension(rehashHook, this));
 		entry.rebuild_and_set_static_string("command/server");
-		Plugin.register(&entry, new HookExtension(commandServerHook, this));
+		PluginManager.register(&entry, new HookExtension(commandServerHook, this));
 		entry.rebuild_and_set_static_string("onQuit");
-		Plugin.register(&entry, new HookExtension((onQuitHook), this));
+		PluginManager.register(&entry, new HookExtension((onQuitHook), this));
 		rehashHook(null, null);
 		return 0;
 	}

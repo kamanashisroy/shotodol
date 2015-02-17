@@ -18,7 +18,7 @@ public class shotodol.ProfilerModule : DynamicModule {
 
 	public override int init() {
 		extring command = extring.set_static_string("command");
-		Plugin.register(&command, new M100Extension(new ProfilerCommand(), this));
+		PluginManager.register(&command, new M100Extension(new ProfilerCommand(), this));
 		return 0;
 	}
 	public override int deinit() {

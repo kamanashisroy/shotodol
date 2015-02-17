@@ -20,9 +20,9 @@ public class shotodol.InstantModule : DynamicModule {
 	public override int init() {
 		cmd = new InstantCommand();
 		extring entry = extring.set_static_string("command");
-		Plugin.register(&entry, new M100Extension(cmd, this));
+		PluginManager.register(&entry, new M100Extension(cmd, this));
 		entry.rebuild_and_set_static_string("rehash");
-		Plugin.register(&entry, new HookExtension(rehashHook, this));
+		PluginManager.register(&entry, new HookExtension(rehashHook, this));
 		return 0;
 	}
 	int rehashHook(extring*msg, extring*output) {

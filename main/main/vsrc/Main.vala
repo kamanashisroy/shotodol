@@ -35,21 +35,21 @@ public class shotodol.MainProgram {
 		memory.trim_to_length(bndlr.size);
 		//extring userargs = extring.set_content((string)ctn.data, (int)bndlr.size, null);
 		extring hook = extring.set_static_string("onLoad");
-		Plugin.swarm(&hook, &memory, null);
+		PluginManager.swarm(&hook, &memory, null);
 		hook.rebuild_and_set_static_string("onLoadAlter");
-		Plugin.swarm(&hook, &memory, null);
+		PluginManager.swarm(&hook, &memory, null);
 		hook.rebuild_and_set_static_string("onReady");
-		Plugin.swarm(&hook, &memory, null);
+		PluginManager.swarm(&hook, &memory, null);
 		hook.rebuild_and_set_static_string("onReadyAlter");
-		Plugin.swarm(&hook, &memory, null);
+		PluginManager.swarm(&hook, &memory, null);
 		//hook.rebuild_and_set_static_string("rehash");
-		//Plugin.swarm(&hook, &memory, null);
+		//PluginManager.swarm(&hook, &memory, null);
 		return 0;
 	}
 #if false
-	static void debugPlugin(extring*ex) {
+	static void debugPluginManager(extring*ex) {
 		int count = 0;
-		Extension?root = Plugin.get(ex);
+		Extension?root = PluginManager.get(ex);
 		while(root != null) {
 			count++;
 			Extension?next = root.getNext();
@@ -61,7 +61,7 @@ public class shotodol.MainProgram {
 	static void run() {
 		onLoad();
 		extring run = extring.set_static_string("run");
-		Plugin.swarm(&run, null, null);
+		PluginManager.swarm(&run, null, null);
 	}
 	public static int main() {
 		ModuleLoader loader = new ModuleLoader();

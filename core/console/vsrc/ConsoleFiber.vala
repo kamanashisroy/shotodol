@@ -18,7 +18,7 @@ internal abstract class ConsoleFiber : Fiber {
 			dlg.printf("Executing:%s\n", cmd.to_string());
 			sp.pad.write(&dlg);
 			extring serv = extring.set_static_string("command/server");
-			Plugin.swarm(&serv, cmd, null);
+			PluginManager.swarm(&serv, cmd, null);
 			//CommandModule.server.cmds.act_on(cmd, pad, null);
 			dlg.printf("\n");
 			sp.pad.write(&dlg);

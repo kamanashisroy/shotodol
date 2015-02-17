@@ -21,13 +21,13 @@ internal class shotodol.QuitCommand : M100Command {
 		xtring?sft = vals[Options.SOFT];
 		extring quitEntry = extring.set_static_string("onQuit/soft");
 		extring output = extring();
-		Plugin.swarm(&quitEntry, null, &output);
+		PluginManager.swarm(&quitEntry, null, &output);
 		if(!output.is_empty()) {
 			pad.write(&output);
 		}
 		if(sft != null) return 0;
 		quitEntry.rebuild_and_set_static_string("onQuit");
-		Plugin.swarm(&quitEntry, null, &output);
+		PluginManager.swarm(&quitEntry, null, &output);
 		if(!output.is_empty()) {
 			pad.write(&output);
 		}

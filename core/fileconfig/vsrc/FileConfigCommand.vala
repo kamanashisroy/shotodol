@@ -17,7 +17,7 @@ internal class shotodol.FileConfigCommand : shotodol.M100Command {
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		ConfigEngine?cfg = null;
 		extring entry = extring.set_static_string("config/server");
-		Plugin.acceptVisitor(&entry, (x) => {
+		PluginManager.acceptVisitor(&entry, (x) => {
 			cfg = (ConfigEngine)x.getInterface(null);
 		});
 		if(cfg == null) {

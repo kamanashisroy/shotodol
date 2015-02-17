@@ -13,9 +13,9 @@ public class shotodol.BagModule : Module {
 
 	public override int init() {
 		extring entry = extring.set_static_string("unittest");
-		Plugin.register(&entry, new AnyInterfaceExtension(new BagTest(), this));
+		PluginManager.register(&entry, new AnyInterfaceExtension(new BagTest(), this));
 		entry.rebuild_and_set_static_string("bag/factory");
-		Plugin.register(&entry, new AnyInterfaceExtension(new BagFactoryImpl(), this));
+		PluginManager.register(&entry, new AnyInterfaceExtension(new BagFactoryImpl(), this));
 		return 0;
 	}
 

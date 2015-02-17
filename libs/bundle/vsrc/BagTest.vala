@@ -60,7 +60,7 @@ internal class shotodol.BagTest : UnitTest {
 	public override int test() throws UnitTestError {
 		BagFactory?builder = null;
 		extring entry = extring.set_static_string("bag/factory");
-		Plugin.acceptVisitor(&entry, (x) => {
+		PluginManager.acceptVisitor(&entry, (x) => {
 			builder = (BagFactory)x.getInterface(null);
 		});
 		if(builder == null)

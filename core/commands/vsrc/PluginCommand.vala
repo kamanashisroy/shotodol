@@ -23,16 +23,16 @@ internal class shotodol.PluginCommand : M100Command {
 		}
 		xtring?ex = vals[Options.EXTENSION];
 		if(ex == null) {
-			Plugin.list(pad);
+			PluginManager.list(pad);
 			return 0;
 		}
 		int count = 0;
 		bool dispatch = vals[Options.ACT] != null;
-		Plugin.acceptVisitor(ex, (x) => {
+		PluginManager.acceptVisitor(ex, (x) => {
 			count++;
 			x.desc(pad);
 		});
-		if(dispatch) Plugin.swarm(ex, null, null);
+		if(dispatch) PluginManager.swarm(ex, null, null);
 		extring dlg = extring.stack(128);
 		dlg.printf("There are %d extensions in %s directory\n", count, ex.fly().to_string());
 		pad.write(&dlg);

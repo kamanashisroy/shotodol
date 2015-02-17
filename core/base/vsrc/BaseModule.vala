@@ -15,13 +15,13 @@ public class shotodol.BaseModule : Module {
 
 	public override int init() {
 		extring entry = extring.set_static_string("onQuit");
-		Plugin.register(&entry, new HookExtension((onQuitHook), this));
+		PluginManager.register(&entry, new HookExtension((onQuitHook), this));
 		entry.rebuild_and_set_static_string("onReadyAlter");
-		Plugin.register(&entry, new HookExtension((onReadyAlterHook), this));
+		PluginManager.register(&entry, new HookExtension((onReadyAlterHook), this));
 		entry.rebuild_and_set_static_string("run");
-		Plugin.register(&entry, new HookExtension((runHook), this));
+		PluginManager.register(&entry, new HookExtension((runHook), this));
 		entry.rebuild_and_set_static_string("rehash");
-		Plugin.register(&entry, new HookExtension((onRehashHook), this));
+		PluginManager.register(&entry, new HookExtension((onRehashHook), this));
 		return 0;
 	}
 

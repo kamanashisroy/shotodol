@@ -24,7 +24,7 @@ internal class shotodol.GoodLuckCommand : M100Command {
 
 		// calling the "goodluck/before" hook
 		extring entry = extring.set_static_string("goodluck/before"); // declare embedded Xtring that refer to "goodluck/before".
-		Plugin.swarm(&entry, null, &response); // call all the "goodluck/before" hooks
+		PluginManager.swarm(&entry, null, &response); // call all the "goodluck/before" hooks
 		pad.write(&response); // print out the response of the "goodluck/before" hook
 
 
@@ -42,7 +42,7 @@ internal class shotodol.GoodLuckCommand : M100Command {
 		response.destroy(); // cleanup
 		// calling the "goodluck/after" hook
 		entry.rebuild_and_set_static_string("goodluck/after"); // refer to "goodluck/after".
-		Plugin.swarm(&entry, null, &response); // call all the "goodluck/after" hooks
+		PluginManager.swarm(&entry, null, &response); // call all the "goodluck/after" hooks
 		pad.write(&response); // print out the response of the "goodluck/after" hook
 		return 0;
 	}

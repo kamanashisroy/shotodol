@@ -19,17 +19,16 @@ public class shotodol.ProgrammingInstruction : Module {
 
 	public override int init() {
 		extring command = extring.set_static_string("command/programming");
-		Plugin.register(&command, new M100Extension(new LessThanCommand(), this));
-		Plugin.register(&command, new M100Extension(new GreaterThanCommand(), this));
-		Plugin.register(&command, new M100Extension(new EqualsCommand(), this));
-		Plugin.register(&command, new M100Extension(new IfCommand(), this));
-		Plugin.register(&command, new M100Extension(new EchoCommand(), this));
-		Plugin.register(&command, new M100Extension(new SetVariableCommand(), this));
+		PluginManager.register(&command, new M100Extension(new LessThanCommand(), this));
+		PluginManager.register(&command, new M100Extension(new GreaterThanCommand(), this));
+		PluginManager.register(&command, new M100Extension(new EqualsCommand(), this));
+		PluginManager.register(&command, new M100Extension(new IfCommand(), this));
+		PluginManager.register(&command, new M100Extension(new EchoCommand(), this));
+		PluginManager.register(&command, new M100Extension(new SetVariableCommand(), this));
 		return 0;
 	}
 
 	public override int deinit() {
-		//Plugin.unregisterModule(this);
 		//base.deinit();
 		return 0;
 	}

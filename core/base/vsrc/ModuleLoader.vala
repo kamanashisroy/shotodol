@@ -20,7 +20,7 @@ public class shotodol.ModuleLoader : Replicable {
 		path_to_shotodol = extring.set_string(shotodol_platform.dynalib.rootDir);
 		moduleStack = ArrayList<Module>();
 		stackPointer = 0;
-		loadStatic(new Plugin());
+		loadStatic(new PluginManager());
 		loadStatic(new BaseModule());
 		loadStatic(new BagModule());
 		singleton = this;
@@ -55,7 +55,7 @@ public class shotodol.ModuleLoader : Replicable {
 			throw new dynalib_error.COULD_NOT_CREATE_INSTANCE("Could not create module");
 		}
 		if(m.init() != 0) {
-			Plugin.unregisterModule(m);
+			PluginManager.unregisterModule(m);
 			m.deinit();
 			plg.unload();
 			throw new dynalib_error.COULD_NOT_INITIATE("Could not initiate module");
@@ -129,7 +129,7 @@ public class shotodol.ModuleLoader : Replicable {
 				map.mark(pruneFlag);
 				moduleName = new xtring.copy_deep(&mn);
 				print("Unregistering %s,%d,%s,%d from registry ..\n", mn.to_string(), mn.length() , moduleName.fly().to_string(), moduleName.fly().length());
-				Plugin.unregisterModule(m, pad);
+				PluginManager.unregisterModule(m, pad);
 				//print("Deinit %s ..\n", mn.to_string());
 				mn.destroy();
 				// unload dynamic module is prone to crash ..

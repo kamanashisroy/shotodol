@@ -18,12 +18,12 @@ public class shotodol.fork.ForkModule : DynamicModule {
 	public override int init() {
 		ForkCommand cmd = new ForkCommand();
 		extring entry = extring.set_static_string("command");
-		Plugin.register(&entry, new M100Extension(cmd, this));
+		PluginManager.register(&entry, new M100Extension(cmd, this));
 		entry.rebuild_and_set_static_string("fork");
-		Plugin.register(&entry, new HookExtension(cmd.forkHook, this));
+		PluginManager.register(&entry, new HookExtension(cmd.forkHook, this));
 		entry.rebuild_and_set_static_string("onFork/complete");
 		//(new ShakeHook(&entry, this)).plug();
-		Plugin.register(&entry, new ShakeHook(&entry, this));
+		PluginManager.register(&entry, new ShakeHook(&entry, this));
 		return 0;
 	}
 
