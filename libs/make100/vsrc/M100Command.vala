@@ -122,6 +122,8 @@ public abstract class shotodol.M100Command : Replicable {
 			break;
 			default:
 			{
+				extring synopsis = extring.set_static_string("SYNOPSIS:\n\t");
+				pad.write(&synopsis); // TODO put synopsis here
 				pad.write(&x);
 				Iterator<M100CommandOption> it = Iterator<M100CommandOption>.forFactory(&options, Replica_flags.ALL, 0, 0);
 				while(it.next()) {

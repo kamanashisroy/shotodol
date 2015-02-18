@@ -33,5 +33,18 @@ internal class shotodol.AliasCommand : M100Command {
 		pad.write(&dlg);
 		return 0;
 	}
+
+	public override int desc(M100Command.CommandDescType tp, OutputStream pad) {
+		switch(tp) {
+			case M100Command.CommandDescType.COMMAND_DESC_FULL:
+			extring x = extring.stack(512);
+			x.concat_string("\tAlias command creates alias for fully argumented command.\n");
+			x.concat_string("EXAMPLE:\n");
+			x.concat_string("\t`alias w watchdog -l 100 -tag 55` will create alias named `zw` stands for `watchdog -l 100 -tag 55`.\n");
+			pad.write(&x);
+			break;
+		}
+		return base.desc(tp, pad);
+	}
 }
 /* @} */

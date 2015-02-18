@@ -3,7 +3,7 @@ Roadmap
 
 #### Framework
 - [x] Write an example to demonstrate hooking.
-- [ ] Write an example to generate a custom event/task.
+- [x] Write an example to generate a custom event/task.
 - [x] Fill the README.md for the console module.
 - [x] Rename str to xtring.
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
@@ -12,7 +12,7 @@ Roadmap
 
 #### Command
 - [ ] Write a quiet command server in "command/server" space.
-- [ ] Write support for command description.
+- [x] Write support for command description. (It is already available)
 - [x] Write an alias command such as it can create alias for some command. For example, `alias wa55 watchdog -l 100 -tag 55 ` will create a command alias named `zwa55` which will call `watchdog -l 100 -tag 55 ` in the background.
 
 #### Messaging
