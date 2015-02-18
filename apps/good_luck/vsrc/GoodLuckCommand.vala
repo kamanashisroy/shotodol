@@ -47,5 +47,18 @@ internal class shotodol.GoodLuckCommand : M100Command {
 		pad.write(&response); // print out the response of the "goodluck/after" hook
 		return 0;
 	}
+
+	public override int desc(M100Command.CommandDescType tp, OutputStream pad) { // This describes the application of the command to the user
+		switch(tp) {
+			case M100Command.CommandDescType.COMMAND_DESC_FULL:
+			extring x = extring.stack(512); // allocate memory in stack
+			x.concat_string("\tGoodluck command greets someone by his name.\n");
+			x.concat_string("EXAMPLE:\n");
+			x.concat_string("\t`goodluck -name Bob` wishes good luck to Bob.\n");
+			pad.write(&x);
+			break;
+		}
+		return base.desc(tp, pad);
+	}
 }
 /* @} */
