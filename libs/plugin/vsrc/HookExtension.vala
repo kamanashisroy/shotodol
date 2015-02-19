@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup Plugin
+/** \addtogroup plugin
  *  @{
  */
 public delegate int shotodol.PluginHook(extring*msg, extring*output);

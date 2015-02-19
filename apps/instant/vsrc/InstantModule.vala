@@ -1,9 +1,14 @@
 using aroop;
 using shotodol;
 
+
+/**
+ * \defgroup apps These are the user applications.
+ */
+
 /**
  * \ingroup apps
- * \defgroup instant Instant module creates package for distribution
+ * \defgroup instant Instant module creates package for distribution.
  */
 
 /** \addtogroup instant

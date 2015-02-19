@@ -1,6 +1,12 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup command_programming
+ * \defgroup control_command Control statement support for command scripts.
+ */
+
+
 /** \addtogroup control_command
  *  @{
  */

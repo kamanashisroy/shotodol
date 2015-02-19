@@ -2,8 +2,8 @@ using aroop;
 using shotodol;
 
 /**
- * \ingroup library
- * \defgroup unittest Unit Testing Support(unittest)
+ * \ingroup shotodol_library
+ * \defgroup unittest Unit Testing Library
  * [Cohesion : Functional]
  */
 

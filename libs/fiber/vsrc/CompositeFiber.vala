@@ -2,12 +2,8 @@ using aroop;
 using shotodol;
 
 /**
- * \defgroup library Shotodol Library modules
- */
-
-/**
- * \ingroup library
- * \defgroup fiber A thread support system(fiber)
+ * \ingroup shotodol_library
+ * \defgroup fiber A thread support system
  * [Cohesion : Functional]
  */
 

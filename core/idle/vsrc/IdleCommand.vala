@@ -3,7 +3,7 @@ using shotodol;
 
 /**
  * \ingroup core
- * \defgroup idle Let cpu take rest(idle)
+ * \defgroup idle Let cpu take rest increasing the idle time.
  */
 
 /** \addtogroup idle

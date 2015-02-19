@@ -2,8 +2,8 @@ using aroop;
 using shotodol;
 
 /**
- * \ingroup library
- * \defgroup str_arms String manipulation support(str_arms)
+ * \ingroup shotodol_library
+ * \defgroup str_arms String manipulation support
  * [Cohesion : Functional]
  */
 

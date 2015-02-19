@@ -2,8 +2,8 @@ using aroop;
 using shotodol;
 
 /**
- * \ingroup library
- * \defgroup watchdog Watchdog to support debugging and reporting error(watchdog)
+ * \ingroup shotodol_library
+ * \defgroup watchdog Watchdog to support debugging and reporting error
  * [Cohesion : Functional]
  */
 

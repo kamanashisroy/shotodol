@@ -2,13 +2,20 @@ using aroop;
 using shotodol;
 
 /**
+ * \ingroup commandserver
+ * \defgroup command Command
+ */
+
+
+/**
  * \ingroup core
- * \defgroup command Command register system(command).
+ * \defgroup commandserver Command Server
  * [Cohesion : Logical]
  */
 
-/** \addtogroup command
+/** \addtogroup commandserver
  *  @{
+ * \image html command_component.svg "Component Diagram"
  */
 public class shotodol.CommandModule: DynamicModule {
 	public static CommandModule? server;

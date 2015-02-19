@@ -2,7 +2,7 @@ using aroop;
 using shotodol;
 
 /**
- * \ingroup library
+ * \ingroup shotodol_library
  * \defgroup iostream Input Output Basic(iostream)
  * [Cohesion : Logical]
  */

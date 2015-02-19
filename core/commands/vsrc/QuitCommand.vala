@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup command
+/** \addtogroup commandserver
  *  @{
  */
 internal class shotodol.QuitCommand : M100Command {

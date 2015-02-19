@@ -2,8 +2,8 @@ using aroop;
 using shotodol;
 
 /**
- * \ingroup library
- * \defgroup config Config Engine(config)
+ * \ingroup shotodol_library
+ * \defgroup config Config Engine
  * [Cohesion : Functional]
  */
 

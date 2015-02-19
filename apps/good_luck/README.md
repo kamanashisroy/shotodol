@@ -126,5 +126,5 @@ The [GoodLuckCommand](vsrc/GoodLuckCommand.vala) extends [M100Command](../../lib
 The following diagrams shows the relation among good luck module and other modules.
 
 
-![Good Luck Command](../../docs/diagrams/goodluck_command.svg)
+![Good Luck Diagram](../../docs/diagrams/goodluck_command.svg)
 

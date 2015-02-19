@@ -14,7 +14,7 @@ using shotodol;
 
 /**
  * \ingroup library
- * \defgroup bundle Data serialization support(bundle)
+ * \defgroup bundle Data serialization support, Bundler
  * [Cohesion : Functional]
  */
 

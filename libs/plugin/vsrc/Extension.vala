@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup Plugin
+/** \addtogroup plugin
  *  @{
  */
 public class shotodol.Extension : Replicable {

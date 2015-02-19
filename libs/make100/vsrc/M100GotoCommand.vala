@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup standard_command
+/** \addtogroup make100
  *  @{
  */
 internal class shotodol.M100GotoCommand : shotodol.M100Command {

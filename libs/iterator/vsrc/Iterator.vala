@@ -1,6 +1,11 @@
 using aroop;
 using shotodol;
 
+/**
+ * \ingroup shotodol_library
+ * \defgroup default_iterator Iterator library
+ */
+
 /** \addtogroup default_iterator
  *  @{
  */

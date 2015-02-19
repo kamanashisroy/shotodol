@@ -4,7 +4,7 @@ using shotodol_platform;
 
 /**
  * \ingroup core
- * \defgroup fileconfig File based config parser/loader(fileconfig)
+ * \defgroup fileconfig File based config engine 
  */
 
 /** \addtogroup fileconfig

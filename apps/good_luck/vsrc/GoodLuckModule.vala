@@ -8,6 +8,7 @@ using shotodol;
 
 /** \addtogroup good_luck
  *  @{
+ * \image html goodluck_command.svg "Good Luck Diagram"
  */
 public class shotodol.GoodLuckModule : DynamicModule {
 	public GoodLuckModule() {

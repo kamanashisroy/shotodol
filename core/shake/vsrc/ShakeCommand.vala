@@ -3,7 +3,7 @@ using shotodol;
 
 /**
  * \ingroup core
- * \defgroup shake A shake script parser(shake)
+ * \defgroup shake Shake scripting support.
  */
 
 /** \addtogroup shake

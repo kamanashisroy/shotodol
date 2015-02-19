@@ -3,11 +3,16 @@ using shotodol;
 
 /**
  * \ingroup library
+ * \defgroup shotodol_library Shotodol Static Libraries
+ */
+
+/**
+ * \ingroup shotodol_library
  * \defgroup plugin Plugin
  * refer to external coupling
  */
 
-/** \addtogroup Plugin
+/** \addtogroup plugin
  *  @{
  */
 public delegate void shotodol.ExtensionVisitor(Extension e);

@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup command
+/** \addtogroup commandserver
  *  @{
  */
 internal class shotodol.ModuleCommand : M100Command {
@@ -36,7 +36,7 @@ internal class shotodol.ModuleCommand : M100Command {
 		xtring?fn = vals[Options.LOAD];
 		if(fn != null) {
 			load_module_helper(fn.fly().to_string());
-			extring dlg = extring.set_static_string("Please **rehash** to load all the extensions\n");
+			extring dlg = extring.set_static_string("Please **rehash** to load all the extensions.\n");
 			pad.write(&dlg);
 		}
 		fn = vals[Options.UNLOAD];

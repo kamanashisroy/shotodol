@@ -2,8 +2,8 @@ using aroop;
 using shotodol;
 
 /**
- * \ingroup library
- * \defgroup make100 Makefile parser code(make100)
+ * \ingroup shotodol_library
+ * \defgroup make100 Makefile scripting library
  * [Cohesion : Functional]
  */
 

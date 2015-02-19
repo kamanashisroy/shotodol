@@ -1,7 +1,7 @@
 using aroop;
 using shotodol;
 
-/** \addtogroup command
+/** \addtogroup commandserver
  *  @{
  */
 internal class shotodol.RehashCommand : M100Command {
