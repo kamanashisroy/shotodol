@@ -1,15 +1,21 @@
 
+packages:
+	echo web script 
+
+get:
+	wget $(url)
+
+put:
+	wput $(url)
+
 web:
-	set -var homepage -val "http://192.168.0.1"
-	set -var url -val "http://192.168.0.1"
+	set -var homepage -val "http://192.168.101.60"
+	set -var url -val "http://192.168.101.60/shotodol_web.so"
 	set -var sha1 -val "abcdef"
-	echo wget $(url)
 
 script:
-	set -var homepage -val "http://192.168.0.1"
-	set -var url -val "http://192.168.0.1"
-	set -var sha1 -val "abcdef"
-	echo wget $(url)
+	set -var dynalib.so -val "http://192.168.101.60/shotodol_web.so"
+	set -var url -val "http://192.168.101.60/shotodol_web.so"
 
 
 
