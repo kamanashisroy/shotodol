@@ -5,6 +5,8 @@ onLoad:
 	fileconf -i ./autoload/shotodol.conf
 	module -load apps/instant/dynalib.so
 	module -load apps/alias/dynalib.so
+	rehash
+	alias g good -name Hasan
 	#module -load web/cgi/dynalib.so
 
 onFork_complete:
