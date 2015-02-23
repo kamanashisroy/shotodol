@@ -9,6 +9,7 @@ public class shotodol.M100CommandSet: Replicable {
 	BrainEngine<M100Command>?be;
 	extring command;
 	M100GotoCommand gcmd;
+	bool quiet = false;
 	public M100CommandSet() {
 		command = extring.set_static_string("command");
 		//cmds = Set<M100Command>();
@@ -18,6 +19,7 @@ public class shotodol.M100CommandSet: Replicable {
 		extring prfx = extring();
 		gcmd.getPrefixAs(&prfx);
 		be.memorize_estr(&prfx, gcmd);
+		quiet = false;
 	}
 	~M100CommandSet() {
 		vars.destroy();
@@ -84,11 +86,18 @@ public class shotodol.M100CommandSet: Replicable {
 		}
 		int ret = 0;
 		try {
-			mycmd.greet(pad);
+			if(!quiet)mycmd.greet(pad);
 			ret = mycmd.act_on(rcmd, pad, this);
 			mycmd.bye(pad, true);
 		} catch(M100CommandError.ActionFailed e) {
-			mycmd.bye(pad, false);
+			extring dlg = extring.stack(128);
+			dlg.concat_string("Failed:\t");
+			dlg.concat_string(e.to_string());
+			dlg.concat_char('\n');
+			pad.write(&dlg);
+			if(!quiet) {
+				mycmd.bye(pad, false);
+			}
 			return -1;
 		}
 		if(sc == null) return 0;
