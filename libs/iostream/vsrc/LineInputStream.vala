@@ -29,7 +29,7 @@ public class shotodol.LineInputStream : InputStream {
 		if(rbuf.is_empty()) {
 			rbuf.destroy();
 			rbuf = extring.copy_shallow(&rmem);
-			rmem.trim_to_length(0);
+			rmem.truncate(0);
 			if(downInputStream.read(&rbuf) == 0) {
 				return 0;
 			}
@@ -52,7 +52,7 @@ public class shotodol.LineInputStream : InputStream {
 				int lnlen = i-ln_start;
 				rbuf.shift(ln_start);
 				ln.concat(&rbuf);
-				ln.trim_to_length(prelen + lnlen);
+				ln.truncate(prelen + lnlen);
 				retlen = i - ln_start;
 				rbuf.shift(lnlen+1);
 				ln_start = 0;
@@ -68,7 +68,7 @@ public class shotodol.LineInputStream : InputStream {
 #endif
 		if(retlen == 0) {
 			rmem.concat(&rbuf); // memory move
-			rbuf.trim_to_length(0);
+			rbuf.truncate();
 			return read(ln);
 		}
 		return retlen;

@@ -150,7 +150,7 @@ public abstract class shotodol.M100Command : Replicable {
 			if(varStart >= 0) {
 				if(x == ')') {
 					varName = extring.copy_deep(cmd);
-					varName.trim_to_length(i);
+					varName.truncate(i);
 					varName.shift(varStart);
 					varStart = -1;
 					M100Variable?varVal = gVars.getProperty(&varName);

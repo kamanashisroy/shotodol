@@ -32,7 +32,7 @@ public class shotodol.MainProgram {
 			bndlr.writeEXtring(1,&x);
 		}
 		bndlr.close();
-		memory.trim_to_length(bndlr.size);
+		memory.truncate(bndlr.size);
 		//extring userargs = extring.set_content((string)ctn.data, (int)bndlr.size, null);
 		extring hook = extring.set_static_string("onLoad");
 		PluginManager.swarm(&hook, &memory, null);

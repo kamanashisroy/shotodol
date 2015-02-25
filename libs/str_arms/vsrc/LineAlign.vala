@@ -65,11 +65,11 @@ public class shotodol.LineAlign<G> : Replicable {
 		if(token_start >= 0) {
 			next.rebuild_and_copy_shallow(src);
 			if(trim_at >= 0) {
-				next.trim_to_length(trim_at);
+				next.truncate(trim_at);
 			}
 			next.shift(token_start);
 		} else {
-			next.trim_to_length(0);
+			next.truncate();
 		}
 		src.shift((int)i);
 		return 0;
@@ -114,11 +114,11 @@ public class shotodol.LineAlign<G> : Replicable {
 			next.rebuild_and_copy_shallow(src);
 			//(*next) = extring.share_estr(src);
 			if(trim_at >= 0) {
-				next.trim_to_length(trim_at);
+				next.truncate(trim_at);
 			}
 			next.shift(token_start);
 		} else {
-			next.trim_to_length(0);
+			next.truncate();
 			//(*next) = extring.EMPTY();
 		}
 		src.shift((int)i);
@@ -147,11 +147,11 @@ public class shotodol.LineAlign<G> : Replicable {
 			next.rebuild_and_copy_shallow(src);
 			//(*next) = extring.share_estr(src);
 			if(trim_at >= 0) {
-				next.trim_to_length(trim_at);
+				next.truncate(trim_at);
 			}
 			next.shift(token_start);
 		} else {
-			next.trim_to_length(0);
+			next.truncate();
 			//(*next) = extring.EMPTY();
 		}
 		src.shift((int)i);

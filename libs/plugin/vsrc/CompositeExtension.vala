@@ -165,7 +165,7 @@ public class shotodol.CompositeExtension : Extension {
 			unowned AroopHashTablePointer<xtring,Extension> map = (AroopHashTablePointer<xtring,Extension>)it.get_unowned();
 			unowned Extension e = map.getUnowned();
 			do {
-				dlg.trim_to_length(0);
+				dlg.truncate();
 				dlg.concat(map.key());
 				dlg.concat_string("\t\t\t\t\t");
 				pad.write(&dlg);

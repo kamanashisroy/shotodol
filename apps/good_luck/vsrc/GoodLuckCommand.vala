@@ -40,7 +40,7 @@ internal class shotodol.GoodLuckCommand : M100Command {
 		pad.write(&bfr);
 
 
-		response.trim_to_length(0); // cleanup
+		response.truncate(); // cleanup
 		// calling the "goodluck/after" hook
 		entry.rebuild_and_set_static_string("goodluck/after"); // refer to "goodluck/after".
 		PluginManager.swarm(&entry, vals[Options.NAME], &response); // call all the "goodluck/after" hooks

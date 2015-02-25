@@ -58,15 +58,15 @@ public abstract class shotodol.M100Parser: Replicable {
 				if(token_start == -1) {
 					continue;
 				}
-				next.trim_to_length(i);
+				next.truncate(i);
 				break;
 			} else {
 				token_start = (token_start == -1) ? (int)i : token_start;
 				if(x == ':' || x == '(' || x == ')' || x == '$') { // punctuation
 					if(token_start == i) {
-						next.trim_to_length(i+1);
+						next.truncate(i+1);
 					} else {
-						next.trim_to_length(i);
+						next.truncate(i);
 					}
 					break;
 				}

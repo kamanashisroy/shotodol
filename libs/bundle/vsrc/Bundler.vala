@@ -76,7 +76,7 @@ public struct shotodol.Bundler {
 	public void build(extring*content, int affix = BundlerAffixes.INFIX, uint8 givenNumberOfEntries = 0) {
 		genericValueHack<Carton,string> setter = genericValueHack<Carton,string>();
 		setter.set(ctn,content.to_memory());
-		this.size = (uint)content.size();
+		this.size = (uint)content.capacity();
 		this.affix = affix;
 		numberOfEntries = givenNumberOfEntries;
 		reset();

@@ -35,11 +35,11 @@ internal class shotodol.WatchdogEntry : Replicable {
 		msg = new xtring.copy_content(gmsg.to_string(), gmsg.length()+2, xtringBuilder);
 		// trim new line
 		if(msg.fly().length() >= 1 && msg.fly().char_at(msg.fly().length()-1) == '\n') {
-			msg.fly().trim_to_length(msg.fly().length()-1);
+			msg.fly().truncate(msg.fly().length()-1);
 		} else if(msg.fly().length() >= 2 && msg.fly().char_at(msg.fly().length()-2) == '\n' && msg.fly().char_at(msg.fly().length()-1) == '\0') {
-			msg.fly().trim_to_length(msg.fly().length()-2);
+			msg.fly().truncate(msg.fly().length()-2);
 		} else if(msg.fly().length() >= 3 && msg.fly().char_at(msg.fly().length()-3) == '\n' && msg.fly().char_at(msg.fly().length()-2) == '\0') {
-			msg.fly().trim_to_length(msg.fly().length()-3);
+			msg.fly().truncate(msg.fly().length()-3);
 		}
 		msg.fly().zero_terminate();
 	}

@@ -19,7 +19,7 @@ public class shotodol.BufferedOutputStream : OutputStream {
 		content.rebuild_and_copy_on_demand(&cache);
 	}
 	public int reset() {
-		cache.trim_to_length(0);
+		cache.truncate();
 		return 0;
 	}
 	public override int write(extring*buf) throws IOStreamError.OutputStreamError {
