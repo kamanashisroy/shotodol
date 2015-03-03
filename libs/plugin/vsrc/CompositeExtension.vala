@@ -22,7 +22,7 @@ public class shotodol.CompositeExtension : Extension {
 		xtringBuffer.destroy();
 #endif
 	}
-	public int register(extring*target, Extension e) {
+	public int register(extring*target, Extension e, bool once = false) {
 		core.assert(e.src != null);
 		Extension?root = registry.getProperty(target);
 		if(root == null) {
@@ -36,6 +36,8 @@ public class shotodol.CompositeExtension : Extension {
 			registry.set(tgt, e);
 			return 0;
 		}
+		if(once)
+			return -1;
 		while(root.next != null) {
 			Extension next = root.next;
 			root = next;
