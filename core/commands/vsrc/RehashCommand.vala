@@ -13,6 +13,8 @@ internal class shotodol.RehashCommand : M100Command {
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		extring rehash = extring.set_static_string("rehash");
 		PluginManager.swarm(&rehash, null, null);
+		rehash.rebuild_and_set_static_string("rehashAlter");
+		PluginManager.swarm(&rehash, null, null);
 		return 0;
 	}
 }

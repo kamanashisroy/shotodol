@@ -8,7 +8,7 @@ internal class shotodol.JobCommand : shotodol.M100Command {
 	ConsoleHistory sp;
 	extring NEWLINE;
 	public JobCommand(ConsoleHistory gSp) {
-		extring prefix = extring.set_static_string("jobs");
+		extring prefix = extring.set_static_string("job");
 		base(&prefix);
 		sp = gSp;
 		NEWLINE = extring.set_static_string("\r\n");
