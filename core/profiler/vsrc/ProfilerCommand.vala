@@ -39,7 +39,7 @@ internal class ProfilerCommand : M100Command {
 			contentLine.concat_char('\n');
 			pad.write(contentLine);
 			return 0;
-		}, vals[Options.SELECT_MODULE]);
+		}, vals[Options.SELECT_MODULE], true);
 		return 0;
 	}
 }
