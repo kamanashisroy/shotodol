@@ -9,6 +9,7 @@ internal class ProfilerCommand : M100Command {
 		SHOW_HEAP = 1,
 		SHOW_STRING,
 		SHOW_ANY_OBJECT,
+		SELECT_MODULE,
 	}
 	public ProfilerCommand() {
 		extring prfx = extring.set_static_string("profiler");
@@ -16,6 +17,7 @@ internal class ProfilerCommand : M100Command {
 		addOptionString("-heap", M100Command.OptionType.NONE, Options.SHOW_HEAP, "Show all the memory allocated in all the factories");
 		addOptionString("-string", M100Command.OptionType.NONE, Options.SHOW_STRING, "Dump the string buffers");
 		addOptionString("-object", M100Command.OptionType.NONE, Options.SHOW_ANY_OBJECT, "Show the objects");
+		addOptionString("-module", M100Command.OptionType.TXT, Options.SELECT_MODULE, "Select/filter out a module");
 	}
 
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
@@ -37,7 +39,7 @@ internal class ProfilerCommand : M100Command {
 			contentLine.concat_char('\n');
 			pad.write(contentLine);
 			return 0;
-		});
+		}, vals[Options.SELECT_MODULE]);
 		return 0;
 	}
 }
