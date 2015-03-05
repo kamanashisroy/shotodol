@@ -4,38 +4,8 @@ using shotodol;
 /** \addtogroup str_arms
  *  @{
  */
-public class shotodol.LineAlign<G> : Replicable {
-	WordSet? words;
-	SearchableSet<SearchableString> aln;
-	G?sense;
-	xtring?firstline;
-	public LineAlign(WordSet wds,G?given_sense) {
-		build(wds, given_sense);
-	}
-	
-	~LineAlign() {
-		words = null;
-		sense = null;
-		aln.destroy();
-	}
-	
-	void build(WordSet wds, G?given_sense) {
-		memclean_raw();	// clear garbage
-		aln = SearchableSet<SearchableString>();
-		words = wds;
-		sense = given_sense;
-		firstline = null;
-	}
-
-	public static LineAlign<G> factoryBuild(Factory<LineAlign<G>>*fac, WordSet wds, G?given_sense) {
-		LineAlign<G> ln = fac.alloc_full();
-		//generihack<LineAlign<G>,G>.build_generics(ln); // what does it do ?
-		ln.build(wds, given_sense);
-		return ln;
-	}
-	
-	public G? get() {
-		return sense;
+public class shotodol.Scanner : Replicable {
+	private Scanner() {
 	}
 
 	public static int next_token_delimitered_unused(extring*src, extring*next, extring*delim, extring*wordDivider = null) {
@@ -186,64 +156,19 @@ public class shotodol.LineAlign<G> : Replicable {
 		src.shift((int)i);
 		return 0;
 	}
-	
-	public int align_word(extring*wd) {
-		if(wd.is_empty()) {
-			return 0;
-		}
-		// put in words
-		SearchableString wdtxt = words.add(wd);
-		if(wdtxt != null) {
-			// align the word
-			aln.add(wdtxt);
-		}
-		return 0;
-	}
-	
-	public int align_estr(extring*wds) {
-		if(wds.is_empty()) {
-			return 0;
-		}
-		while(true) {
-			if(firstline == null) {
-				firstline = new xtring.copy_deep(wds);
+
+	public static int find_str(extring*src, extring*pattern){
+		int src_length = src.length();
+		int pattern_length = pattern.length();
+		for(int i = 0; i <= (src_length - pattern_length); i++){
+			int j = 0;
+			for(j = 0; j < pattern_length && pattern.char_at(j) == src.char_at(i+j); j++);
+			if(j >= pattern_length){
+				return i;
 			}
-			extring next = extring();
-			next_token(wds, &next);
-			if(next.is_empty()) {
-				break;
-			}
-			align_word(&next);
 		}
-		return 0;
+		return -1;
 	}
 	
-	public int align(InputStream strm) {
-		extring rd = extring.stack(128);
-		while(true) {
-			strm.read(&rd);
-			if(rd.is_empty()) {
-				break;
-			}
-			align_estr(&rd);
-		}
-		// done
-		return 0;
-	}
-	
-	private int prefix_match(extring*pfx) requires(pfx != null && firstline != null) {
-		core.assert(pfx != null && firstline != null);
-		int i = 0;
-		for(;i<firstline.fly().length() && i<pfx.length() && firstline.fly().char_at(i) == pfx.char_at(i);i++);
-		return i;
-	}
-	
-	public G? percept_prefix_match(extring*pfx, int*match_len) {
-		*match_len = prefix_match(pfx);
-		if(*match_len > 0) {
-			return sense;
-		}
-		return null;
-	}
 }
 /** @}*/

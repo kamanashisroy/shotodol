@@ -2,3 +2,4 @@ core/base
 core/commands
 libs/make100
 libs/unittest
+libs/str_arms
