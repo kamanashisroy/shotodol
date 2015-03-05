@@ -22,6 +22,8 @@ public class shotodol.UnitTestModule : DynamicModule {
 	public override int init() {
 		extring command = extring.set_static_string("command");
 		PluginManager.register(&command, new M100Extension(new UnitTestCommand(), this));
+		extring utest = extring.set_static_string("unittest");
+		PluginManager.register(&utest, new AnyInterfaceExtension(new ScannerUnitTest(), this));
 		return 0;
 	}
 	public override int deinit() {
