@@ -14,6 +14,7 @@ Roadmap
 - [ ] Write a quiet command server in "command/server" space.
 - [x] Write support for command description. (It is already available)
 - [x] Write an alias command such as it can create alias for some command. For example, `alias wa55 watchdog -l 100 -tag 55 ` will create a command alias named `zwa55` which will call `watchdog -l 100 -tag 55 ` in the background.
+- [ ] Write a status command to show server status.
 
 #### Messaging
 - [x] Finish up the primary messaging code, named, pollen.
@@ -30,6 +31,7 @@ Roadmap
 	- [x] Create jobs console command like in unix shell.
 	- [ ] Use fg,bg command to change or select target process.
 	- [x] Use https://en.wikipedia.org/wiki/Cell_%28microprocessor%29#Distributed_computing
+- [ ] Add a fiber priority feature. Let it add priority based scheduling in addition to current round robin scheduling.
 - [ ] Remove all the locks, lower the atomic operations.
 
 #### Packaging
@@ -40,6 +42,7 @@ Roadmap
 	- [ ] Implement major,minor,patch,release versioning.
 - [x] Keep the modules in namespace like directory.
 - [x] Add a homebrew package.(Is it feasible ?). Or we may write bricks/rocks packages. We added 'instant' package for modules.
+- [ ] Check license while loading a module.
 
 #### Debugging
 
