@@ -6,10 +6,10 @@ using shotodol;
  */
 public class shotodol.CompositeOutputStream : OutputStream {
 	bool closed;
-	Set<OutputStream> collection;
+	OPPList<OutputStream> collection;
 	public CompositeOutputStream(int inc = 16, uchar mark = aroop.factory_flags.HAS_LOCK | aroop.factory_flags.SWEEP_ON_UNREF) {
 		closed = false;
-		collection = Set<OutputStream>(inc, mark | aroop.factory_flags.EXTENDED /* token will only work when it is EXTENDED */);
+		collection = OPPList<OutputStream>(inc, mark | aroop.factory_flags.EXTENDED /* token will only work when it is EXTENDED */);
 	}
 	~CompositeOutputStream() {
 		collection.destroy();
@@ -18,14 +18,14 @@ public class shotodol.CompositeOutputStream : OutputStream {
 	public aroop_uword16 addOutputStream(OutputStream ostrm) {
 		if(closed)
 			return 0;
-		AroopPointer<OutputStream> ptr = collection.addPointer(ostrm);
+		AroopPointer<OutputStream> ptr = collection.add_pointer(ostrm);
 		return ptr.get_token();
 	}
 
 	public unowned OutputStream? getOutputStream(aroop_uword16 token) {
 		if(closed)
 			return null;
-		AroopPointer<OutputStream>?ptr = collection.getByToken(token);
+		AroopPointer<OutputStream>?ptr = collection.get_by_token(token);
 		if(ptr == null) 
 			return null;
 		return ptr.getUnowned();

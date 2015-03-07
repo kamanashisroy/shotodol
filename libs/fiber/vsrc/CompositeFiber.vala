@@ -18,7 +18,7 @@ public abstract class shotodol.CompositeFiber : Fiber {
 		CANCELLING,
 		CANCELLED,
 	}
-	protected Set<Fiber> sps; 
+	protected OPPList<Fiber> sps; 
 #if false
 	protected Queue<Replicable> msgs; // message queue
 #endif
@@ -26,7 +26,7 @@ public abstract class shotodol.CompositeFiber : Fiber {
 	bool clear;
 	
 	public CompositeFiber() {
-		sps = Set<Fiber>(16, factory_flags.HAS_LOCK | factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED);
+		sps = OPPList<Fiber>(16, factory_flags.HAS_LOCK | factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED);
 #if false
 		msgs = Queue<Replicable>((uchar)get_id());
 #endif

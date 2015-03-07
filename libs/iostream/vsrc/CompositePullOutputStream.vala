@@ -6,10 +6,10 @@ using shotodol;
  */
 public abstract class shotodol.CompositePullOutputStream : OutputStream {
 	protected bool closed;
-	Set<InputStream> sources;
+	OPPList<InputStream> sources;
 	public CompositePullOutputStream(int inc = 16, uchar mark = aroop.factory_flags.HAS_LOCK | aroop.factory_flags.SWEEP_ON_UNREF) {
 		closed = false;
-		sources = Set<InputStream>(inc, mark);
+		sources = OPPList<InputStream>(inc, mark);
 	}
 	~CompositePullOutputStream() {
 		sources.destroy();

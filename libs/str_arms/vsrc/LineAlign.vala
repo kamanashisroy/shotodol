@@ -6,7 +6,7 @@ using shotodol;
  */
 public class shotodol.LineAlign<G> : Replicable {
 	WordSet? words;
-	SearchableSet<SearchableString> aln;
+	SearchableOPPList<SearchableString> aln;
 	G?sense;
 	xtring?firstline;
 	public LineAlign(WordSet wds,G?given_sense) {
@@ -21,7 +21,7 @@ public class shotodol.LineAlign<G> : Replicable {
 	
 	void build(WordSet wds, G?given_sense) {
 		memclean_raw();	// clear garbage
-		aln = SearchableSet<SearchableString>();
+		aln = SearchableOPPList<SearchableString>();
 		words = wds;
 		sense = given_sense;
 		firstline = null;
