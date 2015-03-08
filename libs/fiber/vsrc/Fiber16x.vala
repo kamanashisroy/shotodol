@@ -10,7 +10,6 @@ public abstract class shotodol.Fiber16x : Fiber {
 	}
 	protected Fiber?x[16]; 
 	protected CompositeFiber.CompositeFiberState state;
-	int count;
 	
 	public Fiber16x() {
 #if false
@@ -92,6 +91,17 @@ public abstract class shotodol.Fiber16x : Fiber {
 			state = CompositeFiber.CompositeFiberState.CANCELLING;
 		}
 		return 0;
+	}
+
+	public int getCount() {
+		int i = 0;
+		int count = 0;
+		for(i=0;i<Fiber16xConfig.MAX_FIBERS;i++) {
+			if(x[i] != null) {
+				count++;
+			}
+		}
+		return count;
 	}
 	
 	~Fiber16x() {

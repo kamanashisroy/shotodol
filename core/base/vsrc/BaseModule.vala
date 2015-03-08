@@ -22,6 +22,8 @@ public class shotodol.BaseModule : Module {
 		PluginManager.register(&entry, new HookExtension((runHook), this));
 		entry.rebuild_and_set_static_string("rehash");
 		PluginManager.register(&entry, new HookExtension((onRehashHook), this));
+		entry.rebuild_and_set_static_string("status");
+		PluginManager.register(&entry, new HookExtension((onStatusHook), this));
 		return 0;
 	}
 
@@ -48,6 +50,17 @@ public class shotodol.BaseModule : Module {
 
 	int onQuitHook(extring*msg, extring*output) {
 		if(mt != null)mt.quit();
+		return 0;
+	}
+
+	int onStatusHook(extring*arg, extring*output) {
+		if(output == null)
+			return 0;
+		if(mt == null)
+			return 0;
+		extring status = extring.stack(128);
+		status.printf("MainTurbine has %d fibers running\n", mt.getCount());
+		output.concat(&status);
 		return 0;
 	}
 }

@@ -39,6 +39,7 @@ public class shotodol.CommandModule: DynamicModule {
 		PluginManager.register(&entry, new M100Extension(new PluginCommand(), this));
 		PluginManager.register(&entry, new M100Extension(new RehashCommand(), this));
 		PluginManager.register(&entry, new M100Extension(new MemoryTraceCommand(), this));
+		PluginManager.register(&entry, new M100Extension(new StatusCommand(), this));
 		entry.rebuild_and_set_static_string("onLoad");
 		PluginManager.register(&entry, new HookExtension(rehashHook, this));
 		entry.rebuild_and_set_static_string("rehash");
