@@ -27,7 +27,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		firstline = null;
 	}
 
-	public static LineAlign<G> factoryBuild(Factory<LineAlign<G>>*fac, WordSet wds, G?given_sense) {
+	public static LineAlign<G> factoryBuild(OPPFactory<LineAlign<G>>*fac, WordSet wds, G?given_sense) {
 		LineAlign<G> ln = fac.alloc_full();
 		//generihack<LineAlign<G>,G>.build_generics(ln); // what does it do ?
 		ln.build(wds, given_sense);

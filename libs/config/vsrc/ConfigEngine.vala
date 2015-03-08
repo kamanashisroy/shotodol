@@ -12,12 +12,12 @@ using shotodol;
  */
 public class shotodol.ConfigEngine : Replicable {
 	HashTable<xtring,ConfigModuleEntry> modules;
-	internal Factory<ConfigModuleEntry> moduleSource;
-	internal Factory<ConfigEntry> entrySource;
+	internal OPPFactory<ConfigModuleEntry> moduleSource;
+	internal OPPFactory<ConfigEntry> entrySource;
 	public ConfigEngine() {
 		modules = HashTable<xtring,ConfigModuleEntry>(xtring.hCb,xtring.eCb);
-		entrySource = Factory<ConfigEntry>.for_type();
-		moduleSource = Factory<ConfigModuleEntry>.for_type();
+		entrySource = OPPFactory<ConfigEntry>.for_type();
+		moduleSource = OPPFactory<ConfigModuleEntry>.for_type();
 	}
 	~ConfigEngine() {
 		modules.destroy();

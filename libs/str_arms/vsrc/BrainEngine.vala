@@ -5,15 +5,15 @@ using shotodol;
  *  @{
  */
 public class shotodol.BrainEngine<G> : Replicable {
-	//Factory<LineAlign> response;
-	Factory<LineAlign<G>> sandbox;
-	Factory<LineAlign<G>> memory;
+	//OPPFactory<LineAlign> response;
+	OPPFactory<LineAlign<G>> sandbox;
+	OPPFactory<LineAlign<G>> memory;
 	WordSet words;
 	
 	public BrainEngine() {
-		memory = Factory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
-		//response = Factory<LineAlign>.for_type();
-		sandbox = Factory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
+		memory = OPPFactory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
+		//response = OPPFactory<LineAlign>.for_type();
+		sandbox = OPPFactory<LineAlign<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
 		words = new WordSet();
 	}
 

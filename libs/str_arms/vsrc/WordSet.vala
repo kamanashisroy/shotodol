@@ -5,9 +5,9 @@ using shotodol;
  *  @{
  */
 public class shotodol.WordSet : Replicable {
-	SearchableFactory<SearchableString> words;
+	SearchableOPPFactory<SearchableString> words;
 	public WordSet() {
-		words = SearchableFactory<SearchableString>.for_type();
+		words = SearchableOPPFactory<SearchableString>.for_type();
 	}
 	~WordSet() {
 		words.destroy();

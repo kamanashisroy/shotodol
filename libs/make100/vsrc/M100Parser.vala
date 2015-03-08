@@ -11,11 +11,11 @@ using shotodol;
  *  @{
  */
 public abstract class shotodol.M100Parser: Replicable {
-	internal SearchableFactory<M100Block> funcs;
+	internal SearchableOPPFactory<M100Block> funcs;
 	internal ArrayList<M100Statement> stmts;
 	internal M100Block? default_func;
 	protected M100Parser() {
-		funcs = SearchableFactory<M100Block>.for_type(32, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
+		funcs = SearchableOPPFactory<M100Block>.for_type(32, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
 		stmts = ArrayList<M100Statement>();
 		default_func = null;
 		scopeTree = ArrayList<M100Block>();
@@ -89,7 +89,7 @@ public abstract class shotodol.M100Parser: Replicable {
 
 	public void listBlocks(OutputStream pad, extring*delim) {
 		Iterator<M100Block> bit = Iterator<M100Block>();
-		funcs.iterator(&bit);
+		funcs.iterator_full(&bit);
 		while(bit.next()) {
 			M100Block block = bit.get();
 			//extring blockName = extring();

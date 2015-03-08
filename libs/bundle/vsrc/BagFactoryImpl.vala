@@ -5,10 +5,10 @@ using shotodol;
  *  @{
  */
 public class shotodol.BagFactoryImpl : BagFactory {
-	public Factory<Bag>fac;
+	public OPPFactory<Bag>fac;
 	public BagFactoryImpl() {
 		base();
-		fac = Factory<Bag>.for_type(64);
+		fac = OPPFactory<Bag>.for_type(64);
 	}
 	
 	~BagFactoryImpl() {

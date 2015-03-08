@@ -5,7 +5,7 @@ using aroop;
  */
 public class shotodol.M100Script : M100Parser {
 	ArrayList<M100VirtualMachineFrame>stack;
-	Factory<M100VirtualMachineFrame> memory;
+	OPPFactory<M100VirtualMachineFrame> memory;
 	M100VirtualMachineFrame? scope;
 	M100Block? func;
 	int depth;
@@ -14,7 +14,7 @@ public class shotodol.M100Script : M100Parser {
 		args = HashTable<xtring,M100Variable?>(xtring.hCb,xtring.eCb);
 		scope = null;
 		depth = 0;
-		memory = Factory<M100VirtualMachineFrame>.for_type(4, 0, factory_flags.MEMORY_CLEAN);
+		memory = OPPFactory<M100VirtualMachineFrame>.for_type(4, 0, factory_flags.MEMORY_CLEAN);
 		stack.destroy();
 	}
 	

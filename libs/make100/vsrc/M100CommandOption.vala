@@ -36,7 +36,7 @@ public class shotodol.M100CommandOption : Searchable {
 		pad.write(&x);
 		return 0;
 	}
-	internal static int parseOptions(extring*cmdstr, ArrayList<xtring>*val, SearchableFactory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
+	internal static int parseOptions(extring*cmdstr, ArrayList<xtring>*val, SearchableOPPFactory<M100CommandOption>*opts) throws M100CommandOptionError.ParseError {
 		extring token = extring();
 		extring inp = extring.stack_copy_deep(cmdstr);
 		while(true) {

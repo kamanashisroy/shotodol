@@ -16,7 +16,7 @@ internal class ConfigModuleEntry : Replicable {
 		moduleName = extring.copy_on_demand(myModuleName);
 		entries = HashTable<xtring,ConfigEntry>(xtring.hCb,xtring.eCb);
 	}
-	internal int set(Factory<ConfigEntry> source, xtring entryName, xtring myKey, xtring myValue) {
+	internal int set(OPPFactory<ConfigEntry> source, xtring entryName, xtring myKey, xtring myValue) {
 		ConfigEntry? entry = entries.get(entryName);
 		if(entry == null) {
 			entry = source.alloc_full();

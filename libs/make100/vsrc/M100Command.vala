@@ -43,9 +43,9 @@ public abstract class shotodol.M100Command : Replicable {
 		}
 	}
 	extring prfx;
-	SearchableFactory<M100CommandOption> options;
+	SearchableOPPFactory<M100CommandOption> options;
 	public M100Command(extring*prefix) {
-		options = SearchableFactory<M100CommandOption>.for_type(4, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
+		options = SearchableOPPFactory<M100CommandOption>.for_type(4, 1, factory_flags.SWEEP_ON_UNREF | factory_flags.EXTENDED | factory_flags.SEARCHABLE | factory_flags.MEMORY_CLEAN);
 		prfx = extring.copy_on_demand(prefix);
 	}
 	
@@ -104,7 +104,7 @@ public abstract class shotodol.M100Command : Replicable {
 	}
 	public void getOptionsIterator(Iterator<M100CommandOption>*it) {
 		//Iterator<M100CommandOption> it = Iterator<M100CommandOption>(&options, Replica_flags.ALL, 0, 0);
-		options.iterator(it, Replica_flags.ALL, 0, 0);
+		options.iterator_full(it, Replica_flags.ALL, 0, 0);
 		return;
 /*
 		while(it.next()) {
