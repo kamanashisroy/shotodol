@@ -49,6 +49,8 @@ namespace shotodol_platform {
 		public void unGetChar(uchar c);
 		[CCode (cname = "EOF", cheader_filename = "stdio.h")]
 		public static const int EOF;
+		[CCode (cname = "fileio_strerror", cheader_filename = "stdio.h")]
+		public static unowned string to_error_string();
 	}
 
 	[Compact]

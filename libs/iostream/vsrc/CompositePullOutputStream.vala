@@ -30,13 +30,28 @@ public abstract class shotodol.CompositePullOutputStream : OutputStream {
 			if(available <= 0)
 				return 0;
 #if SHOTODOL_FD_DEBUG
-			print("There are data from worker threads\n");
+			print("There are %d bytes of data from worker threads\n", available);
 #endif
 			extring inp = extring();
 			inp.rebuild_in_heap(available+4);
-			source.read(&inp);
+			try {
+				source.read(&inp);
+			} catch(IOStreamError.InputStreamError e) {
+				extring sourceName = extring();
+				source.to_extring(&sourceName);
+				print("Error in input stream [%s] : %s\n", sourceName.to_string(), e.to_string());
+			}
 			if(!inp.is_empty()) {
-				write(&inp);
+#if SHOTODOL_FD_DEBUG
+				print("Writing %d bytes of data\n", inp.length());
+#endif
+				try {
+					write(&inp);
+				} catch(IOStreamError.OutputStreamError e) {
+					extring sourceName = extring();
+					source.to_extring(&sourceName);
+					print("Error in output stream [%s] : %s\n", name.to_string(), e.to_string());
+				}
 			}
 			inp.destroy();
 			return 0;

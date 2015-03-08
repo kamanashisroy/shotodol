@@ -42,7 +42,7 @@ public class shotodol.StandardInputStream : InputStream {
 		if((bytes = fd.read(buf)) == 0) {
 			throw new IOStreamError.InputStreamError.END_OF_DATA("File end");
 		} else if(bytes < 0) {
-			throw new IOStreamError.InputStreamError.END_OF_DATA("Fillme .. Some error");
+			throw new IOStreamError.InputStreamError.END_OF_DATA(fd.to_error_string());
 		}
 		return bytes;
 	}

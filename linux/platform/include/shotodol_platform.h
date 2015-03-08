@@ -33,6 +33,7 @@
 
 // public class fileio
 
+#include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
 #define fileio_stdout() ({dup(STDOUT_FILENO);})
@@ -76,6 +77,7 @@
 
 #define fileio_getc(x) ({getc(stdin);})
 #define fileio_ungetc(x,y) ({ungetc(y,stdin);})
+#define fileio_strerror() ({strerror(errno);})
 
 //public class PlatformFileStream
 #define linux_file_stream_fread(x,y) ({ \
