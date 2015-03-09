@@ -15,6 +15,9 @@ public class shotodol.activeio.CompositePullSingleFeedFiber : Fiber {
 	public class CompositePullSingleFeedFiber() {
 		pfs = new CompositePullSingleFeedStream();
 	}
+	public void setName(extring*name) {
+		pfs.setName(name);
+	}
 	public void feed(OutputStream down) {
 		pfs.feed(down);
 	}
