@@ -6,6 +6,7 @@ Roadmap
 - [x] Write an example to generate a custom event/task.
 - [x] Fill the README.md for the console module.
 - [x] Rename str to xtring.
+- [ ] Make Scanner a struct and write javalike functions, for example, 'useDelimiter()' or other .
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
 	- [x] Move lua scripting into separate shotodol_script package.
 - [ ] State the cohesion type in README.md for each module in shotodol.

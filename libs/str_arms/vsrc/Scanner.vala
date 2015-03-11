@@ -4,8 +4,10 @@ using shotodol;
 /** \addtogroup str_arms
  *  @{
  */
-public class shotodol.Scanner : Replicable {
-	private Scanner() {
+public struct shotodol.Scanner : Replicable {
+	extring idelim;
+	Scanner() {
+		idelim = extring.set_static_string(" \n\r");
 	}
 
 	public static int next_token_delimitered_unused(extring*src, extring*next, extring*delim, extring*wordDivider = null) {
