@@ -4,7 +4,7 @@ using shotodol;
 /** \addtogroup str_arms
  *  @{
  */
-public struct shotodol.Scanner : Replicable {
+public struct shotodol.Scanner {
 	extring idelim;
 	Scanner() {
 		idelim = extring.set_static_string(" \n\r");
