@@ -41,6 +41,7 @@ public class shotodol.activeio.CompositePullSingleFeedFiber : Fiber {
 	}
 
 	public override int cancel() {
+		pfs.close();
 		return 0;
 	}
 }

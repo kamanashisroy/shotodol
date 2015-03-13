@@ -28,5 +28,9 @@ public class shotodol.CompositePullSingleFeedStream : CompositePullOutputStream 
 #endif
 		return sink.write(content);
 	}
+	public override void close() throws IOStreamError.OutputStreamError {
+		sink = null;
+		base.close();
+	}
 }
 /* @} */
