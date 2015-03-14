@@ -25,6 +25,7 @@ public class shotodol.ProgrammingInstruction : Module {
 		PluginManager.register(&command, new M100Extension(new IfCommand(), this));
 		PluginManager.register(&command, new M100Extension(new EchoCommand(), this));
 		PluginManager.register(&command, new M100Extension(new SetVariableCommand(), this));
+		PluginManager.register(&command, new M100Extension(new ReturnCommand(), this));
 		return 0;
 	}
 
