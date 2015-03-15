@@ -128,13 +128,15 @@ public class shotodol.CompositeExtension : Extension {
 		return 0;
 
 	}
-	public void swarm(extring*target, extring*inmsg, extring*outmsg) {
+	public int swarm(extring*target, extring*inmsg, extring*outmsg) {
+		int retVal = 0;
 		Extension?root = get(target);
 		while(root != null) {
-			root.act(inmsg, outmsg);
+			retVal = root.act(inmsg, outmsg);
 			Extension?next = root.getNext();
 			root = next;
 		}
+		return retVal;
 	}
 	public void acceptVisitor(extring*target, ExtensionVisitor visitor) {
 		Extension?root = get(target);

@@ -34,7 +34,7 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 		arg = vals[Options.TARGET];
 		int i = 0;
 		for(i = 0; i < childCount; i++) {
-			if(forkHook(arg, null) == 0) {
+			if(forkHook(arg, null) <= 0) {
 				break;
 			}
 		}
