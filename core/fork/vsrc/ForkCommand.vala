@@ -9,11 +9,13 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 		TARGET = 1,
 		CHILD_COUNT,
 	}
+	int forkIndex;
 	public ForkCommand() {
 		extring prefix = extring.set_static_string("fork");
 		base(&prefix);
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "Target of the fork");
 		addOptionString("-child", M100Command.OptionType.INT, Options.CHILD_COUNT, "Number of children to create");
+		forkIndex = 0;
 	}
 
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
@@ -41,6 +43,23 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 		return 0;
 	}
 
+	internal int forkIndexHook(extring*msg, extring*output) {
+		if(output == null)
+			return 0;
+		extring findex = extring.stack(32);
+		findex.printf("%d\n", forkIndex);
+		output.concat(&findex);
+		return 0;
+	}
+
+
+	internal int statusHook(extring*msg, extring*output) {
+		extring stat = extring.stack(128);
+		stat.printf("Fork index:%d\n", forkIndex);
+		output.concat(&stat);
+		return 0;
+	}
+
 	internal int forkHook(extring*msg, extring*output) {
 		extring forkEntry = extring.set_static_string("onFork/before");
 		PluginManager.swarm(&forkEntry, msg, output); // before fork
@@ -50,6 +69,7 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 		} else if(pid == 0) { // child process
 			forkEntry.rebuild_and_set_static_string("onFork/after/child");
 		} else { // parent process
+			forkIndex++;
 			forkEntry.rebuild_and_set_static_string("onFork/after/parent");
 		}
 		PluginManager.swarm(&forkEntry, msg, output); // after fork
