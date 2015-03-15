@@ -132,7 +132,7 @@ public class shotodol.CompositeExtension : Extension {
 		int retVal = 0;
 		Extension?root = get(target);
 		while(root != null) {
-			retVal = root.act(inmsg, outmsg);
+			retVal = root.act(inmsg, outmsg); // XXX note that retVal is set from the last action
 			Extension?next = root.getNext();
 			root = next;
 		}

@@ -37,15 +37,16 @@ public class shotodol.PluginManager : Module {
 	}
 	public static int swarm(extring*target, extring*inmsg, extring*outmsg) {
 		int retVal = x.swarm(target, inmsg, outmsg);
+		int retVal2 = 0;
 		extring composite = extring.set_static_string("extension/composite");
 		Extension?root = x.get(&composite);
 		while(root != null) {
 			CompositeExtension cx = (CompositeExtension)root;
-			retVal = cx.swarm(target, inmsg, outmsg);
+			retVal2 = cx.swarm(target, inmsg, outmsg);
 			Extension?next = root.getNext();
 			root = next;
 		}
-		return retVal;
+		return (retVal != 0) ? retVal : retVal2;
 	}
 	public static void acceptVisitor(extring*target, ExtensionVisitor visitor) {
 		x.acceptVisitor(target, visitor);
