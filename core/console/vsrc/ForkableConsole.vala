@@ -38,6 +38,12 @@ internal abstract class ForkableConsole : ConsoleFiber {
 	internal int onQuitHook(extring*msg, extring*output) {
 		return node.master.onQuitHook(msg, output);
 	}
+	internal int statusHook(extring*msg, extring*output) {
+		extring stat = extring.stack(128);
+		stat.printf("Console:%d(%s)\n", (int)node.master.node.index, node.master.node.isParent?"parent":"child");
+		output.concat(&stat);
+		return 0;
+	}
 }
 
 

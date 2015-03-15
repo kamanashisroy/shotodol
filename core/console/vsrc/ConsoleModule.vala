@@ -65,6 +65,8 @@ public class shotodol.ConsoleModule : DynamicModule {
 		PluginManager.register(&entry, new HookExtension(sp.onFork_After_Child, this));
 		entry.rebuild_and_set_static_string("onQuit/soft");
 		PluginManager.register(&entry, new HookExtension(sp.onQuitHook, this));
+		entry.rebuild_and_set_static_string("status");
+		PluginManager.register(&entry, new HookExtension(sp.statusHook, this));
 		return 0;
 	}
 
