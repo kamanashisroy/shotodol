@@ -6,72 +6,38 @@ using shotodol.fork;
  *  @{
  */
 internal abstract class ForkableConsole : ConsoleFiber {
-	ArrayList<ForkStream> children;
-	ForkStream?x;
-	uint pipeCount;
-	internal bool isParent;
+	ConsoleSlaveNode node;
 	public ForkableConsole() {
 		base();
-		pipeCount = 0;
-		children = ArrayList<ForkStream>();
-		isParent = true;
+		node = ConsoleSlaveNode();
 	}
 	~ForkableConsole() {
 	}
 	
 	internal int onFork_Before(extring*msg, extring*output) {
-		x = new ForkStream();
-		if(x.onFork_Before() != 0) {
-			return -1;
-		}
-		uint i = pipeCount;
-		pipeCount++;
-		children.set(i,x);
-		return 0;
+		return node.master.onFork_Before(msg, output);
 	}
 	internal int onFork_After_Parent(extring*msg, extring*output) {
-		if(x == null)
-			return -1;
-		x.onFork_After(false);
-#if SHOTODOL_FORK_DEBUG
-		x.dump();
-#endif
-		print("Parent process is up\n");
-		x = null;
-		return 0;
+		return node.master.onFork_After_Parent(msg, output);
 	}
 	internal int onFork_After_Child(extring*msg, extring*output) {
-		if(x == null)
-			return -1;
-		isParent = false;
-		x.onFork_After(true);
-		pull(x.getInputStream());
-#if SHOTODOL_FORK_DEBUG
-		x.dump();
-#endif
-		print("Child process is up\n");
+		if(node.onFork_After_Child(msg, output) == 0) {
+			pull(node.cis);
+		}
 		return 0;
 	}
 	internal OutputStream?getChildOutputStream(int i) {
-		ForkStream?child = children[i];
-		if(child == null)
-			return null;
-		return child.getOutputStream();
+		return node.master.getChildOutputStream(i);
 	}
 	internal uint getChildCount() {
-		return pipeCount;
+		return node.master.getChildCount();
+	}
+	internal bool isParent() {
+		return node.master.node.isParent;
 	}
 	internal int onQuitHook(extring*msg, extring*output) {
-		int i = 0;
-		for(; i < pipeCount; i++) {
-			extring cmd = extring.set_static_string("quit\r\n\r\n");
-			OutputStream?other = getChildOutputStream(i);
-			if(other == null) continue;
-			other.write(&cmd);
-		}
-		return 0;
+		return node.master.onQuitHook(msg, output);
 	}
-
 }
 
 

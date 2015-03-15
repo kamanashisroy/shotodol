@@ -70,7 +70,7 @@ internal class shotodol.JobCommand : shotodol.M100Command {
 		} while(false);
 #endif
 		extring dlg = extring.stack(128);
-		dlg.printf("%u Jobs(%s)\n", sp.getChildCount(), sp.isParent?"parent":"child");
+		dlg.printf("%u Jobs(%s)\n", sp.getChildCount(), sp.isParent()?"parent":"child");
 		pad.write(&dlg);
 		return 0;
 	}

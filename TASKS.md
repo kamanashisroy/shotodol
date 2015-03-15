@@ -10,6 +10,7 @@ Roadmap
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
 	- [x] Move lua scripting into separate shotodol_script package.
 - [ ] State the cohesion type in README.md for each module in shotodol.
+- [ ] Create a module named `node`.
 
 #### Command
 - [ ] Write a quiet command server in "command/server" space.
