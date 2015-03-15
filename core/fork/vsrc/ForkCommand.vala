@@ -47,7 +47,7 @@ internal class shotodol.fork.ForkCommand : shotodol.M100Command {
 		if(output == null)
 			return 0;
 		extring findex = extring.stack(32);
-		findex.printf("%d\n", forkIndex);
+		findex.printf("%d", forkIndex);
 		output.concat(&findex);
 		return 0;
 	}
