@@ -11,8 +11,11 @@ public class shotodol.ShakeModule : DynamicModule {
 		base(&nm,&ver);
 	}
 	public override int init() {
+		var cmd = new ShakeCommand(this);
 		extring entry = extring.set_static_string("command");
-		PluginManager.register(&entry, new M100Extension(new ShakeCommand(), this));
+		PluginManager.register(&entry, new M100Extension(cmd, this));
+		extring composite = extring.set_static_string("extension/composite");
+		PluginManager.register(&composite, cmd.ext);
 		entry.rebuild_and_set_static_string("unittest");
 		PluginManager.register(&entry, new AnyInterfaceExtension(new ShakeTest(), this));
 		entry.rebuild_and_set_static_string("onLoad");

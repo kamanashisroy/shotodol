@@ -14,12 +14,16 @@ internal class ShakeCommand : M100Command {
 		TARGET = 1,
 		FILE,
 	}
-	public ShakeCommand() {
+	CompositeExtension?ext;
+	unowned DynamicModule?sourceModule;
+	public ShakeCommand(DynamicModule?mod) {
 		extring prefix = extring.set_static_string("shake");
 		base(&prefix);
 		addOptionString("-t", M100Command.OptionType.TXT, Options.TARGET, "target name");
 		addOptionString("-f", M100Command.OptionType.TXT, Options.FILE, "shake file name/path"); 
 		script = null;
+		ext = new CompositeExtension(mod);
+		sourceModule = mod;
 	}
 
 	M100Script? script;
@@ -72,8 +76,27 @@ internal class ShakeCommand : M100Command {
 				// execute command
 				cmds.act_on(cmd, pad, script);
 			}
+			if(tgt.equals_static("onLoad")) {
+				extring varName = extring.set_static_string("__ret_val");
+				M100Variable? val = script.vars.getProperty(&varName);
+				registerHookExtensions();
+			}
 		}
 		return 0;
+	}
+	void registerHookExtensions(extring*fn, extring*funcs) {
+		BufferedOutputStream outs = new BufferedOutputStream(1024);
+		ex.unregisterModule(sourceModule, outs);
+		extring token = extring();
+		extring inp = extring.stack_copy_deep(funcs);
+		while(true) {
+			LineAlign.next_token(&inp, &token);
+			if(token.is_empty_magical()) {
+				break;
+			}
+			print("registering %s hook\n", token.to_string());
+			ext.register(&token, new ShakeExtension(script, fn, &token, sourceModule), true);
+		}
 	}
 }
 /* @} */
