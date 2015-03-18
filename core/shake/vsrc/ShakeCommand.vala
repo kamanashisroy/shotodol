@@ -79,14 +79,15 @@ internal class ShakeCommand : M100Command {
 			if(tgt.fly().equals_static_string("onLoad")) {
 				extring varName = extring.set_static_string("__ret_val");
 				M100Variable? val = cmds.vars.getProperty(&varName);
-				registerHookExtensions(tgt, val.strval);
+				if(val != null)
+					registerHookExtensions(tgt, val.strval);
 			}
 		}
 		return 0;
 	}
 	void registerHookExtensions(extring*fn, extring*funcs) {
 		/* sanity check */
-		if(funcs == null)
+		if(funcs.is_empty_magical())
 			return;
 		BufferedOutputStream outs = new BufferedOutputStream(1024);
 		ext.unregisterModule(sourceModule, outs);
@@ -97,8 +98,8 @@ internal class ShakeCommand : M100Command {
 			if(token.is_empty_magical()) {
 				break;
 			}
-			print("registering %s hook\n", token.to_string());
-			ext.register(&token, new ShakeExtension(script, fn, &token, sourceModule), true);
+			//print("registering %s hook\n", token.to_string());
+			ext.register(&token, new ShakeExtension(fn, &token, sourceModule), true);
 		}
 	}
 }

@@ -8,9 +8,7 @@ using shotodol;
 public class shotodol.ShakeExtension : Extension {
 	extring scriptName;
 	extring targetFunction;
-	unowned M100Script? script;
-	public ShakeExtension(M100Script?givenScript, extring*givenScriptName, extring*givenTargetFunction, Module?mod) {
-		script = givenScript;
+	public ShakeExtension(extring*givenScriptName, extring*givenTargetFunction, Module?mod) {
 		scriptName = extring.copy_deep(givenScriptName);
 		targetFunction = extring();
 		extring exten = extring.set_static_string("exten_");
@@ -35,34 +33,13 @@ public class shotodol.ShakeExtension : Extension {
 		pad.write(&dlg);
 		return 0;
 	}
-	public override int act(extring*msg, extring*scriptout) /*throws M100CommandError.ActionFailed*/ {
-		//script.setOutputStream(new StandardOutputStream());
+	public override int act(extring*msg, extring*scriptOut) /*throws M100CommandError.ActionFailed*/ {
 		extring dlg = extring.stack(128);
 		dlg.printf("target:[%s]\n", targetFunction.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
-#if false
-		script.getField(script.GLOBAL_SPACE, targetFunction.to_string());
-		script.pushEXtring(msg); // function argument is *msg*
-		script.call(1,1,0);
-		if(script.isString(-1)) {
-			script.getXtringAs(scriptout, -1); // function return is scriptout
-		}
-		script.pop(1);
-#else
 		
-		script.target(&targetFunction);
-		while(true) {
-			xtring? cmd = script.step();
-			if(cmd == null) {
-				break;
-			}
-			dlg.printf("command:%s\n", cmd.fly().to_string());
-			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
-			// execute command
-			//cmds.act_on(cmd, pad, script);
-		}
-#endif
-		return 0;
+		extring serv = extring.set_static_string("command/server");
+		return PluginManager.swarm(&serv, &targetFunction, scriptOut);
 	}
 }
 /* @} */
