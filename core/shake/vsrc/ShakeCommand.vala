@@ -14,7 +14,7 @@ internal class ShakeCommand : M100Command {
 		TARGET = 1,
 		FILE,
 	}
-	CompositeExtension?ext;
+	internal CompositeExtension?ext;
 	unowned DynamicModule?sourceModule;
 	public ShakeCommand(DynamicModule?mod) {
 		extring prefix = extring.set_static_string("shake");
@@ -76,17 +76,20 @@ internal class ShakeCommand : M100Command {
 				// execute command
 				cmds.act_on(cmd, pad, script);
 			}
-			if(tgt.equals_static("onLoad")) {
+			if(tgt.fly().equals_static_string("onLoad")) {
 				extring varName = extring.set_static_string("__ret_val");
-				M100Variable? val = script.vars.getProperty(&varName);
-				registerHookExtensions();
+				M100Variable? val = cmds.vars.getProperty(&varName);
+				registerHookExtensions(tgt, val.strval);
 			}
 		}
 		return 0;
 	}
 	void registerHookExtensions(extring*fn, extring*funcs) {
+		/* sanity check */
+		if(funcs == null)
+			return;
 		BufferedOutputStream outs = new BufferedOutputStream(1024);
-		ex.unregisterModule(sourceModule, outs);
+		ext.unregisterModule(sourceModule, outs);
 		extring token = extring();
 		extring inp = extring.stack_copy_deep(funcs);
 		while(true) {
