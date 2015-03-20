@@ -13,7 +13,7 @@ Roadmap
 - [ ] Create a module named `node`.
 
 #### Command
-- [ ] Write a quiet command server in "command/server" space.
+- [x] Write a quiet command server in "command/server" space.
 - [x] Write support for command description. (It is already available)
 - [x] Write an alias command such as it can create alias for some command. For example, `alias wa55 watchdog -l 100 -tag 55 ` will create a command alias named `zwa55` which will call `watchdog -l 100 -tag 55 ` in the background.
 - [x] Write a status command to show server status.

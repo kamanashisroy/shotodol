@@ -46,6 +46,8 @@ public class shotodol.CommandModule: DynamicModule {
 		PluginManager.register(&entry, new HookExtension(rehashHook, this));
 		entry.rebuild_and_set_static_string("command/server");
 		PluginManager.register(&entry, new HookExtension(commandServerHook, this));
+		entry.rebuild_and_set_static_string("command/server/quiet");
+		PluginManager.register(&entry, new HookExtension(commandServerQuietHook, this));
 		entry.rebuild_and_set_static_string("onQuit");
 		PluginManager.register(&entry, new HookExtension((onQuitHook), this));
 		rehashHook(null, null);
@@ -76,6 +78,24 @@ public class shotodol.CommandModule: DynamicModule {
 		}
 		BufferedOutputStream pad = new BufferedOutputStream(4096);
 		server.cmds.act_on(callstr, pad, null);
+		pad.getAs(output);
+		return 0;
+	}
+	int commandServerQuietHook(extring*callstr, extring*output) {
+		if(freeze)
+			return 0;
+		if(callstr == null) return 0;
+		bool oldQuiet = server.cmds.quiet;
+		if(output == null) {
+			server.cmds.quiet = true;
+			server.cmds.act_on(callstr, new StandardOutputStream(), null);
+			server.cmds.quiet = oldQuiet;
+			return 0;
+		}
+		BufferedOutputStream pad = new BufferedOutputStream(4096);
+		server.cmds.quiet = true;
+		server.cmds.act_on(callstr, pad, null);
+		server.cmds.quiet = oldQuiet;
 		pad.getAs(output);
 		return 0;
 	}

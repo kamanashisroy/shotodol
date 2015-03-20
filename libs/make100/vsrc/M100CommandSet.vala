@@ -9,7 +9,7 @@ public class shotodol.M100CommandSet: Replicable {
 	BrainEngine<M100Command>?be;
 	extring command;
 	M100GotoCommand gcmd;
-	bool quiet = false;
+	public bool quiet = false;
 	public M100CommandSet() {
 		command = extring.set_static_string("command");
 		//cmds = Set<M100Command>();

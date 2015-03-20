@@ -44,7 +44,7 @@ public class shotodol.ShakeExtension : Extension {
 		cmd.concat_char('\r');
 		cmd.concat_char('\n');
 		
-		extring serv = extring.set_static_string("command/server");
+		extring serv = extring.set_static_string("command/server/quiet");
 		return PluginManager.swarm(&serv, &cmd, scriptOut);
 	}
 }
