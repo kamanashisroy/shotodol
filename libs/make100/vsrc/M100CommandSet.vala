@@ -88,7 +88,7 @@ public class shotodol.M100CommandSet: Replicable {
 		try {
 			if(!quiet)mycmd.greet(pad);
 			ret = mycmd.act_on(rcmd, pad, this);
-			mycmd.bye(pad, true);
+			if(!quiet)mycmd.bye(pad, true);
 		} catch(M100CommandError.ActionFailed e) {
 			extring dlg = extring.stack(128);
 			dlg.concat_string("Failed:\t");
