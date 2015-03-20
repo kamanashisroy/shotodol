@@ -37,9 +37,15 @@ public class shotodol.ShakeExtension : Extension {
 		extring dlg = extring.stack(128);
 		dlg.printf("target:[%s]\n", targetFunction.to_string());
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
+
+		extring cmd = extring.stack(128);
+		cmd.concat_string("shake -t ");
+		cmd.concat(&targetFunction);
+		cmd.concat_char('\r');
+		cmd.concat_char('\n');
 		
 		extring serv = extring.set_static_string("command/server");
-		return PluginManager.swarm(&serv, &targetFunction, scriptOut);
+		return PluginManager.swarm(&serv, &cmd, scriptOut);
 	}
 }
 /* @} */
