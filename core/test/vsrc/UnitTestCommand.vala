@@ -32,7 +32,7 @@ internal class shotodol.UnitTestCommand : shotodol.M100Command {
 			} catch(UnitTestError e) {
 				dlg.printf("Test [%s] failed\n", nm.to_string());
 				pad.write(&dlg);
-				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.WatchdogSeverity.ERROR,0,0,&dlg);
+				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),1,Watchdog.Severity.ERROR,0,0,&dlg);
 			}
 		}
 		return true;

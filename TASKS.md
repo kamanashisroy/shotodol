@@ -10,7 +10,7 @@ Roadmap
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
 	- [x] Move lua scripting into separate shotodol_script package.
 - [ ] State the cohesion type in README.md for each module in shotodol.
-- [ ] Create a module named `node`.
+- [ ] Create a module named `node` to assist actor based concurrency model.
 
 #### Command
 - [x] Write a quiet command server in "command/server" space.
@@ -54,7 +54,7 @@ Roadmap
 - [ ] Profile memory move/copy events(with the memory size). It can be done in for example extring.copy_on_demand implementations.
 	- [ ] See zero copy memory management in gstreamer.
 - [x] Add tagging support in watchdog log. (This is done using -tag parameter)
-- [ ] Rename Watchdog.WatchdogSeverity to Watchdog.Severity .
+- [x] Rename Watchdog.WatchdogSeverity to Watchdog.Severity .
 - [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
 
 #### Decoupling

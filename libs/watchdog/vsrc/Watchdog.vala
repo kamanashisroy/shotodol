@@ -15,14 +15,14 @@ internal class shotodol.WatchdogEntry : Replicable {
 	internal xtring sourcefile;
 	internal int lineno;
 	internal int level;
-	internal Watchdog.WatchdogSeverity severity;
+	internal Watchdog.Severity severity;
 	internal int subtype;
 	internal int tag;
 	xtring msg;
-	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gtag, extring*gmsg, OPPFactory<xtring>*xtringBuilder) {
+	internal WatchdogEntry(string gsourcefile, int glineno, int glevel, Watchdog.Severity gseverity, int gsubtype, int gtag, extring*gmsg, OPPFactory<xtring>*xtringBuilder) {
 		build(gsourcefile, glineno, glevel, gseverity, gsubtype, gtag, gmsg, xtringBuilder);
 	}
-	internal void build(string gsourcefile, int glineno, int glevel, Watchdog.WatchdogSeverity gseverity, int gsubtype, int gtag, extring*gmsg, OPPFactory<xtring>*xtringBuilder) {
+	internal void build(string gsourcefile, int glineno, int glevel, Watchdog.Severity gseverity, int gsubtype, int gtag, extring*gmsg, OPPFactory<xtring>*xtringBuilder) {
 		//extring sf = extring.stack(64);
 		//sf.concat_string(gsourcefile);
 		sourcefile = new xtring.copy_string(gsourcefile);
@@ -54,14 +54,14 @@ internal class shotodol.WatchdogEntry : Replicable {
 public class shotodol.Watchdog : Replicable {
 	internal OutputStream? pad;
 	internal static Watchdog? watch;
-	public enum WatchdogSeverity {
+	public enum Severity {
 		LOG = 0,
 		DEBUG,
 		NOTICE,
 		WARNING,
 		ERROR,
 		ALERT;
-		public unowned string to_string(WatchdogSeverity x) {
+		public unowned string to_string(Severity x) {
 			switch(x) {
 				case LOG:
 					return "  ";
@@ -141,13 +141,13 @@ public class shotodol.Watchdog : Replicable {
 		buf.concat(varval);
 		return 0;
 	}
-	public static int watchvar(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int tag, extring*varname, extring*varval) {
+	public static int watchvar(string sourcefile, int lineno, int level, Severity severity, int subtype, int tag, extring*varname, extring*varval) {
 		extring buf = extring.stack(128);
 		watchvar_helper(&buf, varname, varval);
 		watchit(sourcefile, lineno, level, severity, subtype, tag, &buf);
 		return 0;
 	}
-	public static int watchit(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int tag, extring*msg) {
+	public static int watchit(string sourcefile, int lineno, int level, Severity severity, int subtype, int tag, extring*msg) {
 		if(watch == null || watch.logLevel < level) return 0;
 		
 		//WatchdogEntry x = new WatchdogEntry();
@@ -159,20 +159,20 @@ public class shotodol.Watchdog : Replicable {
 		watch.rotator = (watch.rotator+1)%watch.numberOfOnMemoryLogs;
 		return 0;
 	}
-	public static int watchit_string(string sourcefile, int lineno, int level, WatchdogSeverity severity, int subtype, int tag, string data) {
+	public static int watchit_string(string sourcefile, int lineno, int level, Severity severity, int subtype, int tag, string data) {
 		extring msg = extring.set_string(data);
-		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &msg);
+		watchit(sourcefile, lineno, level, Severity.LOG, 0, 0, &msg);
 		return 0;
 	}
 	public static int logString(string sourcefile, int lineno, int level, string st) {
 		extring buf = extring.set_string(st);
-		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &buf);
+		watchit(sourcefile, lineno, level, Severity.LOG, 0, 0, &buf);
 		return 0;
 	}
 	public static int logInt(string sourcefile, int lineno, int level, string st, int val) {
 		extring buf = extring.stack(128);
 		buf.printf("%s:%d\n", st, val);
-		watchit(sourcefile, lineno, level, WatchdogSeverity.LOG, 0, 0, &buf);
+		watchit(sourcefile, lineno, level, Severity.LOG, 0, 0, &buf);
 		return 0;
 	}
 #if false
