@@ -10,7 +10,7 @@ Roadmap
 - [x] Keep shotodol bare minimum. Move extra modules in other projects.
 	- [x] Move lua scripting into separate shotodol_script package.
 - [ ] State the cohesion type in README.md for each module in shotodol.
-- [ ] Create a module named `node` to assist actor based concurrency model.
+- [ ] Create a module named `node`.
 
 #### Command
 - [x] Write a quiet command server in "command/server" space.
@@ -33,7 +33,7 @@ Roadmap
 	- [x] Create jobs console command like in unix shell.
 	- [ ] Use fg,bg command to change or select target process.
 	- [x] Use https://en.wikipedia.org/wiki/Cell_%28microprocessor%29#Distributed_computing
-- [ ] Add a fiber priority feature. Let it add priority based scheduling in addition to current round robin scheduling.
+- [ ] **Add a fiber priority feature**. Let it add priority based scheduling in addition to current round robin scheduling.
 - [ ] Remove all the locks, lower the atomic operations.
 
 #### Packaging
