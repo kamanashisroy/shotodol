@@ -70,11 +70,20 @@ public class shotodol.ModuleLoader : Replicable {
 	}
 
 	public int load(string module_name, string dir) {
-		extring dlg = extring.stack(128);
-		dlg.printf("Trying to load module %s%s/%s\n", path_to_shotodol.to_string(), dir, module_name);
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		extring path = extring.stack(128);
 		path.printf("%s%s/%s/dynalib.so", path_to_shotodol.to_string(), dir, module_name);
+		if(!shotodol_platform.PlatformFileStream.access(path.to_string(), shotodol_platform.PlatformFileStream.AccessMode.R_OK)) {
+			path.printf(".%s/%s/dynalib.so", dir, module_name);
+			if(!shotodol_platform.PlatformFileStream.access(path.to_string(), shotodol_platform.PlatformFileStream.AccessMode.R_OK)) {
+				extring dlg = extring.stack(128);
+				dlg.printf("Failed to load module %s\n", path.to_string());
+				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,Watchdog.Severity.ERROR,0,0,&dlg);
+				return -1;
+			}
+		}
+		extring dlg = extring.stack(128);
+		dlg.printf("Trying to load module %s\n", path.to_string());
+		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
 		load_dynamic_module(path.to_string());
 		return 0;
 	}

@@ -22,9 +22,14 @@ internal class shotodol.ModuleCommand : M100Command {
 		extring dlg = extring.stack(128);
 		dlg.printf("Trying to load module %s\n", module);
 		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
-		ModuleLoader.singleton.load_dynamic_module(module);
-		dlg.printf("\t\t\t\t %s module is Loaded\n", module);
-		Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
+		try {
+			ModuleLoader.singleton.load_dynamic_module(module);
+			dlg.printf("\t\t\t\t %s module is Loaded\n", module);
+			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,0,0,0,&dlg);
+		} catch (dynalib_error e) {
+			dlg.printf("Failed to load module %s:%s\n", module, e.to_string());
+			Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),3,Watchdog.Severity.ERROR,0,0,&dlg);
+		}
 		return 0;
 	}
 

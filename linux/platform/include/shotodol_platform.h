@@ -75,6 +75,8 @@
 	int __len = 0;char* __rt = fgets(aroop_txt_to_string(y)+(y)->len, (y)->size - (y)->len - 1, stdin);if(__rt) {__len = strlen(__rt);(y)->len += __len;}__len; \
 })
 
+#define fileio_file_access(x,y) ({!access(x,y);})
+
 #define fileio_getc(x) ({getc(stdin);})
 #define fileio_ungetc(x,y) ({ungetc(y,stdin);})
 #define fileio_strerror() ({strerror(errno);})

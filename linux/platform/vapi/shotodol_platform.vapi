@@ -65,6 +65,18 @@ namespace shotodol_platform {
 		[CCode (cname = "SEEK_END", cheader_filename = "stdio.h")]
 		public const int SEEK_END;
 
+		public enum AccessMode {
+			[CCode (cname = "F_OK")]
+			F_OK,
+			[CCode (cname = "R_OK")]
+			R_OK,
+			[CCode (cname = "W_OK")]
+			W_OK,
+			[CCode (cname = "X_OK")]
+			X_OK,
+		}
+		[CCode (cname = "fileio_file_access")]
+		public static bool access (string path, PlatformFileStream.AccessMode mode);
 		[CCode (cname = "fopen")]
 		public static PlatformFileStream? open (string path, string mode);
 		[CCode (cname = "fdopen")]
