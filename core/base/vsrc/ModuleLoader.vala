@@ -78,6 +78,8 @@ public class shotodol.ModuleLoader : Replicable {
 				extring dlg = extring.stack(128);
 				dlg.printf("Failed to load module %s\n", path.to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,Watchdog.Severity.ERROR,0,0,&dlg);
+				dlg.zero_terminate();
+				print("%s\n", dlg.to_string());
 				return -1;
 			}
 		}
