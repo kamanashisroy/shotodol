@@ -73,7 +73,7 @@ public class shotodol.ModuleLoader : Replicable {
 		extring path = extring.stack(128);
 		path.printf("%s%s/%s/dynalib.so", path_to_shotodol.to_string(), dir, module_name);
 		if(!shotodol_platform.PlatformFileStream.access(path.to_string(), shotodol_platform.PlatformFileStream.AccessMode.R_OK)) {
-			path.printf(".%s/%s/dynalib.so", dir, module_name);
+			path.printf("./%s/%s/dynalib.so", dir, module_name);
 			if(!shotodol_platform.PlatformFileStream.access(path.to_string(), shotodol_platform.PlatformFileStream.AccessMode.R_OK)) {
 				extring dlg = extring.stack(128);
 				dlg.printf("Failed to load module %s\n", path.to_string());
