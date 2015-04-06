@@ -8,5 +8,8 @@ dist:
 	if [ -e dynalib.so ] ; then \
 		cp -f dynalib.so $(DIST_DIR)/$(AROOP_MODULE_NAME)/ ; \
 	fi
+	if [ -e dynalib.so ] ; then \
+		cp -f pkg.depend $(DIST_DIR)/$(AROOP_MODULE_NAME)/ ; \
+	fi
 
 

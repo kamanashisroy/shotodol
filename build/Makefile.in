@@ -21,6 +21,9 @@ dist:distplugins
 	if [ -e shotodol.bin ] ; then \
 		cp shotodol.bin $(DIST_DIR)/; \
 	fi
+	if [ -e autoload ] ; then \
+		cp -rf autoload $(DIST_DIR)/; \
+	fi
 
 document:
 	$(DOC) -C docs/doxygen
