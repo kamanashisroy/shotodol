@@ -4,7 +4,7 @@ CLEAN=$(MAKE) -f $(SHOTODOL_HOME)/build/clean.mk
 DOC=$(MAKE) -f $(SHOTODOL_HOME)/build/doc.mk
 SHOTODOL=$(MAKE) -f $(SHOTODOL_HOME)/build/shotodol.mk
 DIST=$(MAKE) -f $(SHOTODOL_HOME)/build/dist.mk
-DIST_DIR=$(SHOTODOL_HOME)/dist
+DIST_DIR=$(PROJECT_HOME)/dist
 
 all:makeplugins shotodol
 
@@ -18,6 +18,9 @@ distplugins:
 	mkdir -p $(DIST_DIR)
 
 dist:distplugins
+	if [ -e shotodol.bin ] ; then \
+		cp shotodol.bin $(DIST_DIR)/; \
+	fi
 
 document:
 	$(DOC) -C docs/doxygen

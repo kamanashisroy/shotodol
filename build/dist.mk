@@ -1,6 +1,6 @@
 
 include $(MODULE_DEPTH)/build/.config.mk
-DIST_DIR=$(SHOTODOL_HOME)/dist
+DIST_DIR=$(PROJECT_HOME)/dist
 
 dist:
 	mkdir -p $(DIST_DIR)/$(AROOP_MODULE_NAME)
