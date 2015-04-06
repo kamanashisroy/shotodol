@@ -3,6 +3,8 @@ BUILD=$(MAKE) -f $(SHOTODOL_HOME)/build/build.mk
 CLEAN=$(MAKE) -f $(SHOTODOL_HOME)/build/clean.mk
 DOC=$(MAKE) -f $(SHOTODOL_HOME)/build/doc.mk
 SHOTODOL=$(MAKE) -f $(SHOTODOL_HOME)/build/shotodol.mk
+DIST=$(MAKE) -f $(SHOTODOL_HOME)/build/dist.mk
+DIST_DIR=$(SHOTODOL_HOME)/dist
 
 all:makeplugins shotodol
 
@@ -12,12 +14,18 @@ shotodol:
 clean:cleanplugins 
 	$(SHOTODOL) clean
 
+distplugins:
+	mkdir -p $(DIST_DIR)
+
+dist:distplugins
+
 document:
 	$(DOC) -C docs/doxygen
 
 dist-clean:
 	$(RM) Makefile docs/doxygen/Doxyfile 
 	$(RM) -rf docs/doxygen/html
+	$(RM) -rf $(DIST_DIR)
 
 .PHONY:clean dist-clean
 include build/Makevars.mk

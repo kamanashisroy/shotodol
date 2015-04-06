@@ -114,6 +114,14 @@ function shotodol.genmake(projecthome)
 	end
 	makefile:write("\n")
 	makefile:write("\n")
+	makefile:write("distplugins:\n")
+	for i,x in ipairs(plugin_dirs) do
+		local module_depth = "../"
+		for word in string.gmatch(x, "/") do module_depth = module_depth .. "../" end
+		makefile:write("\t$(DIST) -C " .. x .. " MODULE_DEPTH=\"".. module_depth .."\" AROOP_MODULE_NAME=\"".. x .."\"\n")
+	end
+	makefile:write("\n")
+	makefile:write("\n")
 	assert(makefile:close())
 
 end
