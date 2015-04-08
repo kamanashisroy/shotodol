@@ -65,6 +65,7 @@ Diagrams
 
 ![Fiber class diagram](../../docs/diagrams/fiber_class_diagram.svg)
 ![Fiber hierarchy](../../docs/diagrams/fiber_hierarchy.svg)
+![sd : shotodol main](../../docs/diagrams/sd_main.svg)
 
 TODO
 ======
