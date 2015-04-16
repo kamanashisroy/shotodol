@@ -55,7 +55,7 @@ public class shotodol.MainProgram {
 			Extension?next = root.getNext();
 			root = next;
 		}
-		print("There are %d extensions in %s directory\n", count, ex.to_string());
+		core.debug_print("There are %d extensions in %S directory\n", count, ex);
 	}
 #endif
 	static void run() {

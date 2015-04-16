@@ -16,12 +16,12 @@ internal struct shotodol.ConsoleSlaveNode {
 	internal int onFork_After_Child(extring*msg, extring*output) {
 		// TODO if msg contains noconsole then do not load console
 		/*if(msg == null || !msg.equals(&master.node.consolekey)) {
-			print("-------- Child process is inactive as console slave\n");
+			core.debug_print("-------- Child process is inactive as console slave\n");
 			return 0;
 		}*/
 		master.node.isParent = false;
 		if(master.node.x == null) {
-			print("EEEEEE! child fork stream is null\n");
+			core.debug_print("EEEEEE! child fork stream is null\n");
 			return -1;
 		}
 
@@ -49,7 +49,7 @@ internal struct shotodol.ConsoleSlaveNode {
 		master.cleanup();
 		// --------------------------------------------
 
-		print("Child process is up\n");
+		core.debug_print("Child process is up\n");
 		return 0;
 	}
 

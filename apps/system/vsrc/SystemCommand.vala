@@ -19,13 +19,6 @@ internal class shotodol.SystemCommand : M100Command {
 		if(inp.is_empty()) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
-		/*
-		extring x = extring.stack(512);
-		x.concat_char('+');		
-		x.concat(&inp);
-		x.concat_char('+');
-		pad.write(&x);
-		*/
 		inp.shift(1);
 		Execute.system(inp.to_string());
 		return 0;

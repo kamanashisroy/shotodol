@@ -40,7 +40,7 @@ public class shotodol.ConsoleModule : DynamicModule {
 				if(uarg.equals_string("-noconsole")) {
 					hasConsole = false;
 				} else if(uarg.equals_string("--help")) {
-					print("-noconsole Use this argument to run the shotodol without shell.\n");
+					core.debug_print("-noconsole Use this argument to run the shotodol without shell.\n");
 					hasConsole = false;
 				}
 			} catch(BundlerError err) {
@@ -49,7 +49,7 @@ public class shotodol.ConsoleModule : DynamicModule {
 		} while(true);
 		if(!hasConsole) return 0;
 
-		print("Loading console spindle\n");
+		core.debug_print("Loading console spindle\n");
 		extring entry = extring.set_static_string("MainFiber");
 		ConsoleHistory sp = new ConsoleHistory();
 		PluginManager.register(&entry, new AnyInterfaceExtension(sp, this));

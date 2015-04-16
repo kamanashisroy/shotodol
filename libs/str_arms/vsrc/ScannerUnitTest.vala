@@ -16,20 +16,12 @@ public class shotodol.ScannerUnitTest : UnitTest {
 		return true;			
 	}
 	bool test_tokenize_simple() {
-		extring buf = extring.stack(128);
 		extring sentence = extring.set_static_string("Good luck, have a nice day.");
 		extring word = extring();
 		int i = 0;
 		while(Scanner.next_token(&sentence, &word) == 0) {
 			i++;
-			buf.concat_string("Token:[");
-			buf.concat(&word);
-			buf.concat_string("],left:[");
-			buf.concat(&sentence);
-			buf.concat_string("]");
-			buf.zero_terminate();
-			print("%s\n", buf.to_string());
-			buf.truncate();
+			core.debug_print("Token:[%S],left:[%S]\n", &word, &sentence);
 			if(sentence.is_empty())
 				break;
 		}

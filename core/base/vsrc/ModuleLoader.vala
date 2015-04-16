@@ -78,8 +78,7 @@ public class shotodol.ModuleLoader : Replicable {
 				extring dlg = extring.stack(128);
 				dlg.printf("Failed to load module %s\n", path.to_string());
 				Watchdog.watchit(core.sourceFileName(), core.sourceLineNo(),10,Watchdog.Severity.ERROR,0,0,&dlg);
-				dlg.zero_terminate();
-				print("%s\n", dlg.to_string());
+				core.debug_print("%S\n", &dlg);
 				return -1;
 			}
 		}
@@ -153,7 +152,7 @@ public class shotodol.ModuleLoader : Replicable {
 				//print("Done\n");
 				moduleStack.gc_unsafe(); // make sure that we do not keep any reference to the module .
 				core.gc_unsafe(); // let all the objects destroyed and collected
-				print("Searching %s module\n", moduleName.fly().to_string());
+				core.debug_print("Searching %S module\n", moduleName);
 			} // This scope makes sure that the module instance is destroyed ..
 			if(moduleName != null && !moduleName.fly().equals_static_string("core/base")) {
 				core.assert_no_module_object(moduleName.fly().to_string());
@@ -161,9 +160,9 @@ public class shotodol.ModuleLoader : Replicable {
 			}
 			if(owner != null) {
 				// So this is the dynamic library of the last unloaded module ..
-				print("Unloading dynamic objects ..\n");
+				core.debug_print("Unloading dynamic objects ..\n");
 				owner.unload();
-				print("Done\n");
+				core.debug_print("Done\n");
 			}
 			core.gc_unsafe(); // let all the objects destroyed and collected
 		}
