@@ -72,6 +72,8 @@ On the other hand, the service provider can register as gas-bill handler like th
 	}
 ```
 
+A service is different from product in a way that the service does not return an object, but the product itself is an object. In the above example the brush and paste are the objects. And the gas-bill is not an object. Same is true for `hook` and `interface` extension types. `Hook` does not return object while the `Interface` is itself an object.
+
 Again, the decoupling provided by `PluginManager` needs an action to notify the users about their product changes. It is like sending an SMS to the user about the new products or updates. This is equivalent to the `rehash` command. To get the notification from the super-shop the user needs to create an account in that super-shop and provide his mobile number. In the same way, to get the notification from the `PluginManager` the user needs to register to the rehash hook.
 
 ```Vala
