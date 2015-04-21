@@ -33,7 +33,7 @@ internal class shotodol.supershop.BuyCommand : M100Command {
 			});
 			extring bfr = extring.stack(512); // allocate memory in stack
 			if(pencil == null) {
-				throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("No pencil found");
+				throw new M100CommandError.ActionFailed.OTHER("No pencil found");
 			}
 			pencil.getDescription(&bfr);
 			pad.write(&bfr);
@@ -45,8 +45,8 @@ internal class shotodol.supershop.BuyCommand : M100Command {
 				paper = (Paper)x.getInterface(null);
 			});
 			extring bfr = extring.stack(512); // allocate memory in stack
-			if(paper != null) {
-				throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("No paper found");
+			if(paper == null) {
+				throw new M100CommandError.ActionFailed.OTHER("No paper found");
 			}
 			paper.getDescription(&bfr);
 			pad.write(&bfr);
