@@ -4,10 +4,10 @@ Module
 ![module component](../../diagrams/module_component.svg)
 
 
-Most of the code done in shotodol are in modules, simply to achieve **[robustness](http://en.wikipedia.org/wiki/Structural_robustness)** by **[separation of concern](http://en.wikipedia.org/wiki/Separation_of_concerns)**. A module is a [group of code](http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29) that provides a functional support to the shotodol environment. You can say the following things about shotodol modules,
+Most of the code done in shotodol are in modules, simply to achieve **[robustness](http://en.wikipedia.org/wiki/Structural_robustness)** by **[separation of concern](http://en.wikipedia.org/wiki/Separation_of_concerns)**. A module is a [group of code](http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29) that provides a functional support to the shotodol environment. Following things holds true about shotodol modules,
 
-- _Encapsulation_: Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, you can write modules in apps/good\_luck or core/commands directory. 
-- _Loading/unloading_: User may choose to load a module dinamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
+- _Encapsulation_: Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, there are modules in apps/good\_luck or core/commands directory. 
+- _Loading/unloading_: User may choose to load a module dynamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
 
 Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29) and low [coupling](http://en.wikipedia.org/wiki/Coupling_%28computer_science%29).
 
@@ -22,11 +22,11 @@ _shake_ script provides a way to perform a task on an event. For example, there 
 
 ### Plugin/extensions
 
-You can write extensions and use them to communicate through them using interfaces. [Here is how](../../../libs/plugin/README.md).
+Plugin makes it possible to write extensions and communicate through hooks and interfaces. [Here is how](../../../libs/plugin/README.md).
 
 ### Message passing.
 
-The plugins/extensions allow you to write hooks for events. See [hooking and message passing](../../../libs/plugin/Hooking.md).
+The plugins provides a way to write hooks for events. See [hooking and message passing](../../../libs/plugin/Hooking.md).
 
 - [shotodol_architecture](https://cloud.githubusercontent.com/assets/973414/3930915/c45b8232-244e-11e4-9ced-f277e9d48729.jpg)
 - [shotodol_architecture](../../diagrams/shotodol_module_plugin_command_shell.svg)

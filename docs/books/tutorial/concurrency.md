@@ -9,3 +9,7 @@ It has both preemptive and non-preemptive multitasking.
 
 Furthermore it is possible to [spawn new process](../../../core/fork/README.md).
 
+The diagram below shows the sequence diagram of the main method interacting with different fibers.
+
+![sd : shotodol main](../../../docs/diagrams/sd_main.svg)
+

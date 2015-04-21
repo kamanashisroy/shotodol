@@ -19,7 +19,7 @@ _Interface_ in an _extension_ is an _object_ returned by getInterface() method. 
 ![Interface accessing](../../docs/diagrams/extended_interface.svg)
 
 ### Hooking
-[Hook function](Hooking.md)Hook function is invoked by the extension point or the event name.
+[Hook function](Hooking.md) is invoked by the extension point or the event name.
 
 
 ![Calling/swarming the extended hook](../../docs/diagrams/swarming_extended_hook.svg)
@@ -59,7 +59,7 @@ Example
 ========
 The _'idle'_ module is a good example of plugin. It registers as _command_. And eventually the command is available in the console.
 
-Examine plugins
+Plugin queries
 ================
 The plugin command enables us to see the loaded extensions and associated modules.
 
@@ -70,7 +70,9 @@ plugin -x command
 The above command will show all the registered commands. 
 
 ### Dispatch
-You can dispatch an event using plugin command.
+
+A hook can be called from commandline. It is like dispatching an event. The following command dispatches *onQuit* event.
+
 ```
 plugin -x onQuit -act
 ```

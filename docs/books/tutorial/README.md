@@ -24,6 +24,8 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 	- [SpinningWheel](../../../libs/spinningwheel/README.md)
 	- [Fiber](../../../libs/fiber/README.md)
 	- [Fork](../../../core/fork/README.md)
+- Tasks
+	- [Pencil provider task](../../../apps/supershop/README.md)
 - [Debugging](debugging.md)
 - [Documentation](doc.md)
 - [Frequently asked questions](FAQ.md)
