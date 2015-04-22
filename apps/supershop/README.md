@@ -1,5 +1,5 @@
 
-This task is taken from the supershop [analogy](analogies.md). 
+This task is taken from the supershop [analogy](../../docs/books/tutorial/analogies.md). 
 
 - Write a module named provider.
 - Provider should register an extension containing a Pencil instance in "pencil" space.

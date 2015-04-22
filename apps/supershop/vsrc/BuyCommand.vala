@@ -1,6 +1,6 @@
 using aroop;
 using shotodol;
-using supershop;
+using shotodol.supershop;
 
 /** \addtogroup supershop
  *  @{

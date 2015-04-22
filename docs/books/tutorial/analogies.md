@@ -104,6 +104,16 @@ Again, the decoupling provided by `PluginManager` needs an action to notify the 
 
 The architecture above hides the provider from the user. It is like hiding the underlying API of the provider of an interface from the user. It makes things simpler.
 
+| metaphor | shotodol |
+|-----|-----|
+| Super Shop | PluginManager |
+| Pencil | Interface Extension |
+| Paper | Interface Extension |
+| Pencil box/shelf | Extension space |
+| pay bill service | Hook extension |
+| kids of a school(who uses the pencil/paper) | module |
+| Provider group(who provides pencil/paper) | module |
+
 #### Shotodol analogy to functional mathematics
 
 In functional mathematics a function `f(x,y,z)` is defined to be a relation between the _domains_ of _x_,_y_ and _z_ and the range of `f(x,y,z)`. Here shotodol can be defined like the following,
