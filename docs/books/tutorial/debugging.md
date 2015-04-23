@@ -2,10 +2,11 @@
 Debugging shotodol
 ===================
 
-You can enable debugging while configuring(lua configure.lua). 
+A framework is simple for developer if the developer can narrow down the suspected region for finding bug. Shotodol provides module system and [unit testing](../../../libs/unittest) framework to write tested code and modules.
 
-Memory Debugging
-=================
+Again there are compiler flags for printing debug output. It is possible to enable debugging while configuring(lua configure.lua). 
+
+#### Memory Debugging
 
 Memory debugging technique in shotodol is primarilly done in the following ways.
 
@@ -15,8 +16,7 @@ Memory debugging technique in shotodol is primarilly done in the following ways.
 
 This is a way of debugging shotodol memmory. A module is loaded and executed and then unloaded. While unloading the module it is checked for objects left in object system. There is a core method to do this `core.assert_no_module(module_name)`. See the ModuleLoader.vala unloadModuleByName() method. Note, to use this feature you need to set debugging on while configuring(lua configure.lua).
 
-Using gdb
-==========
+#### Using gdb
 
 You can load shotodol.bin in gdb and execute it. Suppose you have an assert failure then you can trace that easilly . See below an advanced example.
 

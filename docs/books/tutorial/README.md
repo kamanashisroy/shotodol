@@ -4,6 +4,7 @@ This tutorial is layed before the shotodol users, who want to investigate and gr
 - Preparation
 	- [Getting the sources](getting.md)
 	- [Building](building.md)
+	- [editing](editing.md)
 - Language basic
 	- [xtring](xtring.md)
 - Building block

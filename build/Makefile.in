@@ -33,5 +33,8 @@ dist-clean:
 	$(RM) -rf docs/doxygen/html
 	$(RM) -rf $(DIST_DIR)
 
+anjuta-tags:
+	find -iname "*.vala" | xargs anjuta-tags
+
 .PHONY:clean dist-clean
 include build/Makevars.mk
