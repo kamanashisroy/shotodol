@@ -16,6 +16,22 @@ Memory debugging technique in shotodol is primarilly done in the following ways.
 
 This is a way of debugging shotodol memmory. A module is loaded and executed and then unloaded. While unloading the module it is checked for objects left in object system. There is a core method to do this `core.assert_no_module(module_name)`. See the ModuleLoader.vala unloadModuleByName() method. Note, to use this feature you need to set debugging on while configuring(lua configure.lua).
 
+#### enabling debugging for a project
+
+The gcc and aroopc provides -D arguments for definiting macros. So it is possible to enable and disable debugging at compile-time using the aroopc/gcc [preprocessors](http://en.wikipedia.org/wiki/Preprocessor).
+
+The following lua code in configure.lua enables debug on shotodol project.
+
+```lua
+if yes_no_to_bool(prompt_yes_no("enable debug (-ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG -DSHOTODOL_FORK_DEBUG -DSHOTODOL_FD_DEBUG) ?(y/n) > ")) then
+	configLines["CFLAGS+"] = configLines["CFLAGS+"] .. " -ggdb3 -DAROOP_OPP_PROFILE -DAROOP_OPP_DEBUG "
+	configLines["VALAFLAGS+"] = configLines["VALAFLAGS+"] .. " -D SHOTODOL_FORK_DEBUG -D SHOTODOL_FD_DEBUG "
+	configLines["AROOP_VARIANT"] = "_debug"
+end
+```
+
+The code above prompts for debug options while configuring shotodol. If debug is enabled then the SHOTODOL_FORK_DEBUG will be enabled in Vala code. And that will enable the optional code here in [CompositePullOutputStream](../../../libs/iostream/vsrc/CompositePullOutputStream.vala). The same thing can be done in other projects based on shotodol.
+
 #### Using gdb
 
 You can load shotodol.bin in gdb and execute it. Suppose you have an assert failure then you can trace that easilly . See below an advanced example.

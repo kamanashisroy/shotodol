@@ -9,7 +9,7 @@ Modules are the basic building block of the shotodol project. There are two kind
 1. Static module : Static modules are linked statically to shotodol.bin (binary).
 2. Dynamic module : Dynamic modules are loaded on demand.
 
-Mostly the modules in [libs](../../libs),[linux](../../linux) directory are static libraries. These libraries are used by other modules (by subclassing or direct method call.). And the rest of the modules are dynamic modules. They are used as extensions(in some unavoidable cases they may be used in subclassing too). 
+Mostly the modules in [libs](../../libs),[linux](../../linux) directory are static libraries. These libraries are used by other modules (by subclassing or direct method call.) and they are [statically linked](../../libs/iostream/staticlibs.mk). And the rest of the modules are dynamic modules. They are used as extensions(in some unavoidable cases they may be used in subclassing too). 
 
 Both of the types of modules can be initiated on demand, allowing [lazy initialization](http://en.wikipedia.org/wiki/Lazy_initialization).
 
