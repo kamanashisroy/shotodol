@@ -7,9 +7,9 @@ Module
 Most of the code done in shotodol are in modules, simply to achieve **[robustness](http://en.wikipedia.org/wiki/Structural_robustness)** by **[separation of concern](http://en.wikipedia.org/wiki/Separation_of_concerns)**. A module is a [group of code](http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29) that provides a functional support to the shotodol environment. Following things holds true about shotodol modules,
 
 - _Encapsulation_: Each module is contained in a discrete directory. There are helper _Makefiles_ to build the modules. These scripts are primed for building modules in depth of two directories. For example, there are modules in apps/good\_luck or core/commands directory. 
-- _Loading/unloading_: User may choose to load a module dynamically and unload dinamically. Though there are ways to load static libraries. The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
+- _Loading/unloading_: User may choose to load a module dynamically and unload dinamically. Though there are ways to [initiate](../../../core/base/vsrc/ModuleLoader.vala#loadStatic) [static libraries](http://en.wikipedia.org/wiki/Static_library). The idea to load or initiate a module is to let it register the services or add extensions as plugin and do other initialization tasks. This is a way to support lazy initialization too.
 
-Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29) and low [coupling](http://en.wikipedia.org/wiki/Coupling_%28computer_science%29).
+Conceptually the modules should achieve more [cohesion](http://en.wikipedia.org/wiki/Cohesion_%28computer_science%29) and low [coupling](http://en.wikipedia.org/wiki/Coupling_%28computer_science%29). There are more about modules in [this page](../../../libs/module).
 
 Module Interaction
 ===================
@@ -97,5 +97,25 @@ User module
 
 User modules have the same potential as the builtin modules. But the point is, they are not part of the shotodol core and they are written on demand. [Here](../../../libs/module/README.md) is more about writing an user module.
 
+
+Loading and unloading modules
+=============================
+
+Loading the module can be done in console,
+
+```
+module -load apps/yourmodule/dynalib.so
+```
+
+Otherwise the same console command can be used in autoload/shotodol.ske script to do the same thing on load.
+
+```
+onLoad:
+	module -load apps/yourmodule/dynalib.so
+```
+
+**Important, please remember to put rehash command after loading all the modules to recalibrate them all.**
+
+TODO: write the unload options.
 
 

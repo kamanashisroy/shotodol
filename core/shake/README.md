@@ -12,7 +12,7 @@ Shake commands are shell like commands. The have parameters starting with *-* . 
 
 ### Programming commands
 
-FILLME
+Programming features are provided by [programming instruction](../../libs/programming_instruction/) library. There are commands like *if*, *else*, *while*, *echo* and *set*. These commands let us manipulate events programmatically.
 
 ### Core commands
 
