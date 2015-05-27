@@ -80,7 +80,7 @@ local ahome = os.getenv("AROOPC")
 -- 	end
 -- end
 if ahome == nil then
-	ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.1.0", false)
+	ahome = shotodol.capture("pkg-config --variable=aroopc libaroop-0.2.0", false)
 end
 if ahome == nil  then
 	ahome = "/usr/bin/aroopc"
