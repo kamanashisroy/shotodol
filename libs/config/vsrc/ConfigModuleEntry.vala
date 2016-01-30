@@ -17,14 +17,15 @@ internal class ConfigModuleEntry : Replicable {
 		entries = HashTable<xtring,ConfigEntry>(xtring.hCb,xtring.eCb);
 	}
 	internal int set(OPPFactory<ConfigEntry> source, xtring entryName, xtring myKey, xtring myValue) {
-		ConfigEntry? entry = entries.get(entryName);
+		unowned ConfigEntry? entry = entries.get(entryName);
 		if(entry == null) {
-			entry = source.alloc_full();
-			if(entry == null) {
+			ConfigEntry newEntry = source.alloc_full();
+			if(newEntry == null) {
 				return -1;
 			}
-			entry.build(entryName);
-			entries.set(entryName, entry);
+			newEntry.build(entryName);
+			entries.set(entryName, newEntry);
+			entry = newEntry;
 		}
 		entry.set(myKey, myValue);
 		return 0;

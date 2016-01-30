@@ -14,9 +14,9 @@ public class shotodol.LineAlign<G> : Replicable {
 	}
 	
 	~LineAlign() {
+		aln.destroy();
 		words = null;
 		sense = null;
-		aln.destroy();
 	}
 	
 	void build(WordSet wds, G?given_sense) {
