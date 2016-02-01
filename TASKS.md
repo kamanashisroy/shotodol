@@ -57,6 +57,7 @@ Roadmap
 - [x] Add tagging support in watchdog log. (This is done using -tag parameter)
 - [x] Rename Watchdog.WatchdogSeverity to Watchdog.Severity .
 - [x] see if there is any object of a class of a module still exists in any_obj_factory after unloading the module.
+- [ ] Make a travis.yml file.
 
 #### Decoupling
 - [ ] Move all the platfrom dependent code into named extensions(see roopkotha guicore).
