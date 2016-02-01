@@ -3,7 +3,7 @@ libs/unittest
 libs/watchdog 
 libs/module
 libs/plugin
-libs/str_arms 
+libs/linterpreter 
 libs/config
 libs/iterator
 OS_PLATFORM/platform_extra

@@ -15,7 +15,7 @@ internal class shotodol.ReturnCommand : M100Command {
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		extring inp = extring.stack_copy_deep(cmdstr);
 		extring token = extring();
-		LineAlign.next_token(&inp, &token); // second token
+		LineExpression.next_token(&inp, &token); // second token
 		inp.shift(1);
 		if(inp.is_empty()) {
 			cmds.vars.set(ret_val, null);

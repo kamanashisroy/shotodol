@@ -6,19 +6,19 @@ using shotodol;
  */
 public class shotodol.M100CommandSet: Replicable {
 	public HashTable<xtring,M100Variable?> vars;
-	BrainEngine<M100Command>?be;
+	Context<M100Command>?be;
 	extring command;
 	M100GotoCommand gcmd;
 	public bool quiet = false;
 	public M100CommandSet() {
 		command = extring.set_static_string("command");
 		//cmds = Set<M100Command>();
-		be = new BrainEngine<M100Command>();
+		be = new Context<M100Command>();
 		vars = HashTable<xtring,M100Variable?>(xtring.hCb,xtring.eCb);
 		gcmd = new M100GotoCommand();
 		extring prfx = extring();
 		gcmd.getPrefixAs(&prfx);
-		be.memorize_estr(&prfx, gcmd);
+		be.assign_estr(&prfx, gcmd);
 		quiet = false;
 	}
 	~M100CommandSet() {
@@ -41,16 +41,16 @@ public class shotodol.M100CommandSet: Replicable {
 		if(!command.equals(namesp))
 			command.rebuild_and_copy_on_demand(namesp);
 		be = null; // we do not keep any reference to older interfaces after this point.
-		be = new BrainEngine<M100Command>();
+		be = new Context<M100Command>();
 		extring gprfx = extring();
 		gcmd.getPrefixAs(&gprfx);
-		be.memorize_estr(&gprfx, gcmd);
+		be.assign_estr(&gprfx, gcmd);
 		PluginManager.acceptVisitor(namesp, (x) => {
 			M100Command?cmd = (M100Command)x.getInterface(null);
 			if(cmd != null) {
 				extring prfx = extring();
 				cmd.getPrefixAs(&prfx);
-				be.memorize_estr(&prfx, cmd);
+				be.assign_estr(&prfx, cmd);
 			}
 		});
 		extring command_programming = extring.set_static_string("command/programming");
@@ -59,14 +59,14 @@ public class shotodol.M100CommandSet: Replicable {
 			if(cmd != null) {
 				extring prfx = extring();
 				cmd.getPrefixAs(&prfx);
-				be.memorize_estr(&prfx, cmd);
+				be.assign_estr(&prfx, cmd);
 			}
 		});
 		return 0;
 	}
 
-	public M100Command? percept(extring*cmd_str) {
-		return be.percept_prefix_match(cmd_str);//be.direction(cmd_str);
+	public M100Command? lookup(extring*cmd_str) {
+		return be.lookup_prefix_match(cmd_str);//be.direction(cmd_str);
 	}
 	public int act_on(extring*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments
@@ -74,7 +74,7 @@ public class shotodol.M100CommandSet: Replicable {
 		}
 		extring target = extring();
 		xtring rcmd = M100Command.rewrite(cmd_str, &vars);
-		M100Command? mycmd = percept(rcmd);
+		M100Command? mycmd = lookup(rcmd);
 		//io.say_static("acting ..\n");
 		if(mycmd == null) {
 			// show menu ..

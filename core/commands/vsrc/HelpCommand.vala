@@ -14,7 +14,7 @@ internal class shotodol.HelpCommand : M100Command {
 		int i = 0;
 		for(i = 0; i < 32; i++) {
 			extring token = extring();
-			LineAlign.next_token(&inp, &token); // second token
+			LineExpression.next_token(&inp, &token); // second token
 			//token.zero_terminate();
 			if(token.is_empty()) {
 				if(i == 1) {
@@ -28,7 +28,7 @@ internal class shotodol.HelpCommand : M100Command {
 			}
 			extring ntoken = extring.stack_copy_deep(&token);
 			ntoken.zero_terminate();
-			M100Command? cmd = CommandModule.server.cmds.percept(&ntoken);
+			M100Command? cmd = CommandModule.server.cmds.lookup(&ntoken);
 			if(cmd == null) {
 				continue;
 			}

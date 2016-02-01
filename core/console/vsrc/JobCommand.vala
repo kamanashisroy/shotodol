@@ -44,8 +44,8 @@ internal class shotodol.JobCommand : shotodol.M100Command {
 #else
 		extring inp = extring.stack_copy_deep(cmdstr);
 		extring token = extring();
-		LineAlign.next_token(&inp, &token); // second token
-		LineAlign.next_token(&inp, &token); // second token
+		LineExpression.next_token(&inp, &token); // second token
+		LineExpression.next_token(&inp, &token); // second token
 		do {
 			if(token.is_empty())
 				break;

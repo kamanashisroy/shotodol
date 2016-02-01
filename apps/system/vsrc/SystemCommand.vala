@@ -15,7 +15,7 @@ internal class shotodol.SystemCommand : M100Command {
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		extring inp = extring.stack_copy_deep(cmdstr);
 		extring token = extring();
-		LineAlign.next_token(&inp, &token); 
+		LineExpression.next_token(&inp, &token); 
 		if(inp.is_empty()) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}

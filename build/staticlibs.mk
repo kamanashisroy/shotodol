@@ -9,7 +9,7 @@ include $(SHOTODOL_HOME)/$(PLATFORM)/platform_extra/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/iostream/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/activeio/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/plugin/staticlibs.mk
-include $(SHOTODOL_HOME)/libs/str_arms/staticlibs.mk
+include $(SHOTODOL_HOME)/libs/linterpreter/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/make100/staticlibs.mk
 include $(SHOTODOL_HOME)/libs/programming_instruction/staticlibs.mk
 OBJECTS+=$(shell $(AROOPC) --show-c-libdir)/libaroop_core$(AROOP_VARIANT).a

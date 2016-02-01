@@ -14,17 +14,17 @@ internal class shotodol.IfCommand : M100Command {
 		bool inverse = false;
 		extring inp = extring.stack_copy_deep(cmdstr);
 		extring token = extring();
-		LineAlign.next_token(&inp, &token); // if
+		LineExpression.next_token(&inp, &token); // if
 		if(token.is_empty())
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 
-		LineAlign.next_token(&inp, &token); // 0/1
+		LineExpression.next_token(&inp, &token); // 0/1
 		if(token.is_empty())
 			throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 
 		if(token.equals_string("not") || token.equals_string("!")) {
 			inverse = true;
-			LineAlign.next_token(&inp, &token); // 0/1
+			LineExpression.next_token(&inp, &token); // 0/1
 			if(token.is_empty())
 				throw new M100CommandError.ActionFailed.INSUFFICIENT_ARGUMENT("Insufficient argument");
 		}

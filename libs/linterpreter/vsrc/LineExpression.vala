@@ -4,16 +4,16 @@ using shotodol;
 /** \addtogroup str_arms
  *  @{
  */
-public class shotodol.LineAlign<G> : Replicable {
+public class shotodol.LineExpression<G> : Replicable {
 	WordSet? words;
 	SearchableOPPList<SearchableString> aln;
 	G?sense;
 	xtring?firstline;
-	public LineAlign(WordSet wds,G?given_sense) {
+	public LineExpression(WordSet wds,G?given_sense) {
 		build(wds, given_sense);
 	}
 	
-	~LineAlign() {
+	~LineExpression() {
 		aln.destroy();
 		words = null;
 		sense = null;
@@ -27,9 +27,9 @@ public class shotodol.LineAlign<G> : Replicable {
 		firstline = null;
 	}
 
-	public static LineAlign<G> factoryBuild(OPPFactory<LineAlign<G>>*fac, WordSet wds, G?given_sense) {
-		LineAlign<G> ln = fac.alloc_full();
-		//generihack<LineAlign<G>,G>.build_generics(ln); // what does it do ?
+	public static LineExpression<G> factoryBuild(OPPFactory<LineExpression<G>>*fac, WordSet wds, G?given_sense) {
+		LineExpression<G> ln = fac.alloc_full();
+		//generihack<LineExpression<G>,G>.build_generics(ln); // what does it do ?
 		ln.build(wds, given_sense);
 		return ln;
 	}
@@ -238,7 +238,7 @@ public class shotodol.LineAlign<G> : Replicable {
 		return i;
 	}
 	
-	public G? percept_prefix_match(extring*pfx, int*match_len) {
+	public G? lookup_prefix_match(extring*pfx, int*match_len) {
 		*match_len = prefix_match(pfx);
 		if(*match_len > 0) {
 			return sense;

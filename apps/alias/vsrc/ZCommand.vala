@@ -16,12 +16,12 @@ internal class shotodol.ZCommand : M100Command {
 	public override int act_on(extring*cmdstr, OutputStream pad, M100CommandSet cmds) throws M100CommandError.ActionFailed {
 		extring inp = extring.stack_copy_deep(cmdstr);
 		extring token = extring();
-		LineAlign.next_token(&inp, &token); 
+		LineExpression.next_token(&inp, &token); 
 		if(token.is_empty()) {
 			throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");
 		}
 		if(token.length() == 1) {
-			LineAlign.next_token(&inp, &token); 
+			LineExpression.next_token(&inp, &token); 
 			if(token.is_empty()) {
 				// TODO show list
 				throw new M100CommandError.ActionFailed.INVALID_ARGUMENT("Invalid argument");

@@ -44,7 +44,7 @@ public class shotodol.ConfigEngine : Replicable {
 		xtring? myEntryName = null;
 		xtring? myKey = null;
 		for(count = 0; count < 3; count++) {
-			LineAlign.next_token(&inp, &token);
+			LineExpression.next_token(&inp, &token);
 			if(token.is_empty_magical()) {
 				break;
 			}

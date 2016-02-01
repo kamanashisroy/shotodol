@@ -79,7 +79,7 @@ Shotodol comes with some builtin modules to support more extensions. These modul
 
 ### Unsorted modules
 
-- [str\_arms](../../../libs/str_arms/README.md)
+- [line-interpreter](../../../libs/linterpreter/README.md)
 - [iterator](../../../libs/iterator/README.md)
 - [alias](../../../apps/alias/README.md)
 

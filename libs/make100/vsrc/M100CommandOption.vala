@@ -40,7 +40,7 @@ public class shotodol.M100CommandOption : Searchable {
 		extring token = extring();
 		extring inp = extring.stack_copy_deep(cmdstr);
 		while(true) {
-			LineAlign.next_token(&inp, &token);
+			LineExpression.next_token(&inp, &token);
 			if(token.is_empty_magical()) {
 				break;
 			}
@@ -54,7 +54,7 @@ public class shotodol.M100CommandOption : Searchable {
 			}
 			if(token.equals((aroop.extring*)opt.prefix)) {
 				if(opt.tp == M100Command.OptionType.TXT) {
-					LineAlign.next_token(&inp, &token);
+					LineExpression.next_token(&inp, &token);
 					if(token.is_empty_magical() || token.char_at(0) == '-') {
 						//it.destroy();
 						throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected text value here");
@@ -63,7 +63,7 @@ public class shotodol.M100CommandOption : Searchable {
 					//val.add_container(x, opt.hash);
 					val.set(opt.hash,x);
 				} else if(opt.tp == M100Command.OptionType.INT) {
-					LineAlign.next_token(&inp, &token);
+					LineExpression.next_token(&inp, &token);
 					if(token.is_empty_magical() || (token.char_at(0) - '0') > 9) {
 						//it.destroy();
 						throw new M100CommandOptionError.ParseError.MISSING_ARGUMENT("Expected decimal value here");

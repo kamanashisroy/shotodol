@@ -39,7 +39,7 @@ bool test_tokenize_simple() {
 }
 ```
 
-The code above is in the _ScannerUnitTest.vala_ . Unit test entry `unit -t libs/str_arms` displays the following output for the code above.
+The code above is in the _ScannerUnitTest.vala_ . Unit test entry `unit -t libs/linterpretter` displays the following output for the code above.
 
 ```
 Token:[Good],left:[ luck, have a nice day.]
