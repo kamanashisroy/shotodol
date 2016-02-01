@@ -5,39 +5,32 @@ using shotodol;
  *  @{
  */
 public class shotodol.Context<G> : Replicable {
-	//OPPFactory<LineExpression> response;
-	//OPPFactory<LineExpression<G>> sandbox;
 	OPPFactory<LineExpression<G>> memory;
-	WordSet words;
 	
 	public Context() {
 		memory = OPPFactory<LineExpression<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
-		//response = OPPFactory<LineExpression>.for_type();
-		//sandbox = OPPFactory<LineExpression<G>>.for_type(16, 0, factory_flags.MEMORY_CLEAN);
-		words = new WordSet();
 	}
 
 	~Context() {
 		memory.destroy();
-		//sandbox.destroy();
 	}
 	
 	public int assign_estr(extring*wds, G? sense) {
 		if(wds == null || wds.is_empty_magical()) {
 			return -1;
 		}
-		LineExpression<G> ln = LineExpression.factoryBuild(&memory,words,sense);
+		LineExpression<G> ln = LineExpression.factoryBuild(&memory,sense);
 		ln.pin();
 		return ln.align_estr(wds);
 	}
 	
 	public int assign(InputStream strm, G? sense) {
-		LineExpression<G> ln = LineExpression.factoryBuild(&memory,words,sense);
+		LineExpression<G> ln = LineExpression.factoryBuild(&memory,sense);
 		ln.pin();
 		return ln.align(strm);
 	}
 	
-	public G? lookup_prefix_match(extring*wds) {
+	public G? lookup_by_prefix(extring*wds) {
 		if(wds.is_empty_magical()) {
 			return null;
 		}		
@@ -46,7 +39,7 @@ public class shotodol.Context<G> : Replicable {
 		memory.visit_each((data) =>{
 			unowned LineExpression<G> ln = (LineExpression<G>)data;
 			int len = 0;
-			G?sense = ln.lookup_prefix_match(wds, &len);
+			G?sense = ln.lookup_by_prefix(wds, &len);
 			if(strength < len) {
 				ret = sense;
 				strength = len;

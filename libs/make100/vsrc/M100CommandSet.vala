@@ -66,7 +66,7 @@ public class shotodol.M100CommandSet: Replicable {
 	}
 
 	public M100Command? lookup(extring*cmd_str) {
-		return be.lookup_prefix_match(cmd_str);//be.direction(cmd_str);
+		return be.lookup_by_prefix(cmd_str);//be.direction(cmd_str);
 	}
 	public int act_on(extring*cmd_str, OutputStream pad, M100Script?sc) {
 		if(cmd_str.char_at(0) == '#') { // skip the comments

@@ -4,12 +4,13 @@ using shotodol;
 /** \addtogroup str_arms
  *  @{
  */
-public class shotodol.WordSet : Replicable {
+#if false
+public class shotodol.Dictionary : Replicable {
 	SearchableOPPFactory<SearchableString> words;
-	public WordSet() {
+	public Dictionary() {
 		words = SearchableOPPFactory<SearchableString>.for_type();
 	}
-	~WordSet() {
+	~Dictionary() {
 		words.destroy();
 	}
 
@@ -30,4 +31,5 @@ public class shotodol.WordSet : Replicable {
 		return entry;
 	}
 }
+#endif
 /** @}*/

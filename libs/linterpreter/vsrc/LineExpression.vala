@@ -5,32 +5,25 @@ using shotodol;
  *  @{
  */
 public class shotodol.LineExpression<G> : Replicable {
-	WordSet? words;
-	SearchableOPPList<SearchableString> aln;
 	G?sense;
 	xtring?firstline;
-	public LineExpression(WordSet wds,G?given_sense) {
-		build(wds, given_sense);
+	public LineExpression(G?given_sense) {
+		build(given_sense);
 	}
 	
 	~LineExpression() {
-		aln.destroy();
-		words = null;
 		sense = null;
 	}
 	
-	void build(WordSet wds, G?given_sense) {
+	void build(G?given_sense) {
 		memclean_raw();	// clear garbage
-		aln = SearchableOPPList<SearchableString>();
-		words = wds;
 		sense = given_sense;
 		firstline = null;
 	}
 
-	public static LineExpression<G> factoryBuild(OPPFactory<LineExpression<G>>*fac, WordSet wds, G?given_sense) {
+	public static LineExpression<G> factoryBuild(OPPFactory<LineExpression<G>>*fac, G?given_sense) {
 		LineExpression<G> ln = fac.alloc_full();
-		//generihack<LineExpression<G>,G>.build_generics(ln); // what does it do ?
-		ln.build(wds, given_sense);
+		ln.build(given_sense);
 		return ln;
 	}
 	
@@ -188,6 +181,7 @@ public class shotodol.LineExpression<G> : Replicable {
 	}
 	
 	public int align_word(extring*wd) {
+#if false
 		if(wd.is_empty()) {
 			return 0;
 		}
@@ -195,8 +189,9 @@ public class shotodol.LineExpression<G> : Replicable {
 		SearchableString wdtxt = words.add(wd);
 		if(wdtxt != null) {
 			// align the word
-			aln.add(wdtxt);
+			//aln.add(wdtxt);
 		}
+#endif
 		return 0;
 	}
 	
@@ -238,7 +233,7 @@ public class shotodol.LineExpression<G> : Replicable {
 		return i;
 	}
 	
-	public G? lookup_prefix_match(extring*pfx, int*match_len) {
+	public G? lookup_by_prefix(extring*pfx, int*match_len) {
 		*match_len = prefix_match(pfx);
 		if(*match_len > 0) {
 			return sense;

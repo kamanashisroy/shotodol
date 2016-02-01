@@ -3,7 +3,7 @@ using shotodol;
 
 /**
  * \ingroup shotodol_library
- * \defgroup str_arms String manipulation support
+ * \defgroup linterpreter String manipulation support
  * [Cohesion : Functional]
  */
 
@@ -11,10 +11,11 @@ using shotodol;
 /** \addtogroup str_arms
  *  @{
  */
-public class shotodol.StrArmsModule: Module {
-	public StrArmsModule() {
+public class shotodol.LinterpreterModule: Module {
+	public LinterpreterModule() {
 	}
 	public override int init() {
+		// TODO write test code
 		return 0;
 	}
 	public override int deinit() {
