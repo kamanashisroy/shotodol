@@ -12,6 +12,7 @@ Roadmap
 - [ ] State the cohesion type in README.md for each module in shotodol.
 - [ ] Create a module named `node`.
 - [ ] Study https://wiki.gnome.org/Projects/Libpeas . "peas_plugin_loader_garbage_collect" and "peas_extension_call" is interesting. I think "peas_engine_get_plugin_info" can be added along with a "desc" method. "Plugins versus Extensions" paragraph in the README is important. We need that kind of talks in the tutorial or libs/plugin/README.md file. And the luahello.plugin file describes the plugin information.
+- [ ] rename AnyInterfaceExtension to BridgeExtension.
 
 #### Command
 - [x] Write a quiet command server in "command/server" space.
